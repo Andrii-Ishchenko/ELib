@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,10 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Author.cs" />
+    <Compile Include="Entities\AuthorGenre.cs" />
+    <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\BookFormat.cs" />
+    <Compile Include="Entities\BookGenre.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\FileFormat.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\Language.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\PersonRole.cs" />
+    <Compile Include="Entities\Publisher.cs" />
+    <Compile Include="Entities\RatingBook.cs" />
+    <Compile Include="Entities\RatingComment.cs" />
+    <Compile Include="Entities\UserBookStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Repositories\Abstract\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
