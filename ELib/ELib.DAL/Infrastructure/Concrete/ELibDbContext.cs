@@ -3,11 +3,12 @@ using System.Data.Entity;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
-    public partial class ELibDb : DbContext
+    public partial class ELibDbContext : DbContext
     {
-        public ELibDb()
+        public ELibDbContext()
             : base("name=ELibDb")
         {
+            Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
         }
 
         public virtual DbSet<Author> Authors { get; set; }
