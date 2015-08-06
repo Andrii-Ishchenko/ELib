@@ -1,15 +1,80 @@
-create database Library
+USE [master]
+GO
+/****** Object:  Database [Library]    Script Date: 06.08.2015 13:01:27 ******/
+CREATE DATABASE [Library]
+GO
+ALTER DATABASE [Library] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Library].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Library] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Library] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Library] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [Library] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Library] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Library] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Library] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Library] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Library] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Library] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Library] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Library] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [Library] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Library] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Library] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Library] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Library] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Library] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Library] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Library] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [Library] SET  MULTI_USER 
+GO
+ALTER DATABASE [Library] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Library] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Library] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Library] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [Library] SET DELAYED_DURABILITY = DISABLED 
 GO
 USE [Library]
 GO
-
-/****** Object:  Table [dbo].[Author]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Author]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Author](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
@@ -28,14 +93,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[AuthorGenre]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[AuthorGenre]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[AuthorGenre](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[AuthorId] [int] NOT NULL,
@@ -51,17 +113,13 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Book]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Book]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 SET ANSI_PADDING ON
 GO
-
 CREATE TABLE [dbo].[Book](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Title] [nvarchar](200) NOT NULL,
@@ -84,17 +142,33 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
 SET ANSI_PADDING OFF
 GO
-
-/****** Object:  Table [dbo].[BookFormat]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[BookAuthor]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[BookAuthor](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[BookId] [int] NOT NULL,
+	[AuthorId] [int] NOT NULL,
+ CONSTRAINT [PK_BookAuthor] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO
+/****** Object:  Table [dbo].[BookFormat]    Script Date: 06.08.2015 13:01:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[BookFormat](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[BookId] [int] NOT NULL,
@@ -112,14 +186,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[BookGenre]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[BookGenre]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[BookGenre](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[BookId] [int] NOT NULL,
@@ -135,14 +206,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Comment]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Comment]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Comment](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [nvarchar](400) NULL,
@@ -160,14 +228,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[FileFormat]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[FileFormat]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[FileFormat](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](10) NOT NULL,
@@ -182,14 +247,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Genre]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Genre]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Genre](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](40) NOT NULL,
@@ -204,14 +266,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Language]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Language]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Language](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](20) NOT NULL,
@@ -226,17 +285,13 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Person]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 SET ANSI_PADDING ON
 GO
-
 CREATE TABLE [dbo].[Person](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
@@ -261,17 +316,13 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
 SET ANSI_PADDING OFF
 GO
-
-/****** Object:  Table [dbo].[PersonRole]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[PersonRole]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[PersonRole](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](20) NOT NULL,
@@ -286,14 +337,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[Publisher]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[Publisher]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Publisher](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](40) NOT NULL,
@@ -308,14 +356,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[RatingBook]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[RatingBook]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[RatingBook](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[BookId] [int] NOT NULL,
@@ -332,14 +377,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[RatingComment]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[RatingComment]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[RatingComment](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CommentId] [int] NOT NULL,
@@ -356,14 +398,11 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
-/****** Object:  Table [dbo].[UserBookStatus]    Script Date: 05.08.2015 13:24:01 ******/
+/****** Object:  Table [dbo].[UserBookStatus]    Script Date: 06.08.2015 13:01:27 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[UserBookStatus](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[UserId] [int] NOT NULL,
@@ -380,132 +419,107 @@ UNIQUE NONCLUSTERED
 ) ON [PRIMARY]
 
 GO
-
 ALTER TABLE [dbo].[BookFormat] ADD  DEFAULT (getdate()) FOR [InsertDate]
 GO
-
 ALTER TABLE [dbo].[Comment] ADD  DEFAULT (getdate()) FOR [CommentDate]
 GO
-
 ALTER TABLE [dbo].[Person] ADD  DEFAULT (getdate()) FOR [RegistrationDate]
 GO
-
 ALTER TABLE [dbo].[RatingBook] ADD  DEFAULT ((0)) FOR [ValueRating]
 GO
-
 ALTER TABLE [dbo].[RatingComment] ADD  DEFAULT ((0)) FOR [IsLike]
 GO
-
 ALTER TABLE [dbo].[AuthorGenre]  WITH CHECK ADD  CONSTRAINT [FK_AuthorGenre_Author] FOREIGN KEY([AuthorId])
 REFERENCES [dbo].[Author] ([Id])
 GO
-
 ALTER TABLE [dbo].[AuthorGenre] CHECK CONSTRAINT [FK_AuthorGenre_Author]
 GO
-
 ALTER TABLE [dbo].[AuthorGenre]  WITH CHECK ADD  CONSTRAINT [FK_AuthorGenre_Genre] FOREIGN KEY([GenreId])
 REFERENCES [dbo].[Genre] ([Id])
 GO
-
 ALTER TABLE [dbo].[AuthorGenre] CHECK CONSTRAINT [FK_AuthorGenre_Genre]
 GO
-
 ALTER TABLE [dbo].[Book]  WITH CHECK ADD  CONSTRAINT [FK_Book_Language] FOREIGN KEY([PublishLangId])
 REFERENCES [dbo].[Language] ([Id])
 GO
-
 ALTER TABLE [dbo].[Book] CHECK CONSTRAINT [FK_Book_Language]
 GO
-
 ALTER TABLE [dbo].[Book]  WITH CHECK ADD  CONSTRAINT [FK_Book_Language1] FOREIGN KEY([OriginalLangId])
 REFERENCES [dbo].[Language] ([Id])
 GO
-
 ALTER TABLE [dbo].[Book] CHECK CONSTRAINT [FK_Book_Language1]
 GO
-
 ALTER TABLE [dbo].[Book]  WITH CHECK ADD  CONSTRAINT [FK_Book_Publisher] FOREIGN KEY([PublisherId])
 REFERENCES [dbo].[Publisher] ([Id])
 GO
-
 ALTER TABLE [dbo].[Book] CHECK CONSTRAINT [FK_Book_Publisher]
 GO
-
+ALTER TABLE [dbo].[BookAuthor]  WITH CHECK ADD  CONSTRAINT [FK_BookAuthor_Author] FOREIGN KEY([AuthorId])
+REFERENCES [dbo].[Author] ([Id])
+GO
+ALTER TABLE [dbo].[BookAuthor] CHECK CONSTRAINT [FK_BookAuthor_Author]
+GO
+ALTER TABLE [dbo].[BookAuthor]  WITH CHECK ADD  CONSTRAINT [FK_BookAuthor_Book] FOREIGN KEY([BookId])
+REFERENCES [dbo].[Book] ([Id])
+GO
+ALTER TABLE [dbo].[BookAuthor] CHECK CONSTRAINT [FK_BookAuthor_Book]
+GO
 ALTER TABLE [dbo].[BookFormat]  WITH CHECK ADD  CONSTRAINT [FK_BookFormat_Book] FOREIGN KEY([BookId])
 REFERENCES [dbo].[Book] ([Id])
 GO
-
 ALTER TABLE [dbo].[BookFormat] CHECK CONSTRAINT [FK_BookFormat_Book]
 GO
-
 ALTER TABLE [dbo].[BookFormat]  WITH CHECK ADD  CONSTRAINT [FK_BookFormat_FileFormat] FOREIGN KEY([FormatId])
 REFERENCES [dbo].[FileFormat] ([Id])
 GO
-
 ALTER TABLE [dbo].[BookFormat] CHECK CONSTRAINT [FK_BookFormat_FileFormat]
 GO
-
 ALTER TABLE [dbo].[BookGenre]  WITH CHECK ADD  CONSTRAINT [FK_BookGenre_Book] FOREIGN KEY([BookId])
 REFERENCES [dbo].[Book] ([Id])
 GO
-
 ALTER TABLE [dbo].[BookGenre] CHECK CONSTRAINT [FK_BookGenre_Book]
 GO
-
 ALTER TABLE [dbo].[BookGenre]  WITH CHECK ADD  CONSTRAINT [FK_BookGenre_Genre] FOREIGN KEY([GenreId])
 REFERENCES [dbo].[Genre] ([Id])
 GO
-
 ALTER TABLE [dbo].[BookGenre] CHECK CONSTRAINT [FK_BookGenre_Genre]
 GO
-
 ALTER TABLE [dbo].[Person]  WITH CHECK ADD  CONSTRAINT [FK_Person_PersonRole] FOREIGN KEY([RoleId])
 REFERENCES [dbo].[PersonRole] ([Id])
 GO
-
 ALTER TABLE [dbo].[Person] CHECK CONSTRAINT [FK_Person_PersonRole]
 GO
-
 ALTER TABLE [dbo].[RatingBook]  WITH CHECK ADD  CONSTRAINT [FK_RatingBook_Book] FOREIGN KEY([BookId])
 REFERENCES [dbo].[Book] ([Id])
 GO
-
 ALTER TABLE [dbo].[RatingBook] CHECK CONSTRAINT [FK_RatingBook_Book]
 GO
-
 ALTER TABLE [dbo].[RatingBook]  WITH CHECK ADD  CONSTRAINT [FK_RatingBook_Person] FOREIGN KEY([UserId])
 REFERENCES [dbo].[Person] ([Id])
 GO
-
 ALTER TABLE [dbo].[RatingBook] CHECK CONSTRAINT [FK_RatingBook_Person]
 GO
-
 ALTER TABLE [dbo].[RatingComment]  WITH CHECK ADD  CONSTRAINT [FK_RatingComment_Comment] FOREIGN KEY([CommentId])
 REFERENCES [dbo].[Comment] ([Id])
 GO
-
 ALTER TABLE [dbo].[RatingComment] CHECK CONSTRAINT [FK_RatingComment_Comment]
 GO
-
 ALTER TABLE [dbo].[RatingComment]  WITH CHECK ADD  CONSTRAINT [FK_RatingComment_Person] FOREIGN KEY([UserId])
 REFERENCES [dbo].[Person] ([Id])
 GO
-
 ALTER TABLE [dbo].[RatingComment] CHECK CONSTRAINT [FK_RatingComment_Person]
 GO
-
 ALTER TABLE [dbo].[UserBookStatus]  WITH CHECK ADD  CONSTRAINT [FK_UserBookStatus_Book] FOREIGN KEY([BookId])
 REFERENCES [dbo].[Book] ([Id])
 GO
-
 ALTER TABLE [dbo].[UserBookStatus] CHECK CONSTRAINT [FK_UserBookStatus_Book]
 GO
-
 ALTER TABLE [dbo].[UserBookStatus]  WITH CHECK ADD  CONSTRAINT [FK_UserBookStatus_Person] FOREIGN KEY([UserId])
 REFERENCES [dbo].[Person] ([Id])
 GO
-
 ALTER TABLE [dbo].[UserBookStatus] CHECK CONSTRAINT [FK_UserBookStatus_Person]
 GO
-
-
+USE [master]
+GO
+ALTER DATABASE [Library] SET  READ_WRITE 
+GO
