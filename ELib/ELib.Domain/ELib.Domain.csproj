@@ -43,6 +43,7 @@
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\AuthorGenre.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\BookAuthor.cs" />
     <Compile Include="Entities\BookFormat.cs" />
     <Compile Include="Entities\BookGenre.cs" />
     <Compile Include="Entities\Comment.cs" />

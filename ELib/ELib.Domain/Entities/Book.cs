@@ -27,7 +27,7 @@ namespace ELib.Domain.Entities
 
         public int? OriginalLangId { get; set; }
 
-        public int? TotalPage { get; set; }
+        public int? TotalPages { get; set; }
 
         [StringLength(20)]
         public string Isbn { get; set; }
@@ -39,13 +39,16 @@ namespace ELib.Domain.Entities
 
         public byte[] Picture { get; set; }
 
-        public string Descript { get; set; }
+        public string Description { get; set; }
 
         public virtual Language Language { get; set; }
 
         public virtual Language Language1 { get; set; }
 
         public virtual Publisher Publisher { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookFormat> BookFormats { get; set; }

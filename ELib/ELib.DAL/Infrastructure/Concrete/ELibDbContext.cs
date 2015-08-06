@@ -6,14 +6,14 @@ namespace ELib.DAL.Infrastructure.Concrete
     public partial class ELibDbContext : DbContext
     {
         public ELibDbContext()
-            : base("name=ELibDb")
+           : base("name=ELibDbContext")
         {
-            Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
         }
 
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<AuthorGenre> AuthorGenres { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<BookAuthor> BookAuthors { get; set; }
         public virtual DbSet<BookFormat> BookFormats { get; set; }
         public virtual DbSet<BookGenre> BookGenres { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -34,9 +34,19 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .WithRequired(e => e.Author)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Author>()
+                .HasMany(e => e.BookAuthors)
+                .WithRequired(e => e.Author)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Book>()
                 .Property(e => e.Isbn)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(e => e.BookAuthors)
+                .WithRequired(e => e.Book)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Book>()
                 .HasMany(e => e.BookFormats)

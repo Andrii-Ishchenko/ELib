@@ -24,13 +24,16 @@ namespace ELib.Domain.Entities
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public DateTime? BirthDate { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
-        public DateTime? DeateDate { get; set; }
+        public DateTime? DeathDate { get; set; }
 
-        public string Descript { get; set; }
+        public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AuthorGenre> AuthorGenres { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }
