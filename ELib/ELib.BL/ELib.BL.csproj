@@ -45,6 +45,16 @@
     <Folder Include="Services\Abstract\" />
     <Folder Include="Services\Concrete\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ELib.DAL\ELib.DAL.csproj">
+      <Project>{388b9056-cbe1-4e9a-a637-17bdf5d85c8e}</Project>
+      <Name>ELib.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ELib.Domain\ELib.Domain.csproj">
+      <Project>{6556e528-064a-4bd9-a613-c60b182e130c}</Project>
+      <Name>ELib.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

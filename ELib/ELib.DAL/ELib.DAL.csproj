@@ -49,11 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Concrete\ELibDbContext.cs" />
+    <Compile Include="Infrastructure\Concrete\ELibDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Concrete\GenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Abstract\" />
-    <Folder Include="Repositories\Concrete\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
