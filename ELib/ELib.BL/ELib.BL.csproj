@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -41,12 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoEntities\GenreDto.cs" />
-    <Compile Include="Mapper\Mapper.cs" />
+    <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
+    <Compile Include="Services\Concrete\GenreService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.DAL\ELib.DAL.csproj">
       <Project>{388b9056-cbe1-4e9a-a637-17bdf5d85c8e}</Project>

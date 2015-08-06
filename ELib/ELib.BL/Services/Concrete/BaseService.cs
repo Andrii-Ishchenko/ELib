@@ -7,19 +7,22 @@ using ELib.DAL.Infrastructure.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
+    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntityDto> 
+        where TEntityDto : class
+        where TEntity : class
     {
-        private readonly IUnitOfWorkFactory _factory;
+        protected readonly IUnitOfWorkFactory _factory;
 
         public BaseService(IUnitOfWorkFactory factory)
         {
             _factory = factory;
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(TEntityDto entity)
         {
             using (var uow = _factory.Create())
             {
+                var entityToDelete = 
                 uow.Repository<TEntity>().Delete(entity);
                 uow.Save();
             }
@@ -34,11 +37,11 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public IEnumerable<TEntity> GetAll()
         {
             using (var uow = _factory.Create())
             {
-                return uow.Repository<TEntity>().Get(filter, orderBy, includeProperties);
+                return uow.Repository<TEntity>().Get();
             }
         }
 
@@ -66,6 +69,11 @@ namespace ELib.BL.Services.Concrete
                 uow.Repository<TEntity>().Update(entity);
                 uow.Save();
             }
+        }
+
+        void IBaseService<TEntity>.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
