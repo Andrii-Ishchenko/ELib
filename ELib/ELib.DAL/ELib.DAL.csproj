@@ -48,14 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
     <Compile Include="Infrastructure\Concrete\ELibDbContext.cs" />
     <Compile Include="Infrastructure\Concrete\ELibDbInitializer.cs" />
+    <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Concrete\GenericRepository.cs" />
+    <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
+    <Compile Include="Repositories\Concrete\BaseRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
