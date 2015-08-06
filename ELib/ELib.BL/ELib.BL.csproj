@@ -40,10 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Concrete\BaseService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\Abstract\" />
-    <Folder Include="Services\Concrete\" />
+    <Folder Include="DtoEntities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.DAL\ELib.DAL.csproj">
