@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ELib.BL.Services.Abstract
 {
-    public interface IGenreService : IBaseService<GenreDto>
+    public interface IGenreService : IBaseService<Genre, GenreDto>
     {
 
     }

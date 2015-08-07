@@ -5,18 +5,20 @@ using System.Linq.Expressions;
 
 namespace ELib.BL.Services.Abstract
 {
-    public interface IBaseService<TEntity> where TEntity : class
+    public interface IBaseService<TEntity, TEntityDto> 
+        where TEntity : class
+        where TEntityDto : class
     {
-        TEntity GetById(object id);
+        TEntityDto GetById(object id);
 
-        void Insert(TEntity entity);
+        void Insert(TEntityDto entity);
 
-        void Delete(TEntity entity);
+        void Delete(TEntityDto entity);
 
         void DeleteById(object id);
 
-        void Update(TEntity entity);
+        void Update(TEntityDto entity);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntityDto> GetAll();
     }
 }

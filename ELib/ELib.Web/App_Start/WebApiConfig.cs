@@ -1,4 +1,11 @@
-﻿using System;
+﻿using ELib.BL.Services.Abstract;
+using ELib.BL.Services.Concrete;
+using ELib.DAL.Infrastructure.Abstract;
+using ELib.DAL.Infrastructure.Concrete;
+using ELib.DAL.Repositories.Abstract;
+using ELib.DAL.Repositories.Concrete;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -23,6 +30,22 @@ namespace ELib.Web
             // To disable tracing in your application, please comment out or remove the following line of code
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter
+                .SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            var container = new UnityContainer();
+
+            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
+
+            container.RegisterType(typeof(IBaseService<,>), typeof(BaseService<,>));
+            container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
         }
     }
 }

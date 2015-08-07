@@ -7,7 +7,7 @@ using ELib.DAL.Infrastructure.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntityDto> 
+    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, TEntityDto> 
         where TEntityDto : class
         where TEntity : class
     {
