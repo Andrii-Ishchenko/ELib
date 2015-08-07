@@ -4,6 +4,7 @@ using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Infrastructure.Concrete;
 using ELib.DAL.Repositories.Abstract;
 using ELib.DAL.Repositories.Concrete;
+using ELib.Web.Infrastructure.Concrete;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace ELib.Web
     {
         public static void Register(HttpConfiguration config)
         {
+           // config.MapHttpAttributeRoutes();
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -46,6 +49,8 @@ namespace ELib.Web
 
             container.RegisterType(typeof(IBaseService<,>), typeof(BaseService<,>));
             container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
+
+            config.DependencyResolver = new UnityResolver(container);
         }
     }
 }
