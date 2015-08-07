@@ -17,6 +17,6 @@ namespace ELib.BL.Services.Abstract
 
         void Update(TEntity entity);
 
-        void GetAll();
+        IEnumerable<TEntity> GetAll();
     }
 }

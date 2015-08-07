@@ -22,8 +22,8 @@ namespace ELib.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var entityToDelete = 
-                uow.Repository<TEntity>().Delete(entity);
+                var entityToDelete = AutoMapper.Mapper.Map<TEntity>(entity);
+                uow.Repository<TEntity>().Delete(entityToDelete);
                 uow.Save();
             }
         }
@@ -37,43 +37,51 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntityDto> GetAll()
         {
             using (var uow = _factory.Create())
             {
-                return uow.Repository<TEntity>().Get();
+                var entitiesDto = new List<TEntityDto>();
+                var entities = uow.Repository<TEntity>().Get();
+
+                foreach(var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<TEntityDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
             }
         }
 
-        public TEntity GetById(object id)
+        public TEntityDto GetById(object id)
         {
             using (var uow = _factory.Create())
             {
-                return uow.Repository<TEntity>().GetById(id);
+                var entity = uow.Repository<TEntity>().GetById(id);
+                var entityDto = AutoMapper.Mapper.Map<TEntityDto>(entity);
+                return entityDto;
             }
         }
 
-        public void Insert(TEntity entity)
+        public void Insert(TEntityDto entity)
         {
             using (var uow = _factory.Create())
             {
-                uow.Repository<TEntity>().Insert(entity);
+                var entityToInsert = AutoMapper.Mapper.Map<TEntity>(entity);
+                uow.Repository<TEntity>().Insert(entityToInsert);
                 uow.Save();
             }
         }
 
-        public void Update(TEntity entity)
+        public void Update(TEntityDto entity)
         {
             using (var uow = _factory.Create())
             {
-                uow.Repository<TEntity>().Update(entity);
+                var entityToUpdate = AutoMapper.Mapper.Map<TEntity>(entity);
+                uow.Repository<TEntity>().Update(entityToUpdate);
                 uow.Save();
             }
-        }
-
-        void IBaseService<TEntity>.GetAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }

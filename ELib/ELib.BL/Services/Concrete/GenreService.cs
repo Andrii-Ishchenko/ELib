@@ -10,7 +10,7 @@ using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class GenreService : BaseService<Genre, GenreDto>, IBaseService<GenreDto>
+    public class GenreService : BaseService<Genre, GenreDto>, IGenreService
     {
         public GenreService(IUnitOfWorkFactory factory) 
             :base(factory) 
