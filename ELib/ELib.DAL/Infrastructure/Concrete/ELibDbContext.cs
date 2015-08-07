@@ -6,7 +6,7 @@ namespace ELib.DAL.Infrastructure.Concrete
     public partial class ELibDbContext : DbContext
     {
         public ELibDbContext()
-           : base("name=ELibDbContext")
+           : base("name=ELibDb")
         {
         }
 
