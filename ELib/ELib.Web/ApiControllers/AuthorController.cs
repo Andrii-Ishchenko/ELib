@@ -48,12 +48,16 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPut]
-        public HttpResponseMessage CreateAuthor(AuthorDto authorDto)
+        public HttpResponseMessage AddAuthor(AuthorDto authorDto)
         {
             try
             {
-                _authorService.Insert(authorDto);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                if (ModelState.IsValid)
+                {
+                    _authorService.Insert(authorDto);
+                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
             catch (Exception ex)
             {
@@ -66,8 +70,12 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                _authorService.Update(authorDto);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                if (ModelState.IsValid)
+                {
+                    _authorService.Update(authorDto);
+                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
             catch (Exception ex)
             {
@@ -80,8 +88,12 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                _authorService.Delete(authorDto);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                if (ModelState.IsValid)
+                {
+                    _authorService.Delete(authorDto);
+                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
+                }
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
             catch (Exception ex)
             {

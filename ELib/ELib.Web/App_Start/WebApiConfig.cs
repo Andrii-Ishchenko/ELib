@@ -49,6 +49,7 @@ namespace ELib.Web
 
             container.RegisterType(typeof(IBaseService<,>), typeof(BaseService<,>));
             container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAuthorService, AuthorService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }
