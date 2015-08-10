@@ -46,12 +46,17 @@
   <ItemGroup>
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
+    <Compile Include="DtoEntities\PersonRoleDto.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
+    <Compile Include="Services\Abstract\IPersonRoleService.cs" />
+    <Compile Include="Services\Abstract\IPersonService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
+    <Compile Include="Services\Concrete\PersonRoleService.cs" />
+    <Compile Include="Services\Concrete\PersonService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
