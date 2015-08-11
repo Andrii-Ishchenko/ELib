@@ -26,5 +26,9 @@ namespace ELib.BL.Services.Abstract
 
         string ResetPassword(string login);
 
+        bool ExistLogin(string login);
+
+        bool ExistEmail(string email);
+
     }
 }

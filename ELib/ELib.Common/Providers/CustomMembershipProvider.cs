@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -11,24 +12,25 @@ namespace ELib.Common.Providers
 {
     public class CustomMembershipProvider : MembershipProvider
     {
-        private IPersonService personservice;
+        private IPersonService Personservice { get; set; }
         public CustomMembershipProvider(IPersonService person)
         {
-            personservice = person;
+            
+            Personservice = person;
         }
         private string applicationName;
 
 
         public override bool ValidateUser(string login, string password)
         {
-            return personservice.Validate(login, password);
+            return Personservice.Validate(login, password);
         }
 
         public override MembershipUser GetUser(string login, bool update)
         {
-            var user = personservice.GetByLogin(login);
+            var user = Personservice.GetByLogin(login);
             if (update && user != null)
-                personservice.UpdateLastActivity(user.Login);
+                Personservice.UpdateLastActivity(user.Login);
 
             return user == null
                        ? null
@@ -50,8 +52,8 @@ namespace ELib.Common.Providers
 
         public override bool ChangePassword(string login, string oldPassword, string newPassword)
         {
-            if (personservice.CheckPassword(newPassword))
-                return personservice.ChangePassword(login, personservice.EncodePassword(oldPassword), personservice.EncodePassword(newPassword), false);
+            if (Personservice.CheckPassword(newPassword))
+                return Personservice.ChangePassword(login, Personservice.EncodePassword(oldPassword), Personservice.EncodePassword(newPassword), false);
             return false;
         }
 
@@ -60,13 +62,63 @@ namespace ELib.Common.Providers
             return false;
         }
 
-        public override MembershipUser CreateUser(string username, string password, string email,
+        public override MembershipUser CreateUser(string login, string password, string email,
                                                   string passwordQuestion, string passwordAnswer,
                                                   bool isApproved, object providerUserKey,
                                                   out MembershipCreateStatus status)
         {
             throw new NotImplementedException();
         }
+
+        public MembershipUser CreateUser(string login, string password, string email,
+                                         string firstName, string lastName, string phone,
+                                         byte[] photo, byte[] smallPhoto,
+                                         out MembershipCreateStatus status)
+        {
+            try
+            {
+                if (Personservice.ExistLogin(login))
+                {
+                    status = MembershipCreateStatus.InvalidUserName;
+                    return null;
+                }
+                if (Personservice.ExistEmail(email))
+                {
+                    status = MembershipCreateStatus.InvalidEmail;
+                    return null;
+                }
+
+                if (!Personservice.CheckPassword(password))
+                {
+                    status = MembershipCreateStatus.InvalidPassword;
+                    return null;
+                }
+
+                PersonDto user = new PersonDto();
+                user.Login = login;
+                user.Email = email;
+                user.Password = Personservice.EncodePassword(password);
+                user.RoleId =1;//!!!!!треба щось краще.
+                user.FirstName = firstName;
+                user.LastName = lastName;
+                user.Phone = phone;
+                user.Photo = photo;
+                user.SmallPhoto = smallPhoto;
+                user.RegistrationDate = DateTime.Now;
+                user.LastActivationDate = DateTime.Now;
+
+                Personservice.Insert(user);
+                status = MembershipCreateStatus.Success;
+
+                return GetUser(login, false);
+            }
+            catch
+            {
+                throw;
+            };
+        }
+
+
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {

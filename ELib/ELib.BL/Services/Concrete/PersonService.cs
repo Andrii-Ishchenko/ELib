@@ -99,7 +99,23 @@ namespace ELib.BL.Services.Concrete
                 return newpwd;
             return null;
         }
+        public bool ExistLogin(string login)
+        {
+            using (var uow = _factory.Create())
+            {
+                return uow.Repository<Person>().Get(u => u.Login == login).Any();
+            }
+        }
 
+        public bool ExistEmail(string email)
+        {
+            using (var uow = _factory.Create())
+            {
+                return uow.Repository<Person>().Get(u => u.Email == email).Any();
+            }
+        }
+
+       
 
     }
 }

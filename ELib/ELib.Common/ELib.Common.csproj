@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -51,6 +52,10 @@
     <ProjectReference Include="..\ELib.BL\ELib.BL.csproj">
       <Project>{da127493-ab50-43f3-bfeb-eced72ce1890}</Project>
       <Name>ELib.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ELib.Domain\ELib.Domain.csproj">
+      <Project>{6556e528-064a-4bd9-a613-c60b182e130c}</Project>
+      <Name>ELib.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
