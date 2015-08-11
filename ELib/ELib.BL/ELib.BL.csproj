@@ -44,10 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
