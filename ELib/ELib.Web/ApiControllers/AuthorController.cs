@@ -52,7 +52,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (authorDto != null && ModelState.IsValid)
                 {
                     _authorService.Insert(authorDto);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
@@ -70,7 +70,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (authorDto != null && ModelState.IsValid)
                 {
                     _authorService.Update(authorDto);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
@@ -88,7 +88,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (authorDto != null && ModelState.IsValid)
                 {
                     _authorService.Delete(authorDto);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");

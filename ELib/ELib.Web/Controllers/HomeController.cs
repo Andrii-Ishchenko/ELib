@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ELib.BL.Services.Concrete;
+using ELib.DAL.Infrastructure.Abstract;
+using ELib.Web.ApiControllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +13,7 @@ namespace ELib.Web.Controllers
     {
         public ActionResult Index()
         {
+            AuthorController author = new AuthorController(new AuthorService(IUnitOfWorkFactory));
             return View();
         }
     }
