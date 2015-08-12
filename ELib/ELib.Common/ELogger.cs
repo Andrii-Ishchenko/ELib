@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NLog;
+
+namespace ELib.Common
+{
+    public class ELogger
+    {
+        private Logger logger;
+        public ELogger(String classname)
+        {
+            logger = LogManager.GetLogger(classname);
+        }
+
+        public void Trace(String msg)
+        {
+            logger.Log(LogLevel.Trace, msg);
+        }
+
+        public void Debug(String msg)
+        {
+            logger.Log(LogLevel.Debug, msg);
+        }
+
+        public void Info(String msg)
+        {
+            logger.Log(LogLevel.Info, msg);
+        }
+
+        public void Warn(String msg)
+        {
+            logger.Log(LogLevel.Warn, msg);
+        }
+
+        public void Error(String msg)
+        {
+            logger.Log(LogLevel.Error, msg);
+        }
+
+        public void Fatal(String msg)
+        {
+            logger.Log(LogLevel.Fatal, msg);
+        }
+    }
+}
