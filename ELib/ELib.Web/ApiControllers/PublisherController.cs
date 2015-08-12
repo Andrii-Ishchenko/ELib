@@ -7,16 +7,19 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
     public class PublisherController: ApiController
     {
         private readonly IPublisherService _service;
+        private ELogger logger;
 
         public PublisherController(IPublisherService service)
         {
-            _service = service;
+            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
+            _service = service;           
         }
         
         [HttpGet]
@@ -24,11 +27,12 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                var publishers = _service.GetAll();
+                var publishers = _service.GetAll();               
                 return Request.CreateResponse(HttpStatusCode.OK, publishers);
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Publisher/Get");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -42,6 +46,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Publisher/GetById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -59,6 +64,7 @@ namespace ELib.Web.ApiControllers
             }
             catch(Exception ex)
             {
+                logger.Error("Error In Publisher/Add");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }          
         }
@@ -76,6 +82,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Publisher/Update");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -93,6 +100,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Publisher/Delete");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -110,6 +118,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                ogger.Error("Error In Publisher/DeleteById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }

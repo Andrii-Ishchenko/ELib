@@ -6,15 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
     public class GenreController : ApiController
     {
         private readonly IGenreService _genreService;
+        private ELogger logger;
 
         public GenreController(IGenreService genreService)
         {
+            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _genreService = genreService;
         }
 
@@ -29,6 +32,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Genre/Get");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -43,6 +47,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Genre/GetById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -61,6 +66,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Genre/Add");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -79,12 +85,13 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Genre/Update");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteGenre(int id)
+        public HttpResponseMessage DeleteGenreById(int id)
         {
             try
             {
@@ -93,6 +100,22 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
+                logger.Error("Error In Genre/DeleteById");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public HttpResponseMessage DeleteGenre(GenreDto genre)
+        {
+            try
+            {
+                _genreService.Delete(genre);
+                return Request.CreateResponse(HttpStatusCode.OK, "OK");
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error In Genre/Delete");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
