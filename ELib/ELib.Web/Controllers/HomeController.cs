@@ -13,7 +13,6 @@ namespace ELib.Web.Controllers
     {
         public ActionResult Index()
         {
-            AuthorController author = new AuthorController(new AuthorService(IUnitOfWorkFactory));
             return View();
         }
     }
