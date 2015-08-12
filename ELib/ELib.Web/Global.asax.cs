@@ -21,9 +21,12 @@ namespace ELib.Web
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
+           // GlobalConfiguration.c
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            
             AutoMapperConfig.Configure();
         }
     }

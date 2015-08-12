@@ -52,6 +52,7 @@
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
+    <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
   </ItemGroup>
   <ItemGroup>
