@@ -32,11 +32,12 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Publisher/Get");
+                logger.Error("Error In Publisher/Get",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
+        [HttpGet]
         public HttpResponseMessage GetPublisherById(int id)
         {
             try
@@ -46,11 +47,12 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Publisher/GetById");
+                logger.Error("Error In Publisher/GetById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
+        [HttpPost]
         public HttpResponseMessage AddPublisher(PublisherDto publisher)
         {
             try
@@ -64,11 +66,12 @@ namespace ELib.Web.ApiControllers
             }
             catch(Exception ex)
             {
-                logger.Error("Error In Publisher/Add");
+                logger.Error("Error In Publisher/Add",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }          
         }
 
+        [HttpPut]
         public HttpResponseMessage UpdatePublisher(PublisherDto publisher)
         {
             try
@@ -82,11 +85,12 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Publisher/Update");
+                logger.Error("Error In Publisher/Update",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
+        [HttpDelete]
         public HttpResponseMessage DeletePublisher(PublisherDto publisher)
         {
             try
@@ -100,12 +104,13 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Publisher/Delete");
+                logger.Error("Error In Publisher/Delete", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
-        public HttpResponseMessage DeletePublisherById(object id)
+        [HttpDelete]
+        public HttpResponseMessage DeletePublisherById(int id)
         {
             try
             {
@@ -118,7 +123,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Publisher/DeleteById");
+                logger.Error("Error In Publisher/DeleteById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }

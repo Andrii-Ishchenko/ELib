@@ -32,13 +32,14 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Get");
+                
+                logger.Error("Error In Author/Get",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAuthorById(object id)
+        public HttpResponseMessage GetAuthorById(int id)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/GetById");
+                logger.Error("Error In Author/GetById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -66,7 +67,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Add");
+                logger.Error("Error In Author/Add",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -85,7 +86,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Update");
+                logger.Error("Error In Author/Update",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -104,13 +105,13 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Delete");
+                logger.Error("Error In Author/Delete",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteAuthorById(object id)
+        public HttpResponseMessage DeleteAuthorById(int id)
         {
             try
             {
@@ -119,7 +120,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/DeleteById");
+                logger.Error("Error In Author/DeleteById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
