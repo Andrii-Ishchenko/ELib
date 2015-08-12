@@ -17,12 +17,12 @@ namespace ELib.Common
 
         public void Trace(String msg)
         {
-            logger.Log(LogLevel.Trace, msg);
+            logger.Log(LogLevel.Trace, msg);           
         }
 
         public void Trace(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Trace, msg, ex,null);
+            logger.Trace(ex, msg);
         }
 
         public void Debug(String msg)
@@ -32,7 +32,7 @@ namespace ELib.Common
 
         public void Debug(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Debug, msg, ex, null);
+            logger.Debug(ex, msg);
         }
 
         public void Info(String msg)
@@ -42,7 +42,7 @@ namespace ELib.Common
 
         public void Info(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Info, msg, ex, null);
+            logger.Info(ex, msg);
         }
 
         public void Warn(String msg)
@@ -52,7 +52,7 @@ namespace ELib.Common
 
         public void Warn(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Warn, msg, ex, null);
+            logger.Warn(ex, msg);
         }
 
         public void Error(String msg)
@@ -62,7 +62,9 @@ namespace ELib.Common
 
         public void Error(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Error, msg, ex, null);
+            //logger.Log(LogLevel.Error, msg, ex, null);
+            logger.Error(ex,msg);
+        
         }
 
         public void Fatal(String msg)
@@ -72,7 +74,7 @@ namespace ELib.Common
 
         public void Fatal(String msg, Exception ex)
         {
-            logger.Log(LogLevel.Fatal, msg, ex, null);
+            logger.Fatal(ex, msg);
         }
     }
 }
