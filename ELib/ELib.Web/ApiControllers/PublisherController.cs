@@ -118,7 +118,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                ogger.Error("Error In Publisher/DeleteById");
+                logger.Error("Error In Publisher/DeleteById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
