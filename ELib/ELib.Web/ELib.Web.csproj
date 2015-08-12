@@ -174,6 +174,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorController.cs" />
     <Compile Include="ApiControllers\GenreController.cs" />
+    <Compile Include="ApiControllers\PublisherController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -323,6 +324,10 @@
     <ProjectReference Include="..\ELib.BL\ELib.BL.csproj">
       <Project>{da127493-ab50-43f3-bfeb-eced72ce1890}</Project>
       <Name>ELib.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ELib.Common\ELib.Common.csproj">
+      <Project>{3df22b2b-64df-4cc5-8956-addb4195a021}</Project>
+      <Name>ELib.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ELib.DAL\ELib.DAL.csproj">
       <Project>{388b9056-cbe1-4e9a-a637-17bdf5d85c8e}</Project>

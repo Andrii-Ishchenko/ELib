@@ -15,6 +15,10 @@ namespace ELib.BL.Mapper
             AutoMapper.Mapper.CreateMap<Genre, GenreDto>();
             AutoMapper.Mapper.CreateMap<GenreDto, Genre>();
 
+            AutoMapper.Mapper.CreateMap<Publisher, PublisherDto>();
+            AutoMapper.Mapper.CreateMap<PublisherDto, Publisher>();
+
+
             AutoMapper.Mapper.CreateMap<Author, AuthorDto>();
             AutoMapper.Mapper.CreateMap<AuthorDto, Author>();
         }
