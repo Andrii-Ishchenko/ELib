@@ -51,10 +51,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IAuthorService.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Concrete\AuthorService.cs" />
     <Compile Include="Services\Abstract\IPublisherService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
+    <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />
   </ItemGroup>
