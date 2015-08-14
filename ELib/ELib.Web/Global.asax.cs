@@ -24,11 +24,15 @@ namespace ELib.Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             loger.Info("WebApiConfig Registered");
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
             loger.Info("Filters Registered");
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             loger.Info("Routes Registered");
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             loger.Info("Bundles Registered");
+
             AutoMapperConfig.Configure();
             loger.Info("AutoMapper Registered");
         }

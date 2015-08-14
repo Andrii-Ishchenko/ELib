@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
+    <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
@@ -53,11 +54,13 @@
     <Compile Include="Services\Abstract\IAuthorService.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
     <Compile Include="Services\Abstract\IBookService.cs" />
+    <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Concrete\AuthorService.cs" />
     <Compile Include="Services\Abstract\IPublisherService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\BookService.cs" />
+    <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />
   </ItemGroup>

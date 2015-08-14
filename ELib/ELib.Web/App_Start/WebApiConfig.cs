@@ -52,6 +52,7 @@ namespace ELib.Web
             container.RegisterType<IPublisherService, PublisherService>(new HierarchicalLifetimeManager());
             container.RegisterType<IAuthorService, AuthorService>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookService, BookService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ICommentService, CommentService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }
