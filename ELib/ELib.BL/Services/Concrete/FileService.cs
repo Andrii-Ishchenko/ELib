@@ -8,6 +8,9 @@ namespace ELib.BL.Services.Concrete
 {
     public class FileService : IFileService
     {
+        const int DIRECTORY_NAME_LENGTH = 2;
+        const string IMAGES_FOLDER_PATH = @"D:\LibraryContent\Images";
+
         protected readonly IUnitOfWorkFactory _factory;
 
         public FileService(IUnitOfWorkFactory factory)
@@ -19,7 +22,11 @@ namespace ELib.BL.Services.Concrete
         {
             string fileHash = getFileHash(file);
 
-            string filePath = String.Format(@"D:\LibraryContent\Images\{0}", fileHash);
+            createDirectoriesIfNoExist(fileHash);
+
+            string directoryPath = createDirectoriesIfNoExist(fileHash);
+            
+            string filePath = String.Format(@"{0}\{1}",directoryPath,fileHash);
 
             File.WriteAllBytes(filePath, file);
         }
@@ -29,8 +36,21 @@ namespace ELib.BL.Services.Concrete
             SHA1Managed sha = new SHA1Managed();
             byte[] hash = sha.ComputeHash(file);
             string stringHash = BitConverter.ToString(hash).Replace("-", string.Empty);
-    
+            
             return stringHash;
+        }
+
+        private string createDirectoriesIfNoExist(string fileHash)
+        {
+            string directoryPath = String.Format(@"{0}\{1}\{2}", 
+                IMAGES_FOLDER_PATH, fileHash.Substring(0, DIRECTORY_NAME_LENGTH), fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        
+            return directoryPath;
         }
     }
 }
