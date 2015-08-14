@@ -15,5 +15,10 @@ namespace ELib.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult FileTest()
+        {
+            return View();
+        }
     }
 }
