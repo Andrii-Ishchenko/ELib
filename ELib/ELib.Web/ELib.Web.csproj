@@ -174,6 +174,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorController.cs" />
     <Compile Include="ApiControllers\FileController.cs" />
+    <Compile Include="ApiControllers\CommentController.cs" />
     <Compile Include="ApiControllers\GenreController.cs" />
     <Compile Include="ApiControllers\PublisherController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

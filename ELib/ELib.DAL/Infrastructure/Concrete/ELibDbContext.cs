@@ -8,6 +8,7 @@ namespace ELib.DAL.Infrastructure.Concrete
         public ELibDbContext()
            : base("name=ELibDb")
         {
+            Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
         }
 
         public virtual DbSet<Author> Authors { get; set; }
