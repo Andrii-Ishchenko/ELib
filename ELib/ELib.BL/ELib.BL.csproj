@@ -49,6 +49,7 @@
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
+    <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IAuthorService.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Services\Abstract\IBookService.cs" />
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
+    <Compile Include="Services\Abstract\IRatingService.cs" />
     <Compile Include="Services\Concrete\AuthorService.cs" />
     <Compile Include="Services\Abstract\IPublisherService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />
+    <Compile Include="Services\Concrete\RatingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

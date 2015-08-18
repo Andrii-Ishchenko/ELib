@@ -10,6 +10,7 @@ namespace ELib.BL.Mapper
         {
             configureGenreMapping();
             configureCommentMapping();
+            configureRatingBook();
         }
 
         private static void configureGenreMapping()
@@ -38,6 +39,12 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Comment, CommentDto>();
             AutoMapper.Mapper.CreateMap<CommentDto, CommentDto>();
+        }
+
+        private static void configureRatingBook()
+        {
+            AutoMapper.Mapper.CreateMap<RatingBook, RatingBookDto>();
+            AutoMapper.Mapper.CreateMap<RatingBookDto, RatingBook>();
         }
     }
 }
