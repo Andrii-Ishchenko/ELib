@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ELib.BL.Enums
 {
-    public enum BookImageExtensions
+    public enum ProfileImageExtensions
     {
         PNG,
         JPG,

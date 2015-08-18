@@ -1,4 +1,5 @@
-﻿using ELib.BL.Services.Abstract;
+﻿using ELib.BL.Enums;
+using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using System;
 using System.IO;
@@ -66,7 +67,7 @@ namespace ELib.BL.Services.Concrete
         {
             string extension = Path.GetExtension(fileName).ToLower();
             
-            if( extension == ".jpg" || extension == ".png" || extension == ".gif")
+            if(validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)),extension))
             {
                 saveFile(file, extension, PROFILE_IMAGES_FOLDER_PATH);
 
@@ -80,7 +81,7 @@ namespace ELib.BL.Services.Concrete
         {
             string extension = Path.GetExtension(fileName).ToLower();
 
-            if (extension == ".jpg" || extension == ".png" || extension == ".gif")
+            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
             {
                 saveFile(file, extension, BOOK_IMAGES_FOLDER_PATH);
 
@@ -94,7 +95,7 @@ namespace ELib.BL.Services.Concrete
         {
             string extension = Path.GetExtension(fileName).ToLower();
 
-            if (extension == ".pdf" || extension == ".djvu" || extension == ".fb2" || extension == ".mobi")
+            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
             {
                 saveFile(file, extension, BOOK_FILES_FOLDER_PATH);
 
