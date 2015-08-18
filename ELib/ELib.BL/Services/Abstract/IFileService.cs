@@ -8,6 +8,8 @@ namespace ELib.BL.Services.Abstract
 {
     public interface IFileService
     {
-        void SaveImage(byte[] file);
+        bool SaveProfileImage(byte[] file, string fileName);
+        bool SaveBookImage(byte[] file, string fileName);
+        bool SaveBookFile(byte[] file, string fileName);
     }
 }
