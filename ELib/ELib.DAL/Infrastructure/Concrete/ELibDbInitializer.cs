@@ -6,10 +6,31 @@ using System;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
-    public class ELibDbInitializer : DropCreateDatabaseIfModelChanges<ELibDbContext>
+    public class ELibDbInitializer : CreateDatabaseIfNotExists<ELibDbContext>
     {
         protected override void Seed(ELibDbContext context)
         {
+            //person roles
+            var personRoles = new List<PersonRole>();
+            personRoles.Add(new PersonRole() { Name = "ApprovedMember" });
+            personRoles.Add(new PersonRole() { Name = "Moderator" });
+            personRoles.Add(new PersonRole() { Name = "Administrator" });
+            context.PersonRoles.AddRange(personRoles);
+            context.SaveChanges();
+
+            //people
+            var people = new List<Person>();
+            people.Add(new Person() { FirstName = "John" , Login = "John", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1});
+            people.Add(new Person() { FirstName = "Frank", Login = "Frank", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Eva", Login = "Eva", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Peter", Login = "Peter", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Howard", Login = "Howard", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
+            people.Add(new Person() { FirstName = "Mary", Login = "Mary", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
+            people.Add(new Person() { FirstName = "Simón", Login = "Simón", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 3 });
+            context.People.AddRange(people);
+            context.SaveChanges();
+
+
             //genres
             var genres = new List<Genre>();
             genres.Add(new Genre() { Name = "Техническая литература"});
@@ -20,6 +41,12 @@ namespace ELib.DAL.Infrastructure.Concrete
             genres.Add(new Genre() { Name = "Фэнтези"});
             genres.Add(new Genre() { Name = "Драма"});
             context.Genres.AddRange(genres);
+
+            //subgenres
+            var subgenres = new List<Subgenre>();
+            subgenres.Add(new Subgenre() { Name = "Роман" });
+            context.Subgenres.AddRange(subgenres);
+
 
             //authors
             var authors = new List<Author>();
@@ -98,6 +125,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                 OriginalLangId = 3,
                 PublishLangId = 1,
                 PublisherId = 3,
+                SubgenreId = 1,
                 Isbn = "978-5-496-00433-6",
                 PublishYear = new DateTime(2013, 1, 1),
                 TotalPages = 896
@@ -109,6 +137,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                 PublishLangId = 3,
                 Isbn = "978-0-7356-6745-7",
                 PublishYear = new DateTime(2012, 1, 1),
+                SubgenreId = 1,
                 TotalPages = 870,
                 PublisherId = 4
             });
@@ -121,6 +150,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                               " и бесследно исчезают люди. Ибо вернулось порождение ночного кошмара, настолько невероятное, что даже не имеет имени… ",
                 OriginalLangId = 3,
                 PublishLangId = 1,
+                SubgenreId = 1,
                 PublisherId = 1,
                 Isbn = "978-5-17-077763-1",
                 PublishYear = new DateTime(2015, 8, 3),
@@ -134,6 +164,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                 "запуганной дочери чудаковатой вдовы. Долгие годы дремал в Кэрри талант телекинеза, чтобы однажды проснуться. И тогда в городок пришла смерть...",
                 OriginalLangId = 3,
                 PublishLangId = 1,
+                SubgenreId = 1,
                 PublisherId = 2,
                 Isbn = "978-5-17-078099-0",
                 PublishYear = new DateTime(2013, 1, 1),
@@ -151,6 +182,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                                "применяя содержащиеся в справочнике паттерны, проектировщик сможет с легкостью разрабатывать собственные приложения.",
                 OriginalLangId = 3,
                 PublishLangId = 1,
+                SubgenreId = 1,
                 PublisherId = 3,
                 Isbn = "5-272-00355-1",
                 PublishYear = new DateTime(2001, 1, 1),
@@ -175,12 +207,7 @@ namespace ELib.DAL.Infrastructure.Concrete
             context.BookAuthors.Add(new BookAuthor { AuthorId = 4, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 5, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 6, BookId = 5 });
-
-            //files formats
-            context.FileFormats.Add(new FileFormat { Name = "pdf" });
-            context.FileFormats.Add(new FileFormat { Name = "djvu" });
-            context.FileFormats.Add(new FileFormat { Name = "pdb" });
-            context.FileFormats.Add(new FileFormat { Name = "rtf" });
+            
 
             context.SaveChanges();
             base.Seed(context);

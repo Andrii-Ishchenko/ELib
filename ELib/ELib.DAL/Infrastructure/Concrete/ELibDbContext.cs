@@ -15,10 +15,9 @@ namespace ELib.DAL.Infrastructure.Concrete
         public virtual DbSet<AuthorGenre> AuthorGenres { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookAuthor> BookAuthors { get; set; }
-        public virtual DbSet<BookFormat> BookFormats { get; set; }
+        public virtual DbSet<BookInstance> BookInstances { get; set; }
         public virtual DbSet<BookGenre> BookGenres { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<FileFormat> FileFormats { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Person> People { get; set; }
@@ -27,6 +26,7 @@ namespace ELib.DAL.Infrastructure.Concrete
         public virtual DbSet<RatingBook> RatingBooks { get; set; }
         public virtual DbSet<RatingComment> RatingComments { get; set; }
         public virtual DbSet<UserBookStatus> UserBookStatus { get; set; }
+        public virtual DbSet<Subgenre> Subgenres { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.BookFormats)
+                .HasMany(e => e.BookInstances)
                 .WithRequired(e => e.Book)
                 .WillCascadeOnDelete(false);
 
@@ -72,12 +72,6 @@ namespace ELib.DAL.Infrastructure.Concrete
             modelBuilder.Entity<Comment>()
                 .HasMany(e => e.RatingComments)
                 .WithRequired(e => e.Comment)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<FileFormat>()
-                .HasMany(e => e.BookFormats)
-                .WithRequired(e => e.FileFormat)
-                .HasForeignKey(e => e.FormatId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Genre>()
@@ -136,6 +130,11 @@ namespace ELib.DAL.Infrastructure.Concrete
             modelBuilder.Entity<Publisher>()
                 .HasMany(e => e.Books)
                 .WithRequired(e => e.Publisher)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Subgenre>()
+                .HasMany(e => e.Books)
+                .WithRequired(e => e.Subgenre)
                 .WillCascadeOnDelete(false);
         }
     }

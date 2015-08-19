@@ -10,6 +10,7 @@ namespace ELib.DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "ELib.DAL.Infrastructure.Concrete.ELibDbContext";
         }
 
         protected override void Seed(ELib.DAL.Infrastructure.Concrete.ELibDbContext context)
