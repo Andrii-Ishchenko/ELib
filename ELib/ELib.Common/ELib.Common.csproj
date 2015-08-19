@@ -31,23 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,72 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbDiagram\Author.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\AuthorGenre.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Book.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\BookAuthor.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\BookFormat.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\BookGenre.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Comment.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\C__MigrationHistory.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Diagram.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diagram.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Diagram.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Diagram.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diagram.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\FileFormat.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Genre.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Language.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Person.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\PersonRole.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\Publisher.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\RatingBook.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\RatingComment.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbDiagram\UserBookStatu.cs">
-      <DependentUpon>Diagram.tt</DependentUpon>
-    </Compile>
     <Compile Include="ELoggerFactory.cs" />
     <Compile Include="ELogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,34 +53,13 @@
     <Folder Include="logs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DbDiagram\Diagram.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Diagram.edmx</DependentUpon>
-      <LastGenOutput>Diagram.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DbDiagram\Diagram.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Diagram.edmx</DependentUpon>
-      <LastGenOutput>Diagram.cs</LastGenOutput>
-    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="DbDiagram\Diagram.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Diagram.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="App.Config" />
-    <None Include="DbDiagram\Diagram.edmx.diagram">
-      <DependentUpon>Diagram.edmx</DependentUpon>
-    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
