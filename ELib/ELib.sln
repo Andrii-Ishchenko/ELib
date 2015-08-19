@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Web", "ELib.Web\ELib.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Common", "ELib.Common\ELib.Common.csproj", "{3DF22B2B-64DF-4CC5-8956-ADDB4195A021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elib.Sandbox", "Elib.Sandbox\Elib.Sandbox.csproj", "{806FABD7-E4B1-40B8-9C65-BB118295DAD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Sandbox", "ELib.Sandbox\ELib.Sandbox.csproj", "{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{3DF22B2B-64DF-4CC5-8956-ADDB4195A021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF22B2B-64DF-4CC5-8956-ADDB4195A021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF22B2B-64DF-4CC5-8956-ADDB4195A021}.Release|Any CPU.Build.0 = Release|Any CPU
-		{806FABD7-E4B1-40B8-9C65-BB118295DAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{806FABD7-E4B1-40B8-9C65-BB118295DAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{806FABD7-E4B1-40B8-9C65-BB118295DAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{806FABD7-E4B1-40B8-9C65-BB118295DAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

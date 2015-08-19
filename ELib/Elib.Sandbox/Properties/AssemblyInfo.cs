@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Elib.Sandbox")]
+[assembly: AssemblyTitle("ELib.Sandbox")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Elib.Sandbox")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("EPAM Systems")]
+[assembly: AssemblyProduct("ELib.Sandbox")]
+[assembly: AssemblyCopyright("Copyright © EPAM Systems 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("806fabd7-e4b1-40b8-9c65-bb118295dad6")]
+[assembly: Guid("831e1da5-a7d7-494b-8f72-3d04da5a2950")]
 
 // Version information for an assembly consists of the following four values:
 //
