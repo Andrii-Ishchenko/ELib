@@ -21,6 +21,48 @@ namespace ELib.BL.Services.Concrete
             _factory = factory;
         }
 
+        public bool SaveProfileImage(byte[] file, string fileName)
+        {
+            string extension = getExtension(fileName);
+
+            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
+            {
+                saveFile(file, extension, PROFILE_IMAGES_FOLDER_PATH);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SaveBookImage(byte[] file, string fileName)
+        {
+            string extension = getExtension(fileName);
+
+            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
+            {
+                saveFile(file, extension, BOOK_IMAGES_FOLDER_PATH);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SaveBookFile(byte[] file, string fileName)
+        {
+            string extension = getExtension(fileName);
+
+            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
+            {
+                saveFile(file, extension, BOOK_FILES_FOLDER_PATH);
+
+                return true;
+            }
+
+            return false;
+        }
+
         private string getFileHash(byte[] file)
         {
             SHA1Managed sha = new SHA1Managed();
@@ -51,9 +93,14 @@ namespace ELib.BL.Services.Concrete
 
             string directoryPath = createDirectoriesIfNoExist(fileHash, rootDirectoryPath);
 
-            string filePath = String.Format(@"{0}\{1}{2}", directoryPath, fileHash, extension);
+            string filePath = String.Format(@"{0}\{1}.{2}", directoryPath, fileHash, extension);
 
             File.WriteAllBytes(filePath, file);
+        }
+
+        private string getExtension(string fileName)
+        {
+            return Path.GetExtension(fileName).Replace(".", String.Empty).ToUpper();
         }
 
         private bool validateExtension(string[] extensions, string extensionToValidate)
@@ -61,48 +108,6 @@ namespace ELib.BL.Services.Concrete
             int position = Array.IndexOf(extensions, extensionToValidate);
 
             return position > -1;
-        }
-
-        public bool SaveProfileImage(byte[] file, string fileName)
-        {
-            string extension = Path.GetExtension(fileName).ToLower();
-            
-            if(validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)),extension))
-            {
-                saveFile(file, extension, PROFILE_IMAGES_FOLDER_PATH);
-
-                return true;
-            }
-            
-            return false;
-        }
-
-        public bool SaveBookImage(byte[] file, string fileName)
-        {
-            string extension = Path.GetExtension(fileName).ToLower();
-
-            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
-            {
-                saveFile(file, extension, BOOK_IMAGES_FOLDER_PATH);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool SaveBookFile(byte[] file, string fileName)
-        {
-            string extension = Path.GetExtension(fileName).ToLower();
-
-            if (validateExtension(Enum.GetNames(typeof(ProfileImageExtensions)), extension))
-            {
-                saveFile(file, extension, BOOK_FILES_FOLDER_PATH);
-
-                return true;
-            }
-
-            return false;
         }
     }
 }

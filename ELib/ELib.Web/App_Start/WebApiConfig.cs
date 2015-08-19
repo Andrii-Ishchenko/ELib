@@ -17,11 +17,17 @@ namespace ELib.Web
     {
         public static void Register(HttpConfiguration config)
         {
-           // config.MapHttpAttributeRoutes();
+            // config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                "FileRoute",
+                "api/files/{action}",
+                new { controller = "File" }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 

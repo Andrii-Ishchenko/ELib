@@ -20,6 +20,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPost]
+        [ActionName("profile-image")]
         public async Task<HttpResponseMessage> UploadProfileImage()
         {
             try
