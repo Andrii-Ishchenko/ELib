@@ -3,7 +3,7 @@ namespace ELib.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Subgenre : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -59,6 +59,7 @@ namespace ELib.DAL.Migrations
                         TotalPages = c.Int(),
                         Isbn = c.String(maxLength: 20, unicode: false),
                         PublisherId = c.Int(nullable: false),
+                        SubgenreId = c.Int(nullable: false),
                         PublishYear = c.DateTime(storeType: "date"),
                         Picture = c.Binary(),
                         Description = c.String(),
@@ -67,9 +68,11 @@ namespace ELib.DAL.Migrations
                 .ForeignKey("dbo.Language", t => t.PublishLangId)
                 .ForeignKey("dbo.Language", t => t.OriginalLangId)
                 .ForeignKey("dbo.Publisher", t => t.PublisherId)
+                .ForeignKey("dbo.Subgenres", t => t.SubgenreId)
                 .Index(t => t.PublishLangId)
                 .Index(t => t.OriginalLangId)
-                .Index(t => t.PublisherId);
+                .Index(t => t.PublisherId)
+                .Index(t => t.SubgenreId);
             
             CreateTable(
                 "dbo.BookFormat",
@@ -239,6 +242,7 @@ namespace ELib.DAL.Migrations
         {
             DropForeignKey("dbo.BookAuthor", "AuthorId", "dbo.Author");
             DropForeignKey("dbo.UserBookStatus", "BookId", "dbo.Book");
+            DropForeignKey("dbo.Book", "SubgenreId", "dbo.Subgenres");
             DropForeignKey("dbo.RatingBook", "BookId", "dbo.Book");
             DropForeignKey("dbo.UserBookStatus", "UserId", "dbo.Person");
             DropForeignKey("dbo.RatingComment", "UserId", "dbo.Person");
@@ -266,6 +270,7 @@ namespace ELib.DAL.Migrations
             DropIndex("dbo.BookGenre", new[] { "BookId" });
             DropIndex("dbo.BookFormat", new[] { "FormatId" });
             DropIndex("dbo.BookFormat", new[] { "BookId" });
+            DropIndex("dbo.Book", new[] { "SubgenreId" });
             DropIndex("dbo.Book", new[] { "PublisherId" });
             DropIndex("dbo.Book", new[] { "OriginalLangId" });
             DropIndex("dbo.Book", new[] { "PublishLangId" });

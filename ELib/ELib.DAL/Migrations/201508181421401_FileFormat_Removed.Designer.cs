@@ -7,13 +7,13 @@ namespace ELib.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Subgenre : IMigrationMetadata
+    public sealed partial class FileFormat_Removed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Subgenre));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FileFormat_Removed));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508172040160_Subgenre"; }
+            get { return "201508181421401_FileFormat_Removed"; }
         }
         
         string IMigrationMetadata.Source

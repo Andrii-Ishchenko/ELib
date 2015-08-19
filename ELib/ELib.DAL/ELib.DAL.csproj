@@ -54,11 +54,27 @@
     <Compile Include="Infrastructure\Concrete\ELibDbInitializer.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
+    <Compile Include="Migrations\201508181354176_InitialCreate.cs" />
+    <Compile Include="Migrations\201508181354176_InitialCreate.Designer.cs">
+      <DependentUpon>201508181354176_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508181421401_FileFormat_Removed.cs" />
+    <Compile Include="Migrations\201508181421401_FileFormat_Removed.Designer.cs">
+      <DependentUpon>201508181421401_FileFormat_Removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
     <Compile Include="Repositories\Concrete\BaseRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508181354176_InitialCreate.resx">
+      <DependentUpon>201508181354176_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508181421401_FileFormat_Removed.resx">
+      <DependentUpon>201508181421401_FileFormat_Removed.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
