@@ -9,6 +9,6 @@ namespace ELib.BL.Services.Abstract
 {
     public interface ICaptchaGenerator
     {
-        CaptchaDto Generate();
+        CaptchaDto Generate(int width,int height);
     }
 }

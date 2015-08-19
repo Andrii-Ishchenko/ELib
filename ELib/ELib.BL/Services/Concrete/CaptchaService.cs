@@ -17,7 +17,7 @@ namespace ELib.BL.Services.Concrete
             generators.Add(cg);
         }
 
-        public CaptchaDto GenerateCaptcha()
+        public CaptchaDto GenerateCaptcha(int width, int height)
         {
             int count = generators.Count();
 
@@ -27,7 +27,7 @@ namespace ELib.BL.Services.Concrete
             Random r = new Random();
             int selected = r.Next(count);
 
-            return generators[selected].Generate();
+            return generators[selected].Generate(width,height);
         }
     }
 

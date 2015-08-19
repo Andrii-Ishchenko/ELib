@@ -25,7 +25,7 @@ namespace ELib.BL.Services.Concrete
             fonts.AddRange(new[] {"Verdana","Tahoma","Segoe UI", "Arial","Comic Sans","Times New Roman" });
         }
         
-        public CaptchaDto Generate()
+        public CaptchaDto Generate(int width, int height)
         {
             string chars = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
             //my implementaion here
@@ -45,8 +45,6 @@ namespace ELib.BL.Services.Concrete
 
             String token = tokenBuilder.ToString();
 
-            int width = 300;
-            int height = 200;
 
             Image image = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(image))

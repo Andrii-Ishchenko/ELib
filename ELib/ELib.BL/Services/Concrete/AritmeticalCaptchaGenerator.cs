@@ -19,7 +19,7 @@ namespace ELib.BL.Services.Concrete
             fonts.AddRange(new[] { "Tahoma", "Segoe UI", "Arial", "Comic Sans", "Times New Roman" });
         }
 
-        public CaptchaDto Generate()
+        public CaptchaDto Generate(int width, int height)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
             
@@ -30,9 +30,6 @@ namespace ELib.BL.Services.Concrete
 
             //answer
             string answer = (a + b).ToString();
-
-            int width = 300;
-            int height = 200;
 
             Image image = new Bitmap(width, height);
 
