@@ -47,9 +47,7 @@ namespace ELib.Domain.Entities
 
         public int RoleId { get; set; }
 
-        public byte[] Photo { get; set; }
-
-        public byte[] SmallPhoto { get; set; }
+        public string ImageHash { get; set; }
 
         public virtual PersonRole PersonRole { get; set; }
 
