@@ -10,6 +10,27 @@ namespace ELib.DAL.Infrastructure.Concrete
     {
         protected override void Seed(ELibDbContext context)
         {
+            //person roles
+            var personRoles = new List<PersonRole>();
+            personRoles.Add(new PersonRole() { Name = "ApprovedMember" });
+            personRoles.Add(new PersonRole() { Name = "Moderator" });
+            personRoles.Add(new PersonRole() { Name = "Administrator" });
+            context.PersonRoles.AddRange(personRoles);
+            context.SaveChanges();
+
+            //people
+            var people = new List<Person>();
+            people.Add(new Person() { FirstName = "John" , Login = "John", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1});
+            people.Add(new Person() { FirstName = "Frank", Login = "Frank", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Eva", Login = "Eva", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Peter", Login = "Peter", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
+            people.Add(new Person() { FirstName = "Howard", Login = "Howard", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
+            people.Add(new Person() { FirstName = "Mary", Login = "Mary", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
+            people.Add(new Person() { FirstName = "Simón", Login = "Simón", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 3 });
+            context.People.AddRange(people);
+            context.SaveChanges();
+
+
             //genres
             var genres = new List<Genre>();
             genres.Add(new Genre() { Name = "Техническая литература"});
