@@ -1,0 +1,1185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="DeathDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AuthorGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PublishLangId" Type="int" Nullable="false" />
+          <Property Name="OriginalLangId" Type="int" />
+          <Property Name="TotalPages" Type="int" />
+          <Property Name="Isbn" Type="varchar" MaxLength="20" />
+          <Property Name="PublisherId" Type="int" Nullable="false" />
+          <Property Name="PublishYear" Type="date" />
+          <Property Name="Picture" Type="varbinary(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="FormatId" Type="int" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
+          <Property Name="InsertDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="400" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CommentDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegistrationDate" Type="date" Nullable="false" />
+          <Property Name="LastActivationDate" Type="date" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="SmallPhoto" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="PersonRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RatingBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ValueRating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RatingComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsLike" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserBookStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="StatusBook" Type="bit" />
+        </EntityType>
+        <Association Name="FK_dbo_AuthorGenre_dbo_Author_AuthorId">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="AuthorGenre" Type="Self.AuthorGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorGenre">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AuthorGenre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="AuthorGenre" Type="Self.AuthorGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorGenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Language_OriginalLangId">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="OriginalLangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Language_PublishLangId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="PublishLangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Publisher_PublisherId">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookAuthor_dbo_Author_AuthorId">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookAuthor_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookFormat_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookFormat" Type="Self.BookFormat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookFormat">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookFormat_dbo_FileFormat_FormatId">
+          <End Role="FileFormat" Type="Self.FileFormat" Multiplicity="1" />
+          <End Role="BookFormat" Type="Self.BookFormat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileFormat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookFormat">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookGenre_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookGenre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Person_dbo_PersonRole_RoleId">
+          <End Role="PersonRole" Type="Self.PersonRole" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingBook_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="RatingBook" Type="Self.RatingBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingBook">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingBook_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="RatingBook" Type="Self.RatingBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingBook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingComment_dbo_Comment_CommentId">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
+          <End Role="RatingComment" Type="Self.RatingComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingComment_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="RatingComment" Type="Self.RatingComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingComment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserBookStatus_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="UserBookStatus" Type="Self.UserBookStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserBookStatus">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserBookStatus_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="UserBookStatus" Type="Self.UserBookStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserBookStatus">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorGenre" EntityType="Self.AuthorGenre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookFormat" EntityType="Self.BookFormat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookGenre" EntityType="Self.BookGenre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileFormat" EntityType="Self.FileFormat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonRole" EntityType="Self.PersonRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RatingBook" EntityType="Self.RatingBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RatingComment" EntityType="Self.RatingComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserBookStatus" EntityType="Self.UserBookStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AuthorGenre_dbo_Author_AuthorId" Association="Self.FK_dbo_AuthorGenre_dbo_Author_AuthorId">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="AuthorGenre" EntitySet="AuthorGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AuthorGenre_dbo_Genre_GenreId" Association="Self.FK_dbo_AuthorGenre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="AuthorGenre" EntitySet="AuthorGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Language_OriginalLangId" Association="Self.FK_dbo_Book_dbo_Language_OriginalLangId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Language_PublishLangId" Association="Self.FK_dbo_Book_dbo_Language_PublishLangId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Publisher_PublisherId" Association="Self.FK_dbo_Book_dbo_Publisher_PublisherId">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookAuthor_dbo_Author_AuthorId" Association="Self.FK_dbo_BookAuthor_dbo_Author_AuthorId">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookAuthor_dbo_Book_BookId" Association="Self.FK_dbo_BookAuthor_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookFormat_dbo_Book_BookId" Association="Self.FK_dbo_BookFormat_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookFormat" EntitySet="BookFormat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookFormat_dbo_FileFormat_FormatId" Association="Self.FK_dbo_BookFormat_dbo_FileFormat_FormatId">
+            <End Role="FileFormat" EntitySet="FileFormat" />
+            <End Role="BookFormat" EntitySet="BookFormat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookGenre_dbo_Book_BookId" Association="Self.FK_dbo_BookGenre_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookGenre" EntitySet="BookGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookGenre_dbo_Genre_GenreId" Association="Self.FK_dbo_BookGenre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="BookGenre" EntitySet="BookGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Person_dbo_PersonRole_RoleId" Association="Self.FK_dbo_Person_dbo_PersonRole_RoleId">
+            <End Role="PersonRole" EntitySet="PersonRole" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingBook_dbo_Book_BookId" Association="Self.FK_dbo_RatingBook_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="RatingBook" EntitySet="RatingBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingBook_dbo_Person_UserId" Association="Self.FK_dbo_RatingBook_dbo_Person_UserId">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RatingBook" EntitySet="RatingBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingComment_dbo_Comment_CommentId" Association="Self.FK_dbo_RatingComment_dbo_Comment_CommentId">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="RatingComment" EntitySet="RatingComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingComment_dbo_Person_UserId" Association="Self.FK_dbo_RatingComment_dbo_Person_UserId">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RatingComment" EntitySet="RatingComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserBookStatus_dbo_Book_BookId" Association="Self.FK_dbo_UserBookStatus_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="UserBookStatus" EntitySet="UserBookStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserBookStatus_dbo_Person_UserId" Association="Self.FK_dbo_UserBookStatus_dbo_Person_UserId">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="UserBookStatus" EntitySet="UserBookStatus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="DeathDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AuthorGenres" Relationship="Self.FK_dbo_AuthorGenre_dbo_Author_AuthorId" FromRole="Author" ToRole="AuthorGenre" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.FK_dbo_BookAuthor_dbo_Author_AuthorId" FromRole="Author" ToRole="BookAuthor" />
+        </EntityType>
+        <EntityType Name="AuthorGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_dbo_AuthorGenre_dbo_Author_AuthorId" FromRole="AuthorGenre" ToRole="Author" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_dbo_AuthorGenre_dbo_Genre_GenreId" FromRole="AuthorGenre" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishLangId" Type="Int32" Nullable="false" />
+          <Property Name="OriginalLangId" Type="Int32" />
+          <Property Name="TotalPages" Type="Int32" />
+          <Property Name="Isbn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PublisherId" Type="Int32" Nullable="false" />
+          <Property Name="PublishYear" Type="DateTime" Precision="0" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Book_dbo_Language_OriginalLangId" FromRole="Book" ToRole="Language" />
+          <NavigationProperty Name="Language1" Relationship="Self.FK_dbo_Book_dbo_Language_PublishLangId" FromRole="Book" ToRole="Language" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK_dbo_Book_dbo_Publisher_PublisherId" FromRole="Book" ToRole="Publisher" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.FK_dbo_BookAuthor_dbo_Book_BookId" FromRole="Book" ToRole="BookAuthor" />
+          <NavigationProperty Name="BookFormats" Relationship="Self.FK_dbo_BookFormat_dbo_Book_BookId" FromRole="Book" ToRole="BookFormat" />
+          <NavigationProperty Name="BookGenres" Relationship="Self.FK_dbo_BookGenre_dbo_Book_BookId" FromRole="Book" ToRole="BookGenre" />
+          <NavigationProperty Name="RatingBooks" Relationship="Self.FK_dbo_RatingBook_dbo_Book_BookId" FromRole="Book" ToRole="RatingBook" />
+          <NavigationProperty Name="UserBookStatus" Relationship="Self.FK_dbo_UserBookStatus_dbo_Book_BookId" FromRole="Book" ToRole="UserBookStatus" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_dbo_BookAuthor_dbo_Author_AuthorId" FromRole="BookAuthor" ToRole="Author" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_dbo_BookAuthor_dbo_Book_BookId" FromRole="BookAuthor" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="BookFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="FormatId" Type="Int32" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_dbo_BookFormat_dbo_Book_BookId" FromRole="BookFormat" ToRole="Book" />
+          <NavigationProperty Name="FileFormat" Relationship="Self.FK_dbo_BookFormat_dbo_FileFormat_FormatId" FromRole="BookFormat" ToRole="FileFormat" />
+        </EntityType>
+        <EntityType Name="BookGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_dbo_BookGenre_dbo_Book_BookId" FromRole="BookGenre" ToRole="Book" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_dbo_BookGenre_dbo_Genre_GenreId" FromRole="BookGenre" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="RatingComments" Relationship="Self.FK_dbo_RatingComment_dbo_Comment_CommentId" FromRole="Comment" ToRole="RatingComment" />
+        </EntityType>
+        <EntityType Name="FileFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookFormats" Relationship="Self.FK_dbo_BookFormat_dbo_FileFormat_FormatId" FromRole="FileFormat" ToRole="BookFormat" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AuthorGenres" Relationship="Self.FK_dbo_AuthorGenre_dbo_Genre_GenreId" FromRole="Genre" ToRole="AuthorGenre" />
+          <NavigationProperty Name="BookGenres" Relationship="Self.FK_dbo_BookGenre_dbo_Genre_GenreId" FromRole="Genre" ToRole="BookGenre" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_dbo_Book_dbo_Language_OriginalLangId" FromRole="Language" ToRole="Book" />
+          <NavigationProperty Name="Books1" Relationship="Self.FK_dbo_Book_dbo_Language_PublishLangId" FromRole="Language" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastActivationDate" Type="DateTime" Precision="0" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SmallPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PersonRole" Relationship="Self.FK_dbo_Person_dbo_PersonRole_RoleId" FromRole="Person" ToRole="PersonRole" />
+          <NavigationProperty Name="RatingBooks" Relationship="Self.FK_dbo_RatingBook_dbo_Person_UserId" FromRole="Person" ToRole="RatingBook" />
+          <NavigationProperty Name="RatingComments" Relationship="Self.FK_dbo_RatingComment_dbo_Person_UserId" FromRole="Person" ToRole="RatingComment" />
+          <NavigationProperty Name="UserBookStatus" Relationship="Self.FK_dbo_UserBookStatus_dbo_Person_UserId" FromRole="Person" ToRole="UserBookStatus" />
+        </EntityType>
+        <EntityType Name="PersonRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Self.FK_dbo_Person_dbo_PersonRole_RoleId" FromRole="PersonRole" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_dbo_Book_dbo_Publisher_PublisherId" FromRole="Publisher" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="RatingBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ValueRating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_dbo_RatingBook_dbo_Book_BookId" FromRole="RatingBook" ToRole="Book" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_RatingBook_dbo_Person_UserId" FromRole="RatingBook" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="RatingComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsLike" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_dbo_RatingComment_dbo_Comment_CommentId" FromRole="RatingComment" ToRole="Comment" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_RatingComment_dbo_Person_UserId" FromRole="RatingComment" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="UserBookStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="StatusBook" Type="Boolean" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_dbo_UserBookStatus_dbo_Book_BookId" FromRole="UserBookStatus" ToRole="Book" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_UserBookStatus_dbo_Person_UserId" FromRole="UserBookStatus" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_dbo_AuthorGenre_dbo_Author_AuthorId">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="AuthorGenre" Type="Self.AuthorGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorGenre">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookAuthor_dbo_Author_AuthorId">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AuthorGenre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="AuthorGenre" Type="Self.AuthorGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorGenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Language_OriginalLangId">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="OriginalLangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Language_PublishLangId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="PublishLangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Book_dbo_Publisher_PublisherId">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookAuthor_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookFormat_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookFormat" Type="Self.BookFormat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookFormat">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookGenre_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingBook_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="RatingBook" Type="Self.RatingBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingBook">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserBookStatus_dbo_Book_BookId">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="UserBookStatus" Type="Self.UserBookStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserBookStatus">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookFormat_dbo_FileFormat_FormatId">
+          <End Role="FileFormat" Type="Self.FileFormat" Multiplicity="1" />
+          <End Role="BookFormat" Type="Self.BookFormat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileFormat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookFormat">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BookGenre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingComment_dbo_Comment_CommentId">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
+          <End Role="RatingComment" Type="Self.RatingComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Person_dbo_PersonRole_RoleId">
+          <End Role="PersonRole" Type="Self.PersonRole" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingBook_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="RatingBook" Type="Self.RatingBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingBook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RatingComment_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="RatingComment" Type="Self.RatingComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RatingComment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserBookStatus_dbo_Person_UserId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="UserBookStatus" Type="Self.UserBookStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserBookStatus">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="AuthorGenres" EntityType="Self.AuthorGenre" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="BookAuthors" EntityType="Self.BookAuthor" />
+          <EntitySet Name="BookFormats" EntityType="Self.BookFormat" />
+          <EntitySet Name="BookGenres" EntityType="Self.BookGenre" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="FileFormats" EntityType="Self.FileFormat" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="PersonRoles" EntityType="Self.PersonRole" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <EntitySet Name="RatingBooks" EntityType="Self.RatingBook" />
+          <EntitySet Name="RatingComments" EntityType="Self.RatingComment" />
+          <EntitySet Name="UserBookStatus" EntityType="Self.UserBookStatu" />
+          <AssociationSet Name="FK_dbo_AuthorGenre_dbo_Author_AuthorId" Association="Self.FK_dbo_AuthorGenre_dbo_Author_AuthorId">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="AuthorGenre" EntitySet="AuthorGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookAuthor_dbo_Author_AuthorId" Association="Self.FK_dbo_BookAuthor_dbo_Author_AuthorId">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AuthorGenre_dbo_Genre_GenreId" Association="Self.FK_dbo_AuthorGenre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="AuthorGenre" EntitySet="AuthorGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Language_OriginalLangId" Association="Self.FK_dbo_Book_dbo_Language_OriginalLangId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Language_PublishLangId" Association="Self.FK_dbo_Book_dbo_Language_PublishLangId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Book_dbo_Publisher_PublisherId" Association="Self.FK_dbo_Book_dbo_Publisher_PublisherId">
+            <End Role="Publisher" EntitySet="Publishers" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookAuthor_dbo_Book_BookId" Association="Self.FK_dbo_BookAuthor_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookFormat_dbo_Book_BookId" Association="Self.FK_dbo_BookFormat_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookFormat" EntitySet="BookFormats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookGenre_dbo_Book_BookId" Association="Self.FK_dbo_BookGenre_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookGenre" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingBook_dbo_Book_BookId" Association="Self.FK_dbo_RatingBook_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="RatingBook" EntitySet="RatingBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserBookStatus_dbo_Book_BookId" Association="Self.FK_dbo_UserBookStatus_dbo_Book_BookId">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="UserBookStatus" EntitySet="UserBookStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookFormat_dbo_FileFormat_FormatId" Association="Self.FK_dbo_BookFormat_dbo_FileFormat_FormatId">
+            <End Role="FileFormat" EntitySet="FileFormats" />
+            <End Role="BookFormat" EntitySet="BookFormats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BookGenre_dbo_Genre_GenreId" Association="Self.FK_dbo_BookGenre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="BookGenre" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingComment_dbo_Comment_CommentId" Association="Self.FK_dbo_RatingComment_dbo_Comment_CommentId">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="RatingComment" EntitySet="RatingComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Person_dbo_PersonRole_RoleId" Association="Self.FK_dbo_Person_dbo_PersonRole_RoleId">
+            <End Role="PersonRole" EntitySet="PersonRoles" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingBook_dbo_Person_UserId" Association="Self.FK_dbo_RatingBook_dbo_Person_UserId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="RatingBook" EntitySet="RatingBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RatingComment_dbo_Person_UserId" Association="Self.FK_dbo_RatingComment_dbo_Person_UserId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="RatingComment" EntitySet="RatingComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserBookStatus_dbo_Person_UserId" Association="Self.FK_dbo_UserBookStatus_dbo_Person_UserId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="UserBookStatus" EntitySet="UserBookStatus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="LibraryModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="LibraryModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="DeathDate" ColumnName="DeathDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorGenres">
+            <EntityTypeMapping TypeName="LibraryModel.AuthorGenre">
+              <MappingFragment StoreEntitySet="AuthorGenre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="LibraryModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PublishLangId" ColumnName="PublishLangId" />
+                <ScalarProperty Name="OriginalLangId" ColumnName="OriginalLangId" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+                <ScalarProperty Name="Isbn" ColumnName="Isbn" />
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="PublishYear" ColumnName="PublishYear" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAuthors">
+            <EntityTypeMapping TypeName="LibraryModel.BookAuthor">
+              <MappingFragment StoreEntitySet="BookAuthor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookFormats">
+            <EntityTypeMapping TypeName="LibraryModel.BookFormat">
+              <MappingFragment StoreEntitySet="BookFormat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="FormatId" ColumnName="FormatId" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookGenres">
+            <EntityTypeMapping TypeName="LibraryModel.BookGenre">
+              <MappingFragment StoreEntitySet="BookGenre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="LibraryModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileFormats">
+            <EntityTypeMapping TypeName="LibraryModel.FileFormat">
+              <MappingFragment StoreEntitySet="FileFormat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="LibraryModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="LibraryModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="LibraryModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="LastActivationDate" ColumnName="LastActivationDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="SmallPhoto" ColumnName="SmallPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonRoles">
+            <EntityTypeMapping TypeName="LibraryModel.PersonRole">
+              <MappingFragment StoreEntitySet="PersonRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="LibraryModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RatingBooks">
+            <EntityTypeMapping TypeName="LibraryModel.RatingBook">
+              <MappingFragment StoreEntitySet="RatingBook">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ValueRating" ColumnName="ValueRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RatingComments">
+            <EntityTypeMapping TypeName="LibraryModel.RatingComment">
+              <MappingFragment StoreEntitySet="RatingComment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBookStatus">
+            <EntityTypeMapping TypeName="LibraryModel.UserBookStatu">
+              <MappingFragment StoreEntitySet="UserBookStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="StatusBook" ColumnName="StatusBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
