@@ -15,7 +15,7 @@ namespace ELib.DAL.Infrastructure.Concrete
         public virtual DbSet<AuthorGenre> AuthorGenres { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookAuthor> BookAuthors { get; set; }
-        public virtual DbSet<BookFile> BookFiles { get; set; }
+        public virtual DbSet<BookInstance> BookInstances { get; set; }
         public virtual DbSet<BookGenre> BookGenres { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
@@ -50,7 +50,7 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Book>()
-                .HasMany(e => e.BookFiles)
+                .HasMany(e => e.BookInstances)
                 .WithRequired(e => e.Book)
                 .WillCascadeOnDelete(false);
 

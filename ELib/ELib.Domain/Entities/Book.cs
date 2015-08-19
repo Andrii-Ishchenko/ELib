@@ -11,7 +11,7 @@ namespace ELib.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            BookFiles = new HashSet<BookFile>();
+            BookInstances = new HashSet<BookInstance>();
             BookGenres = new HashSet<BookGenre>();
             RatingBooks = new HashSet<RatingBook>();
             UserBookStatus = new HashSet<UserBookStatus>();
@@ -39,7 +39,7 @@ namespace ELib.Domain.Entities
         [Column(TypeName = "date")]
         public DateTime? PublishYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        public string ImageHash { get; set; }
 
         public string Description { get; set; }
 
@@ -55,7 +55,7 @@ namespace ELib.Domain.Entities
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookFile> BookFiles { get; set; }
+        public virtual ICollection<BookInstance> BookInstances { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookGenre> BookGenres { get; set; }

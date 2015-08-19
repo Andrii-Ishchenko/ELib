@@ -3,8 +3,8 @@ namespace ELib.Domain.Entities
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("BookFormat")]
-    public partial class BookFile
+    [Table("BookInstance")]
+    public partial class BookInstance
     {
         public int Id { get; set; }
 
