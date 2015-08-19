@@ -15,13 +15,19 @@ namespace ELib.Sandbox
     {
         static void Main(string[] args)
         {
-            OrdinaryCaptchaGenerator generator = new OrdinaryCaptchaGenerator();
+            OrdinaryCaptchaGenerator generatorOrdinary = new OrdinaryCaptchaGenerator();
+            AritmeticalCaptchaGenerator generatorAritmetical = new AritmeticalCaptchaGenerator();
+
+            CaptchaService capchaService = new CaptchaService();
+            capchaService.AddGenerator(generatorOrdinary);
+            capchaService.AddGenerator(generatorAritmetical);
+
             CaptchaDto captcha;
 
             for (int i = 0; i < 25; i++)
             {
-                captcha = generator.Generate();
-                captcha.Image.Save(String.Format(@"D:\captchas\{0}.png",i), ImageFormat.Png);
+                captcha = capchaService.GenerateCaptcha();
+                captcha.Image.Save(String.Format(@"C:\captchas\{0}.png",i), ImageFormat.Png);
                 Thread.Sleep(50);
             }
         }
