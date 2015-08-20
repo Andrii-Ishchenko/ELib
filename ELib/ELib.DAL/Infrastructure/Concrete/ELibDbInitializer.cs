@@ -191,6 +191,16 @@ namespace ELib.DAL.Infrastructure.Concrete
             context.Books.AddRange(books);
             context.SaveChanges();
 
+            //book instances
+            var bookInstances = new List<BookInstance>();
+            bookInstances.Add(new BookInstance() { BookId = 1, InsertDate = DateTime.Now });
+            bookInstances.Add(new BookInstance() { BookId = 2, InsertDate = DateTime.Now  });
+            bookInstances.Add(new BookInstance() { BookId = 2, InsertDate = DateTime.Now });
+            bookInstances.Add(new BookInstance() { BookId = 3, InsertDate = DateTime.Now });
+            context.BookInstances.AddRange(bookInstances);
+            context.SaveChanges();
+
+
             //bookGenres
             context.BookGenres.Add(new BookGenre { BookId = 1, GenreId = 1 });
             context.BookGenres.Add(new BookGenre { BookId = 2, GenreId = 1 });
