@@ -10,6 +10,7 @@ namespace ELib.DAL.Infrastructure.Concrete
     {
         protected override void Seed(ELibDbContext context)
         {
+
             //genres
             var genres = new List<Genre>();
             genres.Add(new Genre() { Name = "Техническая литература"});

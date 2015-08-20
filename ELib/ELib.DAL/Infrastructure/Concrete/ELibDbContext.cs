@@ -1,4 +1,5 @@
-﻿using ELib.Domain.Entities;
+﻿using System;
+using ELib.Domain.Entities;
 using System.Data.Entity;
 
 namespace ELib.DAL.Infrastructure.Concrete
