@@ -291,7 +291,7 @@
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\config.js" />
-    <Content Include="Views\Home\common\DataService.js" />
+    <Content Include="Views\Home\common\DataServiceFactory.js" />
     <Content Include="Views\Home\Elib.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

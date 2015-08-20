@@ -1,27 +1,28 @@
 ﻿(function () {
-    angular.module("Elib")
+    angular.module("ELib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["DataService"];
+    BooksController.$inject = ["DataServiceFactory"];
 
-    function BooksController(DataService) {
+    function BooksController(DataServiceFactory) {
         var vm = this;
-        vm.books = [];
+        vm.books = DataServiceFactory.getAll('book').query();
 
-        activate();
+        //activate();
 
-        function activate() {
-            return getBooks().then(function () {
-                logger.info('Activated Books View');
-            });
-        }
+        //function activate() {
+        //    return getBooks().then(function () {
+        //        console.log('Activated Books View');
+        //    });
+        //}
 
-        function getBooks() {
-            return DataService.getAll('book')
-            .then(function (data) {
-                vm.books = data;
-                return vm.books;
-            });
-        }
+        //function getBooks() {
+        //    return DataService.getAll('book')
+        //    .then(function (data) {
+        //        vm.books = data;
+        //        console.log(vm.books);
+        //        return vm.books;
+        //    });
+        //}
     }
 })();

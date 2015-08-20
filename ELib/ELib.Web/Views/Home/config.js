@@ -5,7 +5,7 @@
 function config($routeProvider) {
     $routeProvider
         .when('/books', {
-          templateUrl: 'books.html',
+            templateUrl: '/views/home/book/books.html',
           controller : 'BooksController',
           controllerAs : 'books'
       })

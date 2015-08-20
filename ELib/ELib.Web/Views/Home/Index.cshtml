@@ -1,12 +1,13 @@
-﻿<html>
+﻿@{
+    Layout = null;
+        }
+<html>
 <head>
     <title>
         Elib - best lib ever.
     </title>
-    <link rel="stylesheet" href="../CSS/materialize/css/materialize.min.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="../CSS/materialize/js/materialize.min.js"></script>
     <style>
         .maincontent {
             min-height: 73%;
@@ -44,7 +45,7 @@
     </header>
     <main>
         <div class="section indigo lighten-5">
-            <div class="container white">
+            <div class="container white" ng-app="ELib">
                 <div class="row">
                     <div class="col s3">
                         <ul class="collapsible" data-collapsible="expanadable">
@@ -60,7 +61,7 @@
                     </div>
                     <div class="col s9 maincontent">
                         <ng-view></ng-view>
-                        Main Content.
+                        <!--Main Content-->
                         <!--Content placeholder-->
                     </div>
                 </div>
@@ -86,5 +87,14 @@
             </div>
         </div>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.min.js"></script>
+    @Scripts.Render("~/Views/Home/Elib.js")
+    @Scripts.Render("~/Views/Home/config.js")
+    @Scripts.Render("~/Views/Home/common/DataServiceFactory.js")
+    @Scripts.Render("~/Views/Home/book/BooksController.js")
 </body>
 </html>
