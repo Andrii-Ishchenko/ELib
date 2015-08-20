@@ -5,6 +5,6 @@ namespace ELib.BL.Services.Abstract
 {
     public interface IRatingService : IBaseService<RatingBook, RatingBookDto>
     {
-
+        void AddRating(RatingBookDto rating);
     }
 }
