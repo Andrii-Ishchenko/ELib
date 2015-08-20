@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorController.cs" />
+    <Compile Include="ApiControllers\FilesController.cs" />
     <Compile Include="ApiControllers\CommentController.cs" />
     <Compile Include="ApiControllers\GenreController.cs" />
     <Compile Include="ApiControllers\PublisherController.cs" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\FilesTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,11 +17,17 @@ namespace ELib.Web
     {
         public static void Register(HttpConfiguration config)
         {
-           // config.MapHttpAttributeRoutes();
+            // config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                "FilesRoute",
+                "api/files/{action}/{id}",
+                new { controller = "Files", id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
@@ -51,6 +57,7 @@ namespace ELib.Web
             container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<IPublisherService, PublisherService>(new HierarchicalLifetimeManager());
             container.RegisterType<IAuthorService, AuthorService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IFileService, FileService>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookService, BookService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICommentService, CommentService>(new HierarchicalLifetimeManager());
 
