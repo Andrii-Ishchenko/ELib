@@ -114,7 +114,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (id != null && ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     _service.DeleteById(id);
                     return Request.CreateResponse(HttpStatusCode.OK);
