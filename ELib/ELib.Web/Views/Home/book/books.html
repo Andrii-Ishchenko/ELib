@@ -1,0 +1,131 @@
+<html>
+<head>
+  <link rel="stylesheet" href="../CSS/materialize/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+   .collection .collection-item.avatar img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    left: 15px;
+    border : inherit;
+    display: inline-block;
+    vertical-align: middle;
+}
+     .image-block{
+
+       padding: 5px;
+
+       border-radius: 0px;
+
+      }
+     img {
+       display : block;
+       margin : auto;
+     }
+    .divider {
+
+     background-color : #29b6f6;
+
+     height : 1px;
+
+     border : 0px;
+
+     }
+   .pagination li{
+     font-size : 80%;
+    }
+   .pagination li.active {
+     background-color : #29b6f6;
+
+    }
+   .title {
+     font-weight : 600;
+}
+   .secondary-content {
+      color : black;
+      font-weight : block;
+      border-left :  1px solid black;
+      border-bottom : 1px solid black;  
+      margin-top : -5px;
+      margin-right : -5px;
+      padding : 5px;
+      font-size : 200%;
+    }
+  </style>
+</head>
+<body>
+  <div id="books">
+     <div class="container">
+         <div class="row">
+
+	<div class="col m9">
+
+                 <h3>Books</h3>
+
+              </div>
+          </div>
+        <div class="divider"></div>
+        <div class = "row">
+        <ul class="pagination">
+        <li class="disabled"><a href="#!">&lt;&lt;Prev</a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!">Next&gt;&gt;</a></li>
+        </ul>
+        </div>
+         <ul class="collection">
+
+	<li class="collection-item avatar" ng-repeat="book in books.books">
+
+	      <img src="{{book.Image}}" alt="">
+	      
+                     <p>{{book.Author}}<p>  
+	                 <p>{{book.Title}}<p>
+
+                    <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishingYear}}</p> 
+                    <p class="secondary-content">{{book.Rating}}<p>
+                    
+    	</li>
+         <!--     <li class="collection-item avatar">
+
+	      <img src="images/book.png" alt="">
+	      
+                     <p>Borys Akunin<p>  
+	      <p>Azazel'<p>
+
+                    <p>Detective - Novel - Souzpechat' - 1984</p> 
+                     <p class="secondary-content">7.4<p>
+                    
+    	</li>
+              <li class="collection-item avatar">
+
+	      <img src="images/book.png" alt="">
+
+                     <p>Borys Akunin<p>  
+	      <p>Azazel'<p>
+
+                    <p>Detective - Novel - Souzpechat' - 1984</p>
+                     <p class="secondary-content">7.4<p> 
+                    
+    	</li> -->
+         </ul>
+        <div class = "row">
+        <ul class="pagination">
+        <li class="disabled"><a href="#!">&lt;&lt;Prev</a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!">Next&gt;&gt;</a></li>
+        </ul>
+        </div>   
+   </div>
+</body>
+</html>

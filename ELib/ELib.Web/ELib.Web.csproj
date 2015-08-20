@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorController.cs" />
+    <Compile Include="ApiControllers\BookController.cs" />
     <Compile Include="ApiControllers\CommentController.cs" />
     <Compile Include="ApiControllers\GenreController.cs" />
     <Compile Include="ApiControllers\PublisherController.cs" />
@@ -287,6 +288,11 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\books.html" />
+    <Content Include="Views\Home\BooksController.js" />
+    <Content Include="Views\Home\config.js" />
+    <Content Include="Views\Home\DataService.js" />
+    <Content Include="Views\Home\Elib.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -320,6 +326,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Abstract\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Home\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.BL\ELib.BL.csproj">

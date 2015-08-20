@@ -1,45 +1,90 @@
-﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit the
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+﻿<html>
+<head>
+    <title>
+        Elib - best lib ever.
+    </title>
+    <link rel="stylesheet" href="../CSS/materialize/css/materialize.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../CSS/materialize/js/materialize.min.js"></script>
+    <style>
+        .maincontent {
+            min-height: 73%;
+        }
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
-</div>
+        .section {
+            padding: 0px;
+        }
+
+        footer.page-footer {
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="#" class="brand-logo"> ELib</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" required>
+                                <label for="search"><i class="material-icons">search</i></label>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="#"><i class="material-icons right">account_box</i>Profile</a></li>
+                    <li><a href="#"><i class="material-icons right">exit_to_app</i>Sign out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="section indigo lighten-5">
+            <div class="container white">
+                <div class="row">
+                    <div class="col s3">
+                        <ul class="collapsible" data-collapsible="expanadable">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">mood</i>Genres</div>
+                                <div class="collapsible-body"><p>Body</p></div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">person</i>Authors</div>
+                                <div class="collapsible-body"><p>Body</p></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s9 maincontent">
+                        <ng-view></ng-view>
+                        Main Content.
+                        <!--Content placeholder-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer grey">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h4 class="white-text">Footer</h4>
+                    <p class="grey-text text-lighten-4">Some not very important information.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
