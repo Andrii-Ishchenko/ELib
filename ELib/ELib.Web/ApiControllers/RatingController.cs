@@ -58,7 +58,7 @@ namespace ELib.Web.ApiControllers
             {
                 if (ModelState.IsValid)
                 {
-                    _ratingService.Insert(rating);
+                    _ratingService.AddRating(rating);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid model state");
