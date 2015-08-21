@@ -26,6 +26,10 @@ namespace ELib.Domain.Entities
         [Column(TypeName = "date")]
         public DateTime CommentDate { get; set; }
 
+        public int SumLike { get; set; }
+
+        public int SumDisLike { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatingComment> RatingComments { get; set; }
     }

@@ -32,9 +32,9 @@ namespace ELib.BL.Services.Concrete
                     {
                         foreach (var temp in tempRatingBook)
                         {
-                       rating.Id = temp.Id;
-                       var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
-                        base.Update(rating);
+                            rating.Id = temp.Id;
+                            var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
+                            base.Update(rating);
                             sumRating = (ReCalculateRatingBook(tempBook) - temp.ValueRating + rating.ValueRating) / tempBook.Count;
                         }
                         
@@ -47,7 +47,7 @@ namespace ELib.BL.Services.Concrete
                         sumRating = (ReCalculateRatingBook(tempBook) + rating.ValueRating) / (tempBook.Count + 1);
                     }
                 }
-              else
+                else
                 {
                     var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
                     uow.Repository<RatingBook>().Insert(entityToInsert);
@@ -55,10 +55,10 @@ namespace ELib.BL.Services.Concrete
                     sumRating = rating.ValueRating;
                 }
                 uow.Repository<Book>().GetById(rating.BookId).SumRatingValue = sumRating;
-                    uow.Save();
-                }
+                uow.Save();
+            }
         }
-                     
+
         private int ReCalculateRatingBook(List<RatingBook> books)
         {
             int sum = 0;

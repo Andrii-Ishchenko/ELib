@@ -6,7 +6,7 @@ using System;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
-    public class ELibDbInitializer : CreateDatabaseIfNotExists<ELibDbContext>
+    public class ELibDbInitializer : DropCreateDatabaseIfModelChanges<ELibDbContext>
     {
         protected override void Seed(ELibDbContext context)
         {
