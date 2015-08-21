@@ -7,13 +7,13 @@ namespace ELib.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Subgenre : IMigrationMetadata
+    public sealed partial class ImageHash_Field_Added_To_Person : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Subgenre));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ImageHash_Field_Added_To_Person));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508172040160_Subgenre"; }
+            get { return "201508191044026_ImageHash_Field_Added_To_Person"; }
         }
         
         string IMigrationMetadata.Source

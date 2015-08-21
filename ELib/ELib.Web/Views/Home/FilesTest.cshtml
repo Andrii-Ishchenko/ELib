@@ -1,0 +1,38 @@
+﻿<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+           
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <form name="profile-image-form" method="post" enctype="multipart/form-data" action="/api/files/profile-images">
+            <div>
+                <label for="image">Upload profile image file</label>
+                <input name="image" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+
+        <form name="book-image-form" method="post" enctype="multipart/form-data" action="/api/files/book-images/1">
+            <div>
+                <label for="image">Upload book image</label>
+                <input name="image" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+
+        <form name="book-file-form" method="post" enctype="multipart/form-data" action="/api/files/book-instances/2">
+            <div>
+                <label for="image">Upload book file</label>
+                <input name="image" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </section>
+</div>

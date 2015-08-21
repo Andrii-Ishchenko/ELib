@@ -11,7 +11,7 @@ namespace ELib.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            BookFormats = new HashSet<BookFormat>();
+            BookInstances = new HashSet<BookInstance>();
             BookGenres = new HashSet<BookGenre>();
             RatingBooks = new HashSet<RatingBook>();
             UserBookStatus = new HashSet<UserBookStatus>();
@@ -24,7 +24,7 @@ namespace ELib.Domain.Entities
         public string Title { get; set; }
 
         public int PublishLangId { get; set; }
-
+        
         public int? OriginalLangId { get; set; }
 
         public int? TotalPages { get; set; }
@@ -34,12 +34,16 @@ namespace ELib.Domain.Entities
 
         public int PublisherId { get; set; }
 
+        public int SubgenreId { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? PublishYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        public string ImageHash { get; set; }
 
         public string Description { get; set; }
+
+        public virtual Subgenre Subgenre { get; set; }
 
         public virtual Language Language { get; set; }
 
@@ -53,7 +57,7 @@ namespace ELib.Domain.Entities
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookFormat> BookFormats { get; set; }
+        public virtual ICollection<BookInstance> BookInstances { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookGenre> BookGenres { get; set; }
