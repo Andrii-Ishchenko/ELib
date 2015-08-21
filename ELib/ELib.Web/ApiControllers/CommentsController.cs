@@ -9,11 +9,11 @@ using ELib.BL.DtoEntities;
 
 namespace ELib.Web.ApiControllers
 {
-    public class CommentController : ApiController
+    public class CommentsController : ApiController
     {
         private readonly ICommentService _commentService;
 
-        public CommentController(ICommentService commentService)
+        public CommentsController(ICommentService commentService)
         {
             _commentService = commentService;
         }

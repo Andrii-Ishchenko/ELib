@@ -11,12 +11,12 @@ using System.Web.Http;
 
 namespace ELib.Web.ApiControllers
 {
-    public class AuthorController : ApiController
+    public class AuthorsController : ApiController
     {
         private readonly IAuthorService _authorService;
         private ELogger logger;
 
-        public AuthorController(IAuthorService authorService)
+        public AuthorsController(IAuthorService authorService)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _authorService = authorService;

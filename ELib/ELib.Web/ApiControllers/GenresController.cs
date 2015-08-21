@@ -10,12 +10,12 @@ using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
-    public class GenreController : ApiController
+    public class GenresController : ApiController
     {
         private readonly IGenreService _genreService;
         private ELogger logger;
 
-        public GenreController(IGenreService genreService)
+        public GenresController(IGenreService genreService)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _genreService = genreService;

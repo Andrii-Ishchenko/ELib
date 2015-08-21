@@ -8,12 +8,12 @@ using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
-    public class FilesController : ApiController
+    public class FileController : ApiController
     {
         private readonly IFileService _fileService;
         private ELogger logger;
 
-        public FilesController(IFileService fileService)
+        public FileController(IFileService fileService)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _fileService = fileService;
@@ -21,7 +21,7 @@ namespace ELib.Web.ApiControllers
 
         // HttpPost used for test
         [HttpPost]
-        [ActionName("profile-images")]
+        [ActionName("profile-image")]
         public async Task<HttpResponseMessage> UploadProfileImage()
         {
             try
@@ -63,7 +63,7 @@ namespace ELib.Web.ApiControllers
         // HttpPost used for test
         // Maybe should use "model" instead "id", and move method to another controller
         [HttpPost]
-        [ActionName("book-images")]
+        [ActionName("book-image")]
         public async Task<HttpResponseMessage> UploadBookImage(int id)
         {
             try
@@ -105,7 +105,7 @@ namespace ELib.Web.ApiControllers
         // HttpPost used for test
         // Maybe should use "model" instead "id", and move method to another controller
         [HttpPost]
-        [ActionName("book-instances")]
+        [ActionName("book-instance")]
         public async Task<HttpResponseMessage> UploadBookFile(int id)
         {
             try

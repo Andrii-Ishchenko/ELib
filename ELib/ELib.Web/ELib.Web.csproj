@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44303</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -172,11 +172,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllers\AuthorController.cs" />
-    <Compile Include="ApiControllers\FilesController.cs" />
-    <Compile Include="ApiControllers\CommentController.cs" />
-    <Compile Include="ApiControllers\GenreController.cs" />
-    <Compile Include="ApiControllers\PublisherController.cs" />
+    <Compile Include="ApiControllers\AuthorsController.cs" />
+    <Compile Include="ApiControllers\FileController.cs" />
+    <Compile Include="ApiControllers\CommentsController.cs" />
+    <Compile Include="ApiControllers\GenresController.cs" />
+    <Compile Include="ApiControllers\PublishersController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

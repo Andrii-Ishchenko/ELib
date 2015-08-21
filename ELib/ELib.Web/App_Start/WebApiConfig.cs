@@ -20,9 +20,9 @@ namespace ELib.Web
             // config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                "FilesRoute",
-                "api/files/{action}/{id}",
-                new { controller = "Files", id = RouteParameter.Optional }
+                "FileRoute",
+                "api/file/{action}/{id}",
+                new { controller = "File", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

@@ -11,12 +11,12 @@ using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
-    public class PublisherController: ApiController
+    public class PublishersController: ApiController
     {
         private readonly IPublisherService _service;
         private ELogger logger;
 
-        public PublisherController(IPublisherService service)
+        public PublishersController(IPublisherService service)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _service = service;           
