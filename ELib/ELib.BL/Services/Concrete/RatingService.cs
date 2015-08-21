@@ -25,9 +25,7 @@ namespace ELib.BL.Services.Concrete
                     {
                        rating.Id = temp.Id;
                        var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
-                        base.Update(rating);
-                     //  uow.Repository<RatingBook>().Update(entityToUpdate);
-                     //  uow.Save();
+                       base.Update(rating);
                     }
                 }
               else
