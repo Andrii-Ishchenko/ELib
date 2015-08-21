@@ -173,9 +173,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorController.cs" />
+    <Compile Include="ApiControllers\BookController.cs" />
     <Compile Include="ApiControllers\CommentController.cs" />
     <Compile Include="ApiControllers\GenreController.cs" />
     <Compile Include="ApiControllers\PublisherController.cs" />
+    <Compile Include="ApiControllers\RatingCommentController.cs" />
     <Compile Include="ApiControllers\RatingController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
