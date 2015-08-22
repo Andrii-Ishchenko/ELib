@@ -4,9 +4,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace ELib.DAL.Infrastructure.Concrete
 {
-    public partial class ELibDbContext : DbContext
+    public partial class ELibDbContext : IdentityDbContext<ApplicationUser>
     {
         public ELibDbContext()
            : base("ELibDb")
