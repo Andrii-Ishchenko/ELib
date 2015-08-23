@@ -3,7 +3,7 @@ namespace ELib.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _144_1 : DbMigration
+    public partial class SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment : DbMigration
     {
         public override void Up()
         {

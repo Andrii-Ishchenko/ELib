@@ -7,13 +7,13 @@ namespace ELib.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _144_1 : IMigrationMetadata
+    public sealed partial class SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_144_1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508221259340_144_1"; }
+            get { return "201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment"; }
         }
         
         string IMigrationMetadata.Source

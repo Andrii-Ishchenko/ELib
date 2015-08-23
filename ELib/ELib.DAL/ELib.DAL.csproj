@@ -70,9 +70,9 @@
     <Compile Include="Migrations\201508191044026_ImageHash_Field_Added_To_Person.Designer.cs">
       <DependentUpon>201508191044026_ImageHash_Field_Added_To_Person.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508221259340_144_1.cs" />
-    <Compile Include="Migrations\201508221259340_144_1.Designer.cs">
-      <DependentUpon>201508221259340_144_1.cs</DependentUpon>
+    <Compile Include="Migrations\201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.cs" />
+    <Compile Include="Migrations\201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.Designer.cs">
+      <DependentUpon>201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,8 +92,8 @@
     <EmbeddedResource Include="Migrations\201508191044026_ImageHash_Field_Added_To_Person.resx">
       <DependentUpon>201508191044026_ImageHash_Field_Added_To_Person.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508221259340_144_1.resx">
-      <DependentUpon>201508221259340_144_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.resx">
+      <DependentUpon>201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
