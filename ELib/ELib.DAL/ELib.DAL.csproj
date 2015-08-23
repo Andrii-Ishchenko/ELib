@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.Designer.cs">
       <DependentUpon>201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508230936526_FileName_Field_For_Book_Instance_Added.cs" />
+    <Compile Include="Migrations\201508230936526_FileName_Field_For_Book_Instance_Added.Designer.cs">
+      <DependentUpon>201508230936526_FileName_Field_For_Book_Instance_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.resx">
       <DependentUpon>201508230924360_SumRatingValue_Field_Added_To_Book_And_SumLike_SumDisLike_Fields_Added_To_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508230936526_FileName_Field_For_Book_Instance_Added.resx">
+      <DependentUpon>201508230936526_FileName_Field_For_Book_Instance_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
