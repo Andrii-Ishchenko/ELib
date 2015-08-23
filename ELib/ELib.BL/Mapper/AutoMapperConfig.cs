@@ -37,7 +37,7 @@ namespace ELib.BL.Mapper
         private static void configureCommentMapping()
         {
             AutoMapper.Mapper.CreateMap<Comment, CommentDto>();
-            AutoMapper.Mapper.CreateMap<CommentDto, CommentDto>();
+            AutoMapper.Mapper.CreateMap<CommentDto, Comment>();
         }
 
         private static void configureRatingBook()

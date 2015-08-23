@@ -9,20 +9,20 @@ namespace ELib.BL.DtoEntities
 {
     public class CommentDto
     {
-        [Required]
         public int Id { get; set; }
 
         [StringLength(400)]
         public string Text { get; set; }
 
-        [Required]
         public int BookId { get; set; }
 
-        [Required]
         public int UserId { get; set; }
 
-        [Required]
         //[Column(TypeName = "date")]
         public DateTime CommentDate { get; set; }
+
+        public int SumLike { get; set; }
+
+        public int SumDisLike { get; set; }
     }
 }

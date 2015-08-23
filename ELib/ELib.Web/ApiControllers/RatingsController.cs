@@ -10,114 +10,114 @@ using ELib.Common;
 
 namespace ELib.Web.ApiControllers
 {
-    public class RatingCommentController : ApiController
+    public class RatingsController : ApiController
     {
-        private readonly IRatingCommentService _ratingCommentService;
+        private readonly IRatingService _ratingService;
         private ELogger logger;
 
-        public RatingCommentController(IRatingCommentService ratingCommentService)
+        public RatingsController(IRatingService ratingService)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
-            _ratingCommentService = ratingCommentService;
+            _ratingService = ratingService;
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRatingComments()
+        public HttpResponseMessage GetRatings()
         {
             try
             {
-                var ratings = _ratingCommentService.GetAll();
+                var ratings = _ratingService.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, ratings);
             }
             catch (Exception ex)
             {
-                logger.Error("Error In RatingComment/Get");
+                logger.Error("Error In Rating/Get");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRatingCommentById(int id)
+        public HttpResponseMessage GetGenreById(int id)
         {
             try
             {
-                var genre = _ratingCommentService.GetById(id);
+                var genre = _ratingService.GetById(id);
                 return Request.CreateResponse(HttpStatusCode.OK, genre);
             }
             catch (Exception ex)
             {
-                logger.Error("Error In RatingComment/GetById");
+                logger.Error("Error In Rating/GetById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpPost]
-        public HttpResponseMessage AddRatingComment(RatingCommentDto ratingComment)
+        public HttpResponseMessage AddRating(RatingBookDto rating)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _ratingCommentService.AddLike(ratingComment);
+                    _ratingService.AddRating(rating);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid model state");
             }
             catch (Exception ex)
             {
-                logger.Error("Error In RatingComment/Add");
+                logger.Error("Error In Rating/Add");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateRatingComment(RatingCommentDto ratingComment)
+        public HttpResponseMessage UpdateRating(RatingBookDto rating)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _ratingCommentService.Update(ratingComment);
+                    _ratingService.Update(rating);
                     return Request.CreateResponse(HttpStatusCode.OK, "OK");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid model state");
             }
             catch (Exception ex)
             {
-                logger.Error("Error In RatingComment/Update");
+                logger.Error("Error In Rating/Update");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+        [HttpDelete]
+        public HttpResponseMessage DeleteRatingById(int id)
+        {
+            try
+            {
+                _ratingService.DeleteById(id);
+                return Request.CreateResponse(HttpStatusCode.OK, "OK");
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error In Rating/DeleteById");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteRatingCommentById(int id)
+        public HttpResponseMessage DeleteRating(RatingBookDto rating)
         {
             try
             {
-                _ratingCommentService.DeleteById(id);
+                _ratingService.Delete(rating);
                 return Request.CreateResponse(HttpStatusCode.OK, "OK");
             }
             catch (Exception ex)
             {
-                logger.Error("Error In RatingComment/DeleteById");
+                logger.Error("Error In Rating/Delete");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DeleteRatingComment(RatingCommentDto ratingComment)
-        {
-            try
-            {
-                _ratingCommentService.Delete(ratingComment);
-                return Request.CreateResponse(HttpStatusCode.OK, "OK");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In RatingComment/Delete");
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
     }
 }

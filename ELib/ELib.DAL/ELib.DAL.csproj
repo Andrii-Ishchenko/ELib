@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201508191044026_ImageHash_Field_Added_To_Person.Designer.cs">
       <DependentUpon>201508191044026_ImageHash_Field_Added_To_Person.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508221259340_144_1.cs" />
+    <Compile Include="Migrations\201508221259340_144_1.Designer.cs">
+      <DependentUpon>201508221259340_144_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
@@ -87,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508191044026_ImageHash_Field_Added_To_Person.resx">
       <DependentUpon>201508191044026_ImageHash_Field_Added_To_Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508221259340_144_1.resx">
+      <DependentUpon>201508221259340_144_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

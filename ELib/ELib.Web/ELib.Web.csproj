@@ -177,6 +177,8 @@
     <Compile Include="ApiControllers\CommentsController.cs" />
     <Compile Include="ApiControllers\GenresController.cs" />
     <Compile Include="ApiControllers\PublishersController.cs" />
+    <Compile Include="ApiControllers\RatingsCommentController.cs" />
+    <Compile Include="ApiControllers\RatingsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
