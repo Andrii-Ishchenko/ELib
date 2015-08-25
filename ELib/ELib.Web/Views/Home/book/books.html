@@ -58,7 +58,6 @@
 </head>
 <body>-->
   <div id="books">
-     <div class="container">
          <div class="row">
 
 	<div class="col m9">
@@ -67,63 +66,88 @@
 
               </div>
           </div>
+         <!--top pagination-->
         <div class="divider"></div>
-        <div class = "row">
+
+             <ul class="pagination">
+                 <li class="disabled">
+                     <a href="#" aria-label="Previous">
+                         <span aria-hidden="true">&laquo;</span>
+                         <span class="sr-only">Previous</span>
+                     </a>
+                 </li>
+                 <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
+                 <li class=""><a href="#!">2</a></li>
+                 <li class=""><a href="#!">3</a></li>
+                 <li class=""><a href="#!">4</a></li>
+                 <li class=""><a href="#!">5</a></li>
+                 <li>
+                     <a href="#" aria-label="Next">
+                         <span aria-hidden="true">&raquo;</span>
+                         <span class="sr-only">Next</span>
+                     </a>
+                 </li>
+             </ul>
+ 
+         <!--books list-->
+
+          <ul class="list-group">
+
+              <li class="list-group-item" ng-repeat="book in books.books">
+
+                  <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
+
+                  <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
+                  <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
+                  <p><strong>{{book.Title}}</strong></p>
+
+                  <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>
+
+
+              </li>
+              <!--     <li class="collection-item avatar">
+
+              <img src="images/book.png" alt="">
+
+                         <p>Borys Akunin<p>
+              <p>Azazel'<p>
+
+                        <p>Detective - Novel - Souzpechat' - 1984</p>
+                         <p class="secondary-content">7.4<p>
+
+            </li>
+                  <li class="collection-item avatar">
+
+              <img src="images/book.png" alt="">
+
+                         <p>Borys Akunin<p>
+              <p>Azazel'<p>
+
+                        <p>Detective - Novel - Souzpechat' - 1984</p>
+                         <p class="secondary-content">7.4<p>
+
+            </li> -->
+          </ul>
+
+         <!--bottom pagination-->
         <ul class="pagination">
-        <li class="disabled"><a href="#!">&lt;&lt;Prev</a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!">Next&gt;&gt;</a></li>
-        </ul>
-        </div>
-         <ul class="collection">
-
-	<li class="collection-item avatar" ng-repeat="book in books.books">
-
-	      <img src="" alt="">
-	      
-                     <p><span ng-repeat="autor in book.Authors">{{autor}}</span></p>  
-	                 <p>{{book.Title}}</p>
-
-                    <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p> 
-                    <p class="secondary-content">{{book.Rating}}<p>
-                    
-    	</li>
-         <!--     <li class="collection-item avatar">
-
-	      <img src="images/book.png" alt="">
-	      
-                     <p>Borys Akunin<p>  
-	      <p>Azazel'<p>
-
-                    <p>Detective - Novel - Souzpechat' - 1984</p> 
-                     <p class="secondary-content">7.4<p>
-                    
-    	</li>
-              <li class="collection-item avatar">
-
-	      <img src="images/book.png" alt="">
-
-                     <p>Borys Akunin<p>  
-	      <p>Azazel'<p>
-
-                    <p>Detective - Novel - Souzpechat' - 1984</p>
-                     <p class="secondary-content">7.4<p> 
-                    
-    	</li> -->
-         </ul>
-        <div class = "row">
-        <ul class="pagination">
-        <li class="disabled"><a href="#!">&lt;&lt;Prev</a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!">Next&gt;&gt;</a></li>
+        <li class="disabled">
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+       </li>
+        <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#!">2</a></li>
+        <li class=""><a href="#!">3</a></li>
+        <li class=""><a href="#!">4</a></li>
+        <li class=""><a href="#!">5</a></li>
+        <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+       </li>
         </ul>
         </div>   
-   </div>
+
