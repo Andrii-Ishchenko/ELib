@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.Cookies;
 using ELib.Web.App_Start;
 using ELib.Domain.Entities;
-
+using Microsoft.Owin.Security.Google;
 
 [assembly: OwinStartup(typeof(ELib.Web.Startup))]
 
