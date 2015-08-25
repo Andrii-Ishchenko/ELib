@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module("ELib", ['ngRoute', 'ngResource']);
+    angular.module("elib", ['ngRoute', 'ngResource']);
 })();

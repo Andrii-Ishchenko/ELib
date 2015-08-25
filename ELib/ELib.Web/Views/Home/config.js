@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module("ELib")
+    angular.module("elib")
            .config(config);
 
 function config($routeProvider) {
@@ -8,7 +8,12 @@ function config($routeProvider) {
             templateUrl: '/views/home/book/books.html',
           controller : 'BooksController',
           controllerAs : 'books'
-      })
+        })
+        .when('/book/:id', {
+            templateUrl: '/views/home/book/book.html',
+            controller: 'BookController',
+            controllerAs: 'book'
+        })
       //.........
       .otherwise({
           redirectTo: '/books'

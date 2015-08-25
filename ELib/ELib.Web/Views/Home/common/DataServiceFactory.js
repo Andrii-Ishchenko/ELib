@@ -1,10 +1,10 @@
 ﻿(function () {
-    angular.module("ELib")
-           .factory("DataServiceFactory", DataServiceFactory);
+    angular.module("elib")
+           .factory("dataServiceFactory", dataServiceFactory);
 
-    DataServiceFactory.$inject = ['$resource'];
+    dataServiceFactory.$inject = ['$resource'];
 
-    function DataServiceFactory($resource) {
+    function dataServiceFactory($resource) {
         var baseUrl = "/api/";
         var DataService = {
             getAll: getAll,
@@ -17,7 +17,7 @@
         return DataService;
 
         function getAll(entity) {
-            var url = baseUrl  + entity + "/:id";
+            var url = baseUrl  + entity;
             return $resource(url, {}, {
                 query: {
                     method: 'GET',
@@ -29,8 +29,15 @@
 
              
         
-        function getById() {
-
+        function getById(entity, id) {
+            var url = baseUrl + entity + "/:id";
+            return $resource(url, {}, {
+                query: {
+                    method: 'GET',
+                    params: {id: id},
+                    isArray: false
+                }
+            });
         }
 
         function add() {

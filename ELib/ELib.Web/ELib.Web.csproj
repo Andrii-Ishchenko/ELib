@@ -210,7 +210,9 @@
     <Compile Include="ApiControllers\GenresController.cs" />
     <Compile Include="ApiControllers\PublishersController.cs" />
     <Compile Include="ApiControllers\RatingsCommentController.cs" />
-    <Compile Include="ApiControllers\RatingsController.cs" />    <Compile Include="ApiControllers\BooksController.cs" />    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="ApiControllers\RatingsController.cs" />
+    <Compile Include="ApiControllers\BooksController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -281,11 +283,13 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\book\book.html" />
+    <Content Include="Views\Home\book\BookController.js" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\config.js" />
-    <Content Include="Views\Home\common\DataServiceFactory.js" />
-    <Content Include="Views\Home\Elib.js" />
+    <Content Include="Views\Home\common\dataServiceFactory.js" />
+    <Content Include="Views\Home\elib.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

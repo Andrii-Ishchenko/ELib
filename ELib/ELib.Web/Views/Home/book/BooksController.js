@@ -1,12 +1,12 @@
 ﻿(function () {
-    angular.module("ELib")
+    angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["DataServiceFactory"];
+    BooksController.$inject = ["dataServiceFactory"];
 
-    function BooksController(DataServiceFactory) {
+    function BooksController(dataServiceFactory) {
         var vm = this;
-        vm.books = DataServiceFactory.getAll('books').query();
+        vm.books = dataServiceFactory.getAll('books').query();
 
         //activate();
 
