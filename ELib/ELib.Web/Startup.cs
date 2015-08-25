@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.Cookies;
 using ELib.Web.App_Start;
 using ELib.Domain.Entities;
-
+using Microsoft.Owin.Security.Google;
 
 [assembly: OwinStartup(typeof(ELib.Web.Startup))]
 
@@ -61,15 +61,15 @@ namespace ELib.Web
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+              appId: "150029308665046",
+              appSecret: "b5b60220fe4c0820958f551a582cbf8b");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "796445415684-pj1uigsehmv7u6bcbcavllim3etjtct5.apps.googleusercontent.com",
+                ClientSecret = "1qeurRA9MFH69vAAFC9s2SaA"
+            });
         }
     }
 }
