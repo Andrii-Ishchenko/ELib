@@ -1,0 +1,58 @@
+﻿<div>
+    <h1>{{book.instance.Title}}</h1>
+    <hr />
+    <div class="container col-lg-12">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <figure>
+                    <img src=""  width="192" height="240" />
+                    <figcaption></figcaption>
+                </figure>
+               </div>
+            <div class="col-lg-6 col-sm-12 container">
+                <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Title:</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <p>{{book.instance.Title}}</p>
+                </div>
+             </div>
+               <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Authors:</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <p><span ng-repeat="author in book.instance.Authors">{{author + " "}}</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Genres:</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <p><span ng-repeat="genre in book.instance.Genres">{{genre + " "}}</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Subgenre:</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <p>{{book.instance.Subgenre}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Pages:</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <p>{{book.instance.TotalPages}}</p>
+                </div>
+            </div>
+
+                
+ </div>
+</div>
+</div>
+</div>
