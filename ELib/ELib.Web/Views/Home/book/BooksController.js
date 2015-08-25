@@ -6,7 +6,7 @@
 
     function BooksController(DataServiceFactory) {
         var vm = this;
-        vm.books = DataServiceFactory.getAll('book').query();
+        vm.books = DataServiceFactory.getAll('books').query();
 
         //activate();
 

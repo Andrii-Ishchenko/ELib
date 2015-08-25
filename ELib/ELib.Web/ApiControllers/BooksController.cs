@@ -10,11 +10,11 @@ using System.Net;
 
 namespace ELib.Web.ApiControllers
 {
-    public class BookController : ApiController
+    public class BooksController : ApiController
     {
         private readonly IBookService _bookService;
 
-        public BookController(IBookService bookService)
+        public BooksController(IBookService bookService)
         {
             _bookService = bookService;
 
