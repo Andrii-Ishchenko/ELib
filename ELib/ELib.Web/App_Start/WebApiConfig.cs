@@ -17,7 +17,13 @@ namespace ELib.Web
     {
         public static void Register(HttpConfiguration config)
         {
-           // config.MapHttpAttributeRoutes();
+            // config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                "FileRoute",
+                "api/file/{action}/{id}",
+                new { controller = "File", id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -51,8 +57,11 @@ namespace ELib.Web
             container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<IPublisherService, PublisherService>(new HierarchicalLifetimeManager());
             container.RegisterType<IAuthorService, AuthorService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IFileService, FileService>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookService, BookService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICommentService, CommentService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRatingService, RatingService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRatingCommentService, RatingCommentService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }

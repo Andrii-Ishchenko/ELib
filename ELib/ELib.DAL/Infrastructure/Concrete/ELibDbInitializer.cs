@@ -3,6 +3,7 @@ using System.Linq;
 using ELib.Domain.Entities;
 using System.Data.Entity;
 using System;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
@@ -10,36 +11,66 @@ namespace ELib.DAL.Infrastructure.Concrete
     {
         protected override void Seed(ELibDbContext context)
         {
-            //person roles
-            var personRoles = new List<PersonRole>();
-            personRoles.Add(new PersonRole() { Name = "ApprovedMember" });
-            personRoles.Add(new PersonRole() { Name = "Moderator" });
-            personRoles.Add(new PersonRole() { Name = "Administrator" });
-            context.PersonRoles.AddRange(personRoles);
+
+            //users
+            var user1 = new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4046c", Email = "John@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "John" };
+            var user2 = new ApplicationUser() { Id = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec", Email = "Frank@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Frank" };
+            var user3 = new ApplicationUser() { Id = "98f9156c-4c25-f396-9cdb-8f559da4047c", Email = "Eva@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Eva" };
+            var user4 = new ApplicationUser() { Id = "98f9156c-c4e5-4c25-9cdb-8f559da4048c", Email = "Peter@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Peter" };
+            var user5 = new ApplicationUser() { Id = "98f9156c-9cdb-f396-4c25-8f559da4049c", Email = "Howard@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Howard" };
+            var user6 = new ApplicationUser() { Id = "98f9156c-f396-9cdb-9cdb-8f559da4050c", Email = "Mary@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Mary" };
+            var user7 = new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4051c", Email = "Simón@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Simón" };
+
+            context.Users.Add(user1);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Users.Add(user4);
+            context.Users.Add(user5);
+            context.Users.Add(user6);
+            context.Users.Add(user7);
+            context.SaveChanges();
+
+            //users-roles
+            var userRole1 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4046c", UserId = "98f9156c-f396-4c25-9cdb-8f559da4046c" };
+            var userRole2 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4046c", UserId = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec" };
+            var userRole3 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4047c", UserId = "98f9156c-4c25-f396-9cdb-8f559da4047c" };
+            var userRole4 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4047c", UserId = "98f9156c-c4e5-4c25-9cdb-8f559da4048c" };
+            var userRole5 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4048c", UserId = "98f9156c-9cdb-f396-4c25-8f559da4049c" };
+            var userRole6 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4048c", UserId = "98f9156c-f396-9cdb-9cdb-8f559da4050c" };
+            var userRole7 = new IdentityUserRole() { RoleId = "98f9156c-f396-4c25-9cdb-8f559da4048c", UserId = "98f9156c-f396-4c25-9cdb-8f559da4051c" };
+
+            //roles
+
+            context.Roles.Add(new IdentityRole() { Id = "98f9156c-f396-4c25-9cdb-8f559da4046c", Name = "ApprovedMember", Users = { userRole1, userRole2 } });
+            context.Roles.Add(new IdentityRole() { Id = "98f9156c-f396-4c25-9cdb-8f559da4047c", Name = "Moderator", Users = { userRole3, userRole4 } });
+            context.Roles.Add(new IdentityRole() { Id = "98f9156c-f396-4c25-9cdb-8f559da4048c", Name = "Administrator", Users = { userRole5, userRole6, userRole7 } });
             context.SaveChanges();
 
             //people
             var people = new List<Person>();
-            people.Add(new Person() { FirstName = "John" , Login = "John", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1});
-            people.Add(new Person() { FirstName = "Frank", Login = "Frank", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
-            people.Add(new Person() { FirstName = "Eva", Login = "Eva", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
-            people.Add(new Person() { FirstName = "Peter", Login = "Peter", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 1 });
-            people.Add(new Person() { FirstName = "Howard", Login = "Howard", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
-            people.Add(new Person() { FirstName = "Mary", Login = "Mary", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 2 });
-            people.Add(new Person() { FirstName = "Simón", Login = "Simón", Password = "123456", RegistrationDate = DateTime.Now, RoleId = 3 });
+            people.Add(new Person() { FirstName = "John", Login = "John", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4046c" });
+            people.Add(new Person() { FirstName = "Frank", Login = "Frank", RegistrationDate = DateTime.Now, AplicationUserId = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec" });
+            people.Add(new Person() { FirstName = "Eva", Login = "Eva", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-4c25-f396-9cdb-8f559da4047c" });
+            people.Add(new Person() { FirstName = "Peter", Login = "Peter", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-c4e5-4c25-9cdb-8f559da4048c" });
+            people.Add(new Person() { FirstName = "Howard", Login = "Howard", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-9cdb-f396-4c25-8f559da4049c" });
+            people.Add(new Person() { FirstName = "Mary", Login = "Mary", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-9cdb-9cdb-8f559da4050c" });
+            people.Add(new Person() { FirstName = "Simón", Login = "Simón", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4051c" });
             context.People.AddRange(people);
             context.SaveChanges();
 
 
+
+
+
             //genres
             var genres = new List<Genre>();
-            genres.Add(new Genre() { Name = "Техническая литература"});
-            genres.Add(new Genre() { Name = "Детектив"});
-            genres.Add(new Genre() { Name = "Ужасы"});
-            genres.Add(new Genre() { Name = "Женский роман"});
-            genres.Add(new Genre() { Name = "Фантастика"});
-            genres.Add(new Genre() { Name = "Фэнтези"});
-            genres.Add(new Genre() { Name = "Драма"});
+            genres.Add(new Genre() { Name = "Техническая литература" });
+            genres.Add(new Genre() { Name = "Детектив" });
+            genres.Add(new Genre() { Name = "Ужасы" });
+            genres.Add(new Genre() { Name = "Женский роман" });
+            genres.Add(new Genre() { Name = "Фантастика" });
+            genres.Add(new Genre() { Name = "Фэнтези" });
+            genres.Add(new Genre() { Name = "Драма" });
             context.Genres.AddRange(genres);
 
             //subgenres
@@ -207,11 +238,10 @@ namespace ELib.DAL.Infrastructure.Concrete
             context.BookAuthors.Add(new BookAuthor { AuthorId = 4, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 5, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 6, BookId = 5 });
-            
+
 
             context.SaveChanges();
             base.Seed(context);
         }
     }
 }
- 
