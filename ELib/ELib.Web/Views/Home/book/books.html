@@ -89,46 +89,9 @@
                  </li>
              </ul>
  
-         <!--books list-->
-
-          <ul class="list-group">
-
-              <li class="list-group-item" ng-repeat="book in books.books">
-
-                  <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
-
-                  <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
-                  <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
-                  <p><a href="{{'#/book/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>
-
-                  <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>
-
-
-              </li>
-              <!--     <li class="collection-item avatar">
-
-              <img src="images/book.png" alt="">
-
-                         <p>Borys Akunin<p>
-              <p>Azazel'<p>
-
-                        <p>Detective - Novel - Souzpechat' - 1984</p>
-                         <p class="secondary-content">7.4<p>
-
-            </li>
-                  <li class="collection-item avatar">
-
-              <img src="images/book.png" alt="">
-
-                         <p>Borys Akunin<p>
-              <p>Azazel'<p>
-
-                        <p>Detective - Novel - Souzpechat' - 1984</p>
-                         <p class="secondary-content">7.4<p>
-
-            </li> -->
-          </ul>
-
+         <!--book list-->
+         <ul class="list-group" book-list-directive books="books.books">
+         </ul>
          <!--bottom pagination-->
         <ul class="pagination">
         <li class="disabled">

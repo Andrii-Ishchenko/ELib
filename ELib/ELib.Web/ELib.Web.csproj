@@ -291,13 +291,13 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\book\bookListDirective.js" />
+    <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
-    <Content Include="Views\Home\login.html" />
-    <Content Include="Views\Home\registration.html" />
     <Content Include="Views\Home\user\login.html" />
     <Content Include="Views\Home\user\profile.html" />
     <Content Include="Views\Home\user\registration.html" />
