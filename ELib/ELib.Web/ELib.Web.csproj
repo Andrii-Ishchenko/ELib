@@ -216,6 +216,7 @@
     <Compile Include="ApiControllers\FileController.cs" />
     <Compile Include="ApiControllers\CommentsController.cs" />
     <Compile Include="ApiControllers\GenresController.cs" />
+    <Compile Include="ApiControllers\ProfileController.cs" />
     <Compile Include="ApiControllers\PublishersController.cs" />
     <Compile Include="ApiControllers\RatingsCommentController.cs" />
     <Compile Include="ApiControllers\RatingsController.cs" />
@@ -256,6 +257,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\profile-big.png" />
     <Content Include="packages.config" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -297,7 +299,10 @@
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
     <Content Include="Views\Home\login.html" />
+    <Content Include="Views\Home\user\profile.html" />
     <Content Include="Views\Home\registration.html" />
+    <Content Include="Views\Home\user\ProfileController.js" />
+    <Content Include="Views\Home\user\ProfileFactory.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -334,7 +339,6 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Home\author\" />
     <Folder Include="Views\Home\genre\" />
-    <Folder Include="Views\Home\user\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.BL\ELib.BL.csproj">

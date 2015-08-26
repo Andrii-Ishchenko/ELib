@@ -26,10 +26,19 @@ namespace ELib.Web
 
 
             //.Include("~/Content/site.css")
-            bundles.Add(new StyleBundle("~/Content/css")           
+            bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap*"));
 
-
+            bundles.Add(new ScriptBundle("~/Views/Home/Angular")
+                        .Include("~/Views/Home/Elib.js",
+                                    "~/Views/Home/common/DataServiceFactory.js",
+                                    "~/Views/Home/config.js",
+                                    "~/Views/Home/book/BookController.js",
+                                    "~/Views/Home/book/BooksController.js",
+                                    "~/Views/Home/user/ProfileFactory.js",
+                                    "~/Views/Home/user/ProfileController.js"
+                        )
+                    );
 
         }
     }

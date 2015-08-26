@@ -1,6 +1,6 @@
-        <div class="row row-bottom-buffer">
+        <div class="row row-bottom-buffer" >
             <div class="col-md-3 "> 
-                   <ul class="nav nav-pills nav-stacked" />
+                   <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" class="active"><a href="#"> <i class="glyphicon glyphicon-list"></i> General Info </a></li>
                     <li  role="presentation"><a href="#"> <i class="glyphicon glyphicon-star"></i> Ratings </a> </li>
                     <li  role="presentation"><a href="#"> <i class="glyphicon glyphicon-comment"></i> Comments </a> </li>
@@ -15,7 +15,7 @@
                 
                     <div class="row">  
                         <div class="col-md-3">
-                            <img src="images/profile-big.png" class=" img-thumbnail" />
+                            <img src="/Images/profile-big.png" class=" img-thumbnail" />
                             <br>
                             <div class="pull-right">
                                 <a href="#" class="">Change Image</a>
@@ -23,23 +23,26 @@
                         </div>   
                         <div class="col-md-9">
                             <p>
-                                <h4><b> Username </b><small> <a href="#">Confirm</a></small> </h4>
+                                <h4><b> {{profile.profile.Login}} </b><small> <a href="#">Confirm</a></small> </h4>
                             </p>
                             <p>
-                                Razrab Developovich
+                                {{profile.profile.FirstName}} - {{profile.profile.LastName}}
                             </p>
                             <p>
-                                <i>developer@epam.com</i>
+                                <i>{{profile.profile.Email}}</i>
+                            </p>
+                            <p>
+                                <i>{{profile.profile.Phone}}</i>
                             </p>
                              <p>
                                 <a href="#" class="btn btn-primary"> Edit </a>
                             </p>
                                 <hr>                        
                             <p>
-                                Registration Date: 01.02.03 19:37:11
+                                Registration Date: {{profile.profile.RegistrationDate}}
                             </p>
                             <p>
-                                Confirmation Date: 01.02.03 19:37:11
+                                Last Activation Date: {{profile.profile.LastActivationDate}}
                             </p>                           
                         </div>                                     
                     </div> 
