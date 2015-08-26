@@ -51,6 +51,7 @@
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
+    <Compile Include="DtoEntities\PersonDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
+    <Compile Include="Services\Abstract\IProfileService.cs" />
     <Compile Include="Services\Abstract\IRatingCommentService.cs" />
     <Compile Include="Services\Abstract\IRatingService.cs" />
     <Compile Include="Services\Concrete\AritmeticalCaptchaGenerator.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\OrdinaryCaptchaGenerator.cs" />
+    <Compile Include="Services\Concrete\ProfileService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />
     <Compile Include="Services\Concrete\RatingCommentService.cs" />
     <Compile Include="Services\Concrete\RatingService.cs" />

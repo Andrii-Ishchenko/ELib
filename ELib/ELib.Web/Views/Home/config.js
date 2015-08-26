@@ -14,6 +14,11 @@ function config($routeProvider) {
             controller: 'BookController',
             controllerAs: 'book'
         })
+        .when('/profile/',{
+            templateUrl: '/views/home/user/profile.html',
+            controller: 'ProfileController',
+            controllerAs: 'profile'
+        })
       //.........
       .otherwise({
           redirectTo: '/books'
