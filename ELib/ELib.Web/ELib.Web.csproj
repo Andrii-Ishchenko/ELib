@@ -301,6 +301,9 @@
     <Content Include="Views\Home\login.html" />
     <Content Include="Views\Home\user\profile.html" />
     <Content Include="Views\Home\registration.html" />
+    <Content Include="Views\Home\user\login.html" />
+    <Content Include="Views\Home\user\profile.html" />
+    <Content Include="Views\Home\user\registration.html" />
     <Content Include="Views\Home\user\ProfileController.js" />
     <Content Include="Views\Home\user\ProfileFactory.js" />
     <Content Include="Web.config" />
