@@ -298,6 +298,9 @@
     <Content Include="Views\Home\elib.js" />
     <Content Include="Views\Home\login.html" />
     <Content Include="Views\Home\registration.html" />
+    <Content Include="Views\Home\user\login.html" />
+    <Content Include="Views\Home\user\profile.html" />
+    <Content Include="Views\Home\user\registration.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -334,7 +337,6 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Home\author\" />
     <Folder Include="Views\Home\genre\" />
-    <Folder Include="Views\Home\user\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.BL\ELib.BL.csproj">
