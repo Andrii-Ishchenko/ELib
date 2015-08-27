@@ -89,26 +89,7 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DeletePublisher(PublisherDto publisher)
-        {
-            try
-            {
-                if (publisher != null && ModelState.IsValid)
-                {
-                    _service.Delete(publisher);
-                    return Request.CreateResponse(HttpStatusCode.OK, publisher);
-                }
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State is not valid.");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Publisher/Delete", ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
+        
         [HttpDelete]
         public HttpResponseMessage DeletePublisherById(int id)
         {

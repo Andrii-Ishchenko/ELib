@@ -92,25 +92,6 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteAuthor(AuthorDto authorDto)
-        {
-            try
-            {
-                if (authorDto != null && ModelState.IsValid)
-                {
-                    _authorService.Delete(authorDto);
-                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
-                }
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Author/Delete",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
-        [HttpDelete]
         public HttpResponseMessage DeleteAuthorById(int id)
         {
             try

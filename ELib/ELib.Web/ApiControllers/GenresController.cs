@@ -104,20 +104,5 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DeleteGenre(GenreDto genre)
-        {
-            try
-            {
-                _genreService.Delete(genre);
-                return Request.CreateResponse(HttpStatusCode.OK, "OK");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Genre/Delete");
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
     }
 }
