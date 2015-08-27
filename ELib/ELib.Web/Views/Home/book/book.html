@@ -1,0 +1,90 @@
+﻿<div>
+    <h1>{{book.instance.Title}}</h1>
+    <hr />
+    <div class="container col-lg-12">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <figure class="panel panel-default"  style="margin-bottom : 15px">
+                    <img class="panel-body center-block" src=""  width="192" height="240" />
+                    <figcaption class="panel-footer">
+                      <p>Rating : {{book.instance.Rating}}</p>
+                      <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
+                      <div class="center-block text-center text-success" >
+                        <span class="glyphicon glyphicon-star"  ng-repeat="i in book.getFullStarsArray() track by $index"></span>
+                        <span class="glyphicon glyphicon-star-empty"  ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
+                      </div>
+                    </figcaption>
+                </figure>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Download</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li ng-repeat="fileFormat in book.instance.FormatsNames">{{fileFormat}}</li>
+                        </ul>
+                    </div>
+                </div>
+               </div>
+            <div class="col-lg-6 col-sm-12 container">
+                <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Title:</p>
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <p>{{book.instance.Title}}</p>
+                </div>
+             </div>
+               <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Authors:</p>
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a href="{{'#/author/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Genres:</p>
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <p><span ng-repeat="genre in book.instance.Genres">{{genre + " "}}</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Subgenre:</p>
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <p>{{book.instance.Subgenre}}</p>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Publisher:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p><a href="{{'#/publisher/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
+                    </div>
+            </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Year of publishing:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p>{{book.instance.PublishYear|date : "yyyy"}}</p>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <p class="lead">Pages:</p>
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <p>{{book.instance.TotalPages}}</p>
+                </div>
+            </div>
+
+                
+ </div>
+</div>
+</div>
+    <comments-view></comments-view>
+</div>
