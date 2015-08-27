@@ -9,6 +9,9 @@ namespace ELib.BL.Mapper
         public static void Configure()
         {
             configureGenreMapping();
+            configurePublisherMapping();
+            configureBookMapping();
+            configureAuthorMapping();
             configureCommentMapping();
             configureRatingBook();
             configureRatingComment();
@@ -17,21 +20,29 @@ namespace ELib.BL.Mapper
         private static void configureGenreMapping()
         {
             AutoMapper.Mapper.CreateMap<Genre, GenreDto>();
-            AutoMapper.Mapper.CreateMap<GenreDto, Genre>();
+            AutoMapper.Mapper.CreateMap<GenreDto, Genre>();          
+        }
 
+        private static void configurePublisherMapping()
+        {
             AutoMapper.Mapper.CreateMap<Publisher, PublisherDto>();
             AutoMapper.Mapper.CreateMap<PublisherDto, Publisher>();
 
+        }
 
+        private static void configureBookMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Book, BookDto>()
+              .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors.Select(x => x.Author.FirstName + " " + x.Author.LastName)))
+              .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors.Select(x => x.AuthorId)))
+              .ForMember(d => d.Rating, o => o.MapFrom(s => s.RatingBooks.Select(x => x.ValueRating).DefaultIfEmpty(0).Average()));
+            AutoMapper.Mapper.CreateMap<BookDto, Book>();
+        }
+
+        private static void configureAuthorMapping()
+        {
             AutoMapper.Mapper.CreateMap<Author, AuthorDto>();
             AutoMapper.Mapper.CreateMap<AuthorDto, Author>();
-
-            AutoMapper.Mapper.CreateMap<Book, BookDto>()
-               .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors.Select(x => x.Author.FirstName + " " + x.Author.LastName)))
-               .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors.Select(x => x.AuthorId)))
-               .ForMember(d => d.Rating, o => o.MapFrom(s => s.RatingBooks.Select(x => x.ValueRating).DefaultIfEmpty(0).Average()));
-            AutoMapper.Mapper.CreateMap<BookDto, Book>();
-
         }
 
         private static void configureCommentMapping()
