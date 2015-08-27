@@ -80,25 +80,7 @@ namespace ELib.Web.ApiControllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-        }
-
-        [HttpDelete]
-        public HttpResponseMessage DeleteComment(CommentDto commentDto)
-        {
-            try
-            {
-                if (commentDto != null && ModelState.IsValid)
-                {
-                    _commentService.Delete(commentDto);
-                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
-                }
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+        }        
 
         [HttpDelete]
         public HttpResponseMessage DeleteCommentById(int id)

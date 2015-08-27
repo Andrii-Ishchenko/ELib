@@ -89,12 +89,12 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage Delete(BookDto book)
+        public HttpResponseMessage DeleteBookById(int id)
         {
             try
             {
-                _bookService.Delete(book);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                _bookService.DeleteById(id);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (NullReferenceException e)
             {

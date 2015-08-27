@@ -103,21 +103,5 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DeleteRatingComment(RatingCommentDto ratingComment)
-        {
-            try
-            {
-                _ratingCommentService.Delete(ratingComment);
-                return Request.CreateResponse(HttpStatusCode.OK, "OK");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In RatingComment/Delete");
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
     }
 }
