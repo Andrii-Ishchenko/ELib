@@ -50,6 +50,7 @@
     <Compile Include="DtoEntities\BookDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
+    <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />

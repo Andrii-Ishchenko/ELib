@@ -1,6 +1,7 @@
 ﻿using ELib.BL.DtoEntities;
 using ELib.Domain.Entities;
 using System.Linq;
+using System;
 
 namespace ELib.BL.Mapper
 {
@@ -15,6 +16,12 @@ namespace ELib.BL.Mapper
             configureCommentMapping();
             configureRatingBook();
             configureRatingComment();
+            configurePersonMapping();
+        }
+
+        private static void configurePersonMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Person, PersonDto>();
         }
 
         private static void configureGenreMapping()
@@ -27,7 +34,6 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Publisher, PublisherDto>();
             AutoMapper.Mapper.CreateMap<PublisherDto, Publisher>();
-
         }
 
         private static void configureBookMapping()
