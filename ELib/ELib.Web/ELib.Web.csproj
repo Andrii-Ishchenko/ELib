@@ -300,7 +300,9 @@
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
+    <Content Include="Views\Home\menu.html" />
     <Content Include="Views\Home\user\login.html" />
+    <Content Include="Views\Home\user\profile-menu.html" />
     <Content Include="Views\Home\user\profile.html" />
     <Content Include="Views\Home\user\registration.html" />
     <Content Include="Views\Home\user\ProfileController.js" />

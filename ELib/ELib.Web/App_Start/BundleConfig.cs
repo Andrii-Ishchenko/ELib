@@ -36,7 +36,8 @@ namespace ELib.Web
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
-                                    "~/Views/Home/user/ProfileController.js"
+                                    "~/Views/Home/user/ProfileController.js",
+                                    "~/Views/Home/book/bookListDirective.js"
                         )
                     );
 

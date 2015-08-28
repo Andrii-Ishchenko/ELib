@@ -4,6 +4,8 @@ using ELib.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
@@ -20,18 +22,26 @@ namespace ELib.Web.ApiControllers
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
-        public PersonDto GetCurrentUser()
+
+        [HttpGet]
+        public HttpResponseMessage GetCurrentUser()
         {
-            ///!!!!
-            /// 
-            PersonDto person = new PersonDto();
-            person.Id = 123;
-            person.FirstName = "Синьйор";
-            person.LastName = "Дотнетченко";
-            person.Email = "ceo@microsoft.com";
-            person.Login = "dotNetHero";
-            person.Phone = "+31195982000";
-            return person;
+            try
+            {
+                //DONT FORGET REFACTOR THIS
+                PersonDto person = _profileService.GetById(5);
+                if (person == null)
+                    throw new NullReferenceException();
+                return Request.CreateResponse(HttpStatusCode.OK, person);
+            }
+            catch (NullReferenceException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, e.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

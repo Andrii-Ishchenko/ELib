@@ -13,7 +13,7 @@
         return ProfileService;
 
         function getCurrentUser() {
-            var url = baseUrl + "/Profile/GetCurrentUser";
+            var url = baseUrl + "Profile/GetCurrentUser";
 
             return $resource(url, {}, {
                 query: {
