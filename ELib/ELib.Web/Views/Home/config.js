@@ -5,7 +5,7 @@
 function config($routeProvider) {
     $routeProvider
         .when('/books', {
-            templateUrl: '/views/home/book/books.html',
+            templateUrl: '/views/shared/two-column-layout.html',
           controller : 'BooksController',
           controllerAs : 'books'
         })
@@ -15,9 +15,9 @@ function config($routeProvider) {
             controllerAs: 'book'
         })
         .when('/profile/',{
-            templateUrl: '/views/home/user/profile.html',
+            templateUrl: '/views/shared/two-column-layout.html',
             controller: 'ProfileController',
-            controllerAs: 'profile'
+            controllerAs: 'profileCtrl'
         })
       //.........
       .otherwise({

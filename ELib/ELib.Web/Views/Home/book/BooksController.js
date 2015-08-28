@@ -2,10 +2,16 @@
     angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["dataServiceFactory"];
+    BooksController.$inject = ["dataServiceFactory", "$scope"];
 
-    function BooksController(dataServiceFactory) {
+    function BooksController(dataServiceFactory,$scope) {
         var vm = this;
+
+        $scope.template = {
+            menu: "/views/shared/menu.html",
+            main: "/views/home/book/books.html"
+        }
+
         vm.books = dataServiceFactory.getAll('books').query();
 
         //activate();
