@@ -20,5 +20,10 @@ namespace ELib.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult AccountTest()
+        {
+            return View();
+        }
     }
 }
