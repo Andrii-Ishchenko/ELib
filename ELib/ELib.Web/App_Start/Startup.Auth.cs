@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ELib.Web.App_Start
+namespace ELib.Web
 {
     public partial class Startup
     {

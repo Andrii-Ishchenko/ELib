@@ -2,6 +2,7 @@
 using ELib.Domain.Entities;
 using ELib.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace ELib.Web.ApiControllers
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
 
+        public AccountController()
+        {
+            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
+        }
+
         public AccountController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
@@ -38,8 +44,8 @@ namespace ELib.Web.ApiControllers
         {
             get
             {
-                return _userManager;
-              //  return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+              //  return _userManager;
+                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {

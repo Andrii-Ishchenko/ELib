@@ -6,17 +6,13 @@ using System;
 
 namespace ELib.Web
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
         }
 
-        private void ConfigureAuth(IAppBuilder app)
-        {
-            throw new NotImplementedException();
-        }
         /*
 public void Configuration(IAppBuilder app)
 {
