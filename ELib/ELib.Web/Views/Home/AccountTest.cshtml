@@ -6,7 +6,7 @@
         <label>Password</label>
         <input id="password" type="password" />
         <input type="submit" value="Log In" />
-        <a href="#">Log Out</a>
+        <a id="log-out"href="#">Log Out</a>
     </form>
 </div>
 <div class="register-section">
@@ -21,14 +21,18 @@
         <input type="submit" value="Register" />
     </form>
 </div>
+<div class="test-section">
+    <h1>Test Authentication</h1>
+    <button id="test-auth" >Click Me</button>
+</div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script>
     $(function () {
+        var tokenKey = "tokenInfo";
+
         $('#login-form').submit(function () {
             
-            var tokenKey = "tokenInfo";
-
             var url = '/token';
 
             var data = {};
@@ -41,20 +45,33 @@
                 url: url,
                 data: data,
             }).success(function (data) {
-                alert('Log In successful')
+                alert('Log In success')
                 // save token
                 sessionStorage.setItem(tokenKey, data.access_token);
               //  console.log(data.access_token);
             }).fail(function (data) {
-                alert('Log In failed');
+                alert('Log In is failed');
             });
 
             return false;
         });
 
-        $('#logOut').click(function (e) {
-            e.preventDefault();
+        $('#log-out').click(function (e) {
             sessionStorage.removeItem(tokenKey);
+
+            var url = '/api/account/logout';
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function (data) {
+                    alert("Log Out success");
+                },
+                fail: function (data) {
+                    alert("Log Out is failed");
+                }
+            });
+
         });
 
         $('#register-form').submit(function () {
@@ -67,10 +84,33 @@
                 data: $("#register-form").serialize(), 
                 success: function (data) {
                     alert("Registration is completed");
-                }
+                },
+                fail: function (data) {
+                    alert("Registration is failed");
+                }   
             });
 
             return false; 
-        });     
+        });
+
+        $("#test-auth").click(function () {
+            var url = '/api/genres';
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                beforeSend: function (xhr) {
+
+                    var token = sessionStorage.getItem(tokenKey);
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                },
+                success: function (data) {
+                    alert(data[0].Name);
+                },
+                fail: function (data) {
+                    alert(data);
+                }
+            });
+        });
     })
 </script>
