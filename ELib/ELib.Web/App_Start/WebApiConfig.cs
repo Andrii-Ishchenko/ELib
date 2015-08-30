@@ -5,6 +5,7 @@ using ELib.DAL.Infrastructure.Concrete;
 using ELib.DAL.Repositories.Abstract;
 using ELib.DAL.Repositories.Concrete;
 using ELib.Web.Infrastructure.Concrete;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace ELib.Web
         public static void Register(HttpConfiguration config)
         {
             // config.MapHttpAttributeRoutes();
+        //    config.SuppressDefaultHostAuthentication();
+        //    config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config.Routes.MapHttpRoute(
                 "FileRoute",

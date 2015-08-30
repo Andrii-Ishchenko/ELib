@@ -4,6 +4,7 @@ using ELib.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,21 @@ namespace ELib.Web.ApiControllers
                 logger.Error("Error In Author/Add", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+
+
+
+        // POST api/Account/Logout
+        [ActionName("logout")]
+        public HttpResponseMessage Logout()
+        {
+            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            return Request.CreateResponse(HttpStatusCode.OK, "Ok");
+        }
+
+        private IAuthenticationManager Authentication
+        {
+            get { return HttpContext.Current.GetOwinContext().Authentication; }
         }
     }
 }

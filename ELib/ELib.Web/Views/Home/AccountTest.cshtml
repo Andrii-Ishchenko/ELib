@@ -1,10 +1,10 @@
 ﻿<div class="login-section">
     <h1>Log In</h1>
     <form id="login-form">
-        <label>Email</label>
-        <input id="login-email" type="text" />
+        <label>Username (Email)</label>
+        <input id="username" type="text" />
         <label>Password</label>
-        <input id="register-password" type="password" />
+        <input id="password" type="password" />
         <input type="submit" value="Log In" />
         <a href="#">Log Out</a>
     </form>
@@ -25,6 +25,38 @@
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script>
     $(function () {
+        $('#login-form').submit(function () {
+            
+            var tokenKey = "tokenInfo";
+
+            var url = '/token';
+
+            var data = {};
+            data.grant_type = 'password';
+            data.username = $('#username').val();
+            data.password = $('#password').val();
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+            }).success(function (data) {
+                alert('Log In successful')
+                // save token
+                sessionStorage.setItem(tokenKey, data.access_token);
+              //  console.log(data.access_token);
+            }).fail(function (data) {
+                alert('Log In failed');
+            });
+
+            return false;
+        });
+
+        $('#logOut').click(function (e) {
+            e.preventDefault();
+            sessionStorage.removeItem(tokenKey);
+        });
+
         $('#register-form').submit(function () {
 
             var url = '/api/account/register'; 
