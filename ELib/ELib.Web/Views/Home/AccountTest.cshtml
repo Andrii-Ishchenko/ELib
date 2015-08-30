@@ -2,22 +2,43 @@
     <h1>Log In</h1>
     <form id="login-form">
         <label>Email</label>
-        <input name="email" type="text" />
+        <input id="login-email" type="text" />
         <label>Password</label>
-        <input name="password" type="password" />
+        <input id="register-password" type="password" />
         <input type="submit" value="Log In" />
         <a href="#">Log Out</a>
     </form>
 </div>
 <div class="register-section">
     <h1>Register</h1>
-    <form id="login-form">
+    <form id="register-form">
         <label>Email</label>
         <input name="email" type="text" />
         <label>Password</label>
         <input name="password" type="password" />
         <label>Confirm Password</label>
-        <input name="confirm-password" type="password" />
+        <input name="confirmPassword" type="password" />
         <input type="submit" value="Register" />
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script>
+    $(function () {
+        $('#register-form').submit(function () {
+
+            var url = '/api/account/register'; 
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#register-form").serialize(), 
+                success: function (data) {
+                    alert("Registration is completed");
+                }
+            });
+
+            return false; 
+        });     
+    })
+</script>

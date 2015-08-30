@@ -18,15 +18,20 @@ namespace ELib.Web.ApiControllers
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
-        private ApplicationUserManager _userManager;
-        private ELogger logger;
+        private  ApplicationUserManager _userManager;
+        private readonly ELogger logger;
 
-        public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
+        }
+
+        public AccountController(ApplicationUserManager userManager,
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat) 
+        {
+            UserManager = userManager;
+            AccessTokenFormat = accessTokenFormat;   
         }
 
         public ApplicationUserManager UserManager
@@ -34,7 +39,7 @@ namespace ELib.Web.ApiControllers
             get
             {
                 return _userManager;
-             //   return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+              //  return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -45,7 +50,7 @@ namespace ELib.Web.ApiControllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         [AllowAnonymous]
-        [ActionName("profile-image")]
+        [ActionName("register")]
         public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
             try
