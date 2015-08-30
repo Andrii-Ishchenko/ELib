@@ -26,6 +26,12 @@ namespace ELib.Web
             );
 
             config.Routes.MapHttpRoute(
+                "AccountRoute",
+                "api/account/{action}",
+                new { controller = "Account" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

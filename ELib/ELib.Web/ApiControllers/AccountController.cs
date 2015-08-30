@@ -45,6 +45,7 @@ namespace ELib.Web.ApiControllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         [AllowAnonymous]
+        [ActionName("profile-image")]
         public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
             try
