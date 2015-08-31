@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ELib.Common;
+using Microsoft.AspNet.Identity;
 
 namespace ELib.Web.ApiControllers
 {
@@ -23,10 +24,12 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
+        [Authorize]
         public HttpResponseMessage GetGenres()
         {
             try
             {
+                var p = User.Identity.GetUserId();
                 var genres = _genreService.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, genres);
             }
