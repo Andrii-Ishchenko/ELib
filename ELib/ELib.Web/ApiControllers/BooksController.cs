@@ -76,7 +76,7 @@ namespace ELib.Web.ApiControllers
             try
             {
                 _bookService.Update(book);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (NullReferenceException e)
             {

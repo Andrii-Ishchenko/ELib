@@ -38,9 +38,15 @@ namespace ELib.BL.DtoEntities
 
         public string PublisherName { get; set; }
 
+        public string SubgenreName { get; set; }
+
         public ICollection<string> Authors { get; set; }
 
         public ICollection<int> AuthorsIds { get; set; }
+
+        public ICollection<string> GenresNames { get; set; }
+
+        public ICollection<int> GenresIds { get; set; }
 
         public ICollection<string> FormatsNames { get; set; }
 

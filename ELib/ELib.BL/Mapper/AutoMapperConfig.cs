@@ -41,6 +41,8 @@ namespace ELib.BL.Mapper
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
               .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors.Select(x => x.Author.FirstName + " " + x.Author.LastName)))
               .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors.Select(x => x.AuthorId)))
+              .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres.Select(x => x.Genre.Name)))
+              .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres.Select(x => x.GenreId)))
               .ForMember(d => d.Rating, o => o.MapFrom(s => s.RatingBooks.Select(x => x.ValueRating).DefaultIfEmpty(0).Average()));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }

@@ -46,7 +46,7 @@
                     <p class="lead">Genres:</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="genre in book.instance.Genres">{{genre + " "}}</span></p>
+                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a href="{{'#/genre/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
                 </div>
             </div>
             <div class="row">
