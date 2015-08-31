@@ -12,7 +12,7 @@
             main: "/views/home/book/books.html"
         }
 
-        vm.books = dataServiceFactory.getAll('books').query();
+        vm.books = dataServiceFactory.getService('books').query();
 
         //activate();
 

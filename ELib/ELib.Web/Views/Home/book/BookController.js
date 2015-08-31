@@ -6,7 +6,7 @@
 
     function BookController(dataServiceFactory, $routeParams) {
         var vm = this;
-        vm.instance = dataServiceFactory.getById('books', $routeParams.id).query();
+        vm.instance = dataServiceFactory.getService('books').get({ id: $routeParams.id });
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
             var arr = [];

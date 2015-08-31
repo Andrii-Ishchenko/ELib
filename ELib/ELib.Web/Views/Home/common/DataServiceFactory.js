@@ -7,50 +7,75 @@
     function dataServiceFactory($resource) {
         var baseUrl = "/api/";
         var DataService = {
-            getAll: getAll,
-            getById: getById,
-            add: add,
-            update: update,
-            deleteById: deleteById
+            getService : getService
         };
 
         return DataService;
 
-        function getAll(entity) {
-            var url = baseUrl  + entity;
-            return $resource(url, {}, {
-                query: {
-                    method: 'GET',
-                    params: {},
-                    isArray: true
-                }
-            });
-        }
-
-             
-        
-        function getById(entity, id) {
+        function getService(entity) {
             var url = baseUrl + entity + "/:id";
-            return $resource(url, {}, {
-                query: {
-                    method: 'GET',
-                    params: {id: id},
+            return $resource(url, {id: '@id'}, {
+                update: {
+                    method: 'PUT',
                     isArray: false
                 }
             });
         }
 
+    //    function getAll(entity) {
+    //        var url = baseUrl  + entity;
+    //        return $resource(url, {}, {
+    //            query: {
+    //                method: 'GET',
+    //                params: {},
+    //                isArray: true
+    //            }
+    //        });
+    //    }
 
-        function add() {
+             
+        
+    //    function getById(entity, id) {
+    //        var url = baseUrl + entity + "/:id";
+    //        return $resource(url, {}, {
+    //            query: {
+    //                method: 'GET',
+    //                params: {id: id},
+    //                isArray: false
+    //            }
+    //        });
+    //    }
 
-        }
 
-        function update() {
+    //    function add(entity) {
+    //        var url = baseUrl + entity;
+    //        return $resource(url, {}, {
+    //            save: {
+    //                method: 'POST',
+    //                isArray: false
+    //            }
+    //        });
+    //    }
 
-        }
+    //    function update(entity) {
+    //        var url = baseUrl + entity;
+    //        return $resource(url, {}, {
+    //            update: {
+    //                method: 'PUT',
+    //                isArray: false
+    //            }
+    //        });
+    //    }
 
-        function deleteById() {
-
-        }
+    //    function deleteById(entity, id) {
+    //        var url = baseUrl + entity;
+    //        return $resource(url, {}, {
+    //            remove : {
+    //                method: 'DELETE',
+    //                params: { id: id },
+    //                isArray: false
+    //            }
+    //        });
+    //    }
     }
 })();

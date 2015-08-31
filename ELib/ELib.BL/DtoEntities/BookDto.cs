@@ -26,6 +26,8 @@ namespace ELib.BL.DtoEntities
 
         public int PublisherId { get; set; }
 
+        public int SubgenreId { get; set;  }
+
         public DateTime? PublishYear { get; set; }
 
         public byte[] Picture { get; set; }
