@@ -48,13 +48,13 @@ namespace ELib.DAL.Infrastructure.Concrete
 
             //people
             var people = new List<Person>();
-            people.Add(new Person() { FirstName = "John",LastName="Stone", Login = "John", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4046c" });
-            people.Add(new Person() { FirstName = "Frank", LastName = "Rank", Login = "Frank", RegistrationDate = DateTime.Now, AplicationUserId = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec" });
-            people.Add(new Person() { FirstName = "Eva", LastName = "Sleva", Login = "Eva", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-4c25-f396-9cdb-8f559da4047c" });
-            people.Add(new Person() { FirstName = "Peter", LastName = "Liter", Login = "Peter", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-c4e5-4c25-9cdb-8f559da4048c" });
-            people.Add(new Person() { FirstName = "Howard", LastName = "Coward", Login = "Howard", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-9cdb-f396-4c25-8f559da4049c" });
-            people.Add(new Person() { FirstName = "Mary", Login = "Mary", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-9cdb-9cdb-8f559da4050c" });
-            people.Add(new Person() { FirstName = "Simón", Login = "Simón", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4051c" });
+            people.Add(new Person() { FirstName = "John" });
+            people.Add(new Person() { FirstName = "Frank" });
+            people.Add(new Person() { FirstName = "Eva" });
+            people.Add(new Person() { FirstName = "Peter" });
+            people.Add(new Person() { FirstName = "Howard"});
+            people.Add(new Person() { FirstName = "Mary"});
+            people.Add(new Person() { FirstName = "Simón"});
             context.People.AddRange(people);
             context.SaveChanges();
 

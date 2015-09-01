@@ -17,16 +17,31 @@
         protected override void Seed(ELib.DAL.Infrastructure.Concrete.ELibDbContext context)
         {
 
+            //people
+            var people = new List<Person>()
+            {
+                new Person() { FirstName = "John" },
+                new Person() { FirstName = "Frank" },
+                new Person() { FirstName = "Eva" },
+                new Person() { FirstName = "Peter"},
+                new Person() { FirstName = "Howard" },
+                new Person() { FirstName = "Mary" },
+                new Person() { FirstName = "Simón" }
+            };
+
+            people.ForEach(x => context.People.AddOrUpdate(p => p.FirstName, x));
+            context.SaveChanges();
+
             //users
             var applicationUsers = new List<ApplicationUser>()
             {
-                new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4046c", Email = "John@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "John" },
-                new ApplicationUser() { Id = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec", Email = "Frank@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Frank" },
-                new ApplicationUser() { Id = "98f9156c-4c25-f396-9cdb-8f559da4047c", Email = "Eva@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Eva" },
-                new ApplicationUser() { Id = "98f9156c-c4e5-4c25-9cdb-8f559da4048c", Email = "Peter@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Peter" },
-                new ApplicationUser() { Id = "98f9156c-9cdb-f396-4c25-8f559da4049c", Email = "Howard@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Howard" },
-                new ApplicationUser() { Id = "98f9156c-f396-9cdb-9cdb-8f559da4050c", Email = "Mary@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Mary" },
-                new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4051c", Email = "Simón@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Simón" }
+                new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4046c", Email = "John@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "John", PersonId = 1 },
+                new ApplicationUser() { Id = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec", Email = "Frank@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Frank", PersonId = 2 },
+                new ApplicationUser() { Id = "98f9156c-4c25-f396-9cdb-8f559da4047c", Email = "Eva@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Eva", PersonId = 3 },
+                new ApplicationUser() { Id = "98f9156c-c4e5-4c25-9cdb-8f559da4048c", Email = "Peter@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Peter", PersonId = 4 },
+                new ApplicationUser() { Id = "98f9156c-9cdb-f396-4c25-8f559da4049c", Email = "Howard@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Howard", PersonId = 5 },
+                new ApplicationUser() { Id = "98f9156c-f396-9cdb-9cdb-8f559da4050c", Email = "Mary@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Mary", PersonId = 6 },
+                new ApplicationUser() { Id = "98f9156c-f396-4c25-9cdb-8f559da4051c", Email = "Simón@mail.ru", EmailConfirmed = false, PasswordHash = "AFO3zX6UgpLp5+2KG6CHTCGxBA6GxYPA30Q4dejAe8P4tf/p4vcPHcKi1jVwkhsNhw==", SecurityStamp = "8e83a385-aa50-4055-86dc-0260ed971a20", PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = true, AccessFailedCount = 0, UserName = "Simón", PersonId = 7 }
             };
 
             applicationUsers.ForEach(x => context.Users.AddOrUpdate(u => u.Email, x));
@@ -50,21 +65,6 @@
             };
 
             roles.ForEach(x => context.Roles.AddOrUpdate(r => r.Name, x));
-            context.SaveChanges();
-
-            //people
-            var people = new List<Person>()
-            {
-                new Person() { FirstName = "John", Login = "John", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4046c" },
-                new Person() { FirstName = "Frank", Login = "Frank", RegistrationDate = DateTime.Now, AplicationUserId = "f43b6e5c-c4e5-4db5-9d7b-813f77edcaec" },
-                new Person() { FirstName = "Eva", Login = "Eva", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-4c25-f396-9cdb-8f559da4047c" },
-                new Person() { FirstName = "Peter", Login = "Peter", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-c4e5-4c25-9cdb-8f559da4048c" },
-                new Person() { FirstName = "Howard", Login = "Howard", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-9cdb-f396-4c25-8f559da4049c" },
-                new Person() { FirstName = "Mary", Login = "Mary", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-9cdb-9cdb-8f559da4050c" },
-                new Person() { FirstName = "Simón", Login = "Simón", RegistrationDate = DateTime.Now, AplicationUserId = "98f9156c-f396-4c25-9cdb-8f559da4051c" }
-            };
-
-            people.ForEach(x => context.People.AddOrUpdate(p => p.AplicationUserId, x));
             context.SaveChanges();
 
             //genres

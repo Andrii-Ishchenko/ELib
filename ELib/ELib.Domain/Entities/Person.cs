@@ -24,28 +24,7 @@ namespace ELib.Domain.Entities
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [StringLength(100)]
-        public string Email { get; set; }
-
-        [StringLength(30)]
-        public string Phone { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Login { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime RegistrationDate { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? LastActivationDate { get; set; }
-
         public string ImageHash { get; set; }
-
-        [Required]
-        public string AplicationUserId { get; set; }
-
-        public virtual ApplicationUser PersonUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatingBook> RatingBooks { get; set; }
