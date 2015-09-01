@@ -99,10 +99,6 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .HasForeignKey(e => e.OriginalLangId);
 
             modelBuilder.Entity<Person>()
-                .Property(e => e.Login)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Person>()
                 .HasMany(e => e.RatingBooks)
                 .WithRequired(e => e.Person)
                 .HasForeignKey(e => e.UserId)
@@ -120,11 +116,6 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
             
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.People)
-                .WithRequired(e => e.PersonUser)
-                .HasForeignKey(e => e.AplicationUserId)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Publisher>()
                 .HasMany(e => e.Books)
