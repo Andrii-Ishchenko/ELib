@@ -2,7 +2,8 @@
     angular.module("elib")
            .config(config);
 
-function config($routeProvider) {
+    function config($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     $routeProvider
         .when('/books', {
             templateUrl: '/views/shared/two-column-layout.html',
@@ -32,8 +33,9 @@ function config($routeProvider) {
         )
       //.........
       .otherwise({
-          redirectTo: '/books'
+          redirectTo: 'books'
       });
         }
    })();
 
+//basePath = '../';
