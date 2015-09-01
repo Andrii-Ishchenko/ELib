@@ -2,8 +2,7 @@
     angular.module("elib")
            .config(config);
 
-    function config($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    function config($routeProvider) {
     $routeProvider
         .when('/books', {
             templateUrl: '/views/shared/two-column-layout.html',
@@ -38,4 +37,3 @@
         }
    })();
 
-//basePath = '../';
