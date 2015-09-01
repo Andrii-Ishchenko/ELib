@@ -4,6 +4,7 @@ using ELib.Common;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
 using System;
+using System.Linq;
 using System.Configuration;
 using System.IO;
 using System.Security.Cryptography;
@@ -73,7 +74,7 @@ namespace ELib.BL.Services.Concrete
             return false;
         }
 
-        public bool SaveBookFile(byte[] file, string fileName, int bookInstanceId, int userId)
+        public bool SaveBookFile(byte[] file, string fileName, int bookId, int userId)
         {
             string extension = getExtension(fileName);
 
@@ -83,10 +84,23 @@ namespace ELib.BL.Services.Concrete
 
                 using (IUnitOfWork uow = _factory.Create())
                 {
-                    var bookInstance = uow.Repository<BookInstance>().GetById(bookInstanceId);
-                    bookInstance.FileHash = fileHash;
-                    uow.Repository<BookInstance>().Update(bookInstance);
-                    uow.Save();
+                    var book = uow.Repository<Book>().GetById(bookId);
+
+                    if (book == null)
+                        return false;
+
+                    var bi = book.BookInstances.FirstOrDefault(b => b.FileHash == fileHash);
+
+                    if (bi== null)
+                    {
+                        bi = new BookInstance();
+                        bi.BookId = book.Id;
+                        bi.InsertDate = DateTime.Now;
+                        bi.FileName = fileName;
+                        bi.FileHash = fileHash;
+                        uow.Repository<BookInstance>().Insert(bi);
+                        uow.Save();
+                    }                   
                 }
 
                 return true;
