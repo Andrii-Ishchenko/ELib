@@ -26,6 +26,11 @@ namespace ELib.Domain.Entities
 
         public string ImageHash { get; set; }
 
+        [Required]
+        public string ApplicationUserId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatingBook> RatingBooks { get; set; }
 

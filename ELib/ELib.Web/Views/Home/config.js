@@ -19,6 +19,17 @@ function config($routeProvider) {
             controller: 'ProfileController',
             controllerAs: 'profileCtrl'
         })
+        .when('/authors', {
+            templateUrl: '/views/shared/two-column-layout.html',
+            controller: 'AuthorsController',
+            controllerAs:'authors'
+        })
+        .when('/author/:id', {
+            templateUrl: '/views/home/author/author.html',
+            controller: 'AuthorController',
+            controllerAs: 'author'
+        }
+        )
       //.........
       .otherwise({
           redirectTo: '/books'
