@@ -2,7 +2,7 @@
     angular.module("elib")
            .config(config);
 
-function config($routeProvider) {
+    function config($routeProvider) {
     $routeProvider
         .when('/books', {
             templateUrl: '/views/shared/two-column-layout.html',
@@ -32,7 +32,7 @@ function config($routeProvider) {
         )
       //.........
       .otherwise({
-          redirectTo: '/books'
+          redirectTo: 'books'
       });
         }
    })();
