@@ -68,10 +68,12 @@ namespace ELib.Web.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
 
+                // think about transaktion here
                 var user = new ApplicationUser() { UserName = model.Login, Email = model.Email};
-                var person = new PersonDto() { };
-
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                var person = new PersonDto() { AplicationUserId = User.Identity.GetUserId()};
+                _profileService.Insert(person);
+
 
                 if (!result.Succeeded)
                 {

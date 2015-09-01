@@ -22,6 +22,7 @@ namespace ELib.BL.Mapper
         private static void configurePersonMapping()
         {
             AutoMapper.Mapper.CreateMap<Person, PersonDto>();
+            AutoMapper.Mapper.CreateMap<PersonDto, Person>();
         }
 
         private static void configureGenreMapping()
