@@ -29,7 +29,7 @@ namespace ELib.Web
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
            // app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions());
           //  app.UseCookieAuthentication(new CookieAuthenticationOptions());
-          //  app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+         //   app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Configure the application for OAuth based flow
             PublicClientId = "self";

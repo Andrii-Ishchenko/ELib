@@ -71,7 +71,7 @@ namespace ELib.Web.ApiControllers
                 // think about transaktion here
                 var user = new ApplicationUser() { UserName = model.Login, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                var person = new PersonDto() { AplicationUserId = User.Identity.GetUserId()};
+                var person = new PersonDto() { ApplicationUserId = user.Id};
                 _profileService.Insert(person);
 
 
@@ -90,15 +90,7 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-        /*
-        // POST api/Account/Logout
-        [ActionName("logout")]
-        public HttpResponseMessage Logout()
-        {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Request.CreateResponse(HttpStatusCode.OK, "Ok");
-        } */
-
+  
         private IAuthenticationManager Authentication
         {
             get { return HttpContext.Current.GetOwinContext().Authentication; }

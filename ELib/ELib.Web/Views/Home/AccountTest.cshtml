@@ -1,8 +1,8 @@
 ﻿<div class="login-section">
     <h1>Log In</h1>
     <form id="login-form">
-        <label>Email</label>
-        <input id="email" type="text" />
+        <label>User Name</label>
+        <input id="userName" type="text" />
         <label>Password</label>
         <input id="password" type="password" />
         <input type="submit" value="Log In" />
@@ -39,7 +39,7 @@
 
             var data = {};
             data.grant_type = 'password';
-            data.email = $('#email').val();
+            data.userName = $('#userName').val();
             data.password = $('#password').val();
 
             $.ajax({
