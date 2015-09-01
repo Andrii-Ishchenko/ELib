@@ -293,6 +293,14 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\author\author-list-item.html" />
+    <Content Include="Views\Home\author\author.html" />
+    <Content Include="Views\Home\author\AuthorController.js" />
+    <Content Include="Views\Home\author\authorListDirective.js" />
+    <Content Include="Views\Home\author\authors.html" />
+    <Content Include="Views\Home\author\AuthorsController.js" />
+    <Content Include="Views\Home\book\book.html" />
+    <Content Include="Views\Home\book\BookController.js" />
     <Content Include="Views\Home\book\bookListDirective.js" />
     <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\books.html" />
@@ -348,7 +356,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Abstract\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\author\" />
     <Folder Include="Views\Home\genre\" />
   </ItemGroup>
   <ItemGroup>

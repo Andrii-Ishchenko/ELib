@@ -1,0 +1,46 @@
+﻿<div>
+    <h1>{{author.instance.FirstName}} {{author.instance.LastName}}</h1>
+    <hr />
+    <div class="container col-lg-12">
+
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-12">
+                <figure class="panel panel-default" style="margin-bottom : 15px">
+                    <img class="panel-body center-block" src="" width="192" height="240" />
+                </figure>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 container">
+
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <p class="lead">{{author.instance.FirstName}} {{author.instance.LastName}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <p class="lead">{{author.instance.DateOfBirth}} - {{author.instance.DeathDate}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <p>{{author.instance.Description}}</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <comments-view></comments-view>
+</div>
+
+
+
+
+
+
