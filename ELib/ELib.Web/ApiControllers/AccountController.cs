@@ -1,4 +1,6 @@
-﻿using ELib.Common;
+﻿using ELib.BL.DtoEntities;
+using ELib.BL.Services.Abstract;
+using ELib.Common;
 using ELib.Domain.Entities;
 using ELib.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -22,30 +24,29 @@ namespace ELib.Web.ApiControllers
         private const string LocalLoginProvider = "Local";
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
+        private readonly IProfileService _profileService;
 
-        public AccountController()
+        public AccountController(IProfileService profileService)
         {
+            _profileService = profileService;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
-
-        public AccountController(ApplicationUserManager userManager)
+        /*
+        public AccountController(ApplicationUserManager userManager, IProfileService profileService) : this(profileService)
         {
             UserManager = userManager;
-            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat) 
-        {
-            UserManager = userManager;
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IProfileService profileService) : this(userManager, profileService)
+        { 
             AccessTokenFormat = accessTokenFormat;   
-        }
+        }*/
 
         public ApplicationUserManager UserManager
         {
             get
             {
-              //  return _userManager;
                 return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
@@ -62,11 +63,13 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (model == null || !ModelState.IsValid)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+
+                var user = new ApplicationUser() { UserName = model.Login, Email = model.Email};
+                var person = new PersonDto() { };
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -85,15 +88,14 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-
-
+        /*
         // POST api/Account/Logout
         [ActionName("logout")]
         public HttpResponseMessage Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Request.CreateResponse(HttpStatusCode.OK, "Ok");
-        }
+        } */
 
         private IAuthenticationManager Authentication
         {
