@@ -11,5 +11,6 @@ namespace ELib.BL.Services.Abstract
         bool SaveProfileImage(byte[] file, string fileName, int userId);
         bool SaveBookImage(byte[] file, string fileName, int bookId, int userId);
         bool SaveBookFile(byte[] file, string fileName, int bookInstanceId, int userId);
+        String GetBookImagePath(String hash);
     }
 }

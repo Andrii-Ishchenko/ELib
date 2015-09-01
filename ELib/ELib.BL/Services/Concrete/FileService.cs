@@ -109,6 +109,14 @@ namespace ELib.BL.Services.Concrete
             return false;
         }
 
+        public String GetBookImagePath(string fileHash)
+        {
+            string directoryPath = DirectoryPath(fileHash, "");
+            string fullPath  = String.Format(@"{0}\{1}.png", directoryPath, fileHash);
+            logger.Info(String.Format("Getting BookImage, hash:{0} ,path:{1} ",fileHash,fullPath));
+
+            return fullPath;
+        }
 
         private bool validateFile(byte[] file, string extension, int userId, Type fileType,  int maxFileSize)
         {
@@ -143,10 +151,23 @@ namespace ELib.BL.Services.Concrete
             return stringHash;
         }
 
+
+        private string DirectoryPath(string fileHash, string rootDirectoryPath)
+        {
+            if (rootDirectoryPath == "")
+                return String.Format(@"{1}\{2}",
+                         fileHash.Substring(0, DIRECTORY_NAME_LENGTH),
+                         fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
+
+            return  String.Format(@"{0}\{1}\{2}",
+                        rootDirectoryPath, 
+                        fileHash.Substring(0, DIRECTORY_NAME_LENGTH), 
+                        fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
+        }
+
         private string createDirectoriesIfNoExist(string fileHash, string rootDirectoryPath)
         {
-            string directoryPath = String.Format(@"{0}\{1}\{2}", 
-                rootDirectoryPath, fileHash.Substring(0, DIRECTORY_NAME_LENGTH), fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
+            string directoryPath = DirectoryPath(fileHash, rootDirectoryPath);
 
             if (!Directory.Exists(directoryPath))
             {
@@ -159,8 +180,6 @@ namespace ELib.BL.Services.Concrete
         private string saveFile(byte[] file, string extension, string rootDirectoryPath)
         {
             string fileHash = getFileHash(file);
-
-            createDirectoriesIfNoExist(fileHash, rootDirectoryPath);
 
             string directoryPath = createDirectoriesIfNoExist(fileHash, rootDirectoryPath);
 
