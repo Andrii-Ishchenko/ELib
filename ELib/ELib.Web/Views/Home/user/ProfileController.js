@@ -24,7 +24,13 @@
 
         $scope.showSection = function (name) {
             $scope.template.main = $scope.links[name];
+        }
 
+        $scope.isActive = function (viewName) {
+            var item = $scope.links[viewName];
+            console.log("name = "+viewName+"\t"+"item = "+item);
+            var result = ($scope.template.main == item);
+            return result;
         }
 
         //$scope.showGeneralInfo = function () {
