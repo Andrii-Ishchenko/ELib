@@ -2,7 +2,7 @@
     angular.module("elib")
            .config(config);
 
-function config($routeProvider, $locationProvider) {
+    function config($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/books', {
@@ -22,8 +22,9 @@ function config($routeProvider, $locationProvider) {
         })
       //.........
       .otherwise({
-          redirectTo: '/books'
+          redirectTo: 'books'
       });
         }
    })();
 
+//basePath = '../';
