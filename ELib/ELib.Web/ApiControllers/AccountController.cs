@@ -6,10 +6,7 @@ using ELib.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -21,7 +18,6 @@ namespace ELib.Web.ApiControllers
     [Authorize]
     public class AccountController : ApiController
     {
-        private const string LocalLoginProvider = "Local";
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
         private readonly IProfileService _profileService;
@@ -31,6 +27,7 @@ namespace ELib.Web.ApiControllers
             _profileService = profileService;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
+
         /*
         public AccountController(ApplicationUserManager userManager, IProfileService profileService) : this(profileService)
         {
@@ -68,18 +65,17 @@ namespace ELib.Web.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
 
-                // think about transaktion here
                 var user = new ApplicationUser() { UserName = model.Login, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                var person = new PersonDto() { ApplicationUserId = user.Id};
-                _profileService.Insert(person);
-
 
                 if (!result.Succeeded)
                 {
                     logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
+
+                var person = new PersonDto() { ApplicationUserId = user.Id};
+                _profileService.Insert(person);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Ok");
             }
@@ -89,7 +85,6 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
   
         private IAuthenticationManager Authentication
         {

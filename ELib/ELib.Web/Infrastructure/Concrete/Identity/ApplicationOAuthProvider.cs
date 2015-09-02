@@ -27,10 +27,10 @@ namespace ELib.Web.Infrastructure.Concrete.Identity
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-            // think about 'UserName can not be null'
+           
             if (context.UserName == null || context.Password == null)
             {
-                context.SetError("", "The user name or password is incorrect.");
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 

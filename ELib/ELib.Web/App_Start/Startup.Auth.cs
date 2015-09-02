@@ -1,14 +1,9 @@
 ﻿using ELib.DAL.Infrastructure.Concrete;
 using ELib.Web.Infrastructure.Concrete.Identity;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ELib.Web
 {
@@ -25,11 +20,11 @@ namespace ELib.Web
             app.CreatePerOwinContext(ELibDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
-            // Enable the application to use a cookie to store information for the signed in user
-            // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-           // app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions());
-          //  app.UseCookieAuthentication(new CookieAuthenticationOptions());
-         //   app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //Enable the application to use a cookie to store information for the signed in user
+            //and to use a cookie to temporarily store information about a user logging in with a third party login provider
+            //app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions());
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Configure the application for OAuth based flow
             PublicClientId = "self";
