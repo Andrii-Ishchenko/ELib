@@ -311,9 +311,12 @@
     <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
+    <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
+    <Content Include="Views\Home\login\LoginController.js" />
+    <Content Include="Views\Home\registration\RegistrationController.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />
@@ -321,10 +324,10 @@
     <Content Include="Views\Home\user\profile-ratings.html" />
     <Content Include="Views\Home\user\profile-social-networks.html" />
     <Content Include="Views\Shared\menu.html" />
-    <Content Include="Views\Home\user\login.html" />
+    <Content Include="Views\Home\login\login.html" />
     <Content Include="Views\Home\user\profile-menu.html" />
     <Content Include="Views\Home\user\profile-general.html" />
-    <Content Include="Views\Home\user\registration.html" />
+    <Content Include="Views\Home\registration\registration.html" />
     <Content Include="Views\Home\user\ProfileController.js" />
     <Content Include="Views\Home\user\ProfileFactory.js" />
     <Content Include="Views\Shared\two-column-layout.html" />
