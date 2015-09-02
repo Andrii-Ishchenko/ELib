@@ -26,15 +26,11 @@ namespace ELib.BL.DtoEntities
         [StringLength(50)]
         public string UserName { get; set; }
 
-        //Add ImageFullPath and generate it in mapping
-
         public string ImageHash { get; set; }
 
         public string ImagePath { get; set; }
 
-        public string AplicationUserId { get; set; }
-
-        public virtual ApplicationUser PersonUser { get; set; }
+        public string ApplicationUserId { get; set; }
 
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="Services\Abstract\ICaptchaGenerator.cs" />
     <Compile Include="Services\Abstract\ICaptchaService.cs" />
     <Compile Include="Services\Abstract\ICommentService.cs" />
+    <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Abstract\IProfileService.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Services\Concrete\BookService.cs" />
     <Compile Include="Services\Concrete\CaptchaService.cs" />
     <Compile Include="Services\Concrete\CommentService.cs" />
+    <Compile Include="Services\Concrete\CurrentProfileService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\OrdinaryCaptchaGenerator.cs" />

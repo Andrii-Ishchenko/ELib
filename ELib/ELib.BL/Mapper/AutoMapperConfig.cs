@@ -19,6 +19,7 @@ namespace ELib.BL.Mapper
             configureRatingBook();
             configureRatingComment();
             configurePersonMapping();
+            configureCurrentPerson();
         }
 
         private static void configurePersonMapping()
@@ -30,11 +31,13 @@ namespace ELib.BL.Mapper
         {
             UnitOfWorkFactory uowf = new UnitOfWorkFactory();
             FileService fs = new FileService(uowf);
+
             AutoMapper.Mapper.CreateMap<Person, CurrentPersonDto>()
-                .ForMember(d => d.Email , o=>o.MapFrom(p=>p.ApplicationUser.Email))
-                .ForMember(d =>d.Phone,o=>o.MapFrom(p=>p.ApplicationUser.PhoneNumber))
-                .ForMember(d=>d.UserName,o=>o.MapFrom(p=>p.ApplicationUser.UserName))
-                .ForMember(d=>d.ImagePath,o=>o.MapFrom(p=>fs.GetBookImagePath(p.ImageHash)));
+                .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))
+                .ForMember(d => d.Phone, o => o.MapFrom(p => p.ApplicationUser.PhoneNumber))
+                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName))
+                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash!="")?fs.GetProfileImagePath(p.ImageHash):""));
+
             AutoMapper.Mapper.CreateMap<CurrentPersonDto, Person>();
         }
 

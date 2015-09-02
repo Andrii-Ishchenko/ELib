@@ -218,6 +218,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\AuthorsController.cs" />
+    <Compile Include="ApiControllers\CurrentProfileController.cs" />
     <Compile Include="ApiControllers\FileController.cs" />
     <Compile Include="ApiControllers\CommentsController.cs" />
     <Compile Include="ApiControllers\GenresController.cs" />
@@ -314,6 +315,8 @@
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
+    <Content Include="Views\Home\user\CurrentProfileController.js" />
+    <Content Include="Views\Home\user\CurrentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />
