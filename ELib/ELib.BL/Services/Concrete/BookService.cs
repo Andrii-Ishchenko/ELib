@@ -16,5 +16,21 @@ namespace ELib.BL.Services.Concrete
         {
 
         }
+        public IEnumerable<BookDto> GetForAuthor(int idAuthor)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                var entities = uow.Repository<BookAuthor>().Get(x=>x.AuthorId==idAuthor).Select(y=>y.Book).OrderByDescending(rating=>rating.SumRatingValue);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
     }
 }
