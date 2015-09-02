@@ -30,12 +30,12 @@
                 controllerAs: 'author'
             })
             .when('/login', {
-                templateUrl: '/views/home/login.html',
+                templateUrl: '/views/home/login/login.html',
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl'
             })
             .when('/registration', {
-                templateUrl: '/views/home/registration.html',
+                templateUrl: '/views/home/registration/registration.html',
                 controller: 'RegistrationController',
                 controllerAs: 'registrationCtrl'
             })

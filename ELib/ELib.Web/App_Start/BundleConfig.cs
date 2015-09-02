@@ -31,6 +31,8 @@ namespace ELib.Web
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
+                                    "~/Scripts/angular-local-storage*",
+                                    "~/Views/Home/common/authServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/book/BookController.js",
@@ -41,7 +43,9 @@ namespace ELib.Web
                                     
                                     "~/Views/Home/author/AuthorController.js",
                                     "~/Views/Home/author/AuthorsController.js",
-                                    "~/Views/Home/author/authorListDirective.js"
+                                    "~/Views/Home/author/authorListDirective.js",
+
+                                    "~/Views/Home/registration/RegistrationController.js"
                         )
                     );
 

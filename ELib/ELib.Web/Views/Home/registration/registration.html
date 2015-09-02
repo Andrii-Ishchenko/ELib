@@ -6,27 +6,36 @@
             </div>
             <form class="" role="form">
                 <div class="form-group row center-block">
+                    <label for="inputUserName1" class="col-lg-2 form-control-label">User Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control input-lg" id="inputUserName1" data-ng-model="registrationCtrl.registration.userName" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group row center-block">
                     <label for="inputEmail1" class="col-lg-2 form-control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control input-lg" id="inputEmail1">
+                        <input type="text" class="form-control input-lg" id="inputEmail1" data-ng-model="registrationCtrl.registration.email" required>
                     </div>
                 </div>
-                <div class="form-group row center-block">
+                <div class="form-group row center-block" >
                     <label for="inputPassword1" class="col-lg-2 form-control-label">Password</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control input-lg" id="inputPassword1">
+                        <input type="password" class="form-control input-lg" id="inputPassword1" data-ng-model="registrationCtrl.registration.password" required>
                     </div>
                 </div>
                 <div class="form-group row center-block">
-                    <label for="inputPassword1" class="col-lg-2 form-control-label">Confirm password</label>
+                    <label for="inputPassword1" class="col-lg-2 form-control-label">Confirm Password</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control input-lg" id="inputPassword2">
+                        <input type="password" class="form-control input-lg" id="inputPassword2" data-ng-model="registrationCtrl.registration.confirmPassword" required>
                     </div>
                 </div>
                 <div class="form-group row center-block">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" data-ng-click="register()">Register</button>
                     </div>
+                </div>
+                <div data-ng-hide="registrationCtrl.message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{registrationCtrl.message}}
                 </div>
             </form>
         </div>
