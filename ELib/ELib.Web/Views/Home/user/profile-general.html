@@ -4,8 +4,10 @@
                         <div class="col-md-3">
                             <img src="{{currentProfileCtrl.profile.ImagePath}}" class=" img-thumbnail" />
                             <br>
-                            <div class="pull-right">
-                                <a href="#" class="">Change Image</a>
+                            <div  ng-controller="FileController as fileCtrl" >
+                                <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadProfileImage(document.getElementById('fileUploadId').files)"/>
+                                <button class="center-block " onclick="document.getElementById('fileUploadId').click()">Add</button>
+
                             </div>                           
                         </div>   
                         <div class="col-md-9">
