@@ -24,14 +24,12 @@ namespace ELib.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap*"));
 
-
             //.Include("~/Content/site.css")
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap*"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
-                                    "~/Scripts/angular-local-storage*",
                                     "~/Views/Home/common/authServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/config.js",

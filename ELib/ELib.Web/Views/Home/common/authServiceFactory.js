@@ -2,9 +2,7 @@
     angular.module("elib")
            .factory("authServiceFactory", authServiceFactory);
 
-    authServiceFactory.$inject = ['$http'];
-    authServiceFactory.$inject = ['$q'];
-    authServiceFactory.$inject = ['localStorageService'];
+    authServiceFactory.$inject = ['$http', '$q', 'localStorageService'];
 
     function authServiceFactory($http, $q, localStorageService) {
         var serviceBase = '/api/';
@@ -17,18 +15,19 @@
             authentication : authentication
         };
 
-        return AuthServiceFactory;
-
         var authentication = {
             isAuth: false,
             userName: ""
         };
+
+        return AuthServiceFactory;
 
         function saveRegistration(registration) {
 
             logOut();
 
             return $http.post(serviceBase + 'account/register', registration).then(function (response) {
+                conole.log('registration');
                 return response;
             });
 
@@ -68,6 +67,7 @@
         };
 
         function fillAuthData() {
+            alert('asd');
             var authData = localStorageService.get('authorizationData');
             if (authData) {
                 authentication.isAuth = true;

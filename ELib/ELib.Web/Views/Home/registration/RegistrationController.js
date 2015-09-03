@@ -6,6 +6,8 @@
 
     function RegistrationController(authServiceFactory) {
         var vm = this;
+
+        authServiceFactory.fillAuthData()
         alert('1sdffggggggggggggggg');
         vm.savedSuccessfully = false;
         vm.message = "";
@@ -33,7 +35,7 @@
                          errors.push(response.data.modelState[key][i]);
                      }
                  }
-                 $scope.message = "Failed to register user due to:" + errors.join(' ');
+                 vm.message = "Failed to register user due to:" + errors.join(' ');
              });
         };
 
