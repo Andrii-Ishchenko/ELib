@@ -2,6 +2,8 @@
 using ELib.Domain.Entities;
 using System.Linq;
 using System;
+using ELib.BL.Services.Concrete;
+using ELib.DAL.Infrastructure.Concrete;
 
 namespace ELib.BL.Mapper
 {
@@ -17,12 +19,27 @@ namespace ELib.BL.Mapper
             configureRatingBook();
             configureRatingComment();
             configurePersonMapping();
+            configureCurrentPerson();
         }
 
         private static void configurePersonMapping()
         {
             AutoMapper.Mapper.CreateMap<Person, PersonDto>();
             AutoMapper.Mapper.CreateMap<PersonDto, Person>();
+        }
+
+        private static void configureCurrentPerson()
+        {
+            UnitOfWorkFactory uowf = new UnitOfWorkFactory();
+            FileService fs = new FileService(uowf);
+
+            AutoMapper.Mapper.CreateMap<Person, CurrentPersonDto>()
+                .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))
+                .ForMember(d => d.Phone, o => o.MapFrom(p => p.ApplicationUser.PhoneNumber))
+                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName))
+                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash!="")?fs.GetProfileImagePath(p.ImageHash):""));
+
+            AutoMapper.Mapper.CreateMap<CurrentPersonDto, Person>();
         }
 
         private static void configureGenreMapping()
