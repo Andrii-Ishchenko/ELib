@@ -321,6 +321,7 @@
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />
     <Content Include="Views\Home\user\profile-favs.html" />
+    <Content Include="Views\Home\user\profile-menu-current.html" />
     <Content Include="Views\Home\user\profile-ratings.html" />
     <Content Include="Views\Home\user\profile-social-networks.html" />
     <Content Include="Views\Shared\menu.html" />

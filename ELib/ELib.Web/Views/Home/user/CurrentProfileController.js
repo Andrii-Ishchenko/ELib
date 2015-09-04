@@ -8,7 +8,7 @@
         var vm = this;
 
         $scope.template = {
-            menu: "/views/home/user/profile-menu.html",
+            menu: "/views/home/user/profile-menu-current.html",
             main: "/views/home/user/profile-general.html"
         }
 
@@ -32,6 +32,13 @@
             var result = ($scope.template.main == item);
             return result;
         }
+        
+        $scope.isEditMode = false;
+
+        $scope.EditMode = function () {
+            $scope.isEditMode = !$scope.isEditMode;
+        }
+
 
         vm.profile = CurrentProfileFactory.getCurrentUser().query();
         
