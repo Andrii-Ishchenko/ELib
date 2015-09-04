@@ -7,14 +7,17 @@
             <div class="modal-body">
                 <form class="form col-md-12 center-block">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Email">
+                        <input type="text" class="form-control input-lg" data-ng-model="loginCtrl.loginData.userName" placeholder="UserName" required autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-lg" placeholder="Password">
+                        <input type="password" class="form-control input-lg" data-ng-model="loginCtrl.loginData.password"  placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                        <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Forgot your password?</a></span>
+                        <button class="btn btn-primary btn-lg btn-block" data-ng-click="loginCtrl.login()">Sign In</button>
+                        <span class="pull-right"><a href="#/registration">Register</a></span><span><a href="#">Forgot your password?</a></span>
+                    </div>
+                    <div data-ng-hide="loginCtrl.message == ''" class="alert alert-danger">
+                        {{loginCtrl.message}}
                     </div>
                 </form>
             </div>

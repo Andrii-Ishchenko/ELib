@@ -5,8 +5,7 @@
     authServiceFactory.$inject = ['$http', '$q', 'localStorageService'];
 
     function authServiceFactory($http, $q, localStorageService) {
-        var serviceBase = '/api/';
-
+    
         var AuthServiceFactory = {
             saveRegistration : saveRegistration,
             login : login,
@@ -26,7 +25,7 @@
 
             logOut();
 
-            return $http.post(serviceBase + 'account/register', registration).then(function (response) {
+            return $http.post('api/account/register', registration).then(function (response) {
                 console.log('registration');
                 return response;
             });
@@ -39,7 +38,7 @@
 
             var deferred = $q.defer();
 
-            $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+            $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
                 localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
 
