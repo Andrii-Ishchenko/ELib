@@ -1,16 +1,16 @@
 <div class="row ">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <img src="{{currentProfileCtrl.profile.ImagePath}}" class=" img-thumbnail" />
                 <br>
-                <div style="text-align:center" ng-controller="FileController as fileCtrl">
+                <div style="text-align:center" >
                     <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadProfileImage(document.getElementById('fileUploadId').files)" />
                     <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
 
                 </div>
             </div>
-            <div class="col-md-9" ng-hide="isEditMode">
+            <div class="col-md-8"  ng-hide="isEditMode">
                 <p>
                     <h4><b> {{currentProfileCtrl.profile.Login}} </b><small> <a href="#" class="bg-warning">Confirm your Account</a></small> </h4>
                 </p>
@@ -19,6 +19,28 @@
                 </p>
                 <p>
                     <i>Email: {{currentProfileCtrl.profile.Email}}</i>
+                </p>
+                <p>
+                    <i>Phone: {{currentProfileCtrl.profile.Phone}}</i>
+                </p>
+
+            </div>
+            <div class="col-md-8" ng-show="isEditMode">
+                EDIT PART
+                <p>
+                    <h4><b> {{currentProfileCtrl.profile.Login}} </b> </h4>
+                </p>
+                <p>
+                    {{currentProfileCtrl.profile.FirstName}} 
+                    <input type="text" ng-model="currentProfileCtrl.profile.FirstName" />
+                </p>
+                <p>
+                    
+                    <span contenteditable="true">{{currentProfileCtrl.profile.LastName}}</span>
+                </p>
+                <p>
+                    <i>Email: <span contenteditable="true">{{currentProfileCtrl.profile.Email}}</span></i>
+                    
                 </p>
                 <p>
                     <i>Phone: {{currentProfileCtrl.profile.Phone}}</i>

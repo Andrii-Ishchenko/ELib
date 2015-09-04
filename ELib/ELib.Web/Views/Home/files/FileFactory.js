@@ -19,18 +19,15 @@
         function uploadProfileImage(formData) {
             var url = baseUrl + "file/profile-image";
 
-            $http.post(url, formData, {
+            return $http.post(url, formData, {
                 withCredentials: true,
-                
+
                 headers: {
-                    'Content-Type': undefined 
+                    'Content-Type': undefined
                 },
                 transformRequest: angular.identity
-            })
-            .then(
-                function (response) {
-                    console.log("method 'then' in post request.")
-                });
+            });
+            
         }
 
         function uploadBookImage() {

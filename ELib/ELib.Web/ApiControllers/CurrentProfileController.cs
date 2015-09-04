@@ -43,5 +43,15 @@ namespace ELib.Web.ApiControllers
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage PostCurrentUser(CurrentPersonDto person)
+        {
+            //try
+            //{
+            //    _profileService.Update(person);
+            //}
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
     }
 }

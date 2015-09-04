@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["CurrentProfileFactory", "$scope"];
+    CurrentProfileController.$inject = ["CurrentProfileFactory","FileFactory", "$scope"];
 
-    function CurrentProfileController(CurrentProfileFactory, $scope) {
+    function CurrentProfileController(CurrentProfileFactory,FileFactory ,$scope) {
         var vm = this;
 
         $scope.template = {
@@ -36,11 +36,31 @@
         $scope.isEditMode = false;
 
         $scope.EditMode = function () {
+            if ($scope.isEditMode) {
+            //post
+            //in done() put ($scope.isEditMode = !$scope.isEditMode;)
+            }
             $scope.isEditMode = !$scope.isEditMode;
         }
 
+        $scope.uploadProfileImage = function (file) {
+            var fd = new FormData();
+            fd.append("file", file[0]);
 
-        vm.profile = CurrentProfileFactory.getCurrentUser().query();
+            FileFactory.uploadProfileImage(fd).then(
+                function (response) {
+                    $scope.fetchData();
+                    console.log(" method 'then' in post request.")
+                });;
+            
+            
+        }
+
+        $scope.fetchData = function() {
+            vm.profile = CurrentProfileFactory.getCurrentUser().query();
+        }
+
+        $scope.fetchData();
         
     }
 
