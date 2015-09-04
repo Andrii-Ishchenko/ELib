@@ -6,17 +6,17 @@
 
     function authServiceFactory($http, $q, localStorageService) {
     
+        var authentication = {
+            isAuth: false,
+            userName: ""
+        };
+
         var AuthServiceFactory = {
             saveRegistration : saveRegistration,
             login : login,
             logOut : logOut,
             fillAuthData : fillAuthData,
-            authentication : authentication
-        };
-
-        var authentication = {
-            isAuth: false,
-            userName: ""
+            authentication: authentication
         };
 
         return AuthServiceFactory;
@@ -57,7 +57,6 @@
         };
 
         function logOut() {
-
             localStorageService.remove('authorizationData');
 
             authentication.isAuth = false;

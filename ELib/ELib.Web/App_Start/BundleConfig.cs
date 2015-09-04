@@ -31,8 +31,10 @@ namespace ELib.Web
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
                                     "~/Views/Home/common/authServiceFactory.js",
+                                    "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/config.js",
+                                    "~/Views/Home/IndexController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",

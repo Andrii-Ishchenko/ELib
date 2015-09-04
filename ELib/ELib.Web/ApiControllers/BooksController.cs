@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using System.Net.Http;
 using System.Net;
+using Microsoft.AspNet.Identity;
 
 namespace ELib.Web.ApiControllers
 {

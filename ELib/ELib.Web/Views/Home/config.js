@@ -2,7 +2,7 @@
     angular.module("elib")
            .config(config);
 
-    function config($routeProvider) {
+    function config($routeProvider, $httpProvider) {
         $routeProvider
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
@@ -43,6 +43,8 @@
             .otherwise({
                 redirectTo: 'books'
             });
+
+            $httpProvider.interceptors.push('authInterceptorServiceFactory');
         }
    })();
 
