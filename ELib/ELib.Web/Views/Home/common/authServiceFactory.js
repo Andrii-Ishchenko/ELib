@@ -27,7 +27,7 @@
             logOut();
 
             return $http.post(serviceBase + 'account/register', registration).then(function (response) {
-                conole.log('registration');
+                console.log('registration');
                 return response;
             });
 
@@ -67,7 +67,6 @@
         };
 
         function fillAuthData() {
-            alert('asd');
             var authData = localStorageService.get('authorizationData');
             if (authData) {
                 authentication.isAuth = true;
