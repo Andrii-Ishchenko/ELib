@@ -1,13 +1,12 @@
-﻿using ELib.Common;
+﻿using ELib.BL.DtoEntities;
+using ELib.BL.Services.Abstract;
+using ELib.Common;
 using ELib.Domain.Entities;
 using ELib.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,33 +18,32 @@ namespace ELib.Web.ApiControllers
     [Authorize]
     public class AccountController : ApiController
     {
-        private const string LocalLoginProvider = "Local";
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
+        private readonly IProfileService _profileService;
 
-        public AccountController()
+        public AccountController(IProfileService profileService)
         {
+            _profileService = profileService;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
-        public AccountController(ApplicationUserManager userManager)
+        /*
+        public AccountController(ApplicationUserManager userManager, IProfileService profileService) : this(profileService)
         {
             UserManager = userManager;
-            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat) 
-        {
-            UserManager = userManager;
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IProfileService profileService) : this(userManager, profileService)
+        { 
             AccessTokenFormat = accessTokenFormat;   
-        }
+        }*/
 
         public ApplicationUserManager UserManager
         {
             get
             {
-              //  return _userManager;
                 return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
@@ -62,12 +60,12 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (model == null || !ModelState.IsValid)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
+                var user = new ApplicationUser() { UserName = model.Login, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
@@ -75,6 +73,9 @@ namespace ELib.Web.ApiControllers
                     logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
+
+                var person = new PersonDto() { ApplicationUserId = user.Id};
+                _profileService.Insert(person);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Ok");
             }
@@ -84,17 +85,7 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-
-
-        // POST api/Account/Logout
-        [ActionName("logout")]
-        public HttpResponseMessage Logout()
-        {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Request.CreateResponse(HttpStatusCode.OK, "Ok");
-        }
-
+  
         private IAuthenticationManager Authentication
         {
             get { return HttpContext.Current.GetOwinContext().Authentication; }

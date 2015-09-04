@@ -1,8 +1,8 @@
 ﻿<div class="login-section">
     <h1>Log In</h1>
     <form id="login-form">
-        <label>Username (Email)</label>
-        <input id="username" type="text" />
+        <label>User Name</label>
+        <input id="userName" type="text" />
         <label>Password</label>
         <input id="password" type="password" />
         <input type="submit" value="Log In" />
@@ -12,6 +12,8 @@
 <div class="register-section">
     <h1>Register</h1>
     <form id="register-form">
+        <label>Login</label>
+        <input name="login" type="text" />
         <label>Email</label>
         <input name="email" type="text" />
         <label>Password</label>
@@ -37,7 +39,7 @@
 
             var data = {};
             data.grant_type = 'password';
-            data.username = $('#username').val();
+            data.userName = $('#userName').val();
             data.password = $('#password').val();
 
             $.ajax({
@@ -47,8 +49,7 @@
             }).success(function (data) {
                 alert('Log In success')
                 // save token
-                sessionStorage.setItem(tokenKey, data.access_token);
-              //  console.log(data.access_token);
+                sessionStorage.setItem(tokenKey, data.access_token);             
             }).fail(function (data) {
                 alert('Log In is failed');
             });
@@ -58,7 +59,7 @@
 
         $('#log-out').click(function (e) {
             sessionStorage.removeItem(tokenKey);
-
+            /*
             var url = '/api/account/logout';
 
             $.ajax({
@@ -70,7 +71,7 @@
                 fail: function (data) {
                     alert("Log Out is failed");
                 }
-            });
+            });*/
 
         });
 

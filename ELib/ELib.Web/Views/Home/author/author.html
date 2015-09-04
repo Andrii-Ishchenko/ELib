@@ -1,0 +1,61 @@
+﻿<div>
+    <h1>{{author.instance.FirstName}} {{author.instance.LastName}}</h1>
+    <hr />
+    <div class="container col-lg-12">
+
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-12">
+                <figure class="panel panel-default" style="margin-bottom : 15px">
+                    <img class="panel-body center-block" src="" width="192" height="240" />
+                </figure>
+            </div>
+
+            <div class="col-lg-8 col-sm-12 container">
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <p class="lead">{{author.instance.FirstName}} {{author.instance.LastName}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <p class="lead">{{author.instance.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.instance.DeathDate|date : "dd/MM/yyyy"}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <p>{{author.instance.Description}}</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="book in author.books|filter:author.instance.LastName">
+                <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
+
+                <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
+                <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
+                <p><a href="{{'#/book/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>
+
+                <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>
+            </li>
+
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+
+
+
+

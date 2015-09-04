@@ -12,20 +12,16 @@ namespace ELib.BL.DtoEntities
     {
         public int Id { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Login { get; set; }
-
         public string ImageHash { get; set; }
 
-        public string AplicationUserId { get; set; }
+        [Required]
+        public string ApplicationUserId { get; set; }
 
     }
 }

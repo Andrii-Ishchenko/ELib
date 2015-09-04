@@ -2,7 +2,7 @@
     angular.module("elib")
            .config(config);
 
-function config($routeProvider) {
+    function config($routeProvider) {
     $routeProvider
         .when('/books', {
             templateUrl: '/views/shared/two-column-layout.html',
@@ -16,12 +16,23 @@ function config($routeProvider) {
         })
         .when('/profile/',{
             templateUrl: '/views/shared/two-column-layout.html',
-            controller: 'ProfileController',
-            controllerAs: 'profileCtrl'
+            controller: 'CurrentProfileController',
+            controllerAs: 'currentProfileCtrl'
         })
+        .when('/authors', {
+            templateUrl: '/views/shared/two-column-layout.html',
+            controller: 'AuthorsController',
+            controllerAs:'authors'
+        })
+        .when('/author/:id', {
+            templateUrl: '/views/home/author/author.html',
+            controller: 'AuthorController',
+            controllerAs: 'author'
+        }
+        )
       //.........
       .otherwise({
-          redirectTo: '/books'
+          redirectTo: 'books'
       });
         }
    })();
