@@ -28,7 +28,7 @@
 
         $scope.isActive = function (viewName) {
             var item = $scope.links[viewName];
-            console.log("name = " + viewName + "\t" + "item = " + item);
+           // console.log("name = " + viewName + "\t" + "item = " + item);
             var result = ($scope.template.main == item);
             return result;
         }

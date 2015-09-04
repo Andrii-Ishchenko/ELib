@@ -20,7 +20,8 @@ namespace ELib.BL.DtoEntities
 
         public string ImageHash { get; set; }
 
-        public string AplicationUserId { get; set; }
+        [Required]
+        public string ApplicationUserId { get; set; }
 
     }
 }

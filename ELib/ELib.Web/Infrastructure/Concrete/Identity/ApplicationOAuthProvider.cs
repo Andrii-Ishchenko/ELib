@@ -23,10 +23,16 @@ namespace ELib.Web.Infrastructure.Concrete.Identity
 
             _publicClientId = publicClientId;
         }
-
+       
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+           
+            if (context.UserName == null || context.Password == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
