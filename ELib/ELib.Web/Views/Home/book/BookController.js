@@ -2,11 +2,11 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["dataServiceFactory", '$routeParams'];
+    BookController.$inject = ["bookRepository", '$routeParams'];
 
-    function BookController(dataServiceFactory, $routeParams) {
+    function BookController(bookRepository, $routeParams) {
         var vm = this;
-        vm.instance = dataServiceFactory.getService('books').get({ id: $routeParams.id });
+        vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
             var arr = [];

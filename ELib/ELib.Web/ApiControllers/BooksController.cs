@@ -36,6 +36,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
+        [ActionName("book")]
         public HttpResponseMessage Get(int id)
         {
             try
@@ -48,6 +49,22 @@ namespace ELib.Web.ApiControllers
             catch (NullReferenceException e)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [ActionName("books-for-author")]
+        public HttpResponseMessage GetForAuthor(int id)
+        {
+            try
+            {
+                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
+                return Request.CreateResponse(HttpStatusCode.OK, books);
             }
             catch (Exception e)
             {
