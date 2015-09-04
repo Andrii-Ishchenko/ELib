@@ -316,6 +316,8 @@
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
+    <Content Include="Views\Home\files\FileController.js" />
+    <Content Include="Views\Home\files\FileFactory.js" />
     <Content Include="Views\Home\user\CurrentProfileController.js" />
     <Content Include="Views\Home\user\CurrentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
