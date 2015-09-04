@@ -7,6 +7,7 @@ using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using System.Net.Http;
 using System.Net;
+using System.Linq.Expressions;
 
 namespace ELib.Web.ApiControllers
 {
@@ -21,12 +22,14 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get()
+        public HttpResponseMessage Get([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
             try
             {
-                IEnumerable<BookDto> books = _bookService.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+              
+                IEnumerable<BookDto> books = _bookService.GetAll(pageCount,pageNumb);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }
             catch (Exception e)
             {
@@ -39,6 +42,7 @@ namespace ELib.Web.ApiControllers
         public HttpResponseMessage Get(int id)
         {
             try
+
             {
                 BookDto book = _bookService.GetById(id);
                 if (book == null)

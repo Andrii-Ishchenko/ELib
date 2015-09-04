@@ -13,6 +13,14 @@ namespace ELib.DAL.Repositories.Concrete
         internal ELibDbContext context;
         internal DbSet<TEntity> dbSet;
 
+        public int TotalCount
+        {
+            get
+            {
+                return dbSet.Count();
+            }
+        }
+
         public BaseRepository(ELibDbContext context)
         {
             this.context = context;
@@ -35,10 +43,10 @@ namespace ELib.DAL.Repositories.Concrete
             Delete(entityToDelete);
         }
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
+            IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
         {
             IQueryable<TEntity> query = dbSet;
-
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -49,8 +57,13 @@ namespace ELib.DAL.Repositories.Concrete
                 query = query.Include(item);
             }
 
-
-            return orderBy != null ? orderBy(query).ToList() : query.ToList();
+            query = (orderBy != null) ? orderBy(query) : query;
+            if (skipCount >= 0 && topCount > 0)
+            {
+                return (query.AsEnumerable()).Skip(skipCount).Take(topCount);
+            }
+            return query.AsEnumerable();
+            
         }
 
         public virtual TEntity GetById(object id)

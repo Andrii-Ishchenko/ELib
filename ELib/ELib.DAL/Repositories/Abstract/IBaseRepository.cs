@@ -7,9 +7,11 @@ namespace ELib.DAL.Repositories.Abstract
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
+        int TotalCount { get; }
+
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
+            string includeProperties = "", int skipCount = 0, int topCount = 0);
 
         TEntity GetById(object id);
 
