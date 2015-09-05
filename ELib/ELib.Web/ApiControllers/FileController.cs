@@ -27,7 +27,7 @@ namespace ELib.Web.ApiControllers
             try
             {
                 // Hard code (should use current user id from Identity)
-                int userId = 1;
+                int userId = 5;
 
                 if (Request.Content.IsMimeMultipartContent())
                 {

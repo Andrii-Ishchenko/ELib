@@ -218,6 +218,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\AuthorsController.cs" />
+    <Compile Include="ApiControllers\CurrentProfileController.cs" />
     <Compile Include="ApiControllers\FileController.cs" />
     <Compile Include="ApiControllers\CommentsController.cs" />
     <Compile Include="ApiControllers\GenresController.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\Home\book\BookController.js" />
     <Content Include="Views\Home\book\bookListDirective.js" />
     <Content Include="Views\Home\book\book-list-item.html" />
+    <Content Include="Views\Home\book\bookRepository.js" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
@@ -320,6 +322,10 @@
     <Content Include="Views\Home\IndexController.js" />
     <Content Include="Views\Home\login\LoginController.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
+    <Content Include="Views\Home\files\FileController.js" />
+    <Content Include="Views\Home\files\FileFactory.js" />
+    <Content Include="Views\Home\user\CurrentProfileController.js" />
+    <Content Include="Views\Home\user\CurrentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />
@@ -416,7 +422,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

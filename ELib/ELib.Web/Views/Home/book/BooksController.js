@@ -2,17 +2,25 @@
     angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["dataServiceFactory", "$scope"];
+    BooksController.$inject = ["dataServiceFactory", "$scope", '$routeParams'];
 
-    function BooksController(dataServiceFactory,$scope) {
+    function BooksController(dataServiceFactory,$scope, $routeParams) {
         var vm = this;
 
         $scope.template = {
             menu: "/views/shared/menu.html",
             main: "/views/home/book/books.html"
         }
-
-        vm.books = dataServiceFactory.getService('books').query();
+        vm.pageCount = 3;
+        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+        var obj = dataServiceFactory.getService('books').get({ pageCount: $routeParams.pageCount, pageNumb : $routeParams.pageNumb});
+        obj.$promise.then(function (data) {
+            vm.books = data.books;
+            vm.totalCount = data.totalCount;
+            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+            vm.pages = new Array(vm.totalPages);
+        })
+      
 
         //activate();
 

@@ -6,6 +6,8 @@ using ELib.BL.Services.Abstract;
 using System.Net.Http;
 using System.Net;
 using Microsoft.AspNet.Identity;
+using System.Linq.Expressions;
+
 
 namespace ELib.Web.ApiControllers
 {
@@ -20,12 +22,14 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get()
+        public HttpResponseMessage Get([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
             try
             {
-                IEnumerable<BookDto> books = _bookService.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+
+                IEnumerable<BookDto> books = _bookService.GetAll(pageCount,pageNumb);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }
             catch (Exception e)
             {
@@ -35,9 +39,11 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
+        [ActionName("book")]
         public HttpResponseMessage Get(int id)
         {
             try
+
             {
                 BookDto book = _bookService.GetById(id);
                 if (book == null)
@@ -47,6 +53,22 @@ namespace ELib.Web.ApiControllers
             catch (NullReferenceException e)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, e.Message);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [ActionName("books-for-author")]
+        public HttpResponseMessage GetForAuthor(int id)
+        {
+            try
+            {
+                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
+                return Request.CreateResponse(HttpStatusCode.OK, books);
             }
             catch (Exception e)
             {
@@ -83,7 +105,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message); 
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
         }
 

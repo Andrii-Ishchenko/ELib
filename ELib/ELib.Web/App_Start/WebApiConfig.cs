@@ -33,6 +33,11 @@ namespace ELib.Web
                 "api/account/{action}",
                 new { controller = "Account" }
             );
+            config.Routes.MapHttpRoute(
+                "BookRoute",
+                "api/books/{action}/{id}",
+                new { controller = "Books", id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -72,6 +77,7 @@ namespace ELib.Web
             container.RegisterType<IRatingService, RatingService>(new HierarchicalLifetimeManager());
             container.RegisterType<IRatingCommentService, RatingCommentService>(new HierarchicalLifetimeManager());
             container.RegisterType<IProfileService,ProfileService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ICurrentProfileService, CurrentProfileService>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
         }
     }
