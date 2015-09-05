@@ -49,7 +49,7 @@ namespace ELib.Web
                                     "~/Views/Home/author/authorListDirective.js",
 
                                     "~/Views/Home/registration/RegistrationController.js",
-                                     "~/Views/Home/login/LoginController.js"
+                                     "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",
                                     "~/Views/Home/user/CurrentProfileFactory.js"
 
