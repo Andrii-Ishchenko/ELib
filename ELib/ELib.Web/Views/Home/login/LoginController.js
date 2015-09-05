@@ -24,7 +24,7 @@
 
             },
              function (err) {
-                 vm.message = 'Login failed';
+                 vm.message = 'Login is failed';
              });
         };
 

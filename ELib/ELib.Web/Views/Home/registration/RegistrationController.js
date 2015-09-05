@@ -14,8 +14,7 @@
         vm.registration = {
             userName: "",
             email: "",
-            password: "",
-            confirmPassword: ""
+            password: ""
         };
 
         vm.register = function () {
@@ -37,7 +36,7 @@
                      vm.message = "Failed to register user due to:" + errors.join(' ');
                  }
                  else {
-                     vm.message = "Registration failed";
+                     vm.message = "Registration is failed";
                  }
                  
              });
