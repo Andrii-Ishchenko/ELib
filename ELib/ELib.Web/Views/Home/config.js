@@ -2,7 +2,7 @@
     angular.module("elib")
            .config(config);
 
-    function config($routeProvider, $httpProvider) {
+    function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
@@ -45,6 +45,9 @@
             });
 
             $httpProvider.interceptors.push('authInterceptorServiceFactory');
+            $locationProvider.html5Mode({
+                enabled: true
+            });
         }
    })();
 

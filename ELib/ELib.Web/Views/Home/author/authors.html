@@ -37,7 +37,7 @@
         <li  class="list-group-item" ng-repeat="author in authors.authors">
 
             <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
-            <p><a href="{{'#/author/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
+            <p><a href="{{'/author/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
 
             <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
         </li>
