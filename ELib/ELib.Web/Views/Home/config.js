@@ -4,6 +4,9 @@
 
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
+            .when('/', {
+                redirectTo: 'books'
+            })
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
                 controller : 'BooksController',
@@ -41,12 +44,12 @@
             })
         //.........
             .otherwise({
-                redirectTo: 'books'
+                templateUrl: '/views/home/errors/404.html',
             });
 
             $httpProvider.interceptors.push('authInterceptorServiceFactory');
             $locationProvider.html5Mode({
-                enabled: true
+                enabled: true,
             });
         }
    })();
