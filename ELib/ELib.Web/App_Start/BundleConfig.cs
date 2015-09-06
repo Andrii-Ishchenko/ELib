@@ -35,7 +35,7 @@ namespace ELib.Web
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/config.js",
-                                    "~/Views/Home/IndexController.js",
+                                    "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
