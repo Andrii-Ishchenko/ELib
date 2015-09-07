@@ -26,7 +26,8 @@ namespace ELib.Web
 
             //.Include("~/Content/site.css")
             bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/Content/bootstrap*"));
+                .Include("~/Content/bootstrap*",
+                           "~/Content/custom.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
