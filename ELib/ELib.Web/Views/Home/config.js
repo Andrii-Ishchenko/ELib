@@ -19,8 +19,8 @@
             })
             .when('/profile/',{
                 templateUrl: '/views/shared/two-column-layout.html',
-                controller: 'ProfileController',
-                controllerAs: 'profileCtrl'
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
             })
             .when('/authors', {
                 templateUrl: '/views/shared/two-column-layout.html',
