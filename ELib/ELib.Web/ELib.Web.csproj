@@ -323,6 +323,10 @@
     <Content Include="Views\Home\errors\404.html" />
     <Content Include="Views\Home\index\IndexController.js" />
     <Content Include="Views\Home\login\LoginController.js" />
+    <Content Include="Views\Home\publisher\publisher.html" />
+    <Content Include="Views\Home\publisher\PublisherController.js" />
+    <Content Include="Views\Home\publisher\publishers.html" />
+    <Content Include="Views\Home\publisher\PublishersController.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
     <Content Include="Views\Home\files\FileController.js" />
     <Content Include="Views\Home\files\FileFactory.js" />

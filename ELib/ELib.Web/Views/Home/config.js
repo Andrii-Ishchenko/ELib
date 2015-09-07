@@ -42,6 +42,16 @@
                 controller: 'RegistrationController',
                 controllerAs: 'registrationCtrl'
             })
+            .when('/publishers', {
+                templateUrl: '/views/home/publisher/publishers.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publisher/:id', {
+                templateUrl: '/views/home/publisher/publisher.html',
+                controller: 'PublisherController',
+                controllerAs: 'publisher'
+            })
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',

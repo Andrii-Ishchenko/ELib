@@ -1,0 +1,28 @@
+<div class="col-md-3">
+
+</div>
+
+<div class="col-md-6">
+    <div id="publisher">
+        <div class="row">
+
+            <h3>Publisher {{publisher.instance.Name}}</h3>
+        </div>
+        <hr />
+        <!--book list-->
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="book in publisher.instance.Books">
+                <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
+                <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
+                <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
+                <p><a href="{{'/book/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>
+
+                <p>{{book.Description}}-{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>
+            </li>
+        </ul>       
+    </div>
+</div>
+<div class="col-md-3">
+
+</div>
+
