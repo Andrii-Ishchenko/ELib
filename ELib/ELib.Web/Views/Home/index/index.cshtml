@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ELib</a>
+                <a class="navbar-brand" href="/">ELib</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,7 +44,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="IndexController as indexCtrl">
                     <li><a href="/Help">API</a></li>
-                    <li><a href="/Home/FilesTest">File Upload</a></li>
+                    <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="/upload-book">Upload Book</a></li>
                     <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="/profile">Welcome {{indexCtrl.authentication.userName}}</a></li>
                     <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="" data-ng-click="indexCtrl.logOut()">Logout</a></li>
                     <li data-ng-hide="indexCtrl.authentication.isAuth"> <a href="/login">Sign In</a></li>

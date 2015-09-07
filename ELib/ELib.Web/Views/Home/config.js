@@ -42,6 +42,11 @@
                 controller: 'RegistrationController',
                 controllerAs: 'registrationCtrl'
             })
+            .when('/upload-book', {
+                templateUrl: '/views/home/uploadBook/upload-book.html',
+                controller: 'UploadBookController',
+                controllerAs: 'uploadBookCtrl'
+            })
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',

@@ -64,6 +64,7 @@ namespace ELib.Web.ApiControllers
         // Maybe should use "model" instead "id", and move method to another controller
         [HttpPost]
         [ActionName("book-image")]
+        [Authorize]
         public async Task<HttpResponseMessage> UploadBookImage(int id)
         {
             try
@@ -106,6 +107,7 @@ namespace ELib.Web.ApiControllers
         // Maybe should use "model" instead "id", and move method to another controller
         [HttpPost]
         [ActionName("book-instance")]
+        [Authorize]
         public async Task<HttpResponseMessage> UploadBookFile(int id)
         {
             try

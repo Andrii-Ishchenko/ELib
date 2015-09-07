@@ -48,6 +48,7 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
 
+                                    "~/Views/Home/uploadBook/UploadBookController.js",
                                     "~/Views/Home/registration/RegistrationController.js",
                                      "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",
