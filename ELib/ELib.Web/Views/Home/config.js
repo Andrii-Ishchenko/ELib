@@ -47,6 +47,11 @@
                 controller: 'UploadBookController',
                 controllerAs: 'uploadBookCtrl'
             })
+            .when('/help', {
+                templateUrl: '/views/home/help/help.html',
+                controller : 'HelpController',
+                controllerAs : 'helpCtrl'
+            })
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',

@@ -321,6 +321,7 @@
     <Content Include="Views\Home\elib.js" />
     <None Include="Views\Home\index\index.cshtml" />
     <Content Include="Views\Home\errors\404.html" />
+    <Content Include="Views\Home\help\HelpController.js" />
     <Content Include="Views\Home\index\IndexController.js" />
     <Content Include="Views\Home\login\LoginController.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
