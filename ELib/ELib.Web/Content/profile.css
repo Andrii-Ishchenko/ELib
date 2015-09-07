@@ -1,3 +1,65 @@
-    .row-bottom-buffer{
-        margin-bottom: 20px;
+.row-bottom-buffer {
+    margin-bottom: 20px;
+}
+
+.profile-edit .info-item {
+    line-height: 24px;
+    border-top: 1px dotted #ddd;
+    padding: 5px 2px;
+    color: #383838;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+    .profile-edit .info-item .info-editable {
+        margin: 0;
+    }
+
+        .profile-edit .info-item .info-editable:hover {
+            border-bottom: 1px dotted #3097b5;
+            margin-bottom: -1px;
+            outline: 0;
+        }
+
+        .profile-edit .info-item .info-editable:focus {
+            border-bottom: 1px dotted #3097b5;
+            outline: 0;
+            margin-bottom: -1px;
+        }
+
+        .profile-edit .info-item .info-editable a {
+            color: #3097b5;
+        }
+
+    .profile-edit .info-item .info-value {
+        display: inline-block;
+    }
+
+.profile-edit .info-label {
+    min-width: 100px;
+    color: #a0a0a0;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+
+/****************************************************************************************************/
+.profile .info-item {
+    width: 100%;
+    font-size: 13px;
+    color: #383838;
+    height: 24px;
+    line-height: 20px;
+    margin-bottom: 3px;
+}
+
+    .profile .info-item .info-label {
+        min-width:100px;
+        color: #a0a0a0;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    .profile .info-item .info-value {
+        display: inline-block;
     }

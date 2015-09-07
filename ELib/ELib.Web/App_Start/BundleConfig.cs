@@ -51,10 +51,9 @@ namespace ELib.Web
                                     "~/Views/Home/registration/RegistrationController.js",
                                      "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",
-                                    "~/Views/Home/user/CurrentProfileFactory.js"
+                                    "~/Views/Home/user/CurrentProfileFactory.js"));
 
-                        )
-                    );
+            bundles.Add(new StyleBundle("~/Content/Custom").Include("~/Content/profile.css"));
 
         }
     }
