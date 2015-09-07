@@ -38,7 +38,7 @@ namespace ELib.BL.Services.Concrete
         public bool SaveProfileImage(byte[] file, string fileName, int userId)
         {
             string extension = getExtension(fileName);
-            var p  = ConfigurationManager.AppSettings["ProfileImagesFolderPath"];
+            
             if (validateFile(file, extension, userId, typeof(ProfileImageExtensions), MAX_PROFILE_IMAGE_SIZE))
             {
                 string fileHash = saveImage(file, extension, PROFILE_IMAGES_FOLDER_PATH);
@@ -46,8 +46,12 @@ namespace ELib.BL.Services.Concrete
                 using (IUnitOfWork uow = _factory.Create())
                 {
                     var person = uow.Repository<Person>().GetById(userId);
+                    string oldHash = person.ImageHash;
                     person.ImageHash = fileHash;
                     uow.Repository<Person>().Update(person);
+                    uow.Save();
+                    //Move to another thread as async.
+                    RemoveUnusedProfileImage(oldHash,uow);
                     uow.Save();
                 }
 
@@ -55,6 +59,17 @@ namespace ELib.BL.Services.Concrete
             }
 
             return false;
+        }
+
+        public void RemoveUnusedProfileImage(string fileHash, IUnitOfWork uow)
+        {
+                int cnt = uow.Repository<Person>().Get(p=>p.ImageHash==fileHash).Count();
+                if (cnt == 0)
+                {
+                    String path = DirectoryPath(fileHash, PROFILE_IMAGES_FOLDER_PATH);
+                    String filePath = String.Format(@"{0}\{1}.{2}", path, fileHash, "png");
+                    File.Delete(filePath);
+                }
         }
 
         public bool SaveBookImage(byte[] file, string fileName, int bookId, int userId)
