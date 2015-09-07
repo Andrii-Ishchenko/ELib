@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using ELib.Common;
+using ELib.Domain.Entities;
 
 namespace ELib.Web.ApiControllers
 {
@@ -25,31 +26,31 @@ namespace ELib.Web.ApiControllers
         [HttpGet]
         public HttpResponseMessage GetPublishers()
         {
-            try
-            {
-                var publishers = _service.GetAll();               
-                return Request.CreateResponse(HttpStatusCode.OK, publishers);
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Publisher/Get",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
+             try
+             {
+                 var publishers = _service.GetAll();               
+                 return Request.CreateResponse(HttpStatusCode.OK, publishers);
+             }
+             catch (Exception ex)
+             {
+                 logger.Error("Error In Publisher/Get",ex);
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+             }
         }
 
         [HttpGet]
         public HttpResponseMessage GetPublisherById(int id)
         {
-            try
-            {
-                var publishers = _service.GetById(id);
-                return Request.CreateResponse(HttpStatusCode.OK, publishers);
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Publisher/GetById",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
+             try
+             {
+                 var publishers = _service.GetById(id);
+                 return Request.CreateResponse(HttpStatusCode.OK, publishers);
+             }
+             catch (Exception ex)
+             {
+                 logger.Error("Error In Publisher/GetById",ex);
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+             }           
         }
 
         [HttpPost]
