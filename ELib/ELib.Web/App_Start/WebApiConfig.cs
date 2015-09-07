@@ -33,6 +33,11 @@ namespace ELib.Web
                 "api/account/{action}",
                 new { controller = "Account" }
             );
+            config.Routes.MapHttpRoute(
+                "BookRoute",
+                "api/books/{action}/{id}",
+                new { controller = "Books", id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

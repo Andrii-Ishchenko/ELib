@@ -6,6 +6,7 @@ using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
+using System.Linq.Expressions;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -22,6 +23,23 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var entities = uow.Repository<BookAuthor>().Get(x=>x.AuthorId==idAuthor).Select(y=>y.Book).OrderByDescending(rating=>rating.SumRatingValue);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
+        public IEnumerable<BookDto> GetAll(int pageCount, int pageNumb)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                
+                    var entities = uow.Repository<Book>().Get(skipCount : pageCount * (pageNumb - 1), topCount: pageCount);
 
                 foreach (var item in entities)
                 {

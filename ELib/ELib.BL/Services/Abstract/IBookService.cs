@@ -10,5 +10,6 @@ namespace ELib.BL.Services.Abstract
     public interface IBookService : IBaseService<Book, BookDto>
     {
         IEnumerable<BookDto> GetForAuthor(int idAuthor);
+        IEnumerable<BookDto> GetAll(int pageCount, int pageNumb);
     }
 }

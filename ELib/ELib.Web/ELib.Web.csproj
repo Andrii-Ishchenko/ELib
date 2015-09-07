@@ -312,9 +312,9 @@
     <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
-    <Content Include="Views\Home\Comment\Comment.html" />
-    <Content Include="Views\Home\Comment\Comments.html" />
-    <Content Include="Views\Home\Comment\CommentsController.js" />
+    <Content Include="Views\Home\comment\comment.html" />
+    <Content Include="Views\Home\comment\comments.html" />
+    <Content Include="Views\Home\comment\CommentsController.js" />
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />

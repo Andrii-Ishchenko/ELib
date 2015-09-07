@@ -24,15 +24,18 @@ namespace ELib.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap*"));
 
-
             //.Include("~/Content/site.css")
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap*"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
+                                    "~/Views/Home/common/authServiceFactory.js",
+                                    "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
+                                    "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/config.js",
+                                    "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
@@ -40,14 +43,16 @@ namespace ELib.Web
                                     "~/Views/Home/files/FileFactory.js",
                                     "~/Views/Home/files/FileController.js",
                                     "~/Views/Home/book/bookListDirective.js",
-                                    
+
                                     "~/Views/Home/author/AuthorController.js",
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
 
+                                    "~/Views/Home/registration/RegistrationController.js",
+                                     "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",
                                     "~/Views/Home/user/CurrentProfileFactory.js"
-             
+
                         )
                     );
 

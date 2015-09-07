@@ -38,7 +38,7 @@
                     <p class="lead">Authors:</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'#/author/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
+                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/author/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
                 </div>
             </div>
             <div class="row">
@@ -46,7 +46,7 @@
                     <p class="lead">Genres:</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'#/genre/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
+                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genre/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
                 </div>
             </div>
             <div class="row">
@@ -62,7 +62,7 @@
                         <p class="lead">Publisher:</p>
                     </div>
                     <div class="col-lg-8 col-sm-6">
-                        <p><a ng-href="{{'#/publisher/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
+                        <p><a ng-href="{{'/publisher/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
                     </div>
             </div>
                 <div class="row">

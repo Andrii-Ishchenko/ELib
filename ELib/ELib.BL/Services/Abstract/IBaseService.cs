@@ -9,6 +9,8 @@ namespace ELib.BL.Services.Abstract
         where TEntity : class
         where TEntityDto : class
     {
+        int TotalCount { get; }
+
         TEntityDto GetById(object id);
 
         void Insert(TEntityDto entity);

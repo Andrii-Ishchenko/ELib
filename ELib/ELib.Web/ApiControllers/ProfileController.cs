@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace ELib.Web.ApiControllers
 {
@@ -24,11 +25,13 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
+        [Authorize]
         public HttpResponseMessage GetCurrentUser()
         {
             try
             {
                 //DONT FORGET REFACTOR THIS
+                var p = User.Identity.GetUserId();
                 PersonDto person = _profileService.GetById(5);
                 if (person == null)
                     throw new NullReferenceException();

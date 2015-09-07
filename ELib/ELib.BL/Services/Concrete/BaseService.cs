@@ -18,6 +18,17 @@ namespace ELib.BL.Services.Concrete
             _factory = factory;
         }
 
+        public int TotalCount
+        {
+            get
+            {
+                using (var uow = _factory.Create())
+                {
+                    return uow.Repository<TEntity>().TotalCount;
+                }
+            }
+        }
+
         public void Delete(TEntityDto entity)
         {
             using (var uow = _factory.Create())
