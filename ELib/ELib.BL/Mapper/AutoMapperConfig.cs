@@ -12,6 +12,7 @@ namespace ELib.BL.Mapper
         public static void Configure()
         {
             configureGenreMapping();
+            configureSubgenreMapping();
             configurePublisherMapping();
             configureBookMapping();
             configureAuthorMapping();
@@ -21,6 +22,12 @@ namespace ELib.BL.Mapper
             configurePersonMapping();
             configureCurrentPerson();
             configureLanguageMapping();
+        }
+
+        private static void configureSubgenreMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Subgenre, SubgenreDto>();
+            AutoMapper.Mapper.CreateMap<SubgenreDto, Subgenre>();
         }
 
         private static void configurePersonMapping()
