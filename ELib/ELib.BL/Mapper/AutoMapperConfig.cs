@@ -20,6 +20,7 @@ namespace ELib.BL.Mapper
             configureRatingComment();
             configurePersonMapping();
             configureCurrentPerson();
+            configureLanguageMapping();
         }
 
         private static void configurePersonMapping()
@@ -87,6 +88,12 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<RatingComment, RatingCommentDto>();
             AutoMapper.Mapper.CreateMap<RatingCommentDto, RatingComment>();
+        }
+
+        private static void configureLanguageMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Language, LanguageDto>();
+            AutoMapper.Mapper.CreateMap<LanguageDto, Language>();
         }
     }
 }
