@@ -68,6 +68,7 @@
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
+    <Compile Include="DtoEntities\LanguageDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
+    <Compile Include="Services\Abstract\ILanguageService.cs" />
     <Compile Include="Services\Abstract\IProfileService.cs" />
     <Compile Include="Services\Abstract\IRatingCommentService.cs" />
     <Compile Include="Services\Abstract\IRatingService.cs" />
