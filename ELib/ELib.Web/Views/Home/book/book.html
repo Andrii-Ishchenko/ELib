@@ -84,5 +84,35 @@
  </div>
 </div>
 </div>
-    <comments-view></comments-view>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+
+                                <form class="form-horizontal" role="search">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            Comments:
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <button type="write" class="btn btn-default">Write</button>
+                                            <p>{{comment.instance.BookId}}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <div ng-app>
+        Name: <input type="text" ng-model="name" />
+        <br /><br />
+        Welcome to AngularJS {{name}}
+    </div>
 </div>
