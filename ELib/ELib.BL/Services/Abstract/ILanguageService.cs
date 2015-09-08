@@ -1,6 +1,9 @@
-﻿namespace ELib.BL.Services.Abstract
+﻿using ELib.BL.DtoEntities;
+using ELib.Domain.Entities;
+
+namespace ELib.BL.Services.Abstract
 {
-    class ILanguageService
+    public interface ILanguageService : IBaseService<Language, LanguageDto>
     {
     }
 }

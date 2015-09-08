@@ -101,6 +101,7 @@
     <Compile Include="Services\Concrete\CurrentProfileService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
+    <Compile Include="Services\Concrete\LanguageService.cs" />
     <Compile Include="Services\Concrete\OrdinaryCaptchaGenerator.cs" />
     <Compile Include="Services\Concrete\ProfileService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />

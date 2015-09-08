@@ -2,7 +2,7 @@
 
 namespace ELib.BL.DtoEntities
 {
-    class LanguageDto
+    public class LanguageDto
     {
         public int Id { get; set; }
 
