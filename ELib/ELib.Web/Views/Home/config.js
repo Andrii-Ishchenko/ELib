@@ -51,6 +51,15 @@
                 templateUrl: '/views/home/help/help.html',
                 controller : 'HelpController',
                 controllerAs : 'helpCtrl'
+            .when('/publishers', {
+                templateUrl: '/views/home/publisher/publishers.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publisher/:id', {
+                templateUrl: '/views/home/publisher/publisher.html',
+                controller: 'PublisherController',
+                controllerAs: 'publisher'
             })
         //.........
             .otherwise({

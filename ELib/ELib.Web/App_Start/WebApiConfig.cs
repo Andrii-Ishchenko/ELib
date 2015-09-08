@@ -78,6 +78,7 @@ namespace ELib.Web
             container.RegisterType<IRatingCommentService, RatingCommentService>(new HierarchicalLifetimeManager());
             container.RegisterType<IProfileService,ProfileService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICurrentProfileService, CurrentProfileService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ILanguageService, LanguageService>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
         }
     }

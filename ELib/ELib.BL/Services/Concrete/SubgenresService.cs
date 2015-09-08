@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class ProfileService : BaseService<Person,PersonDto>, IProfileService
+    public class SubgenreService : BaseService<Subgenre, SubgenreDto>, ISubgenreService
     {
-        public ProfileService(IUnitOfWorkFactory factory)
+        public SubgenreService(IUnitOfWorkFactory factory)
             : base(factory)
         { }
     }
