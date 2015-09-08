@@ -227,6 +227,7 @@
     <Compile Include="ApiControllers\RatingsCommentController.cs" />
     <Compile Include="ApiControllers\RatingsController.cs" />
     <Compile Include="ApiControllers\BooksController.cs" />
+    <Compile Include="ApiControllers\SubgenresController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -315,6 +316,10 @@
     <Content Include="Views\Home\book\bookRepository.js" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
+    <Content Include="Views\Home\comments\Comment.html" />
+    <Content Include="Views\Home\comments\CommentController.js" />
+    <Content Include="Views\Home\comments\Comments.html" />
+    <Content Include="Views\Home\comments\CommentsController.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\config.js" />

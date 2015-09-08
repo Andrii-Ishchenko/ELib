@@ -72,6 +72,7 @@
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
+    <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\BookImageExtensions.cs" />
     <Compile Include="Enums\ProfileImageExtensions.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Services\Abstract\IProfileService.cs" />
     <Compile Include="Services\Abstract\IRatingCommentService.cs" />
     <Compile Include="Services\Abstract\IRatingService.cs" />
+    <Compile Include="Services\Abstract\ISubgenreService.cs" />
     <Compile Include="Services\Concrete\AritmeticalCaptchaGenerator.cs" />
     <Compile Include="Services\Concrete\AuthorService.cs" />
     <Compile Include="Services\Abstract\IPublisherService.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Services\Concrete\PublisherService.cs" />
     <Compile Include="Services\Concrete\RatingCommentService.cs" />
     <Compile Include="Services\Concrete\RatingService.cs" />
+    <Compile Include="Services\Concrete\SubgenresService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
