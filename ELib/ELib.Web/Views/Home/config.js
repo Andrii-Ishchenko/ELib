@@ -51,6 +51,7 @@
                 templateUrl: '/views/home/help/help.html',
                 controller : 'HelpController',
                 controllerAs : 'helpCtrl'
+            })
             .when('/publishers', {
                 templateUrl: '/views/home/publisher/publishers.html',
                 controller: 'PublishersController',
@@ -65,6 +66,7 @@
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',
             });
+            
 
             $httpProvider.interceptors.push('authInterceptorServiceFactory');
             $locationProvider.html5Mode({
