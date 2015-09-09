@@ -50,7 +50,7 @@ namespace ELib.Web
                                     "~/Views/Home/author/authorListDirective.js",
 
                                     "~/Views/Home/help/HelpController.js",
-                                    "~/Views/Home/uploadBook/UploadBookController.js",
+                                    "~/Views/Home/book/NewBookController.js",
                                     "~/Views/Home/registration/RegistrationController.js",
                                      "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",

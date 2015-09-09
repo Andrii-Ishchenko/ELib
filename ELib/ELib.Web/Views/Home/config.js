@@ -12,6 +12,11 @@
                 controller : 'BooksController',
                 controllerAs : 'books'
             })
+            .when('/books/new', {
+                templateUrl: '/views/home/book/new-book.html',
+                controller: 'NewBookController',
+                controllerAs: 'newBookCtrl'
+            })
             .when('/book/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',
@@ -41,11 +46,6 @@
                 templateUrl: '/views/home/registration/registration.html',
                 controller: 'RegistrationController',
                 controllerAs: 'registrationCtrl'
-            })
-            .when('/upload-book', {
-                templateUrl: '/views/home/uploadBook/upload-book.html',
-                controller: 'UploadBookController',
-                controllerAs: 'uploadBookCtrl'
             })
             .when('/help', {
                 templateUrl: '/views/home/help/help.html',

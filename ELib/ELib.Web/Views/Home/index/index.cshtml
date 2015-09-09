@@ -33,7 +33,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="IndexController as indexCtrl">
                     <li><a href="/help">API</a></li>
-                    <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="/upload-book">Upload Book</a></li>
+                    <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="/books/new">New Book</a></li>
                     <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="/profile">Welcome {{indexCtrl.authentication.userName}}</a></li>
                     <li data-ng-hide="!indexCtrl.authentication.isAuth"><a href="" data-ng-click="indexCtrl.logOut()">Logout</a></li>
                     <li data-ng-hide="indexCtrl.authentication.isAuth"> <a href="/login">Sign In</a></li>

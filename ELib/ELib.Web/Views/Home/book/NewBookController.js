@@ -1,10 +1,10 @@
 ﻿(function () {
     angular.module("elib")
-           .controller("UploadBookController", UploadBookController);
+           .controller("NewBookController", NewBookController);
 
-    UploadBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location"];
+    NewBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location"];
 
-    function UploadBookController(authServiceFactory, dataServiceFactory,  $location) {
+    function NewBookController(authServiceFactory, dataServiceFactory,  $location) {
         var vm = this;
 
         authServiceFactory.fillAuthData();

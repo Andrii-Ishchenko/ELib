@@ -8,7 +8,7 @@
                 <div class="col-xs-3">
                 </div>
                 <div class="col-xs-9">
-                    <h1>Upload new book </h1>
+                    <h1>New book </h1>
                 </div>
             </div>
             <div class="form-group">
@@ -28,13 +28,13 @@
                 <div class="col-xs-4">
                     <select class="form-control">
                         <option value="0">Original language</option>
-                        <option ng-repeat="language in uploadBookCtrl.originalLanguages" value="{{language.Id}}">{{language.Name}}</option>
+                        <option ng-repeat="language in newBookCtrl.originalLanguages" value="{{language.Id}}">{{language.Name}}</option>
                     </select>
                 </div>
                 <div class="col-xs-4">
                     <select class="form-control">
                         <option value="0">Publish language</option>
-                        <option ng-repeat="language in uploadBookCtrl.publishLanguages" value="{{language.Id}}">{{language.Name}}</option>
+                        <option ng-repeat="language in newBookCtrl.publishLanguages" value="{{language.Id}}">{{language.Name}}</option>
                     </select>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-xs-6">
                     <select class="form-control">
                         <option value="0">Subgenre</option>
-                        <option ng-repeat="subgenre in uploadBookCtrl.subgenres" value="{{subgenre.Id}}">{{subgenre.Name}}</option>
+                        <option ng-repeat="subgenre in newBookCtrl.subgenres" value="{{subgenre.Id}}">{{subgenre.Name}}</option>
                     </select>
                 </div>
             </div>
