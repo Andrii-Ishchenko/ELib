@@ -33,6 +33,24 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
+
+        /* public IEnumerable<BookDto> GetForPublisher(int idPublisher)
+        {
+           using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                List<Book> entities = uow.Repository<Publisher>().Get(x => x.Id == idPublisher).Select(y => y.Books);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+    }*/
+
         public IEnumerable<BookDto> GetAll(int pageCount, int pageNumb)
         {
             using (var uow = _factory.Create())

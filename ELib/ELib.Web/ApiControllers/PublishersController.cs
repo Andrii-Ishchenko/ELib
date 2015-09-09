@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using ELib.Common;
+using ELib.Domain.Entities;
 
 namespace ELib.Web.ApiControllers
 {
@@ -23,33 +24,34 @@ namespace ELib.Web.ApiControllers
         }
         
         [HttpGet]
-        public HttpResponseMessage GetPublishers()
+        public HttpResponseMessage GetPublishers([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
-            try
-            {
-                var publishers = _service.GetAll();               
-                return Request.CreateResponse(HttpStatusCode.OK, publishers);
+             try
+             {
+                IEnumerable<PublisherDto> publishers = _service.GetAll(pageCount, pageNumb);
+                int totalCount = _service.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { publishers, totalCount });
             }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Publisher/Get",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
+             catch (Exception ex)
+             {
+                 logger.Error("Error In Publisher/Get",ex);
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+             }
         }
 
         [HttpGet]
         public HttpResponseMessage GetPublisherById(int id)
         {
-            try
-            {
-                var publishers = _service.GetById(id);
-                return Request.CreateResponse(HttpStatusCode.OK, publishers);
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error In Publisher/GetById",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
+             try
+             {
+                 var publishers = _service.GetById(id);
+                 return Request.CreateResponse(HttpStatusCode.OK, publishers);
+             }
+             catch (Exception ex)
+             {
+                 logger.Error("Error In Publisher/GetById",ex);
+                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+             }           
         }
 
         [HttpPost]

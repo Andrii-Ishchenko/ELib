@@ -17,5 +17,23 @@ namespace ELib.BL.Services.Concrete
         {
 
         }
+
+        public IEnumerable<PublisherDto> GetAll(int pageCount, int pageNumb)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<PublisherDto>();
+
+                var entities = uow.Repository<Publisher>().Get(skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<PublisherDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
     }
 }
