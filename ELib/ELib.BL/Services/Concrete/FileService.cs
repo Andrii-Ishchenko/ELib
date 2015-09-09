@@ -142,7 +142,7 @@ namespace ELib.BL.Services.Concrete
 
         public string GetProfileImagePath(string fileHash)
         {
-            if (fileHash == "")
+            if (fileHash == null)
                 return "";
             string directoryPath = DirectoryPath(fileHash, "");
             string fullPath = String.Format(@"{0}/{1}/{2}.png", PROFILE_IMAGE_VIRTUAL_ALIAS, directoryPath, fileHash);

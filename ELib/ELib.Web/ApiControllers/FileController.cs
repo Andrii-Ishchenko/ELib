@@ -1,10 +1,14 @@
 ﻿using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ELib.BL.Services.Abstract;
 using System;
 using ELib.Common;
+using ELib.DAL.Infrastructure.Concrete;
+using Microsoft.AspNet.Identity;
+using ELib.Domain.Entities;
 
 namespace ELib.Web.ApiControllers
 {
@@ -27,7 +31,16 @@ namespace ELib.Web.ApiControllers
             try
             {
                 // Hard code (should use current user id from Identity)
-                int userId = 5;
+                UnitOfWorkFactory uowf = new UnitOfWorkFactory();
+                Person p;
+                using (var uow = uowf.Create())
+                {
+                    string id = User.Identity.GetUserId();
+                    p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id).FirstOrDefault();
+                    if (p == null)
+                        return Request.CreateResponse(HttpStatusCode.BadRequest,"User Not Found");
+                }
+                int userId = p.Id;
 
                 if (Request.Content.IsMimeMultipartContent())
                 {
