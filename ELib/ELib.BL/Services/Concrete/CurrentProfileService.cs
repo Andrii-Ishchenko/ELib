@@ -1,6 +1,7 @@
 ﻿using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
+using ELib.DAL.Infrastructure.Concrete;
 using ELib.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,17 @@ namespace ELib.BL.Services.Concrete
         public CurrentProfileService(IUnitOfWorkFactory factory)
             : base(factory)
         { }
+
+        public CurrentPersonDto GetByApplicationUserId(string id)
+        {
+            using (var uow =_factory.Create())
+            {
+                //ApplicationUser au = uow.Repository<ApplicationUser>().Get(x => x.Id == id).FirstOrDefault();
+                //if (au == null)
+                //    return null;
+                Person p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id).FirstOrDefault();
+                return AutoMapper.Mapper.Map<CurrentPersonDto>(p);
+            }
+        }
     }
 }

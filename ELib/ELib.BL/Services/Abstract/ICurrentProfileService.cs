@@ -10,5 +10,7 @@ namespace ELib.BL.Services.Abstract
 {
     public interface ICurrentProfileService : IBaseService<Person,CurrentPersonDto>
     {
+
+        CurrentPersonDto GetByApplicationUserId(string id);
     }
 }

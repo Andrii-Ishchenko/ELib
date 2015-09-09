@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-
+using Microsoft.AspNet.Identity;
 namespace ELib.Web.ApiControllers
 {
     public class CurrentProfileController : ApiController
@@ -28,7 +28,9 @@ namespace ELib.Web.ApiControllers
             try
             {
                 //ABSOLUTELY WRONG!! use IDENTITY FOR getting applicationuser and getting currentuser
-                CurrentPersonDto person = _profileService.GetById(5);
+                string id = User.Identity.GetUserId();
+
+                CurrentPersonDto person = _profileService.GetByApplicationUserId(id);
                 if (person == null)
                     throw new NullReferenceException();
                 return Request.CreateResponse(HttpStatusCode.OK, person);

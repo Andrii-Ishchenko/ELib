@@ -10,49 +10,61 @@
 
                 </div>
             </div>
-            <div class="col-md-8"  ng-hide="isEditMode">
-                <p>
-                    <h4><b> {{currentProfileCtrl.profile.Login}} </b><small> <a href="#" class="bg-warning">Confirm your Account</a></small> </h4>
-                </p>
-                <p>
-                    {{currentProfileCtrl.profile.FirstName}} - {{currentProfileCtrl.profile.LastName}}
-                </p>
-                <p>
-                    <i>Email: {{currentProfileCtrl.profile.Email}}</i>
-                </p>
-                <p>
-                    <i>Phone: {{currentProfileCtrl.profile.Phone}}</i>
-                </p>
-
+            <div class="col-md-8 profile"  ng-hide="isEditMode">
+                <div class="info-item form-group">
+                    <span class="info-label">Login</span>
+                    <span class="info-value ">{{currentProfileCtrl.profile.Login}} </span>
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">First Name</span>
+                    <span class="info-value ">{{currentProfileCtrl.profile.FirstName}}</span>
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Last Name</span>
+                    <span class="info-value ">{{currentProfileCtrl.profile.LastName}}</span>
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Email</span>
+                    <span class="info-value ">{{currentProfileCtrl.profile.Email}}</span>
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Phone</span>
+                    <span class="info-value ">{{currentProfileCtrl.profile.Phone}}</span>
+                </div>
             </div>
-            <div class="col-md-8" ng-show="isEditMode">
-                EDIT PART
-                <p>
-                    <h4><b> {{currentProfileCtrl.profile.Login}} </b> </h4>
-                </p>
-                <p>
-                    {{currentProfileCtrl.profile.FirstName}} 
-                    <input type="text" ng-model="currentProfileCtrl.profile.FirstName" />
-                </p>
-                <p>
-                    
-                    <span contenteditable="true">{{currentProfileCtrl.profile.LastName}}</span>
-                </p>
-                <p>
-                    <i>Email: <span contenteditable="true">{{currentProfileCtrl.profile.Email}}</span></i>
-                    
-                </p>
-                <p>
-                    <i>Phone: {{currentProfileCtrl.profile.Phone}}</i>
-                </p>
 
+            <div class="col-md-8 profile-edit" ng-show="isEditMode">
+                <div class="info-item form-group" >
+                    <span class="info-label">Login</span>
+                    <span class="info-value">{{profile.Login}} </span>
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">First Name</span>
+                    <input type="text" class="info-editable" ng-model="profile.FirstName" contenteditable="true" >
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Last Name</span>
+                    <input type="text" class="info-editable" ng-model="profile.LastName" contenteditable="true">
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Email</span>
+                    <input type="email" class="info-editable" ng-model="profile.Email" contenteditable="true">
+                </div>
+                <div class="info-item form-group">
+                    <span class="info-label">Phone</span>
+                    <input type="text" class="info-editable" ng-model="profile.Phone" contenteditable="true">
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
-                <p>
-                    <a  class="btn btn-primary pull-right" ng-click="event.preventDefault(); EditMode()"> {{isEditMode?"Save":"Edit"}}</a>
+            <div class="col-md-12 buttons">
+                <p ng-hide="isEditMode">
+                    <btn  class="btn btn-primary pull-right" ng-click="EditMode()"> Edit</btn>                 
+                </p>
+                <p ng-show="isEditMode" class="pull-right">
+                    <btn class="btn btn-primary" ng-click="EditMode()"> <i class="glyphicon glyphicon-ok"></i> </btn>
+                    <btn class="btn btn-primary" ng-click="EditMode()"> <i class="glyphicon glyphicon-remove"></i> </btn>
                 </p>
             </div>
 

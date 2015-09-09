@@ -15,7 +15,7 @@ namespace ELib.DAL.Repositories.Abstract
 
         TEntity GetById(object id);
 
-        void Insert(TEntity entity);
+        TEntity Insert(TEntity entity);
 
         void Delete(TEntity entity);
 
