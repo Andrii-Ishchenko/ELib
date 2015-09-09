@@ -18,9 +18,18 @@
         vm.originalLanguages = languages;
         vm.publishLanguages = languages;
 
-    //    vm.publishers = dataServiceFactory.getService('publishers').query();
+        //    vm.publishers = dataServiceFactory.getService('publishers').query();
 
-         vm.subgenres = dataServiceFactory.getService('subgenres').query();
+        // need improvement
+        var obj = dataServiceFactory.getService('publishers').get({ pageCount: 100, pageNumb: 1 });
+        obj.$promise.then(function (data) {
+            vm.publishers = data.publishers;
+        })
+
+        vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
+        vm.newBook = function () {
+
+        }
     }
 })();

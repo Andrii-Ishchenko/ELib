@@ -41,9 +41,9 @@
             <div class="form-group">
                 <label class="control-label col-xs-3">Publisher:</label>
                 <div class="col-xs-6">
-                    <select class="form-control" ng-disabled="true">
+                    <select class="form-control">
                         <option value="0">Publisher</option>
-                    <!--   <option ng-repeat="publisher in uploadBookCtrl.publishers" value="{{publisher.Id}}">{{publisher.Name}}</option> -->
+                       <option ng-repeat="publisher in newBookCtrl.publishers" value="{{publisher.Id}}">{{publisher.Name}}</option>
                     </select>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <br>
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-9">
-                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newBookCtrl.createBook()">
                 </div>
             </div>
         </form>
