@@ -82,6 +82,9 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
+                book.TotalPages = 6;
+                book.PublishYear = DateTime.Now;
+                book.Rating = 7;
                 _bookService.Insert(book);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

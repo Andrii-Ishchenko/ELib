@@ -28,8 +28,27 @@
 
         vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
-        vm.newBook = function () {
+        vm.createBook = function () {
+            var book = {
+                Title: vm.title,
+                PublishLangId: vm.publishLanguage,
+                OriginalLangId: vm.originalLanguage,
+                Isbn: vm.isbn,
+                PublisherId: vm.publisher,
+                Description: vm.description,
+                SubgenreId: vm.subgenre
+            }
 
+            dataServiceFactory.getService('books').save(book).$promise.then(
+                 //success
+                 function (value) {
+                     alert('success');
+                 },
+                 //error
+                 function (error) {
+                     alert('error');
+                 }
+            );
         }
     }
 })();

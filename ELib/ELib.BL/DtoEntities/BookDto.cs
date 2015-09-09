@@ -54,7 +54,7 @@ namespace ELib.BL.DtoEntities
 
         public ICollection<string> FormatsFilePaths { get; set; }
 
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
 
         //Status????
     }
