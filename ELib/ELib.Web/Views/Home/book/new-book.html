@@ -71,7 +71,14 @@
             <br>
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-9">
-                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newBookCtrl.createBook()">
+                    <div data-ng-hide="newBookCtrl.message == ''" data-ng-class="(newBookCtrl.createdSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                        {{newBookCtrl.message}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newBookCtrl.createBook()" ng-disabled="newBookCtrl.submitState">
                 </div>
             </div>
         </form>

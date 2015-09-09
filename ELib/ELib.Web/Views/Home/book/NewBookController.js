@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("NewBookController", NewBookController);
 
-    NewBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location"];
+    NewBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout"];
 
-    function NewBookController(authServiceFactory, dataServiceFactory,  $location) {
+    function NewBookController(authServiceFactory, dataServiceFactory, $location, $timeout) {
         var vm = this;
 
         authServiceFactory.fillAuthData();
@@ -12,6 +12,10 @@
         if (!authServiceFactory.authentication.isAuth) {
             $location.path('/login');
         }
+
+        vm.message = '';
+        vm.submitState = false;
+        vm.createdSuccessfully = false;
 
         var languages = dataServiceFactory.getService('languages').query();
 
@@ -29,6 +33,8 @@
         vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
         vm.createBook = function () {
+            vm.submitState = true;
+
             var book = {
                 Title: vm.title,
                 PublishLangId: vm.publishLanguage,
@@ -42,13 +48,23 @@
             dataServiceFactory.getService('books').save(book).$promise.then(
                  //success
                  function (value) {
-                     alert('success');
+                     vm.createdSuccessfully = true;
+                     vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
+                     startTimer();
                  },
                  //error
                  function (error) {
-                     alert('error');
+                     vm.submitState = false;
+                     vm.message = "Book creation is failed";
                  }
             );
-        }
+        };
+
+        var startTimer = function () {
+            var timer = $timeout(function () {
+                $timeout.cancel(timer);
+                $location.path('/');
+            }, 2000);
+        };
     }
 })();
