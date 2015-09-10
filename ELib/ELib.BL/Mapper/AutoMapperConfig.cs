@@ -64,6 +64,7 @@ namespace ELib.BL.Mapper
         private static void configureBookMapping()
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                  .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.Author == null ? null : x.Author.FirstName + " " + x.Author.LastName)))
                   .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.AuthorId)))
                   .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))

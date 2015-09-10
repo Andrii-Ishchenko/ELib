@@ -50,7 +50,7 @@
                  function (value) {
                      vm.createdSuccessfully = true;
                      vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
-                     startTimer();
+                     startTimer(value.BookId);
                  },
                  //error
                  function (error) {
@@ -60,10 +60,10 @@
             );
         };
 
-        var startTimer = function () {
+        var startTimer = function (bookId) {
             var timer = $timeout(function () {
                 $timeout.cancel(timer);
-                $location.path('/');
+                $location.path('/books/' + bookId);
             }, 2000);
         };
     }

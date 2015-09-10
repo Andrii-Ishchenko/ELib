@@ -108,7 +108,7 @@ namespace ELib.Web.ApiControllers
                 if (book != null && ModelState.IsValid)
                 {
                     _bookService.Insert(book);
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { BookId = book.Id});
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
