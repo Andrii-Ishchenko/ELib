@@ -12,6 +12,7 @@ namespace ELib.BL.Mapper
         public static void Configure()
         {
             configureGenreMapping();
+            configureSubgenreMapping();
             configurePublisherMapping();
             configureBookMapping();
             configureAuthorMapping();
@@ -20,6 +21,13 @@ namespace ELib.BL.Mapper
             configureRatingComment();
             configurePersonMapping();
             configureCurrentPerson();
+            configureLanguageMapping();
+        }
+
+        private static void configureSubgenreMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Subgenre, SubgenreDto>();
+            AutoMapper.Mapper.CreateMap<SubgenreDto, Subgenre>();
         }
 
         private static void configurePersonMapping()
@@ -37,8 +45,7 @@ namespace ELib.BL.Mapper
                 .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))
                 .ForMember(d => d.Phone, o => o.MapFrom(p => p.ApplicationUser.PhoneNumber))
                 .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName))
-                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash!="")?fs.GetProfileImagePath(p.ImageHash):""));
-
+                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash != "") ? fs.GetProfileImagePath(p.ImageHash) : ""));
             AutoMapper.Mapper.CreateMap<CurrentPersonDto, Person>();
         }
 
@@ -57,11 +64,11 @@ namespace ELib.BL.Mapper
         private static void configureBookMapping()
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
-              .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors.Select(x => x.Author.FirstName + " " + x.Author.LastName)))
-              .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors.Select(x => x.AuthorId)))
-              .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres.Select(x => x.Genre.Name)))
-              .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres.Select(x => x.GenreId)))
-              .ForMember(d => d.Rating, o => o.MapFrom(s => s.RatingBooks.Select(x => x.ValueRating).DefaultIfEmpty(0).Average()));
+                 .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.Author == null ? null : x.Author.FirstName + " " + x.Author.LastName)))
+                  .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.AuthorId)))
+                  .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
+                  .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.GenreId)))
+                  .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }
 
@@ -87,6 +94,12 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<RatingComment, RatingCommentDto>();
             AutoMapper.Mapper.CreateMap<RatingCommentDto, RatingComment>();
+        }
+
+        private static void configureLanguageMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Language, LanguageDto>();
+            AutoMapper.Mapper.CreateMap<LanguageDto, Language>();
         }
     }
 }

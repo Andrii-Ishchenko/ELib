@@ -24,13 +24,14 @@ namespace ELib.Web.ApiControllers
         }
         
         [HttpGet]
-        public HttpResponseMessage GetPublishers()
+        public HttpResponseMessage GetPublishers([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
              try
              {
-                 var publishers = _service.GetAll();               
-                 return Request.CreateResponse(HttpStatusCode.OK, publishers);
-             }
+                IEnumerable<PublisherDto> publishers = _service.GetAll(pageCount, pageNumb);
+                int totalCount = _service.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { publishers, totalCount });
+            }
              catch (Exception ex)
              {
                  logger.Error("Error In Publisher/Get",ex);

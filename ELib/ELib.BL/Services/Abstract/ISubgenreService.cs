@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace ELib.BL.Services.Abstract
 {
-    public interface ICurrentProfileService : IBaseService<Person,CurrentPersonDto>
+    public interface ISubgenreService : IBaseService<Subgenre, SubgenreDto>
     {
-
-        CurrentPersonDto GetByApplicationUserId(string id);
     }
 }

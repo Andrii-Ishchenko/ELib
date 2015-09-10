@@ -23,7 +23,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<BookAuthor>().Get(x=>x.AuthorId==idAuthor).Select(y=>y.Book).OrderByDescending(rating=>rating.SumRatingValue);
+                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue);
 
                 foreach (var item in entities)
                 {
@@ -34,14 +34,33 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
+
+        public IEnumerable<BookDto> GetBooksForPublisher(int id)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
+                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
+
         public IEnumerable<BookDto> GetAll(Dictionary<string,string>query, int pageCount, int pageNumb)
         {
             Expression<Func<Book, bool>> expression = buildExpression(query);
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                
-                    var entities = uow.Repository<Book>().Get(skipCount : pageCount * (pageNumb - 1), topCount: pageCount);
+
+                var entities = uow.Repository<Book>().Get(skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
 
                 foreach (var item in entities)
                 {
