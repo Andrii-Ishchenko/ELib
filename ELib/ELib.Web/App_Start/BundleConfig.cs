@@ -27,7 +27,8 @@ namespace ELib.Web
             //.Include("~/Content/site.css")
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap*",
-                           "~/Content/custom.css"));
+                           "~/Content/custom.css",
+                           "~/Content/main.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
@@ -37,6 +38,10 @@ namespace ELib.Web
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
+                                    
+
+                                    "~/Views/Home/mainpage/MainPageController.js",
+
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",

@@ -22,7 +22,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<BookAuthor>().Get(x=>x.AuthorId==idAuthor).Select(y=>y.Book).OrderByDescending(rating=>rating.SumRatingValue);
+                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue);
 
                 foreach (var item in entities)
                 {
@@ -51,13 +51,46 @@ namespace ELib.BL.Services.Concrete
             }
     }*/
 
+        public IEnumerable<BookDto> GetNewBooks(int pageCount, int pageNumb)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                var entities = uow.Repository<BookInstance>().Get(orderBy: q => q.OrderByDescending(d => d.InsertDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount).Select(y => y.Book);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
+
+        public IEnumerable<BookDto> GetBooksWithHighestRating(int pageCount, int pageNumb)
+        {
+            using (var uow = _factory.Create())
+            {
+                var entitiesDto = new List<BookDto>();
+                var entities = uow.Repository<Book>().Get(orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+
+                foreach (var item in entities)
+                {
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    entitiesDto.Add(entityDto);
+                }
+
+                return entitiesDto;
+            }
+        }
         public IEnumerable<BookDto> GetAll(int pageCount, int pageNumb)
         {
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                
-                    var entities = uow.Repository<Book>().Get(skipCount : pageCount * (pageNumb - 1), topCount: pageCount);
+
+                var entities = uow.Repository<Book>().Get(skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
 
                 foreach (var item in entities)
                 {

@@ -4,8 +4,13 @@
 
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
+            //.when('/', {
+            //    redirectTo: 'books'
+            //})
             .when('/', {
-                redirectTo: 'books'
+                templateUrl: '/views/home/mainpage/main.html',
+                controller: 'MainPageController',
+                controllerAs: 'mainpage'
             })
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',

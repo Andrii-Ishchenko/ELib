@@ -1,0 +1,56 @@
+
+#menu {
+    opacity: 1;
+}
+
+    #menu:hover {
+        opacity: 0.6;
+    }
+
+#productRate {
+    background: url(/images/empty_star.png);
+     
+    width: 90px;
+    height: 18px;
+}
+
+    #productRate div {
+        background: url(/images/full_star.png);
+        width: 0;
+        height: 100%;
+    }
+
+    
+
+.title,.subtitle {
+    color: #212121;
+    display: block;
+    line-height: 18px;
+    max-height: 36px;
+    min-height: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
+}
+.title {
+    font-size: 16px;
+}
+.subtitle {
+    font-size: 13px;
+}
+.paragraph-end {
+    background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(246, 246, 246,0)),color-stop(100%,rgba(246, 246, 246,1)));
+    background-image: -webkit-linear-gradient(left,rgba(246, 246, 246,0),rgba(246, 246, 246,1));
+    background: linear-gradient(to right,rgba(246, 246, 246,0),rgba(246,246,246,1));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
+    bottom: 0;
+    height: 25px;
+    max-height: 100%;
+    position: absolute;
+    right: 0;
+    width: 70px;
+}
+
+
+

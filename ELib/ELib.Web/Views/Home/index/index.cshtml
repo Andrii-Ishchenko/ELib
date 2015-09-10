@@ -29,7 +29,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>
-                    </li>                   
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="IndexController as indexCtrl">
                     <li><a href="/Help">API</a></li>
@@ -42,6 +42,7 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
     <div class="row">
         <div class="col-md-12">
             <div class="well">
@@ -62,9 +63,11 @@
         </div>
     </div>
     <div class="row row-bottom-buffer">
-        <ng-view>
+        <div class="container-fluid">
+            <ng-view>
 
-        </ng-view>
+            </ng-view>
+        </div>
     </div>
     <div class="row ">
         <div class="col-md-12 bg-success">

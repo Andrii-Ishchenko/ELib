@@ -42,6 +42,8 @@ namespace ELib.BL.DtoEntities
 
         public string SubgenreName { get; set; }
 
+        public int SumRatingValue { get; set; }
+
         public ICollection<string> Authors { get; set; }
 
         public ICollection<int> AuthorsIds { get; set; }

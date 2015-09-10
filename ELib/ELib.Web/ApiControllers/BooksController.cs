@@ -39,6 +39,42 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
+        [ActionName("best-rating-books")]
+        public HttpResponseMessage GetBooksWithHighestRating([FromUri]int pageCount = 6, [FromUri]int pageNumb = 1)
+        {
+            try
+            {
+
+                IEnumerable<BookDto> books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [ActionName("new-books")]
+        public HttpResponseMessage GetNewBooks([FromUri]int pageCount = 6, [FromUri]int pageNumb = 1)
+        {
+            try
+            {
+
+                IEnumerable<BookDto> newbooks = _bookService.GetNewBooks(pageCount, pageNumb);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { newbooks, totalCount });
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+
+        }
+
+        [HttpGet]
         [ActionName("book")]
         public HttpResponseMessage Get(int id)
         {
