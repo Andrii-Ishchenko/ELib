@@ -69,7 +69,6 @@
                 FirstName: vm.profile.FirstName,
                 LastName: vm.profile.LastName,
                 Email: vm.profile.Email,
-                Phone: vm.profile.Phone,
             }
 
             DataServiceFactory.getService("CurrentProfile").update(person);

@@ -21,8 +21,6 @@ namespace ELib.BL.DtoEntities
 
         public string Email { get; set; }
 
-        public string Phone { get; set; }
-
         [StringLength(50)]
         public string UserName { get; set; }
 
