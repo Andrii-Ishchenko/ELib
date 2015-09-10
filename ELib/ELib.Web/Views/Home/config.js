@@ -17,7 +17,7 @@
                 controller: 'NewBookController',
                 controllerAs: 'newBookCtrl'
             })
-            .when('/book/:id', {
+            .when('/books/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',
                 controllerAs: 'book'
@@ -32,7 +32,7 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
-            .when('/author/:id', {
+            .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
                 controllerAs: 'author'
@@ -57,7 +57,7 @@
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })
-            .when('/publisher/:id', {
+            .when('/publishers/:id', {
                 templateUrl: '/views/home/publisher/publisher.html',
                 controller: 'PublisherController',
                 controllerAs: 'publisher'
