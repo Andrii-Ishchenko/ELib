@@ -45,13 +45,31 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-        [HttpPost]
-        public HttpResponseMessage PostCurrentUser(CurrentPersonDto person)
+        [HttpPut]
+        public HttpResponseMessage UpdateCurrentUser(CurrentPersonDto person)
         {
-            //try
-            //{
-            //    _profileService.Update(person);
-            //}
+            try
+            {   
+                if (ModelState.IsValid && person != null)
+                {
+
+                    string id = User.Identity.GetUserId();
+
+                    CurrentPersonDto thisPerson = _profileService.GetByApplicationUserId(id);
+                    if (thisPerson == null)
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
+                    person.ApplicationUserId = id;
+                    person.Id = thisPerson.Id;
+                    person.UserName = thisPerson.UserName;
+                    _profileService.Update(person);
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

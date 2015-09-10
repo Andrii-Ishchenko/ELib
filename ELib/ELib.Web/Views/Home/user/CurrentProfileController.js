@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["CurrentProfileFactory","FileFactory", "$scope"];
+    CurrentProfileController.$inject = ["CurrentProfileFactory","dataServiceFactory","FileFactory", "$scope"];
 
-    function CurrentProfileController(CurrentProfileFactory,FileFactory ,$scope) {
+    function CurrentProfileController(CurrentProfileFactory,DataServiceFactory,FileFactory ,$scope) {
         var vm = this;
 
         $scope.template = {
@@ -35,7 +35,7 @@
         
         $scope.isEditMode = false;
 
-        $scope.EditMode = function () {
+        $scope.ToggleEditMode = function () {
             if ($scope.isEditMode) {
             //post
             //in done() put ($scope.isEditMode = !$scope.isEditMode;)
@@ -52,12 +52,32 @@
                     $scope.fetchData();
                     console.log(" method 'then' in post request.")
                 });;
-            
-            
+                       
         }
 
-        $scope.fetchData = function() {
-            vm.profile = CurrentProfileFactory.getCurrentUser().query();
+        $scope.edit = function(){
+            vm.backup = angular.copy(vm.profile);
+        }
+
+        $scope.cancel = function(){
+            vm.profile = vm.backup;
+        }
+
+        $scope.save = function(){
+            //save logic
+            var person = {
+                FirstName: vm.profile.FirstName,
+                LastName: vm.profile.LastName,
+                Email: vm.profile.Email,
+                Phone: vm.profile.Phone,
+            }
+
+            DataServiceFactory.getService("CurrentProfile").update(person);
+            //  CurrentProfileFactory.saveCurrentUser(vm.profile).send();          
+        }
+
+        $scope.fetchData = function() {          
+            vm.profile = CurrentProfileFactory.getCurrentUser().query();         
         }
 
         $scope.fetchData();
