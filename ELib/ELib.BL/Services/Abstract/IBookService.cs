@@ -11,5 +11,6 @@ namespace ELib.BL.Services.Abstract
     {
         IEnumerable<BookDto> GetForAuthor(int idAuthor);
         IEnumerable<BookDto> GetAll(int pageCount, int pageNumb);
+        IEnumerable<BookDto> GetBooksForPublisher(int id);
     }
 }
