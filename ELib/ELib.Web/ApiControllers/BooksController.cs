@@ -22,12 +22,39 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage Get([FromUri]int[]AuthorsIds = null, [FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
             try
             {
+                var queryString = Request.RequestUri.ParseQueryString();
+                var queryParams = queryString.Keys;
+                Dictionary<string, string> query = new Dictionary<string, string>();
+                foreach (var param in queryParams)
+                {
+                    string key = param.ToString();
+                    query.Add(key, queryString[key]);
+                }
+                //var res = query["AuthorsIds"];
+                //ParameterExpression parameter = Expression.Parameter(typeof(BookDto), "x");
+                //Expression method = null;
+                //foreach (var param in queryParams)
+                //{
+                //    if (typeof(BookDto).GetProperty(param.ToString()) != null)
+                //    {
+                //        var value = Convert.ChangeType(query[param.ToString()], typeof(BookDto).GetProperty(param.ToString()).PropertyType);
 
-                IEnumerable<BookDto> books = _bookService.GetAll(pageCount,pageNumb);
+                //        Expression property = Expression.Property(parameter, param.ToString());
+                //        Expression target = Expression.Constant(value);
+                //        Expression equalsMethod = Expression.Equal(property, target);
+                //        method = (method == null) ? equalsMethod : Expression.And(method, equalsMethod);
+
+                //    }
+                //}
+                //if (method != null)
+                //{
+                //    Expression<Func<BookDto, bool>> lambda = Expression.Lambda<Func<BookDto, bool>>(method, parameter);
+                //}
+                IEnumerable<BookDto> books = _bookService.GetAll(query, pageCount,pageNumb);
                 int totalCount = _bookService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }

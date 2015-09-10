@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using ELib.DAL.Infrastructure.Concrete;
 using System.Data.Entity;
 using ELib.DAL.Repositories.Abstract;
+using ELib.Domain.Entities;
 
 namespace ELib.DAL.Repositories.Concrete
 {
