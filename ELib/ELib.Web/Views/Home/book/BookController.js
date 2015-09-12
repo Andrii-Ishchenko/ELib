@@ -25,12 +25,13 @@
             var fd = new FormData();
             fd.append("file", file[0]);
 
-            FileFactory.uploadBookFile(fd, 1).then(
+            FileFactory.uploadBookFile(fd, $routeParams.id).then(
                 function (response) {
-                    
-                    console.log(" success")
-                });;
-
+                    alert("success");
+                },
+                function (error) {
+                    alert("error");
+                });
         };
     }
 })();
