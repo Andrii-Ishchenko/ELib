@@ -9,6 +9,8 @@ using ELib.Common;
 using ELib.DAL.Infrastructure.Concrete;
 using Microsoft.AspNet.Identity;
 using ELib.Domain.Entities;
+using System.IO;
+using System.Web;
 
 namespace ELib.Web.ApiControllers
 {
@@ -20,7 +22,6 @@ namespace ELib.Web.ApiControllers
         public FileController(IFileService fileService)
         {
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
-            _fileService = fileService;
         }
 
         // HttpPost used for test
@@ -106,12 +107,12 @@ namespace ELib.Web.ApiControllers
                     }
                 }
 
-                logger.Error("Error In Files/UploadProfileImage");
+                logger.Error("Error In Files/UploadBookImage");
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Files/UploadProfileImage", ex);
+                logger.Error("Error In Files/UploadBookImage", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -149,12 +150,48 @@ namespace ELib.Web.ApiControllers
                     }
                 }
 
-                logger.Error("Error In Files/UploadProfileImage");
+                logger.Error("Error In Files/UploadBookFile");
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Files/UploadProfileImage", ex);
+                logger.Error("Error In Files/UploadBookFile", ex);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        // HttpPost used for test
+        // Maybe should use "model" instead "id", and move method to another controller
+        [HttpGet]
+        [ActionName("book-download")]
+        public HttpResponseMessage GetBookFile(string id)
+        {
+            try
+            {
+                HttpResponseMessage result = null;
+                string directoryPath = String.Format("{0}\\{1}\\{2}", @"E:\LibraryContent\BookFiles", 
+                    id.Substring(0,2), id.Substring(2,2));
+
+                string filePath = Directory.GetFiles(directoryPath, String.Format("{0}.*", id)).First();
+
+                if (!File.Exists(filePath))
+                { 
+                    logger.Error("Error In Files/DownloadBookFile");
+                    result = Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    result = Request.CreateResponse(HttpStatusCode.OK);
+                    result.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                    result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                    result.Content.Headers.ContentDisposition.FileName = "SampleImg";
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error In Files/DownloadBookFile", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }

@@ -21,6 +21,11 @@
             return arr;
         };
 
+        vm.downloadFile = function () {
+            var downloadPath = "/api/file/book-download/78E43838F7B4D4A07D98DA9F699105F776CE71E6";
+            window.open(downloadPath, '_blank', '');
+        };
+
         $scope.uploadBookFile = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
