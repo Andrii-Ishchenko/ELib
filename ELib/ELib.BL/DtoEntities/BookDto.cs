@@ -50,9 +50,7 @@ namespace ELib.BL.DtoEntities
 
         public ICollection<int> GenresIds { get; set; }
 
-        public ICollection<string> FormatsNames { get; set; }
-
-        public ICollection<string> FormatsFilePaths { get; set; }
+        public ICollection<BookInstanceDto> BookInstances { get; set; }
 
         public int Rating { get; set; }
 

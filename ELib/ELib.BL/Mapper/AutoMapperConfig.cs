@@ -22,6 +22,7 @@ namespace ELib.BL.Mapper
             configurePersonMapping();
             configureCurrentPerson();
             configureLanguageMapping();
+            configureBookInstanceMapping();
         }
 
         private static void configureSubgenreMapping()
@@ -101,6 +102,12 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Language, LanguageDto>();
             AutoMapper.Mapper.CreateMap<LanguageDto, Language>();
+        }
+
+        private static void configureBookInstanceMapping()
+        {
+            AutoMapper.Mapper.CreateMap<BookInstance, BookInstanceDto>();
+            AutoMapper.Mapper.CreateMap<BookInstanceDto, BookInstance>();
         }
     }
 }

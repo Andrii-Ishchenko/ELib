@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
+    <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
