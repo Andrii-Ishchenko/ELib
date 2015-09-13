@@ -19,7 +19,9 @@
                     <div class="panel-heading">Download</div>
                     <div class="panel-body">
                         <ul>
-                            <li><a href="#" ng-click="book.downloadFile()">Some book</a></li>
+                            <li ng-repeat="bookInstance in book.instance.BookInstances" >
+                                <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">Click to download</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
