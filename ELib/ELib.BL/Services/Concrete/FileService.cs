@@ -153,13 +153,20 @@ namespace ELib.BL.Services.Concrete
 
         public string GetBookFilePath(string fileHash)
         {
-            if (fileHash == "")
-                return "";
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath = String.Format(@"{0}/{1}/{2}.png", BOOK_FILE_VIRTUAL_ALIAS, directoryPath, fileHash);
+            string directoryPath = this.DirectoryPath(fileHash, BOOK_FILES_FOLDER_PATH);
+
+            string fullPath = Directory.GetFiles(directoryPath, String.Format("{0}.*", fileHash)).First();
             logger.Info(String.Format("Getting Book, hash:{0} ,path:{1} ", fileHash, fullPath));
 
             return fullPath;
+        }
+
+        public string GetBookFileNameByHash(string hash)
+        {
+            using (var uow = _factory.Create())
+            {
+                return uow.Repository<BookInstance>().Get(x => x.FileHash == hash).FirstOrDefault().FileName;
+            }
         }
 
         private bool validateFile(byte[] file, string extension, int userId, Type fileType,  int maxFileSize)
@@ -262,7 +269,5 @@ namespace ELib.BL.Services.Concrete
 
             return position > -1;
         }
-
-        
     }
 }

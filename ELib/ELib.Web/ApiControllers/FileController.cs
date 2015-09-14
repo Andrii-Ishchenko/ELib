@@ -169,24 +169,14 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
+                string filePath = _fileService.GetBookFilePath(id);
+
                 HttpResponseMessage result = null;
-                string directoryPath = String.Format("{0}\\{1}\\{2}", @"E:\LibraryContent\BookFiles", 
-                    id.Substring(0,2), id.Substring(2,2));
 
-                string filePath = Directory.GetFiles(directoryPath, String.Format("{0}.*", id)).First();
-
-                if (!File.Exists(filePath))
-                { 
-                    logger.Error("Error In Files/DownloadBookFile");
-                    result = Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    result = Request.CreateResponse(HttpStatusCode.OK);
-                    result.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
-                    result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                    result.Content.Headers.ContentDisposition.FileName = "SampleImg";
-                }
+                result = Request.CreateResponse(HttpStatusCode.OK);
+                result.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileNameByHash(id);
 
                 return result;
             }
