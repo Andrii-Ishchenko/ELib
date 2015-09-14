@@ -8,6 +8,7 @@
         var baseUrl = "/api/";
         var CurrentProfileService = {
             getCurrentUser: getCurrentUser,
+            saveCurrentUser: saveCurrentUser
         };
 
         return CurrentProfileService;
@@ -24,6 +25,16 @@
             });
         }
 
+        function saveCurrentUser(user) {
+            var url = baseUrl + "CurrentProfile/UpdateCurrentUser";
+
+            return $resource(url, {}, {
+                send: {
+                    method: 'PUT',
+                    data:user
+                }
+            });
+        }
 
     }
 
