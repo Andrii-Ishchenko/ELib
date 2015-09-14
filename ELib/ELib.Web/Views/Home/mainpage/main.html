@@ -5,7 +5,7 @@
 
     <div class="row">
 
-        <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in mainpage.books">
+        <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in pager.books">
 
 
             <figure class="thumbnail" style="margin-bottom : 15px;">
@@ -30,11 +30,17 @@
                 </figcaption>
             </figure>
         </div>
+
+
     </div>
-    <ul class="pager">
-        <li class="previous disabled"><a href="#">&larr; Предыдущая</a></li>
-        <li class="next"><a href="#">Следующая &rarr;</a></li>
-    </ul>
+    
+
+    <div ng-controller="PagerController">
+        <pager total-items="totalItems" ng-model="currentPage"></pager>
+    </div>
+
+
+
     <h1>New books</h1>
     <hr />
 
@@ -68,10 +74,9 @@
     </div>
 
 
-    <ul class="pager">
-        <li class="previous disabled"><a href="#">&larr; Предыдущая</a></li>
-        <li class="next"><a href="#">Следующая &rarr;</a></li>
-    </ul>
+    <div ng-controller="PagerController">
+        <pager total-items="totalItems" ng-model="currentPage"></pager>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

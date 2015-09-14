@@ -44,7 +44,7 @@ namespace ELib.Web.ApiControllers
 
         [HttpGet]
         [ActionName("best-rating-books")]
-        public HttpResponseMessage GetBooksWithHighestRating([FromUri]int pageCount = 6, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage GetBooksWithHighestRating(int pageCount = 3, int pageNumb = 1)
         {
             try
             {
