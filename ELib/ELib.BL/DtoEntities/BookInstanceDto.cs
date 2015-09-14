@@ -14,5 +14,10 @@ namespace ELib.BL.DtoEntities
 
         [StringLength(400)]
         public string FileName { get; set; }
+
+        public string Extension
+        {
+            get { return Path.GetExtension(FileName).Replace(".", string.Empty).ToUpperInvariant(); }
+        }
     }
 }

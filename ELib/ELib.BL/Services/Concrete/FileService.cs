@@ -253,7 +253,7 @@ namespace ELib.BL.Services.Concrete
 
         private string getExtension(string fileName)
         {
-            return Path.GetExtension(fileName.Trim('\"')).Replace(".", String.Empty).ToUpper();
+            return Path.GetExtension(fileName).Replace(".", String.Empty).ToUpperInvariant();
         }
 
         private bool validateExtension(string[] extensions, string extensionToValidate)

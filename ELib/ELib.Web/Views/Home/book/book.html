@@ -18,12 +18,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Download</div>
                     <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="bookInstance in book.instance.BookInstances" >
-                                <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">Click to download</a>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances" >
+                                <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">{{bookInstance.Extension}}</a>
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div data-ng-hide="book.message == ''" data-ng-class="(book.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{book.message}}
                 </div>
                 <div>
                     <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />

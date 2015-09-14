@@ -140,7 +140,7 @@ namespace ELib.Web.ApiControllers
 
                     foreach (var file in provider.Contents)
                     {
-                        string fileName = file.Headers.ContentDisposition.FileName;
+                        string fileName = file.Headers.ContentDisposition.FileName.Trim('\"');
                         byte[] buffer = await file.ReadAsByteArrayAsync();
                         saveResult = _fileService.SaveBookFile(buffer, fileName, id, userId);
                     }

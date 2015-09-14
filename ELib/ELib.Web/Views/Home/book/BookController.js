@@ -6,6 +6,10 @@
 
     function BookController(bookRepository, $routeParams, FileFactory, $scope) {
         var vm = this;
+
+        vm.savedSuccessfully = false;
+        vm.message = "";
+
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
@@ -27,10 +31,11 @@
 
             FileFactory.uploadBookFile(fd, $routeParams.id).then(
                 function (response) {
-                    alert("success");
+                    vm.savedSuccessfully = true;
+                    vm.message = "Book file has been uploaded successfully";
                 },
                 function (error) {
-                    alert("error");
+                    vm.message = "Book file uploading is failed";
                 });
         };
     }
