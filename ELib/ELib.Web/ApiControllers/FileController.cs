@@ -21,6 +21,7 @@ namespace ELib.Web.ApiControllers
 
         public FileController(IFileService fileService)
         {
+            _fileService = fileService;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
