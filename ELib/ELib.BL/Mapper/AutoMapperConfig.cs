@@ -43,9 +43,8 @@ namespace ELib.BL.Mapper
             FileService fs = new FileService(uowf);
 
             AutoMapper.Mapper.CreateMap<Person, CurrentPersonDto>()
-                .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))             
-                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName))
-                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash != "") ? fs.GetProfileImagePath(p.ImageHash) : ""));
+                .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))
+                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName));              
             AutoMapper.Mapper.CreateMap<CurrentPersonDto, Person>();
         }
 

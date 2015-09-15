@@ -5,7 +5,11 @@
         <div class="row">
             <div class="col-lg-4 col-sm-12">
                 <figure class="panel panel-default"  style="margin-bottom : 15px">
-                    <img class="panel-body center-block" src=""  width="192" height="240" />
+                    <div class="panel-heading">
+                        <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('fileUploadId').files)" />
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
+                    </div>
+                    <img class="panel-body center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}"  width="192" height="240" />
                     <figcaption class="panel-footer">
                       <p>Rating : {{book.instance.Rating}}</p>
                       <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->

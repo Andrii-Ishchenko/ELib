@@ -30,7 +30,7 @@ namespace ELib.BL.DtoEntities
 
         public DateTime? PublishYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        public String ImageHash { get; set; }
 
         public string Description { get; set; }
 

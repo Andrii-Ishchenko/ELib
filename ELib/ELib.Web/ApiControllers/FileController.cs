@@ -11,6 +11,10 @@ using Microsoft.AspNet.Identity;
 using ELib.Domain.Entities;
 using System.IO;
 using System.Web;
+using System.Net.Http.Headers;
+using System.Drawing;
+using System.Web.Hosting;
+using System.Drawing.Imaging;
 
 namespace ELib.Web.ApiControllers
 {
@@ -40,7 +44,7 @@ namespace ELib.Web.ApiControllers
                     string id = User.Identity.GetUserId();
                     p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id).FirstOrDefault();
                     if (p == null)
-                        return Request.CreateResponse(HttpStatusCode.BadRequest,"User Not Found");
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "User Not Found");
                 }
                 int userId = p.Id;
 
@@ -50,7 +54,7 @@ namespace ELib.Web.ApiControllers
                     await Request.Content.ReadAsMultipartAsync(provider);
 
                     bool saveResult = false;
-                    
+
 
                     foreach (var file in provider.Contents)
                     {
@@ -68,15 +72,14 @@ namespace ELib.Web.ApiControllers
                 logger.Error("Error In Files/UploadProfileImage");
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Error("Error In Files/UploadProfileImage", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
-        // HttpPost used for test
-        // Maybe should use "model" instead "id", and move method to another controller
+
         [HttpPost]
         [ActionName("book-image")]
         [Authorize]
@@ -118,8 +121,7 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-        // HttpPost used for test
-        // Maybe should use "model" instead "id", and move method to another controller
+
         [HttpPost]
         [ActionName("book-instance")]
         [Authorize]
@@ -161,8 +163,7 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-        // HttpPost used for test
-        // Maybe should use "model" instead "id", and move method to another controller
+
         [HttpGet]
         [ActionName("book-download")]
         public HttpResponseMessage GetBookFile(string id)
@@ -185,6 +186,66 @@ namespace ELib.Web.ApiControllers
                 logger.Error("Error In Files/DownloadBookFile", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+
+
+        [HttpGet]
+        [ActionName("book-images")]
+        public HttpResponseMessage GetBookImage(string hash, int w=0, int h=0)
+        {
+            HttpResponseMessage message = new HttpResponseMessage();
+            byte[] image;
+            if (hash == "" || hash == null)
+            {
+                String rootpath = HostingEnvironment.MapPath("~/Content/");
+                var path = Path.Combine(rootpath, "no-photo.png");
+                Image i = Image.FromFile(path);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms, ImageFormat.Png);
+                    image = ms.ToArray();
+                }
+
+            } else
+            {
+                image = _fileService.GetBookImage(hash, w, h);
+            }
+
+            if (image == null)
+            {
+                String rootpath = HostingEnvironment.MapPath("~/Content/");
+                var path = Path.Combine(rootpath, "no-photo.png");
+                Image i = Image.FromFile(path);
+                using(MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms,ImageFormat.Png);
+                    image = ms.ToArray();
+                }
+            }
+                
+
+            message.Content = new ByteArrayContent(image);
+            message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+            message.StatusCode = HttpStatusCode.OK;
+            return message;
+
+        }
+
+        [HttpGet]
+        [ActionName("profile-image")]
+        public HttpResponseMessage GetProfileImage(string hash, int w=0, int h=0)
+        {
+            if (hash == "" || hash==null)
+              return  Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, "Hash cannot be null");
+
+            HttpResponseMessage message = new HttpResponseMessage();
+
+            byte[] image = _fileService.GetProfileImage(hash, w, h);
+            message.Content = new ByteArrayContent(image);
+            message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+            message.StatusCode = HttpStatusCode.OK;
+            return message;
+
         }
     }
 }

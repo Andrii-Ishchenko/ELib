@@ -45,8 +45,16 @@
         }
 
 
-        function uploadBookImage() {
-            console.log("download file function called.")
+        function uploadBookImage(formData, bookId) {
+            var url = baseUrl + "file/book-image/"+bookId;
+
+            return $http.post(url, formData, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': undefined
+                },
+                transformRequest: angular.identity
+            });
         }
 
         function downloadFile() {

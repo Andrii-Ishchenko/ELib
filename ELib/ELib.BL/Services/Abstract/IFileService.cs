@@ -16,9 +16,9 @@ namespace ELib.BL.Services.Abstract
         string GetBookFilePath(string hash);
         string GetBookFileNameByHash(string hash);
 
-        Image GetBookImage(String hash, int w, int h);
-        Image GetProfileImage(String hash, int w, int h);
-        Image GetAuthorImage(String hash, int w, int h);
+        byte[] GetBookImage(String hash, int w, int h);
+        byte[] GetProfileImage(String hash, int w, int h);
+        byte[] GetAuthorImage(String hash, int w, int h);
 
     }
 }

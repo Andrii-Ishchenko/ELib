@@ -55,6 +55,23 @@ namespace ELib.Common
             
         }
 
+        public static Image CreateBorderedImage(Image source, int targetHeight, int targetWidth)
+        {
+            Bitmap newImage = new Bitmap(targetWidth, targetHeight);
+            Graphics g = Graphics.FromImage(newImage);
+            Brush b = new SolidBrush(backgroundColor);
+            g.FillRectangle(b, new Rectangle() { Height = targetHeight, Width = targetWidth, X = 0, Y = 0 });
+
+
+            int doubledDX = targetWidth - source.Width;
+            int doubledDY = targetHeight - source.Height;
+            int newX = doubledDX / 2;
+            int newY = doubledDY / 2;
+
+            g.DrawImage(source, newX, newY, source.Width, source.Height);
+            return newImage;
+        }
+
         public static void Test()
         {
             using (var image = Image.FromFile(@"d:\aspnet.png"))
