@@ -15,6 +15,7 @@ namespace ELib.BL.Services.Concrete
 {
     public class FileService : IFileService
     {
+        #region AppSettings 
         private readonly int DIRECTORY_NAME_LENGTH = Convert.ToInt32(ConfigurationManager.AppSettings["DirectoryNameLength"]);
         private readonly string PROFILE_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["ProfileImagesFolderPath"];
         private readonly string BOOK_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["BookImagesFolderPath"];
@@ -25,6 +26,7 @@ namespace ELib.BL.Services.Concrete
         private readonly int MAX_PROFILE_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxProfileImageSize"]); //bytes
         private readonly int MAX_BOOK_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookImageSize"]); // bytes
         private readonly int MAX_BOOK_FILE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookFileSize"]); //bytes
+        #endregion AppSettings
 
         private readonly IUnitOfWorkFactory _factory;
         private ELogger logger;
@@ -50,7 +52,6 @@ namespace ELib.BL.Services.Concrete
                     person.ImageHash = fileHash;
                     uow.Repository<Person>().Update(person);
                     uow.Save();
-                    //Move to another thread as async.
                     RemoveUnusedProfileImage(oldHash,uow);
                     uow.Save();
                 }
@@ -129,6 +130,39 @@ namespace ELib.BL.Services.Concrete
             return false;
         }
 
+
+        public Image GetBookImage(string hash, int w, int h)
+        {
+            using (IUnitOfWork uow = _factory.Create())
+            {
+                var book = uow.Repository<Book>().Get(b => b.ImageHash == hash).FirstOrDefault();
+                if (book == null)
+                    return null;
+
+                //ENSURE THAT FILEPATH IS CORRECT
+                String fileName = GetBookImagePath(hash);
+                return Image.FromFile(fileName);
+            }
+        }
+
+        public Image GetProfileImage(string hash, int w, int h)
+        {
+            using(IUnitOfWork uow = _factory.Create())
+            {
+                var profile = uow.Repository<Person>().Get(p => p.ImageHash == hash).FirstOrDefault();
+                if (profile == null)
+                    return null;
+                String fileName = GetProfileImagePath(hash);
+                return Image.FromFile(fileName);
+            }
+        }
+
+        public Image GetAuthorImage(string hash, int w, int h)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Obsolete
         public String GetBookImagePath(string fileHash)
         {
             if (fileHash == "")
@@ -161,6 +195,8 @@ namespace ELib.BL.Services.Concrete
             return fullPath;
         }
 
+        #endregion Obsolete
+
         public string GetBookFileNameByHash(string hash)
         {
             using (var uow = _factory.Create())
@@ -168,6 +204,8 @@ namespace ELib.BL.Services.Concrete
                 return uow.Repository<BookInstance>().Get(x => x.FileHash == hash).FirstOrDefault().FileName;
             }
         }
+   
+        #region PrivateMethods
 
         private bool validateFile(byte[] file, string extension, int userId, Type fileType,  int maxFileSize)
         {
@@ -269,5 +307,7 @@ namespace ELib.BL.Services.Concrete
 
             return position > -1;
         }
+    
+        #endregion PrivateMethods
     }
 }
