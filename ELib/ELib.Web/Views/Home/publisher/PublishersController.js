@@ -11,8 +11,6 @@
             menu: "/views/shared/menu.html",
             main: "/views/home/publisher/publishers.html"
         }
-        vm.publishers = dataServiceFactory.getService('publishers').query();
-
         vm.pageCount = 3;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         var obj = dataServiceFactory.getService('publishers').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb });
