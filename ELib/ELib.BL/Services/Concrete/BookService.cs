@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
-using AutoMapper.QueryableExtensions;
+using LinqKit;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -53,15 +52,15 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        public IEnumerable<BookDto> GetAll(Dictionary<string,string>query, int pageCount, int pageNumb)
+        public IEnumerable<BookDto> GetAll(string query, int pageCount, int pageNumb)
         {
             Expression<Func<Book, bool>> expression = buildExpression(query);
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-
-                var entities = uow.Repository<Book>().Get(skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
-
+                var repository = uow.Repository<Book>();
+                var entities = repository.Get(filter: expression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
                     var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
@@ -72,92 +71,49 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        private Expression<Func<Book, bool>> buildExpression(Dictionary<string, string> query)
+        private Expression<Func<Book, bool>> buildExpression(string query)
         {
-            ParameterExpression parameter = Expression.Parameter(typeof(BookDto), "x");
-            Expression method = null;
-            foreach (KeyValuePair<string,string>item in query)
-            {
-                if (typeof(BookDto).GetProperty(item.Key) != null)
-                {
-                    var value = castType(item.Value, typeof(BookDto).GetProperty(item.Key).PropertyType);
+            if (query == null)
+                return PredicateBuilder.True<Book>();
 
-                    Expression property = Expression.Property(parameter, item.Key);
-                    Expression target = Expression.Constant(value, typeof(BookDto).GetProperty(item.Key).PropertyType);
-                    Expression equalsMethod = Expression.Equal(property, target);
-                    method = (method == null) ? equalsMethod : Expression.And(method, equalsMethod);
-
-                }
-            }
-            Expression<Func<BookDto, bool>> lambda;
-            if (method != null)
+            string[] words = query.Split(' ');
+            Expression<Func<Book, bool>> filter = PredicateBuilder.False<Book>();
+            foreach (string word in words)
             {
-               lambda = Expression.Lambda<Func<BookDto, bool>>(method, parameter);
+                Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(word);
+                filter = filterOr(filter, searchrByTitle);
+
+                Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName + a.Author.FirstName).Contains(word)).Count() > 0;
+                filter = filterOr(filter, searchByAuthor);
+
+                Expression<Func<Book, bool>> searchByGenre = (x) => x.BookGenres.AsQueryable().Where(g => g.Genre.Name.Contains(word)).Count() > 0;
+                filter = filterOr(filter, searchByGenre);
+
+                Expression<Func<Book, bool>> searchByPublisher = x => x.Publisher.Name.Contains(word);
+                filter = filterOr(filter, searchByPublisher);
+
+                Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(word);
+                filter = filterOr(filter, searchBySubgenre);
+
+                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year.ToString().Contains(word);
+                filter = filterOr(filter, searchByYear);
+
             }
-            return null; ////
+
+            return filter;
         }
 
-        private object castType(string value, Type propertyType)
+
+        private static Expression<Func<Book, bool>> filterAdd(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
         {
-            
-          if (propertyType == typeof(string))
-            {
-                return value;
-            }
+            filter = (byQery == null) ? filter : filter.And(byQery);
+            return filter;
+        }
 
-          if (propertyType == typeof(int))
-            {
-                int res;
-                if (Int32.TryParse(value, out res))
-                {
-                    return res;
-                }
-                else throw new InvalidCastException();
-            }
-
-          if (propertyType == typeof(int?))
-            {
-                int res;
-                if (Int32.TryParse(value, out res))
-                {
-                    return res as int?;
-                }
-                else return null;
-            }
-
-
-          if (propertyType == typeof(DateTime?))
-            {
-                DateTime res;
-                if (DateTime.TryParse(value, out res))
-                    return res;
-                int ires;
-                if (Int32.TryParse(value, out ires))
-                    return new DateTime(ires, 1, 1) as DateTime?;
-                throw new InvalidCastException();
-            }
-
-          if (propertyType == typeof(ICollection<string>))
-            {
-                return value.Split(',');
-            }
-
-            if (propertyType == typeof(ICollection<int>))
-            {
-                string[]str = value.Split(',');
-                List<int> res = new List<int>();
-                foreach (string item in str)
-                {
-                    int intRes;
-                    if (Int32.TryParse(item, out intRes))
-                    {
-                        res.Add(intRes);
-                    }
-                    else throw new InvalidCastException();
-                }
-                return res;
-            }
-            throw new FormatException();
+        private static Expression<Func<Book, bool>> filterOr(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
+        {
+            filter = (byQery == null) ? filter : filter.Or(byQery);
+            return filter;
         }
     }
 }

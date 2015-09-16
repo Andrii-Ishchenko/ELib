@@ -6,11 +6,13 @@ using ELib.DAL.Infrastructure.Concrete;
 using System.Data.Entity;
 using ELib.DAL.Repositories.Abstract;
 using ELib.Domain.Entities;
+using LinqKit;
 
 namespace ELib.DAL.Repositories.Concrete
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
+        private int _totalCount;
         internal ELibDbContext context;
         internal DbSet<TEntity> dbSet;
 
@@ -18,7 +20,7 @@ namespace ELib.DAL.Repositories.Concrete
         {
             get
             {
-                return dbSet.Count();
+                return _totalCount;
             }
         }
 
@@ -50,13 +52,15 @@ namespace ELib.DAL.Repositories.Concrete
             IQueryable<TEntity> query = dbSet;
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.AsExpandable().Where(filter);
             }
 
             foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(item);
             }
+
+            _totalCount = query.Count<TEntity>();
 
             query = (orderBy != null) ? orderBy(query) : query;
             if (skipCount >= 0 && topCount > 0)

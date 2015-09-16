@@ -12,6 +12,11 @@
                 controller : 'BooksController',
                 controllerAs : 'books'
             })
+             .when('/books/search', {
+                 templateUrl: '/views/shared/two-column-layout.html',
+                 controller: 'BooksController',
+                 controllerAs: 'books'
+             })
             .when('/books/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',

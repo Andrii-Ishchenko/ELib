@@ -45,16 +45,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well">
-                <form class="form-horizontal" role="search">
+                <form class="form-horizontal" role="search" ng-controller="SearchController as search">
                     <div class="form-group">
                         <div class="col-md-3">
                             Search Criterias
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" ng-model="search.query" class="form-control" placeholder="Search">
                         </div>
                         <div class="col-md-1">
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button ng-click="search.sendRequest()" type="submit" class="btn btn-default">Submit</button>
                         </div>
                     </div>
                 </form>
