@@ -65,23 +65,7 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
 
-        }
-
-        [HttpGet]
-        [ActionName("books-for-author")]
-        public HttpResponseMessage GetForAuthor(int id)
-        {
-            try
-            {
-                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
-                return Request.CreateResponse(HttpStatusCode.OK, books);
-            }
-            catch (Exception e)
-            {
-                _logger.Error("Error Books/GetForAuthor", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
-            }
-        }
+        }        
 
         [HttpPost]
         public HttpResponseMessage Post(BookDto book)
