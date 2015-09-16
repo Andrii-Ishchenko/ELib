@@ -57,9 +57,9 @@ namespace ELib.Web
                                     "~/Views/Home/user/CurrentProfileController.js",
                                     "~/Views/Home/user/CurrentProfileFactory.js",
 
-
                                     "~/Views/Home/publisher/PublisherController.js",
-                                    "~/Views/Home/publisher/PublishersController.js"
+                                    "~/Views/Home/publisher/PublishersController.js",
+                                    "~/Views/Home/publisher/NewPublisherController.js"
 
                         )
                     );

@@ -57,11 +57,17 @@
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })
+            .when('/publishers/new', {
+                templateUrl: '/views/home/publisher/new-publisher.html',
+                controller: 'NewPublisherController',
+                controllerAs: 'newPC'
+            })
             .when('/publishers/:id', {
                 templateUrl: '/views/home/publisher/publisher.html',
                 controller: 'PublisherController',
                 controllerAs: 'publisher'
             })
+            
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',

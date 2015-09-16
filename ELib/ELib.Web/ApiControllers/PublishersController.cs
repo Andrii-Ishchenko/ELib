@@ -58,6 +58,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPost]
+        [ActionName("new")]
         public HttpResponseMessage AddPublisher(PublisherDto publisher)
         {
             try
