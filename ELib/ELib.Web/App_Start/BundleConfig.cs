@@ -61,7 +61,8 @@ namespace ELib.Web
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
 
-                                    "~/Views/Home/mainpage/PagerController.js"
+                                    "~/Views/Home/mainpage/PagerController.js",
+                                    "~/Views/Home/mainpage/example.js"
 
                         )
                     );

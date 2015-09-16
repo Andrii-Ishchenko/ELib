@@ -3,40 +3,57 @@
     <h1>Books with the highest rating</h1>
     <hr />
 
-    <div class="row">
+    <div class="row" ng-controller="ModalDemoCtrl">
 
-        <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in pager.books">
+        <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in pager.books" >
 
 
-            <figure class="thumbnail" style="margin-bottom : 15px;">
+            <figure class="thumbnail" style="margin-bottom : 15px;" >
+                
+                    <script type="text/ng-template" id="myModalContent.html">
 
-                <img class="img-rounded" src="images/1.png" id="menu" data-toggle="modal" data-target="#myModal" />
-                <p></p>
-                <figcaption class="panel-footer">
-                    <a class="title" href="{{'/book/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
-                        {{book.Title}}
-                        <span class="paragraph-end"></span>
-                    </a>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="ok()">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + book.Id}}">{{book.Title}}</a></h4>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/1.png" class="panel-body center-block" />
 
-                    <a class="subtitle" href="{{'/author/'+book.AuthorsIds[0]}}" title="{{book.Authors[0]}}">
-                        {{book.Authors[0]}}
-                        <span class="paragraph-end">
-                        </span>
-                    </a>
+                        </div>
+                        <div class="modal-footer" style="text-align:justify">
+                            {{book.Description}}
+                        </div>
 
-                    <div class="center-block text-center text-success" id="productRate">
-                        <div style="width: {{book.SumRatingValue}}%"></div>
-                    </div>
-                </figcaption>
-            </figure>
+                    </script>
+
+                    <img class="img-rounded" src="images/1.png" id="menu" ng-click="open(book.Id)" />
+                    
+                    <p></p>
+                    <figcaption class="panel-footer">
+                        <a class="title" href="{{'/book/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
+                            {{book.Title}}
+                            <span class="paragraph-end"></span>
+                        </a>
+
+                        <a class="subtitle" href="{{'/author/'+book.AuthorsIds[0]}}" title="{{book.Authors[0]}}">
+                            {{book.Authors[0]}}
+                            <span class="paragraph-end">
+                            </span>
+                        </a>
+
+                        <div class="center-block text-center text-success" id="productRate">
+                            <div style="width: {{book.SumRatingValue}}%"></div>
+                        </div>
+                    </figcaption>
+</figure>
         </div>
 
 
     </div>
-    
+
 
     <div ng-controller="PagerController">
-        <pager total-items="totalItems" ng-model="currentPage"></pager>
+        <pager total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pager>
     </div>
 
 
@@ -75,7 +92,7 @@
 
 
     <div ng-controller="PagerController">
-        <pager total-items="totalItems" ng-model="currentPage"></pager>
+        <pager total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"></pager>
     </div>
 
     <!-- Modal -->
@@ -84,7 +101,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Название модали</h4>
+                    <h4 class="modal-title" id="myModalLabel">{{book.PublisherName}}</h4>
                 </div>
                 <div class="modal-body">
                     <img src="images/1.png" class="panel-body center-block" />
@@ -92,6 +109,7 @@
             </div>
         </div>
     </div>
-</div>
+
+   </div>
 
 

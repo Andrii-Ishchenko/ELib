@@ -50,8 +50,9 @@ namespace ELib.Web.ApiControllers
             {
 
                 IEnumerable<BookDto> books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb);
-                int totalCount = _bookService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+                //int totalCount = _bookService.TotalCount;
+                //return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+                return Request.CreateResponse(HttpStatusCode.OK, books);
             }
             catch (Exception e)
             {

@@ -1,36 +1,41 @@
-﻿(function (){
-    angular.module('elib').controller('PagerController',PagerController) 
-   
-    PagerController.$inject = ["bookRepository",'$scope', '$log'];
+﻿(function () {
+    angular.module('elib').controller('PagerController', PagerController)
 
-    function PagerController(bookRepository,$scope, $log) {
+    PagerController.$inject = ["bookRepository", '$scope', '$log'];
+
+    function PagerController(bookRepository, $scope, $log) {
+
+        $scope.totalItems = 5;
+        $scope.itemsPerPage = 2;
+        $scope.currentPage = 1;
+
         
-        var vm = this;
-        vm.pageCount = 3;
-           var obj = bookRepository.getBestRatingBooks().get({ pageCount: 3, pageNumb: 1 });
+            var vm = this;
+            vm.pageCount = 3;
+            vm.books = bookRepository.getBestRatingBooks().query({ pageCount: 2, pageNumb: $scope.currentPage });
+            //var obj = bookRepository.getBestRatingBooks().get({ pageCount: 2, pageNumb: $scope.currentPage });
 
-        obj.$promise.then(function (data) {
-            vm.books = data.books;
-            vm.totalCount = data.totalCount;
-            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-            vm.pages = new Array(vm.totalPages);
-        })
+            //obj.$promise.then(function (data) {
+
+            //    vm.books = data.books;
+            //    vm.totalCount = data.totalCount;
+            //    vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+            //    vm.pages = new Array(vm.totalPages);
+
+            //})
+        
 
 
-            $scope.totalItems = 64;
-            $scope.currentPage = 1;
+        $scope.pageChanged = function () {
+            $log.log('Page changed to: ' + $scope.currentPage);
+            vm.books = bookRepository.getBestRatingBooks().query({ pageCount: 2, pageNumb: $scope.currentPage });
 
-            $scope.setPage = function (pageNo) {
-                $scope.currentPage = pageNo;
-            };
+        };
 
-            $scope.pageChanged = function () {
-                $log.log('Page changed to: ' + $scope.currentPage);
-            };
 
-            $scope.maxSize = 5;
-            $scope.bigTotalItems = 175;
-            $scope.bigCurrentPage = 1;
-        }
+
+
+
+    }
 })();
 
