@@ -14,7 +14,7 @@
 
 
         function getBooksForAuthor() {
-            var url = baseUrl + "books-for-author/:id";
+            var url = "/api/authors/id/books";
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
