@@ -311,6 +311,7 @@
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors.html" />
     <Content Include="Views\Home\author\AuthorsController.js" />
+    <Content Include="Views\Home\book\book-list-menu.html" />
     <Content Include="Views\Home\book\book.html" />
     <Content Include="Views\Home\book\BookController.js" />
     <Content Include="Views\Home\book\bookListDirective.js" />
