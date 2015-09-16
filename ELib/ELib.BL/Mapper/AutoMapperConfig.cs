@@ -22,6 +22,7 @@ namespace ELib.BL.Mapper
             configurePersonMapping();
             configureCurrentPerson();
             configureLanguageMapping();
+            configureBookInstanceMapping();
         }
 
         private static void configureSubgenreMapping()
@@ -43,9 +44,7 @@ namespace ELib.BL.Mapper
 
             AutoMapper.Mapper.CreateMap<Person, CurrentPersonDto>()
                 .ForMember(d => d.Email, o => o.MapFrom(p => p.ApplicationUser.Email))
-                .ForMember(d => d.Phone, o => o.MapFrom(p => p.ApplicationUser.PhoneNumber))
-                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName))
-                .ForMember(d => d.ImagePath, o => o.MapFrom(p => (p.ImageHash != "") ? fs.GetProfileImagePath(p.ImageHash) : ""));
+                .ForMember(d => d.UserName, o => o.MapFrom(p => p.ApplicationUser.UserName));              
             AutoMapper.Mapper.CreateMap<CurrentPersonDto, Person>();
         }
 
@@ -64,6 +63,7 @@ namespace ELib.BL.Mapper
         private static void configureBookMapping()
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                  .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.Author == null ? null : x.Author.FirstName + " " + x.Author.LastName)))
                   .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.AuthorId)))
                   .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
@@ -100,6 +100,12 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Language, LanguageDto>();
             AutoMapper.Mapper.CreateMap<LanguageDto, Language>();
+        }
+
+        private static void configureBookInstanceMapping()
+        {
+            AutoMapper.Mapper.CreateMap<BookInstance, BookInstanceDto>();
+            AutoMapper.Mapper.CreateMap<BookInstanceDto, BookInstance>();
         }
     }
 }

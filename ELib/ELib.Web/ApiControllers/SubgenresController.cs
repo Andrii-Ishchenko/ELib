@@ -18,9 +18,7 @@ namespace ELib.Web.ApiControllers
         {
             _subgenresService = subgenresService;
         }
-
-        public SubgenresController(){ }
-
+        
         [HttpGet]
         public HttpResponseMessage GetSubgenres()
         {

@@ -8,7 +8,7 @@
         var vm = this;
 
         $scope.template = {
-            menu: "/views/shared/menu.html",
+            menu: "/views/home/book/book-list-menu.html",
             main: "/views/home/book/books.html"
         }
         vm.pageCount = 3;

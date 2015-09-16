@@ -1,0 +1,123 @@
+﻿<div>
+    <div class="col-md-3">
+        
+    </div>
+    <div class="col-md-9">
+        <form class="form-horizontal" name="newBookForm" novalidate>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <h1>New book </h1>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" >Title:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="title" placeholder="Title" ng-model="newBookCtrl.title"  maxlength="200" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newBookForm.title.$dirty && newBookForm.title.$invalid">
+                        <label class="control-label" ng-show="newBookForm.title.$error.required">Title is required</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">ISBN:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="isbn" placeholder="ISBN" maxlength="20" ng-model="newBookCtrl.isbn">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Language:</label>
+                <div class="col-xs-3">
+                    <select class="form-control" ng-model="newBookCtrl.publishLanguage" name="publishLanguage" required>
+                        <option value="">Publish language</option>
+                        <option ng-repeat="language in newBookCtrl.publishLanguages" value="{{language.Id}}">{{language.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" ng-model="newBookCtrl.originalLanguage">
+                        <option value="">Original language</option>
+                        <option ng-repeat="language in newBookCtrl.originalLanguages" value="{{language.Id}}">{{language.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newBookForm.publishLanguage.$dirty && newBookForm.publishLanguage.$invalid">
+                        <label class="control-label" ng-show="newBookForm.publishLanguage.$error.required">Publish language is required</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Publisher:</label>
+                <div class="col-xs-6">
+                    <select class="form-control" ng-model="newBookCtrl.publisher" name="publisher" required>
+                        <option value="">Publisher</option>
+                       <option ng-repeat="publisher in newBookCtrl.publishers" value="{{publisher.Id}}">{{publisher.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newBookForm.publisher.$dirty && newBookForm.publisher.$invalid">
+                        <label class="control-label" ng-show="newBookForm.publisher.$error.required">Publisher is required</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Year of publishing:</label>
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" id="inputYear" placeholder="Year" ng-model="newBookCtrl.yearOfPublishing" ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Subgenre:</label>
+                <div class="col-xs-6">
+                    <select class="form-control" ng-model="newBookCtrl.subgenre" name="subgenre" required>
+                        <option value="">Subgenre</option>
+                        <option ng-repeat="subgenre in newBookCtrl.subgenres" value="{{subgenre.Id}}">{{subgenre.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newBookForm.subgenre.$dirty && newBookForm.subgenre.$invalid">
+                        <label class="control-label" ng-show="newBookForm.subgenre.$error.required">Subgenre is required</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" for="description">Description:</label>
+                <div class="col-xs-9">
+                    <textarea rows="3" class="form-control" id="description" placeholder="Description" ng-model="newBookCtrl.description"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <div data-ng-hide="newBookCtrl.message == ''" data-ng-class="(newBookCtrl.createdSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                        {{newBookCtrl.message}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newBookCtrl.createBook()" ng-disabled="newBookForm.title.$invalid || newBookForm.publishLanguage.$invalid 
+                                    || newBookForm.publisher.$invalid || newBookForm.subgenre.$invalid">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

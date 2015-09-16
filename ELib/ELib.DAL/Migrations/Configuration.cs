@@ -88,7 +88,12 @@
             //subgenres
             var subgenres = new List<Subgenre>()
             {
-                new Subgenre() { Name = "Роман" }
+                new Subgenre() { Name = "Drama" },
+                new Subgenre() { Name = "Graphic novel" },
+                new Subgenre() { Name = "Myth" },
+                new Subgenre() { Name = "Novel" },
+                new Subgenre() { Name = "Short story" },
+                new Subgenre() { Name = "Other" }
             };
 
             subgenres.ForEach(x => context.Subgenres.AddOrUpdate(g => g.Name, x));

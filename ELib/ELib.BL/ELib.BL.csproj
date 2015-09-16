@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
+    <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
@@ -79,8 +80,7 @@
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
     <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
-    <Compile Include="Enums\BookImageExtensions.cs" />
-    <Compile Include="Enums\ProfileImageExtensions.cs" />
+    <Compile Include="Enums\ImageExtensions.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IAuthorService.cs" />

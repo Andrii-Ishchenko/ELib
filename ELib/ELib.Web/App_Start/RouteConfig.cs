@@ -14,6 +14,12 @@ namespace ELib.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "API",
+                url: "Help",
+                defaults: new { controller = "Help", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{*url}",
                 defaults: new { controller = "Home", action = "Index" }
