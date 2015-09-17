@@ -1,29 +1,34 @@
 ﻿<div>
-    <h1>book.instance.PublisherName</h1>
-    <hr />
+    <div class="container-fluid">
+        <h2>{{book.instance.Title}}</h2>
+        <hr />
+    </div>
     <div class="container col-lg-12">
         <div class="row">
             <div class="col-lg-4 col-sm-12">
-                <figure class="panel panel-default"  style="margin-bottom : 15px">
+                <figure class="panel panel-default" style="margin-bottom : 15px">
                     <div class="panel-heading">
                         <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
                         <a href="#" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()">Upload New</a>
                     </div>
-                    <img class="panel-body center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}"  width="192" height="240" />
+                    <div class="panel-body">
+                        <img class="img-responsive center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}&w=328" />
+                    </div>
+
                     <figcaption class="panel-footer">
-                      <p>Rating : {{book.instance.Rating}}</p>
-                      <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
-                      <div class="center-block text-center text-success" >
-                        <span class="glyphicon glyphicon-star"  ng-repeat="i in book.getFullStarsArray() track by $index"></span>
-                        <span class="glyphicon glyphicon-star-empty"  ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
-                      </div>
+                        <p>Rating : {{book.instance.Rating}}</p>
+                        <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
+                        <div class="center-block text-center text-success">
+                            <span class="glyphicon glyphicon-star" ng-repeat="i in book.getFullStarsArray() track by $index"></span>
+                            <span class="glyphicon glyphicon-star-empty" ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
+                        </div>
                     </figcaption>
                 </figure>
                 <div class="panel panel-default">
                     <div class="panel-heading">Download</div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances" >
+                            <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances">
                                 <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">{{bookInstance.Extension}}</a>
                             </li>
                         </ul>
@@ -36,48 +41,48 @@
                     <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
                     <button onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</button>
                 </div>
-               </div>
+            </div>
             <div class="col-lg-6 col-sm-12 container">
                 <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <p class="lead">Title:</p>
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Title:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p>{{book.instance.Title}}</p>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-sm-6">
-                    <p>{{book.instance.Title}}</p>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Authors:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
+                    </div>
                 </div>
-             </div>
-               <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <p class="lead">Authors:</p>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Genres:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Subgenre:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p>{{book.instance.Subgenre}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <p class="lead">Genres:</p>
-                </div>
-                <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <p class="lead">Subgenre:</p>
-                </div>
-                <div class="col-lg-8 col-sm-6">
-                    <p>{{book.instance.Subgenre}}</p>
-                </div>
-            </div>
-            <div class="row">
+                <div class="row">
                     <div class="col-lg-4 col-sm-6">
                         <p class="lead">Publisher:</p>
                     </div>
                     <div class="col-lg-8 col-sm-6">
                         <p><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
                     </div>
-            </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6">
                         <p class="lead">Year of publishing:</p>
@@ -86,16 +91,16 @@
                         <p>{{book.instance.PublishYear|date : "yyyy"}}</p>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <p class="lead">Pages:</p>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <p class="lead">Pages:</p>
+                    </div>
+                    <div class="col-lg-8 col-sm-6">
+                        <p>{{book.instance.TotalPages}}</p>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-sm-6">
-                    <p>{{book.instance.TotalPages}}</p>
-                </div>
-            </div>    
- </div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
     <comments-view></comments-view>
 </div>

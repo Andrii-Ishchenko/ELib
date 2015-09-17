@@ -1,5 +1,5 @@
 ﻿
-<div>
+<div class="container-fluid">
     <div ng-controller="MainController">
         <h1>Books with the highest rating</h1>
         <hr />
@@ -8,22 +8,20 @@
 
             <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in mainpage.books">
 
-
                 <figure class="thumbnail" style="margin-bottom : 15px;">
 
                     <script type="text/ng-template" id="myModalContent.html">
-                                       <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalinst.ok()">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
-                            </div>
-                            <div class="modal-body">
-                                <img src="images/1.png" class="panel-body center-block" />
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalinst.ok()">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/1.png" class="panel-body center-block" />
 
-                            </div>
-                            <div class="modal-footer" style="text-align:justify">
-                                {{modalinst.book.Description}}
-                            </div>
-                        
+                        </div>
+                        <div class="modal-footer" style="text-align:justify">
+                            {{modalinst.book.Description}}
+                        </div>
 
                     </script>
 
@@ -49,9 +47,7 @@
                 </figure>
             </div>
 
-
         </div>
-
 
         <pager total-items="mainpage.totalItems" items-per-page="mainpage.itemsPerPage" ng-model="mainpage.currentPage" ng-change="mainpage.pageChanged()"></pager>
     </div>
@@ -62,7 +58,6 @@
     <div class="row" ng-controller="ModalController as modalctrl">
 
         <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in mainpage.booksNew">
-
 
             <figure class="thumbnail" style="margin-bottom : 15px;">
 
@@ -78,7 +73,6 @@
                     <div class="modal-footer" style="text-align:justify">
                         {{modalinst.book.Description}}
                     </div>
-
 
                 </script>
 
@@ -104,9 +98,7 @@
             </figure>
         </div>
 
-
     </div>
-
 
     <pager total-items="mainpage.totalItemsNew" items-per-page="mainpage.itemsPerPage" ng-model="mainpage.currentPageNew" ng-change="mainpage.pageChangedNew()"></pager>
 

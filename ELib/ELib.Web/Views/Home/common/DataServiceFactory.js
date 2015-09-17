@@ -13,7 +13,7 @@
         return DataService;
 
         function getService(entity) {
-            var url = baseUrl + entity + "/:id/" ;
+            var url = baseUrl + entity + "/:id/";
             return $resource(url, {id: '@id'}, {
                 update: {
                     method: 'PUT',

@@ -29,7 +29,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>
-                    </li>                   
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="IndexController as indexCtrl">
                     <li><a href="/help">API</a></li>
@@ -49,8 +49,8 @@
                     <div class="form-group" style="margin-bottom:0">
                         <div class="col-sm-3">
                             @*<label for="searchSelector" class="control-label">
-                                Search:
-                            </label>*@
+                                    Search:
+                                </label>*@
                             <select id="searchSelector" class="form-control input-sm">
                                 <option>Books</option>
                                 <option>Authors</option>
@@ -61,28 +61,25 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control input-sm" placeholder="Search">
                         </div>
-                           <div class="col-sm-1">
-                               <button type="submit" class="btn btn-sm btn-default">Submit</button>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-sm btn-default">Submit</button>
                         </div>
-                           
-                        
+
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="row row-bottom-buffer">
-        <div class="container-fluid">
         <ng-view>
-
         </ng-view>
-    </div>
     </div>
     <div class="row ">
         <div class="container-fluid">
-        <div class="col-md-12 bg-success">
-            Footer
+            <div class="col-md-12 bg-success">
+                Footer
+            </div>
         </div>
     </div>
-</div>
 </div>
