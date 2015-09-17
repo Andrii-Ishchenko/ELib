@@ -63,7 +63,6 @@ namespace ELib.Web.ApiControllers
                     person.Id = thisPerson.Id;
                     person.UserName = thisPerson.UserName;
                     person.ImageHash = thisPerson.ImageHash;
-                    person.ImagePath = thisPerson.ImagePath;
                     _profileService.Update(person);
                 }
                 

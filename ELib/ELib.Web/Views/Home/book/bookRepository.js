@@ -14,7 +14,7 @@
 
 
         function getBooksForAuthor() {
-            var url = baseUrl + "books-for-author/:id";
+            var url = "/api/authors/id/books";
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
@@ -24,7 +24,7 @@
         }
 
         function getBooksForPublisher() {
-            var url = baseUrl + "books-for-publisher/:id";
+            var url = "/api/publishers/id/books";
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
@@ -34,7 +34,7 @@
         }
 
         function getBestRatingBooks() {
-            var url = baseUrl + "best-rating-books";
+            var url = baseUrl + "bestbooks";
             return $resource(url, {
                 update: {
                     query: 'Get',
@@ -44,7 +44,7 @@
         }
 
         function getNewBooks() {
-            var url = baseUrl + "new-books";
+            var url = baseUrl + "newbooks";
             return $resource(url, {
                 update: {
                     query: 'Get',

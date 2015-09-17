@@ -30,9 +30,9 @@ namespace ELib.Web.ApiControllers
             try
             {
 
-                IEnumerable<BookDto> books = _bookService.GetAll(pageCount, pageNumb);
+                IEnumerable<BookDto> books = _bookService.GetAll(pageCount,pageNumb);
                 int totalCount = _bookService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }
             catch (Exception e)
             {
@@ -88,6 +88,8 @@ namespace ELib.Web.ApiControllers
                 BookDto book = _bookService.GetById(id);
                 if (book == null)
                     throw new NullReferenceException();
+                book.TotalViewCount += 1;
+                _bookService.Update(book);
                 return Request.CreateResponse(HttpStatusCode.OK, book);
             }
             catch (NullReferenceException e)
@@ -103,39 +105,6 @@ namespace ELib.Web.ApiControllers
 
         }
 
-        [HttpGet]
-        [ActionName("books-for-author")]
-        public HttpResponseMessage GetForAuthor(int id)
-        {
-            try
-            {
-                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
-                return Request.CreateResponse(HttpStatusCode.OK, books);
-            }
-            catch (Exception e)
-            {
-                _logger.Error("Error Books/GetForAuthor", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
-            }
-
-        }
-
-        [HttpGet]
-        [ActionName("books-for-publisher")]
-        public HttpResponseMessage GetBooksForPublisher(int id)
-        {
-            try
-            {
-                IEnumerable<BookDto> books = _bookService.GetBooksForPublisher(id);
-                return Request.CreateResponse(HttpStatusCode.OK, books);
-            }
-            catch (Exception e)
-            {
-                _logger.Error("Error Books/GetForPublisher", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
-            }
-        }
-
         [HttpPost]
         public HttpResponseMessage Post(BookDto book)
         {
@@ -144,11 +113,11 @@ namespace ELib.Web.ApiControllers
                 if (book != null && ModelState.IsValid)
                 {
                     _bookService.Insert(book);
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { BookId = book.Id});
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 _logger.Error("Error Books/add", e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);

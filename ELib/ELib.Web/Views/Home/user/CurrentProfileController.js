@@ -51,8 +51,7 @@
                 function (response) {
                     $scope.fetchData();
                     console.log(" method 'then' in post request.")
-                });;
-                       
+                });                      
         }
 
         $scope.edit = function(){

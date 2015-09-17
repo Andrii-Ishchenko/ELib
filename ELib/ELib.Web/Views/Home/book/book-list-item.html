@@ -1,7 +1,7 @@
 ﻿<li class="list-group-item" ng-repeat="book in books">
 
-    <img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">
-
+    <!--<img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">-->
+    <img class="img-thumbnail pull-left" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=60&w=60" alt="" width="60" height="60">
     <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
     <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
     <p><a href="{{'/books/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>

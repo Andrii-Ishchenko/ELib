@@ -19,6 +19,8 @@ namespace ELib.Domain.Entities
         [Column(TypeName = "date")]
         public DateTime InsertDate { get; set; }
 
+        public int DownloadCount { get; set; }
+
         public virtual Book Book { get; set; }
     }
 }

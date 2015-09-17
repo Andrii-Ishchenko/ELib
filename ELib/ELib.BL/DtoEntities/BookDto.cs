@@ -30,7 +30,7 @@ namespace ELib.BL.DtoEntities
 
         public DateTime? PublishYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        public String ImageHash { get; set; }
 
         public string Description { get; set; }
 
@@ -52,11 +52,13 @@ namespace ELib.BL.DtoEntities
 
         public ICollection<int> GenresIds { get; set; }
 
-        public ICollection<string> FormatsNames { get; set; }
-
-        public ICollection<string> FormatsFilePaths { get; set; }
+        public ICollection<BookInstanceDto> BookInstances { get; set; }
 
         public int Rating { get; set; }
+
+        public int TotalDownloadCount { get; set; }
+
+        public int TotalViewCount { get; set; }
 
         //Status????
     }

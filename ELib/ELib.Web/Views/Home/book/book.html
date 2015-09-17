@@ -5,7 +5,11 @@
         <div class="row">
             <div class="col-lg-4 col-sm-12">
                 <figure class="panel panel-default"  style="margin-bottom : 15px">
-                    <img class="panel-body center-block" src=""  width="192" height="240" />
+                    <div class="panel-heading">
+                        <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()">Upload New</a>
+                    </div>
+                    <img class="panel-body center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}"  width="192" height="240" />
                     <figcaption class="panel-footer">
                       <p>Rating : {{book.instance.Rating}}</p>
                       <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
@@ -18,10 +22,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Download</div>
                     <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="fileFormat in book.instance.FormatsNames">{{fileFormat}}</li>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances" >
+                                <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">{{bookInstance.Extension}}</a>
+                            </li>
                         </ul>
                     </div>
+                </div>
+                <div data-ng-hide="book.message == ''" data-ng-class="(book.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{book.message}}
+                </div>
+                <div>
+                    <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
+                    <button onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</button>
                 </div>
                </div>
             <div class="col-lg-6 col-sm-12 container">
