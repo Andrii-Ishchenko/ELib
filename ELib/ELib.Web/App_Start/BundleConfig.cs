@@ -39,7 +39,7 @@ namespace ELib.Web
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
-                                    
+
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
@@ -61,8 +61,9 @@ namespace ELib.Web
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
 
-                                    "~/Views/Home/mainpage/PagerController.js",
-                                    "~/Views/Home/mainpage/example.js"
+                                    "~/Views/Home/mainpage/MainController.js",
+                                    "~/Views/Home/mainpage/ModalController.js",
+                                    "~/Views/Home/mainpage/ModalInstanceController.js"
 
                         )
                     );

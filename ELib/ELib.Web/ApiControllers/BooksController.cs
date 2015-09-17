@@ -30,9 +30,9 @@ namespace ELib.Web.ApiControllers
             try
             {
 
-                IEnumerable<BookDto> books = _bookService.GetAll(pageCount,pageNumb);
+                IEnumerable<BookDto> books = _bookService.GetAll(pageCount, pageNumb);
                 int totalCount = _bookService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
             }
             catch (Exception e)
             {
@@ -44,15 +44,14 @@ namespace ELib.Web.ApiControllers
 
         [HttpGet]
         [ActionName("best-rating-books")]
-        public HttpResponseMessage GetBooksWithHighestRating(int pageCount = 3, int pageNumb = 1)
+        public HttpResponseMessage GetBooksWithHighestRating(int pageCount = 6, int pageNumb = 1)
         {
             try
             {
 
                 IEnumerable<BookDto> books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb);
-                //int totalCount = _bookService.TotalCount;
-                //return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
             }
             catch (Exception e)
             {
@@ -63,7 +62,7 @@ namespace ELib.Web.ApiControllers
 
         [HttpGet]
         [ActionName("new-books")]
-        public HttpResponseMessage GetNewBooks([FromUri]int pageCount = 6, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage GetNewBooks(int pageCount = 6, int pageNumb = 1)
         {
             try
             {
@@ -144,12 +143,12 @@ namespace ELib.Web.ApiControllers
             {
                 if (book != null && ModelState.IsValid)
                 {
-                _bookService.Insert(book);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
+                    _bookService.Insert(book);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.Error("Error Books/add", e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
@@ -163,9 +162,9 @@ namespace ELib.Web.ApiControllers
             {
                 if (book != null && ModelState.IsValid)
                 {
-                _bookService.Update(book);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
+                    _bookService.Update(book);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
             catch (NullReferenceException e)

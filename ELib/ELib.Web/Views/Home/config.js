@@ -9,8 +9,8 @@
             //})
             .when('/', {
                 templateUrl: '/views/home/mainpage/main.html',
-                controller: 'PagerController',
-                controllerAs: 'pager'
+                controller: 'MainController',
+                controllerAs: 'mainpage'
             })
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
