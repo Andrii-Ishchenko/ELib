@@ -53,6 +53,10 @@ namespace ELib.Domain.Entities
 
         public int SumRatingValue { get; set; }
 
+        public int TotalDownloadCount { get; set; }
+
+        public int TotalViewCount { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 

@@ -54,6 +54,10 @@ namespace ELib.BL.DtoEntities
 
         public int Rating { get; set; }
 
+        public int TotalDownloadCount { get; set; }
+
+        public int TotalViewCount { get; set; }
+
         //Status????
     }
 }
