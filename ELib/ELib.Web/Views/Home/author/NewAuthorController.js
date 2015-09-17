@@ -7,11 +7,11 @@
     function NewAuthorController(authServiceFactory, dataServiceFactory, $location, $timeout) {
         var vm = this;
 
-        //authServiceFactory.fillAuthData();
+        authServiceFactory.fillAuthData();
         
-       // if (!authServiceFactory.authentication.isAuth) {
-       //     $location.path('/login');
-       // }
+        if (!authServiceFactory.authentication.isAuth) {
+            $location.path('/login');
+        }
 
         vm.message = '';
         vm.submitState = false;
