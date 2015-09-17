@@ -112,7 +112,7 @@ namespace ELib.BL.Services.Concrete
                 int cnt = uow.Repository<Person>().Get(p=>p.ImageHash==fileHash).Count();
                 if (cnt == 0)
                 {
-                    String path = DirectoryPath(fileHash, PROFILE_IMAGES_FOLDER_PATH);
+                    String path = directoryPath(fileHash, PROFILE_IMAGES_FOLDER_PATH);
                     String filePath = String.Format(@"{0}\{1}.{2}", path, fileHash, PREDEFINED_IMAGE_EXTENSION);
                     File.Delete(filePath);
                 }
@@ -164,7 +164,7 @@ namespace ELib.BL.Services.Concrete
                     return null;
 
                 //ENSURE THAT FILEPATH IS CORRECT
-                String fileName = GetBookImagePath(hash);
+                String fileName = getFilePath(hash, BOOK_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
                 if (w != 0 && h != 0)
                 {
@@ -187,7 +187,7 @@ namespace ELib.BL.Services.Concrete
                 var profile = uow.Repository<Person>().Get(p => p.ImageHash == hash).FirstOrDefault();
                 if (profile == null)
                     return null;
-                String fileName = GetProfileImagePath(hash);
+                String fileName = getFilePath(hash, PROFILE_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
                 if (w!=0 && h != 0)
                 {
@@ -198,9 +198,7 @@ namespace ELib.BL.Services.Concrete
                 {
                     i.Save(ms, ImageFormat.Png);
                     return ms.ToArray();
-                }
-               
-               
+                }           
             }
         }
 
@@ -209,41 +207,6 @@ namespace ELib.BL.Services.Concrete
             throw new NotImplementedException();
         }
 
-        #region Obsolete
-        public String GetBookImagePath(string fileHash)
-        {
-            if (fileHash == "")
-                return "";
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath  = String.Format(@"{0}\{1}\{2}.{3}",BOOK_IMAGES_FOLDER_PATH ,directoryPath, fileHash, PREDEFINED_IMAGE_EXTENSION);
-            logger.Info(String.Format("Getting BookImage, hash:{0} ,path:{1} ",fileHash,fullPath));
-
-            return fullPath;
-        }
-
-        public string GetProfileImagePath(string fileHash)
-        {
-            if (fileHash == null)
-                return "";
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath = String.Format(@"{0}\{1}\{2}.{3}", PROFILE_IMAGES_FOLDER_PATH, directoryPath, fileHash, PREDEFINED_IMAGE_EXTENSION);
-            logger.Info(String.Format("Getting Profile Image, hash:{0} ,path:{1} ", fileHash, fullPath));
-
-            return fullPath;
-        }
-
-        public string GetBookFilePath(string fileHash)
-        {
-            string directoryPath = this.DirectoryPath(fileHash, BOOK_FILES_FOLDER_PATH);
-
-            string fullPath = Directory.GetFiles(directoryPath, String.Format("{0}.*", fileHash)).First();
-            logger.Info(String.Format("Getting Book, hash:{0} ,path:{1} ", fileHash, fullPath));
-
-            return fullPath;
-        }
-
-        #endregion Obsolete
-
         public string GetBookFileNameByHash(string hash)
         {
             using (var uow = _factory.Create())
@@ -251,8 +214,27 @@ namespace ELib.BL.Services.Concrete
                 return uow.Repository<BookInstance>().Get(x => x.FileHash == hash).FirstOrDefault().FileName;
             }
         }
-   
+
+        public FileStream GetBookFile(string hash)
+        {
+            string filePath = getFilePath(hash, BOOK_FILES_FOLDER_PATH);
+
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+
+            return fs;
+        }
+
         #region PrivateMethods
+
+        private string getFilePath(string fileHash, string rootDirectory)
+        {
+            string directoryPath = this.directoryPath(fileHash, rootDirectory);
+
+            string fullPath = Directory.GetFiles(directoryPath, String.Format("{0}.*", fileHash)).First();
+            logger.Info(String.Format("Getting File, hash:{0} ,path:{1} ", fileHash, fullPath));
+
+            return fullPath;
+        }
 
         private bool validateFile(byte[] file, string extension, int userId, Type fileType,  int maxFileSize)
         {
@@ -287,14 +269,9 @@ namespace ELib.BL.Services.Concrete
             return stringHash;
         }
 
-        private string DirectoryPath(string fileHash, string rootDirectoryPath)
+        private string directoryPath(string fileHash, string rootDirectoryPath)
         {
-            if (rootDirectoryPath == "")
-                return String.Format(@"{0}\{1}",
-                         fileHash.Substring(0, DIRECTORY_NAME_LENGTH),
-                         fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
-
-            return  String.Format(@"{0}\{1}\{2}",
+           return  String.Format(@"{0}\{1}\{2}",
                         rootDirectoryPath, 
                         fileHash.Substring(0, DIRECTORY_NAME_LENGTH), 
                         fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
@@ -302,7 +279,7 @@ namespace ELib.BL.Services.Concrete
 
         private string createDirectoriesIfNoExist(string fileHash, string rootDirectoryPath)
         {
-            string directoryPath = DirectoryPath(fileHash, rootDirectoryPath);
+            string directoryPath = this.directoryPath(fileHash, rootDirectoryPath);
 
             if (!Directory.Exists(directoryPath))
             {
@@ -345,8 +322,7 @@ namespace ELib.BL.Services.Concrete
 
         private string getExtension(string fileName)
         {
-
-           
+     
             return Path.GetExtension(fileName.Replace("\"",String.Empty)).Replace(".", String.Empty).ToUpperInvariant();
         }
 

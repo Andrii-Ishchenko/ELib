@@ -170,12 +170,10 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                string filePath = _fileService.GetBookFilePath(id);
-
                 HttpResponseMessage result = null;
 
                 result = Request.CreateResponse(HttpStatusCode.OK);
-                result.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                result.Content = new StreamContent(_fileService.GetBookFile(id));
                 result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
                 result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileNameByHash(id);
 
