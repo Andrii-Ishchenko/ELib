@@ -21,5 +21,7 @@ namespace ELib.BL.DtoEntities
         public DateTime? DeathDate { get; set; }
 
         public string Description { get; set; }
+
+        public string ImageHash { get; set; }
     }
 }
