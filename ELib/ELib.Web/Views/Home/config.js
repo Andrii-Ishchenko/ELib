@@ -32,6 +32,11 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
+             .when('/authors/new', {
+                 templateUrl: '/views/home/author/new-author.html',
+                 controller: 'NewAuthorController',
+                 controllerAs: 'newAC'
+             })
             .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',

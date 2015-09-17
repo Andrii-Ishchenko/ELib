@@ -21,9 +21,5 @@ namespace ELib.BL.DtoEntities
         public DateTime? DeathDate { get; set; }
 
         public string Description { get; set; }
-
-        public ICollection<string> AuthorGenres { get; set; }
-
-        public ICollection<string> BookAuthors { get; set; }
     }
 }
