@@ -35,7 +35,7 @@
                 controllerAs:'authors'
             })
              .when('/authors/new', {
-                 templateUrl: '/views/home/author/new-author.html',
+                 templateUrl: '/views/shared/two-column-layout.html',
                  controller: 'NewAuthorController',
                  controllerAs: 'newAC'
              })
@@ -60,7 +60,7 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
-                templateUrl: '/views/home/publisher/publishers.html',
+                templateUrl: '/views/shared/two-column-layout.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })

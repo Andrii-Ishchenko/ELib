@@ -2,15 +2,20 @@
     angular.module("elib")
            .controller("NewAuthorController", NewAuthorController);
 
-    NewAuthorController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout"];
+    NewAuthorController.$inject = ["authServiceFactory", "dataServiceFactory","$scope", "$location", "$timeout"];
 
-    function NewAuthorController(authServiceFactory, dataServiceFactory, $location, $timeout) {
+    function NewAuthorController(authServiceFactory, dataServiceFactory,$scope, $location, $timeout) {
         var vm = this;
 
         authServiceFactory.fillAuthData();
         
         if (!authServiceFactory.authentication.isAuth) {
             $location.path('/login');
+        }
+
+        $scope.template = {
+            menu: "/views/shared/menu.html",
+            main: "/views/home/author/new-author.html"
         }
 
         vm.message = '';

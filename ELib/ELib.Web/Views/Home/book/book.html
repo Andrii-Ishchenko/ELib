@@ -1,6 +1,6 @@
 ﻿<div>
     <div class="container-fluid">
-        <h2>{{book.instance.Title}}</h2>
+        <h3>{{book.instance.Title}}</h3>
         <hr />
     </div>
     <div class="container col-lg-12">
@@ -9,7 +9,7 @@
                 <figure class="panel panel-default" style="margin-bottom : 15px">
                     <div class="panel-heading">
                         <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()">Upload New</a>
+                        <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()"> <i class="glyphicon glyphicon-upload"></i> Upload New</a>
                     </div>
                     <div class="panel-body">
                         <img class="img-responsive center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}&w=328" />
@@ -25,7 +25,15 @@
                     </figcaption>
                 </figure>
                 <div class="panel panel-default">
-                    <div class="panel-heading">Download</div>
+                    <div class="panel-heading">
+                        <div>
+                            <i class="glyphicon glyphicon-save-file"></i>
+                            Downloads
+
+                            <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
+                            <button class="btn btn-sm btn-primary" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()"><i class="glyphicon glyphicon-open-file"></i> Upload New File</button>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances">
@@ -38,12 +46,47 @@
                     {{book.message}}
                 </div>
                 <div>
-                    <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
-                    <button onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</button>
+
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12 container">
-                <div class="row">
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> Info</h4>
+                    </div>
+                    <div class="panel-body bg-warning">
+                        <dl class="dl-horizontal" style="margin-bottom : 0px">
+                            <dt>Title</dt>
+                            <dd>{{book.instance.Title}}</dd>
+
+                            <dt>Authors</dt>
+                            <dd><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></dd>
+
+                            <dt>Genres</dt>
+                            <dd><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></dd>
+
+                            <dt>Subgenre</dt>
+                            <dd>{{book.instance.Subgenre}}</dd>
+
+                            <dt>Publisher</dt>
+                            <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></dd>
+
+                            <dt>Year of publishing</dt>
+                            <dd>{{book.instance.PublishYear|date : "yyyy"}}</dd>
+
+                            <dt>Pages</dt>
+                            <dd>{{book.instance.TotalPages}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                 <div class="panel panel-default">
+                    <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
+                    <div class="panel-body">
+                        
+                    </div>
+                </div>
+                <!--<div class="row">
                     <div class="col-lg-4 col-sm-6">
                         <p class="lead">Title:</p>
                     </div>
@@ -97,6 +140,21 @@
                     </div>
                     <div class="col-lg-8 col-sm-6">
                         <p>{{book.instance.TotalPages}}</p>
+                    </div>
+                </div>-->
+
+            </div>
+            <div class="col-lg-2 col-sm-12 container">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="glyphicon glyphicon-stats"></i> Stats</div>
+                    <div class="panel-body">
+                        Statistics info
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="glyphicon glyphicon-usd"></i> Ads</div>
+                    <div class="panel-body">
+                        Banners!!!
                     </div>
                 </div>
             </div>

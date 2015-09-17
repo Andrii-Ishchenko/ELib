@@ -3,14 +3,15 @@
 
         <div class="col-md-9">
 
-            <h3>Authors</h3>
+            <p class="lead">Authors</p>
 
         </div>
+        <div class="col-md-3">
+            <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
+        </div>
     </div>
-    <!--top pagination-->
-    <div class="divider"></div>
 
-    <ul class="pagination">
+    <!--<ul class="pagination">
         <li class="disabled">
             <a href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -28,7 +29,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </li>
-    </ul>
+    </ul>-->
 
     <!--book list-->
   
@@ -36,7 +37,7 @@
     <ul class="list-group">
         <li  class="list-group-item" ng-repeat="author in authors.authors">
                 
-            <img class=" pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60"  height="60">
+            <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60"  height="60">
             <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
 
             <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
