@@ -25,11 +25,11 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAuthors()
+        public HttpResponseMessage GetAuthors(string query = null, int pageNumb = 1, int pageCount = 5)
         {
             try
             {
-                IEnumerable<AuthorDto> authors = _authorService.GetAll();
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, pageNumb, pageCount);
                 return Request.CreateResponse(HttpStatusCode.OK, authors);
             }
             catch (Exception ex)

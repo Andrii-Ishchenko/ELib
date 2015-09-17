@@ -1,19 +1,19 @@
-﻿<div class="panel panel-default">
+﻿<div class="panel panel-default" ng-controller="FilterController as filter">
     <div class="panel-heading">Settings</div>
     <div class="panel-body">
         <form>
             <dl>
                 <dt>Filtering</dt>
                 <dd>
-                    <select>
-                        <option>param 1</option>
-                        <option>param 2</option>
-                        <option>param 3</option>
-                        <option>param 4</option>
-                        <option>param 5</option>
+                    <select name="select-filter" ng-model="filter.filterParams">
+                        <option selected>Title</option>
+                        <option>Year</option>
+                        <option>Author Name</option>
+                        <option>Genre</option>
+                        <option>Publisher</option>
                     </select>
                     <input type="text" />
-                    <button > + </button> 
+                    <button ng-click="filter.addSelect()"> + </button> 
 
                 </dd>
 

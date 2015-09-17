@@ -114,6 +114,7 @@
     <Compile Include="Services\Concrete\PublisherService.cs" />
     <Compile Include="Services\Concrete\RatingCommentService.cs" />
     <Compile Include="Services\Concrete\RatingService.cs" />
+    <Compile Include="Services\Concrete\SearchService.cs" />
     <Compile Include="Services\Concrete\SubgenresService.cs" />
   </ItemGroup>
   <ItemGroup>

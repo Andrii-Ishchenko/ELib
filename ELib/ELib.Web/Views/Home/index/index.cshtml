@@ -51,10 +51,10 @@
                             @*<label for="searchSelector" class="control-label">
                                 Search:
                             </label>*@
-                            <select id="searchSelector" class="form-control input-sm">
-                                <option>Books</option>
-                                <option>Authors</option>
-                                <option>Publishers</option>
+                            <select id="searchSelector" class="form-control input-sm" ng-model="search.type">
+                                <option value="books" selected>Books</option>
+                                <option value="authors">Authors</option>
+                                <option value="publishers">Publishers</option>
                                 <option>Everywhere</option>
                             </select>
                         </div>

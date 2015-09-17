@@ -11,7 +11,7 @@
             menu: "/views/home/book/book-list-menu.html",
             main: "/views/home/book/books.html"
         }
-        vm.pageCount = 3;
+        vm.pageCount = $routeParams.pageCount;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         var obj = dataServiceFactory.getService('books').get({ pageCount: $routeParams.pageCount, pageNumb : $routeParams.pageNumb, query : $routeParams.query});
         obj.$promise.then(function (data) {

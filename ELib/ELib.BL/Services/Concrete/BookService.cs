@@ -6,7 +6,6 @@ using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
-using LinqKit;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -74,41 +73,41 @@ namespace ELib.BL.Services.Concrete
 
         private Expression<Func<Book, bool>> buildFilterExpression(SearchDto searchDto)
         {
-            Expression<Func<Book, bool>> filter = PredicateBuilder.True<Book>();
+            Expression<Func<Book, bool>> filter =SearchService<Book>.True;
             if (!string.IsNullOrEmpty(searchDto.Title))
             {
                 Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(searchDto.Title);
-                filter = filterAnd(filter, searchrByTitle);
+                filter = SearchService<Book>.filterAnd(filter, searchrByTitle);
             }
 
             if (!string.IsNullOrEmpty(searchDto.AuthorName))
             {
                 Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName + a.Author.FirstName).Contains(searchDto.AuthorName)).Count() > 0;
-                filter = filterAnd(filter, searchByAuthor);
+                filter = SearchService<Book>.filterAnd(filter, searchByAuthor);
             }
 
             if (!string.IsNullOrEmpty(searchDto.Genre))
             {
                 Expression<Func<Book, bool>> searchByGenre = (x) => x.BookGenres.AsQueryable().Where(g => g.Genre.Name.Contains(searchDto.Genre)).Count() > 0;
-                filter = filterAnd(filter, searchByGenre);
+                filter = SearchService<Book>.filterAnd(filter, searchByGenre);
             }
 
             if (!string.IsNullOrEmpty(searchDto.Subgenre))
             {
                 Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(searchDto.Subgenre);
-                filter = filterAnd(filter, searchBySubgenre);
+                filter = SearchService<Book>.filterAnd(filter, searchBySubgenre);
             }
 
             if (!string.IsNullOrEmpty(searchDto.Publisher))
             {
                 Expression<Func<Book, bool>> searchByPublisher = x => x.Publisher.Name.Contains(searchDto.Publisher);
-                filter = filterAnd(filter, searchByPublisher);
+                filter = SearchService<Book>.filterAnd(filter, searchByPublisher);
             }
 
             if (searchDto.Year > 0)
             {
                 Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year == searchDto.Year;
-                filter = filterAnd(filter, searchByYear);
+                filter = SearchService<Book>.filterAnd(filter, searchByYear);
             }
             return filter;
         }
@@ -116,29 +115,29 @@ namespace ELib.BL.Services.Concrete
         private Expression<Func<Book, bool>> buildFullExpression(string query)
         {
             if (string.IsNullOrEmpty(query))
-                return PredicateBuilder.True<Book>();
+                return SearchService<Book>.True;
 
             string[] words = query.Split(' ');
-            Expression<Func<Book, bool>> filter = PredicateBuilder.False<Book>();
+            Expression<Func<Book, bool>> filter =SearchService<Book>.False;
             foreach (string word in words)
             {
                 Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(word);
-                filter = filterOr(filter, searchrByTitle);
+                filter = SearchService<Book>.filterOr(filter, searchrByTitle);
 
                 Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName + a.Author.FirstName).Contains(word)).Count() > 0;
-                filter = filterOr(filter, searchByAuthor);
+                filter = SearchService<Book>.filterOr(filter, searchByAuthor);
 
                 Expression<Func<Book, bool>> searchByGenre = (x) => x.BookGenres.AsQueryable().Where(g => g.Genre.Name.Contains(word)).Count() > 0;
-                filter = filterOr(filter, searchByGenre);
+                filter = SearchService<Book>.filterOr(filter, searchByGenre);
 
                 Expression<Func<Book, bool>> searchByPublisher = x => x.Publisher.Name.Contains(word);
-                filter = filterOr(filter, searchByPublisher);
+                filter = SearchService<Book>.filterOr(filter, searchByPublisher);
 
                 Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(word);
-                filter = filterOr(filter, searchBySubgenre);
+                filter = SearchService<Book>.filterOr(filter, searchBySubgenre);
 
                 Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year.ToString().Contains(word);
-                filter = filterOr(filter, searchByYear);
+                filter = SearchService<Book>.filterOr(filter, searchByYear);
 
             }
 
@@ -146,16 +145,6 @@ namespace ELib.BL.Services.Concrete
         }
 
 
-        private static Expression<Func<Book, bool>> filterAnd(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
-        {
-            filter = (byQery == null) ? filter : filter.And(byQery);
-            return filter;
-        }
-
-        private static Expression<Func<Book, bool>> filterOr(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
-        {
-            filter = (byQery == null) ? filter : filter.Or(byQery);
-            return filter;
-        }
+        
     }
 }

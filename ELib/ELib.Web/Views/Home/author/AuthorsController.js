@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("AuthorsController", AuthorsController);
 
-   AuthorsController.$inject = ["dataServiceFactory", "$scope"];
+   AuthorsController.$inject = ["dataServiceFactory", "$scope", "$routeParams"];
 
-    function AuthorsController(dataServiceFactory, $scope) {
+    function AuthorsController(dataServiceFactory, $scope, $routeParams) {
         var vm = this;
 
         $scope.template = {
@@ -12,7 +12,7 @@
             main: "/views/home/author/authors.html"
         }
 
-        vm.authors = dataServiceFactory.getService('authors').query();
+        vm.authors = dataServiceFactory.getService('authors').query({ query: $routeParams.query });
 
         //activate();
 

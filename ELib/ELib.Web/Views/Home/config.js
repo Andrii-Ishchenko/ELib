@@ -37,6 +37,11 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
+            .when('/authors/search', {
+                templateUrl: '/views/shared/two-column-layout.html',
+                controller: 'AuthorsController',
+                controllerAs: 'authors'
+            })
             .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
@@ -58,6 +63,11 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
+                templateUrl: '/views/home/publisher/publishers.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publishers/search', {
                 templateUrl: '/views/home/publisher/publishers.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
