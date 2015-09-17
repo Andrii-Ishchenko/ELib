@@ -1,9 +1,9 @@
 ﻿(function () {
     angular.module('elib').controller('MainController', MainController)
 
-    MainController.$inject = ["bookRepository"];
+    MainController.$inject = ["dataServiceFactory"];
 
-    function MainController(bookRepository) {
+    function MainController(dataServiceFactory) {
 
         var vm = this;
         vm.itemsPerPage = 2;
@@ -11,7 +11,7 @@
         vm.currentPage = 1;
         vm.currentPageNew = 1;
 
-        var obj = bookRepository.getBestRatingBooks().get({ pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
+        var obj = dataServiceFactory.getService('books').get({ blockId: 0, pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
 
         obj.$promise.then(function (data) {
             vm.books = data.books;
@@ -19,7 +19,7 @@
         })
 
         vm.pageChanged = function () {
-            obj = bookRepository.getBestRatingBooks().get({ pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
+            obj = dataServiceFactory.getService('books').get({ blockId: 0, pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
 
             obj.$promise.then(function (data) {
                 vm.books = data.books;
@@ -27,18 +27,18 @@
         };
 
 
-        var obj2 = bookRepository.getNewBooks().get({ pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
+        var obj2 = dataServiceFactory.getService('books').get({ blockId: 1, pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
 
         obj2.$promise.then(function (data) {
-            vm.booksNew = data.newbooks;
+            vm.booksNew = data.books;
             vm.totalItemsNew = data.totalCount;
         })
 
         vm.pageChangedNew = function () {
-            obj2 = bookRepository.getNewBooks().get({ pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
+            obj2 = dataServiceFactory.getService('books').get({ blockId: 1, pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
 
             obj2.$promise.then(function (data) {
-                vm.booksNew = data.newbooks;
+                vm.booksNew = data.books;
             })
         };
     }

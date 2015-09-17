@@ -7,7 +7,7 @@
     function bookRepository($resource) {
         var baseUrl = "/api/books/";
         var DataService = {
-                getBooksForAuthor: getBooksForAuthor, getBooksForPublisher,getBookById, getBestRatingBooks,getNewBooks
+            getBooksForAuthor: getBooksForAuthor, getBooksForPublisher, getBookById
         };
 
         return DataService;
@@ -32,27 +32,7 @@
                 }
             });
         }
-
-        function getBestRatingBooks() {
-            var url = baseUrl + "bestbooks";
-            return $resource(url, {
-                update: {
-                    query: 'Get',
-                    isArray: true
-                }
-            });
-        }
-
-        function getNewBooks() {
-            var url = baseUrl + "newbooks";
-            return $resource(url, {
-                update: {
-                    query: 'Get',
-                    isArray: true
-                }
-            });
-        }
-
+          
         function getBookById() {
             var url = baseUrl + "book/:id";
             return $resource(url, { id: '@id' }, {
