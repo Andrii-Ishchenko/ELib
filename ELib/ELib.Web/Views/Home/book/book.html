@@ -1,5 +1,5 @@
 ﻿<div>
-    <h1>{{book.instance.Title}}</h1>
+    <h2>{{book.instance.Title}}</h2>
     <hr />
     <div class="container col-lg-12">
         <div class="row">
@@ -9,7 +9,10 @@
                         <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
                         <a href="#" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()">Upload New</a>
                     </div>
-                    <img class="panel-body center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}"  width="192" height="240" />
+                    <div class="panel-body">
+                        <img class="img-responsive center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}&w=328"  />
+                    </div>
+                    
                     <figcaption class="panel-footer">
                       <p>Rating : {{book.instance.Rating}}</p>
                       <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->

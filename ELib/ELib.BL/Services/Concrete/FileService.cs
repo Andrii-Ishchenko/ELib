@@ -168,11 +168,8 @@ namespace ELib.BL.Services.Concrete
                 //ENSURE THAT FILEPATH IS CORRECT
                 String fileName = GetBookImagePath(hash);
                 Image i = Image.FromFile(fileName);
-                if (w != 0 && h != 0)
-                {
-                    i = ImageResizer.CreateOutputImage(i, w, h);
-                }
-
+                i = ImageResizer.ResizeImage(i,h,w);
+                
                 using (MemoryStream ms = new MemoryStream())
                 {
                     i.Save(ms, ImageFormat.Png);
@@ -193,7 +190,7 @@ namespace ELib.BL.Services.Concrete
                 Image i = Image.FromFile(fileName);
                 if (w!=0 && h != 0)
                 {
-                    i = ImageResizer.CreateOutputImage(i, w, h);
+                    i = ImageResizer.ResizeImage(i,h,w);
                 }
                
                 using (MemoryStream ms = new MemoryStream())
