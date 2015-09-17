@@ -25,13 +25,20 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]string query = null, [FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage Get([FromUri]string query = null,
+                                       [FromUri]string authorName = null,
+                                       [FromUri]string title = null,
+                                       [FromUri]string publisher = null,
+                                       [FromUri]string genre = null,
+                                       [FromUri]string subgenre = null,
+                                       [FromUri]int year = 0,
+                                       [FromUri]int pageCount = 3,
+                                       [FromUri]int pageNumb = 1)
         {
             try
             {
-                var queryString = Request.RequestUri.ParseQueryString();
-                var queryParams = queryString.Keys;
-                IEnumerable<BookDto> books = _bookService.GetAll(query, pageCount, pageNumb);
+                SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, year);
+                IEnumerable<BookDto> books = _bookService.GetAll(searchDto, pageCount, pageNumb);
                 int totalCount = _bookService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }

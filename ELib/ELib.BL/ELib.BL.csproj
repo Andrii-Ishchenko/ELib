@@ -78,6 +78,7 @@
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
+    <Compile Include="DtoEntities\SearchDto.cs" />
     <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\ImageExtensions.cs" />

@@ -52,14 +52,15 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        public IEnumerable<BookDto> GetAll(string query, int pageCount, int pageNumb)
+        public IEnumerable<BookDto> GetAll(SearchDto searchDto, int pageCount, int pageNumb)
         {
-            Expression<Func<Book, bool>> expression = buildExpression(query);
+            Expression<Func<Book, bool>>  filter = (searchDto.Query != null) ? buildFullExpression(searchDto.Query)
+                                                                             : buildFilterExpression(searchDto) ;
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: expression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -71,9 +72,50 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        private Expression<Func<Book, bool>> buildExpression(string query)
+        private Expression<Func<Book, bool>> buildFilterExpression(SearchDto searchDto)
         {
-            if (query == null)
+            Expression<Func<Book, bool>> filter = PredicateBuilder.True<Book>();
+            if (!string.IsNullOrEmpty(searchDto.Title))
+            {
+                Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(searchDto.Title);
+                filter = filterAnd(filter, searchrByTitle);
+            }
+
+            if (!string.IsNullOrEmpty(searchDto.AuthorName))
+            {
+                Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName + a.Author.FirstName).Contains(searchDto.AuthorName)).Count() > 0;
+                filter = filterAnd(filter, searchByAuthor);
+            }
+
+            if (!string.IsNullOrEmpty(searchDto.Genre))
+            {
+                Expression<Func<Book, bool>> searchByGenre = (x) => x.BookGenres.AsQueryable().Where(g => g.Genre.Name.Contains(searchDto.Genre)).Count() > 0;
+                filter = filterAnd(filter, searchByGenre);
+            }
+
+            if (!string.IsNullOrEmpty(searchDto.Subgenre))
+            {
+                Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(searchDto.Subgenre);
+                filter = filterAnd(filter, searchBySubgenre);
+            }
+
+            if (!string.IsNullOrEmpty(searchDto.Publisher))
+            {
+                Expression<Func<Book, bool>> searchByPublisher = x => x.Publisher.Name.Contains(searchDto.Publisher);
+                filter = filterAnd(filter, searchByPublisher);
+            }
+
+            if (searchDto.Year > 0)
+            {
+                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year == searchDto.Year;
+                filter = filterAnd(filter, searchByYear);
+            }
+            return filter;
+        }
+
+        private Expression<Func<Book, bool>> buildFullExpression(string query)
+        {
+            if (string.IsNullOrEmpty(query))
                 return PredicateBuilder.True<Book>();
 
             string[] words = query.Split(' ');
@@ -104,7 +146,7 @@ namespace ELib.BL.Services.Concrete
         }
 
 
-        private static Expression<Func<Book, bool>> filterAdd(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
+        private static Expression<Func<Book, bool>> filterAnd(Expression<Func<Book, bool>> filter, Expression<Func<Book, bool>> byQery)
         {
             filter = (byQery == null) ? filter : filter.And(byQery);
             return filter;
