@@ -86,8 +86,19 @@ namespace ELib.BL.Services.Concrete
         }
         public IEnumerable<BookDto> GetAll(SearchDto searchDto, int pageCount, int pageNumb)
         {
-            Expression<Func<Book, bool>>  filter = (searchDto.Query != null) ? buildFullExpression(searchDto.Query)
-                                                                             : buildFilterExpression(searchDto) ;
+            Expression<Func<Book, bool>> filter;
+            var byParameter = buildFilterExpression(searchDto);
+            if (searchDto.Query != null)
+            {
+                filter = buildFullExpression(searchDto.Query);
+                if (byParameter != SearchService<Book>.False)
+                    filter = SearchService<Book>.filterAnd(filter, byParameter);
+            }
+            else
+            {
+                filter = byParameter;
+            }  
+                                                                        
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();

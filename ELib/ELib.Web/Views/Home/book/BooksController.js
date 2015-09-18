@@ -11,9 +11,20 @@
             menu: "/views/home/book/book-list-menu.html",
             main: "/views/home/book/books.html"
         }
-        vm.pageCount = $routeParams.pageCount;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
-        var obj = dataServiceFactory.getService('books').get({ pageCount: $routeParams.pageCount, pageNumb : $routeParams.pageNumb, query : $routeParams.query});
+        var parameters = {
+            pageCount : vm.pageCount,
+            pageNumb  : vm.pageNumb,
+            query     : $routeParams.query,
+            title     : $routeParams.title,
+            authorName: $routeParams.author,
+            genre     : $routeParams.genre,
+            subgenre  : $routeParams.subgenre,
+            year      : $routeParams.year
+    }
+
+        var obj = dataServiceFactory.getService('books').get(parameters);
         obj.$promise.then(function (data) {
             vm.books = data.books;
             vm.totalCount = data.totalCount;
