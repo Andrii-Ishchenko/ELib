@@ -47,25 +47,14 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                // IEnumerable<BookDto> books=null;
-                // if (blockId == 0)
-                // { books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb); }
-                // else if (blockId == 1)
-                // { books = _bookService.GetNewBooks(pageCount, pageNumb); }
+                IEnumerable<BookDto> books = null;
+                if (blockId == 0)
+                { books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb); }
+                else if (blockId == 1)
+                { books = _bookService.GetNewBooks(pageCount, pageNumb); }
 
-                // int totalCount = _bookService.TotalCount;
-                // return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
-
-                List<BookDto> books = new List<BookDto>();
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" });
-                books.Add(new BookDto() { Title = "1111" }); 
-                books.Add(new BookDto() { Title = "1111" });
-                return Request.CreateResponse(HttpStatusCode.OK, books);
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
             }
             catch (Exception e)
             {
