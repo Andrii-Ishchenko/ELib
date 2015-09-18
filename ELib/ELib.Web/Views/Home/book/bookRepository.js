@@ -32,7 +32,7 @@
                 }
             });
         }
-
+          
         function getBookById() {
             var url = baseUrl + "book/:id";
             return $resource(url, { id: '@id' }, {

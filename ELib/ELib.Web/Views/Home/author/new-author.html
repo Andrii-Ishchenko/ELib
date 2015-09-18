@@ -1,0 +1,68 @@
+﻿
+        <form class="form-horizontal" name="newAuthorForm" novalidate>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <h1>New author</h1>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" >First Name:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="firstName" placeholder="First name" ng-model="newAC.firstName" maxlength="50" required>
+                    <span style="color:red" ng-show="newAuthorForm.firstName.$dirty && newAuthorForm.firstName.$invalid">
+                        <span ng-show="newAuthorForm.firstName.$error.required">First name is required.</span>
+                    </span>
+                </div>
+            </div>           
+            <div class="form-group">
+                <label class="control-label col-xs-3">LastName:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="lastName" placeholder="LastName" ng-model="newAC.lastName" maxlength="50" required>
+                    <span style="color:red" ng-show="newAuthorForm.lastName.$dirty && newAuthorForm.lastName.$invalid">
+                        <span ng-show="newAuthorForm.lastName.$error.required">Last name is required.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Date of birth:</label>
+                <div class="col-xs-6">
+                    <input type="date" class="form-control" name="DateOfBirth" placeholder="1978-01-29" ng-model="newAC.dateOfBirth" 
+                           min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" required>
+                    <span class="error" ng-show="newAuthorForm.DateOfBirth.$error.date">Not a valid date!</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Death date:</label>
+                <div class="col-xs-6">
+                    <input type="date" class="form-control" name="DeathDate" placeholder="1998-05-19" ng-model="newAC.deathDate"
+                            min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" required>
+                    <span style="color:red" ng-show="newAuthorForm.DeathDate.$invalid">
+                        <span class="error" ng-show="newAuthorForm.DeathDate.$error.date">Not a valid date!</span>
+                    </span>
+               </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" for="description">Description:</label>
+                <div class="col-xs-6">
+                    <textarea rows="3" class="form-control" id="description" placeholder="Description" ng-model="newAC.description"></textarea>
+                </div>
+            </div>           
+            <br>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">  
+                    <div data-ng-hide="newAC.message == ''" data-ng-class="newAC.createdSuccessfully ? 'alert alert-success' : 'alert alert-danger'">
+                        {{newAC.message}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newAC.createAuthor()" 
+                          ng-disabled="newAuthorForm.firstName.$invalid || newAuthorForm.firstName.$pristine 
+                           || newAuthorForm.lastName.$invalid || newAuthorForm.lastName.$pristine ">
+                </div>
+            </div>
+        </form>
+

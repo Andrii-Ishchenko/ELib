@@ -1,13 +1,26 @@
 ﻿<div>
-    <h1>{{author.instance.FirstName}} {{author.instance.LastName}}</h1>
-    <hr />
+    <div class="container-fluid">
+        <h1>{{author.instance.FirstName}} {{author.instance.LastName}}</h1>
+        <hr />
+    </div>
     <div class="container col-lg-12">
 
         <div class="row">
 
             <div class="col-lg-4 col-sm-12">
                 <figure class="panel panel-default" style="margin-bottom : 15px">
-                    <img class="panel-body center-block" src="" width="192" height="240" />
+                    <div class="panel-heading">
+                        <input type="file" id="authorUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadAuthorImage(document.getElementById('authorUploadId').files)" />
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('authorUploadId').click()">Upload New</a>
+                    </div>
+                    <div class="panel-body">
+                        <img class="img-responsive center-block" ng-src="/api/file/author-image?hash={{author.instance.ImageHash}}&w=328" />
+                    </div>
+
+                    <figcaption class="panel-footer">
+                        <p>Rating : (Likes and Dislikes)</p>
+
+                    </figcaption>
                 </figure>
             </div>
 
@@ -36,8 +49,7 @@
             </div>
         </div>
 
-        <ul class="list-group" book-list-directive books="author.books">
-        </ul>
+        <ul class="list-group" book-list-directive books="author.books"></ul>
 
     </div>
 

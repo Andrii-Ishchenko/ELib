@@ -42,6 +42,8 @@ namespace ELib.BL.DtoEntities
 
         public string SubgenreName { get; set; }
 
+        public int SumRatingValue { get; set; }
+
         public ICollection<string> Authors { get; set; }
 
         public ICollection<int> AuthorsIds { get; set; }
@@ -53,6 +55,10 @@ namespace ELib.BL.DtoEntities
         public ICollection<BookInstanceDto> BookInstances { get; set; }
 
         public int Rating { get; set; }
+
+        public int TotalDownloadCount { get; set; }
+
+        public int TotalViewCount { get; set; }
 
         //Status????
     }

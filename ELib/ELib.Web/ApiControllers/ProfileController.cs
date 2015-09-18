@@ -31,8 +31,8 @@ namespace ELib.Web.ApiControllers
             try
             {
                 //DONT FORGET REFACTOR THIS
-                var p = User.Identity.GetUserId();
-                PersonDto person = _profileService.GetById(5);
+                string id = User.Identity.GetUserId();
+                PersonDto person = _profileService.GetById(id);
                 if (person == null)
                     throw new NullReferenceException();
                 return Request.CreateResponse(HttpStatusCode.OK, person);

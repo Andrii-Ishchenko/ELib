@@ -20,7 +20,9 @@ namespace ELib.BL.Services.Concrete
         private readonly string PROFILE_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["ProfileImagesFolderPath"];
         private readonly string BOOK_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["BookImagesFolderPath"];
         private readonly string BOOK_FILES_FOLDER_PATH = ConfigurationManager.AppSettings["BookFilesFolderPath"];
+        private readonly string AUTHOR_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["AuthorImagesFolderPath"];
         private readonly int MAX_PROFILE_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxProfileImageSize"]); //bytes
+        private readonly int MAX_AUTHOR_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxAuthorImageSize"]);
         private readonly int MAX_BOOK_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookImageSize"]); // bytes
         private readonly int MAX_BOOK_FILE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookFileSize"]); //bytes
         private readonly string PREDEFINED_IMAGE_EXTENSION = ImageExtensions.PNG.ToString().ToLowerInvariant();
@@ -28,6 +30,7 @@ namespace ELib.BL.Services.Concrete
 
         private readonly IUnitOfWorkFactory _factory;
         private ELogger logger;
+        
 
         public FileService(IUnitOfWorkFactory factory)
         {
@@ -84,28 +87,25 @@ namespace ELib.BL.Services.Concrete
 
         public bool SaveAuthorImage(byte[] file, string fileName, int authorId, int userId)
         {
+           
+            string extension = getExtension(fileName);
+
+            if (validateFile(file, extension, userId, typeof(ImageExtensions), MAX_AUTHOR_IMAGE_SIZE))
+            {
+                string fileHash = saveImage(file, extension, AUTHOR_IMAGES_FOLDER_PATH);
+
+                using (IUnitOfWork uow = _factory.Create())
+                {
+                    var author = uow.Repository<Author>().GetById(authorId);
+                    author.ImageHash = fileHash;
+                    uow.Repository<Author>().Update(author);
+                    uow.Save();
+                }
+
+                return true;
+            }
+
             return false;
-            //Need to add image hash field to author entity, migrate to new db,and uncomment next lines. 
-
-
-            //string extension = getExtension(fileName);
-
-            //if (validateFile(file, extension, userId, typeof(ImageExtensions), MAX_BOOK_IMAGE_SIZE))
-            //{
-            //    string fileHash = saveImage(file, extension, BOOK_IMAGES_FOLDER_PATH);
-
-            //    using (IUnitOfWork uow = _factory.Create())
-            //    {
-            //        var author = uow.Repository<Author>().GetById(authorId);
-            //        author.ImageHash = fileHash;
-            //        uow.Repository<Author>().Update(author);
-            //        uow.Save();
-            //    }
-
-            //    return true;
-            //}
-
-            //return false;
         }
         public void RemoveUnusedProfileImage(string fileHash, IUnitOfWork uow)
         {
@@ -166,11 +166,8 @@ namespace ELib.BL.Services.Concrete
                 //ENSURE THAT FILEPATH IS CORRECT
                 String fileName = getFilePath(hash, BOOK_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
-                if (w != 0 && h != 0)
-                {
-                    i = ImageResizer.CreateOutputImage(i, w, h);
-                }
-
+                i = ImageResizer.ResizeImage(i,h,w);
+                
                 using (MemoryStream ms = new MemoryStream())
                 {
                     i.Save(ms, ImageFormat.Png);
@@ -189,10 +186,8 @@ namespace ELib.BL.Services.Concrete
                     return null;
                 String fileName = getFilePath(hash, PROFILE_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
-                if (w!=0 && h != 0)
-                {
-                    i = ImageResizer.CreateOutputImage(i, w, h);
-                }
+                i = ImageResizer.ResizeImage(i,h,w);
+                
                
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -204,8 +199,26 @@ namespace ELib.BL.Services.Concrete
 
         public byte[] GetAuthorImage(string hash, int w, int h)
         {
-            throw new NotImplementedException();
+            using (IUnitOfWork uow = _factory.Create())
+            {
+                var author = uow.Repository<Author>().Get(b => b.ImageHash == hash).FirstOrDefault();
+                if (author == null)
+                    return null;
+
+                //ENSURE THAT FILEPATH IS CORRECT
+                String fileName = getFilePath(hash, AUTHOR_IMAGES_FOLDER_PATH);
+                Image i = Image.FromFile(fileName);
+                i = ImageResizer.ResizeImage(i, h, w);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms, ImageFormat.Png);
+                    return ms.ToArray();
+                }
+
+            }
         }
+        
 
         public string GetBookFileName(string hash)
         {
@@ -322,7 +335,7 @@ namespace ELib.BL.Services.Concrete
 
         private string getExtension(string fileName)
         {
-     
+
             return Path.GetExtension(fileName.Replace("\"",String.Empty)).Replace(".", String.Empty).ToUpperInvariant();
         }
 

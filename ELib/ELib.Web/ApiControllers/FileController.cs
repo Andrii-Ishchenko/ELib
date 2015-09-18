@@ -79,6 +79,54 @@ namespace ELib.Web.ApiControllers
             }
         }
 
+        [HttpPost]
+        [ActionName("author-image")]
+        public async Task<HttpResponseMessage> UploadAuthorImage(int id)
+        {
+            try
+            {
+
+                UnitOfWorkFactory uowf = new UnitOfWorkFactory();
+                Person p;
+                using (var uow = uowf.Create())
+                {
+                    string authId = User.Identity.GetUserId();
+                    p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == authId).FirstOrDefault();
+                    if (p == null)
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "User Not Found");
+                }
+                int userId = p.Id;
+
+                if (Request.Content.IsMimeMultipartContent())
+                {
+                    var provider = new MultipartMemoryStreamProvider();
+                    await Request.Content.ReadAsMultipartAsync(provider);
+
+                    bool saveResult = false;
+
+
+                    foreach (var file in provider.Contents)
+                    {
+                        string fileName = file.Headers.ContentDisposition.FileName;
+                        byte[] buffer = await file.ReadAsByteArrayAsync();
+                        saveResult = _fileService.SaveAuthorImage(buffer, fileName, id,userId);
+                    }
+
+                    if (saveResult)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+                }
+
+                logger.Error("Error In Files/UploadAuthorImage");
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error In Files/UploadProfileImage", ex);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
 
         [HttpPost]
         [ActionName("book-image")]
@@ -220,7 +268,6 @@ namespace ELib.Web.ApiControllers
                     image = ms.ToArray();
                 }
             }
-                
 
             message.Content = new ByteArrayContent(image);
             message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
@@ -243,7 +290,47 @@ namespace ELib.Web.ApiControllers
             message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             message.StatusCode = HttpStatusCode.OK;
             return message;
+        }
 
+        [HttpGet]
+        [ActionName("author-image")]
+        public HttpResponseMessage GetAuthorImage(string hash, int w=0,int h = 0)
+        {
+            HttpResponseMessage message = new HttpResponseMessage();
+            byte[] image;
+            if (hash == "" || hash == null)
+            {
+                String rootpath = HostingEnvironment.MapPath("~/Content/");
+                var path = Path.Combine(rootpath, "no-photo.png");
+                Image i = Image.FromFile(path);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms, ImageFormat.Png);
+                    image = ms.ToArray();
+                }
+
+            }
+            else
+            {
+                image = _fileService.GetAuthorImage(hash, w, h);
+            }
+
+            if (image == null)
+            {
+                String rootpath = HostingEnvironment.MapPath("~/Content/");
+                var path = Path.Combine(rootpath, "no-photo.png");
+                Image i = Image.FromFile(path);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms, ImageFormat.Png);
+                    image = ms.ToArray();
+                }
+            }
+     
+            message.Content = new ByteArrayContent(image);
+            message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+            message.StatusCode = HttpStatusCode.OK;
+            return message;
         }
     }
 }

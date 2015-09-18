@@ -25,7 +25,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
+                public HttpResponseMessage Get([FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
         {
             try
             {
@@ -43,6 +43,28 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
+        public HttpResponseMessage GetBooks(int blockId, int pageCount = 6, int pageNumb = 1)
+        {
+            try
+            {
+                IEnumerable<BookDto> books = null;
+                if (blockId == 0)
+                { books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb); }
+                else if (blockId == 1)
+                { books = _bookService.GetNewBooks(pageCount, pageNumb); }
+
+                int totalCount = _bookService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+            }
+
+        }
+
+      
+        [HttpGet]
         [ActionName("book")]
         public HttpResponseMessage Get(int id)
         {
@@ -52,6 +74,8 @@ namespace ELib.Web.ApiControllers
                 BookDto book = _bookService.GetById(id);
                 if (book == null)
                     throw new NullReferenceException();
+                book.TotalViewCount += 1;
+                _bookService.Update(book);
                 return Request.CreateResponse(HttpStatusCode.OK, book);
             }
             catch (NullReferenceException e)
@@ -65,7 +89,7 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
 
-        }        
+        }
 
         [HttpPost]
         public HttpResponseMessage Post(BookDto book)

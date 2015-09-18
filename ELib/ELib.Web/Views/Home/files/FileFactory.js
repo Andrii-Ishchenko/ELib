@@ -11,6 +11,7 @@
             {
                 uploadBookImage: uploadBookImage,
                 uploadProfileImage: uploadProfileImage,
+                uploadAuthorImage:uploadAuthorImage,
                 downloadFile: downloadFile,
                 uploadBookFile: uploadBookFile
             };
@@ -47,6 +48,18 @@
 
         function uploadBookImage(formData, bookId) {
             var url = baseUrl + "file/book-image/"+bookId;
+
+            return $http.post(url, formData, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': undefined
+                },
+                transformRequest: angular.identity
+            });
+        }
+
+        function uploadAuthorImage(formData, authorId) {
+            var url = baseUrl + "file/author-image/" + authorId;
 
             return $http.post(url, formData, {
                 withCredentials: true,

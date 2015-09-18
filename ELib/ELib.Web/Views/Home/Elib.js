@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module("elib", ['ngRoute', 'ngResource', 'LocalStorageModule']);
+    angular.module("elib", ['ngRoute', 'ngResource', 'LocalStorageModule','ui.bootstrap','ngAnimate']);
 })();
