@@ -15,7 +15,7 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         var parameters = {
             pageCount : vm.pageCount,
-            pageNumb  : vm.pageNumb,
+            pageNumb  : vm.currPage,
             query     : $routeParams.query,
             title     : $routeParams.title,
             authorName: $routeParams.author,
