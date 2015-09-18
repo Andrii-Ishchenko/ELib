@@ -1,4 +1,4 @@
-﻿<div id="books">
+﻿<div ng-controller="AuthorsController">
     <div class="row">
 
         <div class="col-md-9">
@@ -10,26 +10,6 @@
             <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
         </div>
     </div>
-
-    <!--<ul class="pagination">
-        <li class="disabled">
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#!">2</a></li>
-        <li class=""><a href="#!">3</a></li>
-        <li class=""><a href="#!">4</a></li>
-        <li class=""><a href="#!">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>-->
 
     <!--book list-->
   
@@ -47,24 +27,6 @@
     </ul>
 
     <!--bottom pagination-->
-    <ul class="pagination">
-        <li class="disabled">
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#!">2</a></li>
-        <li class=""><a href="#!">3</a></li>
-        <li class=""><a href="#!">4</a></li>
-        <li class=""><a href="#!">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</div>
+    <pagination total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()" items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+    </div>
 
