@@ -12,7 +12,7 @@
             main: "/views/home/author/authors.html"
         }
 
-        var obj = dataServiceFactory.getService('authors').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb });
+        var obj = dataServiceFactory.getService('authors').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query : $routeParams.query });
         obj.$promise.then(function (data) {
             vm.authors = data.authors;
             vm.totalItems = data.totalCount;
@@ -23,7 +23,8 @@
         })
 
         vm.pageChanged = function () {
-            $location.url('/authors?pageCount=' + vm.itemsPerPage + '&pageNumb=' + vm.currentPage);
+            $location.search("pageCount", vm.itemsPerPage);
+            $location.search("pageNumb", vm.currentPage);
         };
 
 

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
-using System.Collections.Generic;
+using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
-using System;
 
 namespace ELib.BL.Services.Concrete
 {
