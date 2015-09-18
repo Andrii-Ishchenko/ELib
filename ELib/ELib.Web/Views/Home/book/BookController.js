@@ -2,15 +2,16 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", '$routeParams', "FileFactory", "$scope"];
+    BookController.$inject = ["bookRepository", "commentRepository", '$routeParams', "FileFactory", "$scope"];
 
-    function BookController(bookRepository, $routeParams, FileFactory, $scope) {
+    function BookController(bookRepository, commentRepository, $routeParams, FileFactory, $scope) {
         var vm = this;
 
         vm.savedSuccessfully = false;
         vm.message = "";
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+        vm.comments = commentRepository.getCommentsByBookId().get({ id: $routeParams.id});
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
             var arr = [];

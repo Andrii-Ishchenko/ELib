@@ -18,19 +18,22 @@ namespace ELib.Web.ApiControllers
             _commentService = commentService;
         }
 
+
         [HttpGet]
-        public HttpResponseMessage GetComments()
+        [ActionName("get")]
+        public HttpResponseMessage GetCommentsByBookId(int id)
         {
             try
             {
-                var comments = _commentService.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, comments);
+                List<CommentDto> commentList = _commentService.GetCommentsByBookId(id);
+                return Request.CreateResponse(HttpStatusCode.OK, commentList);
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
 
         [HttpGet]
         public HttpResponseMessage GetCommentById(int id)
