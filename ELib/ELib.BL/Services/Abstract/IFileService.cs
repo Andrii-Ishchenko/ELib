@@ -10,7 +10,7 @@ namespace ELib.BL.Services.Abstract
         bool SaveAuthorImage(byte[] file, string fileName, int bookId, int userId);
         bool SaveBookFile(byte[] file, string fileName, int bookInstanceId, int userId);
 
-        string GetBookFileNameByHash(string hash);
+        string GetBookFileName(string hash);
         FileStream GetBookFile(string hash);
 
         byte[] GetBookImage(String hash, int width, int height);

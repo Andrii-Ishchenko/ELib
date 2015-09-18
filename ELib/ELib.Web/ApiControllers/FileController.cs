@@ -175,7 +175,7 @@ namespace ELib.Web.ApiControllers
                 result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new StreamContent(_fileService.GetBookFile(id));
                 result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileNameByHash(id);
+                result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileName(id);
 
                 return result;
             }

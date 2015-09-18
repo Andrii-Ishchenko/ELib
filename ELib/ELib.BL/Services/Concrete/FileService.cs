@@ -207,7 +207,7 @@ namespace ELib.BL.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public string GetBookFileNameByHash(string hash)
+        public string GetBookFileName(string hash)
         {
             using (var uow = _factory.Create())
             {
