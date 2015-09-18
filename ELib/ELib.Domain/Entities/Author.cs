@@ -30,6 +30,8 @@ namespace ELib.Domain.Entities
 
         public string Description { get; set; }
 
+        public string ImageHash { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AuthorGenre> AuthorGenres { get; set; }
 

@@ -1,0 +1,64 @@
+﻿
+        <form class="form-horizontal" name="newAuthorForm" novalidate>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <h1>New author</h1>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" >FirstName:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="firstName" placeholder="FirstName" ng-model="newAC.firstName"  maxlength="200" required>
+                </div>
+            </div>
+           <!-- <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newAuthorForm.firstName.$dirty && newAuthorForm.title.$invalid">
+                        <label class="control-label" ng-show="newAuthorForm.title.$error.required">First name is required</label>
+                    </div>
+                </div>
+            </div>-->
+            <div class="form-group">
+                <label class="control-label col-xs-3">LastName:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="lastName" placeholder="LastName" ng-model="newAC.lastName" maxlength="200" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Date of birth:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="DateOfBirth" placeholder="1978-01-29" ng-model="newAC.dateOfBirth" maxlength="200" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3">Death date:</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" name="DeathDate" placeholder="1998-05-19" ng-model="newAC.deathDate" maxlength="200" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3" for="description">Description:</label>
+                <div class="col-xs-6">
+                    <textarea rows="3" class="form-control" id="description" placeholder="Description" ng-model="newAC.description"></textarea>
+                </div>
+            </div>           
+            <br>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">  
+                    <div data-ng-hide="newAC.message == ''" data-ng-class="newAC.createdSuccessfully ? 'alert alert-success' : 'alert alert-danger'">
+                        {{newAC.message}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newAC.createAuthor()" 
+                           ng-disabled="newAC.deathDate.$invalid || newAC.dateOfBirth.$invalid || newAC.firstName.$invalid || newAC.lastName.$invalid">
+                </div>
+            </div>
+        </form>
+

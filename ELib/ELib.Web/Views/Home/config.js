@@ -5,7 +5,9 @@
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                redirectTo: 'books'
+                templateUrl: '/views/home/mainpage/main.html',
+                controller: 'MainController',
+                controllerAs: 'mainpage'
             })
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
@@ -37,6 +39,11 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
+             .when('/authors/new', {
+                 templateUrl: '/views/shared/two-column-layout.html',
+                 controller: 'NewAuthorController',
+                 controllerAs: 'newAC'
+             })
             .when('/authors/search', {
                 templateUrl: '/views/shared/two-column-layout.html',
                 controller: 'AuthorsController',
@@ -63,7 +70,7 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
-                templateUrl: '/views/home/publisher/publishers.html',
+                templateUrl: '/views/shared/two-column-layout.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })
