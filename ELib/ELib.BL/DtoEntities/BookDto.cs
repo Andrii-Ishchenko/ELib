@@ -28,6 +28,8 @@ namespace ELib.BL.DtoEntities
 
         public int SubgenreId { get; set;  }
 
+        public int CategoryId { get; set; }
+
         public DateTime? PublishYear { get; set; }
 
         public String ImageHash { get; set; }
@@ -41,6 +43,8 @@ namespace ELib.BL.DtoEntities
         public string PublisherName { get; set; }
 
         public string SubgenreName { get; set; }
+
+        public string CategoryName { get; set; }
 
         public int SumRatingValue { get; set; }
 

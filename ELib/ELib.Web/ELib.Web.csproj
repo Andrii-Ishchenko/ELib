@@ -218,6 +218,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\AuthorsController.cs" />
+    <Compile Include="ApiControllers\CategoryController.cs" />
     <Compile Include="ApiControllers\CurrentProfileController.cs" />
     <Compile Include="ApiControllers\FileController.cs" />
     <Compile Include="ApiControllers\CommentsController.cs" />

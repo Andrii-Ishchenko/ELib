@@ -60,6 +60,9 @@
                             <dt>Title</dt>
                             <dd>{{book.instance.Title}}</dd>
 
+                            <dt>Category</dt>
+                            <dd>{{book.instance.CategoryName}}</dd>
+
                             <dt>Authors</dt>
                             <dd><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></dd>
 

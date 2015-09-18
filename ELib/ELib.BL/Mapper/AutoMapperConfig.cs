@@ -23,8 +23,16 @@ namespace ELib.BL.Mapper
             configureCurrentPerson();
             configureLanguageMapping();
             configureBookInstanceMapping();
+            configureCategoryMapping();
         }
 
+
+        private static void configureCategoryMapping()
+        {
+            AutoMapper.Mapper.CreateMap<Category, CategoryDto>();
+            AutoMapper.Mapper.CreateMap<Category, CategoryDto>();
+
+        }
         private static void configureSubgenreMapping()
         {
             AutoMapper.Mapper.CreateMap<Subgenre, SubgenreDto>();
@@ -68,7 +76,8 @@ namespace ELib.BL.Mapper
                   .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.AuthorId)))
                   .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
                   .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.GenreId)))
-                  .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue));
+                  .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue))
+                  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }
 

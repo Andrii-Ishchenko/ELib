@@ -30,6 +30,8 @@
             vm.publishers = data.publishers;
         })
 
+        vm.categories = dataServiceFactory.getService('category').query();
+
         vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
         vm.createBook = function () {
@@ -42,7 +44,8 @@
                 Isbn: vm.isbn,
                 PublisherId: vm.publisher,
                 Description: vm.description,
-                SubgenreId: vm.subgenre
+                SubgenreId: vm.subgenre,
+                CategoryId: vm.category
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(

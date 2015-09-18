@@ -66,6 +66,7 @@
     <Compile Include="DtoEntities\BookDto.cs" />
     <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
+    <Compile Include="DtoEntities\CategoryDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Services\Abstract\IBookService.cs" />
     <Compile Include="Services\Abstract\ICaptchaGenerator.cs" />
     <Compile Include="Services\Abstract\ICaptchaService.cs" />
+    <Compile Include="Services\Abstract\ICategoryService.cs" />
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\BookService.cs" />
     <Compile Include="Services\Concrete\CaptchaService.cs" />
+    <Compile Include="Services\Concrete\CategoryService.cs" />
     <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\CurrentProfileService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
