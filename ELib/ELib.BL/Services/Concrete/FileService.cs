@@ -21,13 +21,11 @@ namespace ELib.BL.Services.Concrete
         private readonly string BOOK_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["BookImagesFolderPath"];
         private readonly string BOOK_FILES_FOLDER_PATH = ConfigurationManager.AppSettings["BookFilesFolderPath"];
         private readonly string AUTHOR_IMAGES_FOLDER_PATH = ConfigurationManager.AppSettings["AuthorImagesFolderPath"];
-        //private readonly string PROFILE_IMAGE_VIRTUAL_ALIAS = ConfigurationManager.AppSettings["ProfileImageVirtualAlias"];
-        //private readonly string BOOK_IMAGE_VIRTUAL_ALIAS = ConfigurationManager.AppSettings["BookImageVirtualAlias"];
-        //private readonly string BOOK_FILE_VIRTUAL_ALIAS = ConfigurationManager.AppSettings["BookFileVirtualAlias"];
         private readonly int MAX_PROFILE_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxProfileImageSize"]); //bytes
         private readonly int MAX_AUTHOR_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxAuthorImageSize"]);
         private readonly int MAX_BOOK_IMAGE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookImageSize"]); // bytes
         private readonly int MAX_BOOK_FILE_SIZE = Int32.Parse(ConfigurationManager.AppSettings["MaxBookFileSize"]); //bytes
+        private readonly string PREDEFINED_IMAGE_EXTENSION = ImageExtensions.PNG.ToString().ToLowerInvariant();
         #endregion AppSettings
 
         private readonly IUnitOfWorkFactory _factory;
@@ -114,8 +112,8 @@ namespace ELib.BL.Services.Concrete
                 int cnt = uow.Repository<Person>().Get(p=>p.ImageHash==fileHash).Count();
                 if (cnt == 0)
                 {
-                    String path = DirectoryPath(fileHash, PROFILE_IMAGES_FOLDER_PATH);
-                    String filePath = String.Format(@"{0}\{1}.{2}", path, fileHash, "png");
+                    String path = directoryPath(fileHash, PROFILE_IMAGES_FOLDER_PATH);
+                    String filePath = String.Format(@"{0}\{1}.{2}", path, fileHash, PREDEFINED_IMAGE_EXTENSION);
                     File.Delete(filePath);
                 }
         }
@@ -166,7 +164,7 @@ namespace ELib.BL.Services.Concrete
                     return null;
 
                 //ENSURE THAT FILEPATH IS CORRECT
-                String fileName = GetBookImagePath(hash);
+                String fileName = getFilePath(hash, BOOK_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
                 i = ImageResizer.ResizeImage(i,h,w);
                 
@@ -186,7 +184,7 @@ namespace ELib.BL.Services.Concrete
                 var profile = uow.Repository<Person>().Get(p => p.ImageHash == hash).FirstOrDefault();
                 if (profile == null)
                     return null;
-                String fileName = GetProfileImagePath(hash);
+                String fileName = getFilePath(hash, PROFILE_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
                 i = ImageResizer.ResizeImage(i,h,w);
                 
@@ -195,7 +193,7 @@ namespace ELib.BL.Services.Concrete
                 {
                     i.Save(ms, ImageFormat.Png);
                     return ms.ToArray();
-                }              
+                }           
             }
         }
 
@@ -208,7 +206,7 @@ namespace ELib.BL.Services.Concrete
                     return null;
 
                 //ENSURE THAT FILEPATH IS CORRECT
-                String fileName = GetAuthorImagePath(hash);
+                String fileName = getFilePath(hash, AUTHOR_IMAGES_FOLDER_PATH);
                 Image i = Image.FromFile(fileName);
                 i = ImageResizer.ResizeImage(i, h, w);
 
@@ -222,51 +220,34 @@ namespace ELib.BL.Services.Concrete
         }
         
 
-        #region Obsolete
-        public String GetBookImagePath(string fileHash)
-        {
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath  = String.Format(@"{0}\{1}\{2}.png",BOOK_IMAGES_FOLDER_PATH ,directoryPath, fileHash);
-            logger.Info(String.Format("Getting BookImage, hash:{0} ,path:{1} ",fileHash,fullPath));
-            return fullPath;
-        }
-
-        public string GetProfileImagePath(string fileHash)
-        {
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath = String.Format(@"{0}\{1}\{2}.png", PROFILE_IMAGES_FOLDER_PATH, directoryPath, fileHash);
-            logger.Info(String.Format("Getting Profile Image, hash:{0} ,path:{1} ", fileHash, fullPath));
-            return fullPath;
-        }
-
-        public string GetBookFilePath(string fileHash)
-        {
-            string directoryPath = this.DirectoryPath(fileHash, BOOK_FILES_FOLDER_PATH);
-            string fullPath = Directory.GetFiles(directoryPath, String.Format("{0}.*", fileHash)).First();
-            logger.Info(String.Format("Getting Book, hash:{0} ,path:{1} ", fileHash, fullPath));
-
-            return fullPath;
-        }
-
-        public string GetAuthorImagePath(string fileHash)
-        {
-            string directoryPath = DirectoryPath(fileHash, "");
-            string fullPath = String.Format(@"{0}\{1}\{2}.png", AUTHOR_IMAGES_FOLDER_PATH, directoryPath, fileHash);
-            logger.Info(String.Format("Getting author image, hash:{0} ,path:{1} ", fileHash, fullPath));
-            return fullPath;
-        }
-
-        #endregion Obsolete
-
-        public string GetBookFileNameByHash(string hash)
+        public string GetBookFileName(string hash)
         {
             using (var uow = _factory.Create())
             {
                 return uow.Repository<BookInstance>().Get(x => x.FileHash == hash).FirstOrDefault().FileName;
             }
         }
-   
+
+        public FileStream GetBookFile(string hash)
+        {
+            string filePath = getFilePath(hash, BOOK_FILES_FOLDER_PATH);
+
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+
+            return fs;
+        }
+
         #region PrivateMethods
+
+        private string getFilePath(string fileHash, string rootDirectory)
+        {
+            string directoryPath = this.directoryPath(fileHash, rootDirectory);
+
+            string fullPath = Directory.GetFiles(directoryPath, String.Format("{0}.*", fileHash)).First();
+            logger.Info(String.Format("Getting File, hash:{0} ,path:{1} ", fileHash, fullPath));
+
+            return fullPath;
+        }
 
         private bool validateFile(byte[] file, string extension, int userId, Type fileType,  int maxFileSize)
         {
@@ -301,14 +282,9 @@ namespace ELib.BL.Services.Concrete
             return stringHash;
         }
 
-        private string DirectoryPath(string fileHash, string rootDirectoryPath)
+        private string directoryPath(string fileHash, string rootDirectoryPath)
         {
-            if (rootDirectoryPath == "")
-                return String.Format(@"{0}\{1}",
-                         fileHash.Substring(0, DIRECTORY_NAME_LENGTH),
-                         fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
-
-            return  String.Format(@"{0}\{1}\{2}",
+           return  String.Format(@"{0}\{1}\{2}",
                         rootDirectoryPath, 
                         fileHash.Substring(0, DIRECTORY_NAME_LENGTH), 
                         fileHash.Substring(DIRECTORY_NAME_LENGTH, DIRECTORY_NAME_LENGTH));
@@ -316,7 +292,7 @@ namespace ELib.BL.Services.Concrete
 
         private string createDirectoriesIfNoExist(string fileHash, string rootDirectoryPath)
         {
-            string directoryPath = DirectoryPath(fileHash, rootDirectoryPath);
+            string directoryPath = this.directoryPath(fileHash, rootDirectoryPath);
 
             if (!Directory.Exists(directoryPath))
             {
@@ -350,7 +326,7 @@ namespace ELib.BL.Services.Concrete
 
                     string fileHash = getFileHash(b);
                     string directoryPath = createDirectoriesIfNoExist(fileHash, rootDirectoryPath);
-                    string filePath = String.Format(@"{0}\{1}.png", directoryPath, fileHash);
+                    string filePath = String.Format(@"{0}\{1}.{2}", directoryPath, fileHash, PREDEFINED_IMAGE_EXTENSION);
                     File.WriteAllBytes(filePath, b);
                     return fileHash;
                 }
@@ -358,7 +334,8 @@ namespace ELib.BL.Services.Concrete
         }
 
         private string getExtension(string fileName)
-        {    
+        {
+
             return Path.GetExtension(fileName.Replace("\"",String.Empty)).Replace(".", String.Empty).ToUpperInvariant();
         }
 

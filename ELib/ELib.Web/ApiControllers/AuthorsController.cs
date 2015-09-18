@@ -24,21 +24,25 @@ namespace ELib.Web.ApiControllers
             _bookService = bookService;
         }
 
+
         [HttpGet]
-        public HttpResponseMessage GetAuthors()
+        public HttpResponseMessage GetAuthors(string query = null, int pageNumb = 1, int pageCount = 5)
         {
             try
             {
-                IEnumerable<AuthorDto> authors = _authorService.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, authors);
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, pageNumb, pageCount);
+                int totalCount = _authorService.TotalCount;
+                return Request.CreateResponse(HttpStatusCode.OK, new { authors, totalCount });
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                
-                _logger.Error("Error In Author/Get",ex);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+                _logger.Error("Error In Authors/Get", e);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
+
         }
+
+
 
         [HttpGet]
         [ActionName("author")]

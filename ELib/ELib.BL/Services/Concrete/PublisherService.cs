@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ELib.Domain.Entities;
@@ -18,13 +18,14 @@ namespace ELib.BL.Services.Concrete
 
         }
 
-        public IEnumerable<PublisherDto> GetAll(int pageCount, int pageNumb)
+        public IEnumerable<PublisherDto> GetAll(string query, int pageCount, int pageNumb)
         {
+            Expression<Func<Publisher, bool>> filter = (string.IsNullOrEmpty(query)) ? SearchService<Publisher>.True : buildFullExpression(query);
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<PublisherDto>();
 
-                var entities = uow.Repository<Publisher>().Get(skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = uow.Repository<Publisher>().Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
 
                 foreach (var item in entities)
                 {
@@ -34,6 +35,17 @@ namespace ELib.BL.Services.Concrete
 
                 return entitiesDto;
             }
+        }
+
+        private static Expression<Func<Publisher, bool>> buildFullExpression(string query)
+        {
+            Expression<Func<Publisher, bool>> filter = SearchService<Publisher>.False;
+            string[] words = query.Split(' ');
+            foreach (string word in words)
+            {
+                filter = SearchService<Publisher>.filterOr(filter, p => p.Name.Contains(word));
+            }
+            return filter;
         }
     }
 }

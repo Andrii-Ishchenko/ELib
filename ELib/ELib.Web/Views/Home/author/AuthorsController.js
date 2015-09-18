@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("AuthorsController", AuthorsController);
 
-   AuthorsController.$inject = ["dataServiceFactory", "$scope"];
+    AuthorsController.$inject = ["dataServiceFactory", "$scope", '$routeParams', "$location"];
 
-    function AuthorsController(dataServiceFactory, $scope) {
+    function AuthorsController(dataServiceFactory, $scope, $routeParams, $location) {
         var vm = this;
 
         $scope.template = {
@@ -12,7 +12,21 @@
             main: "/views/home/author/authors.html"
         }
 
-        vm.authors = dataServiceFactory.getService('authors').query();
+        var obj = dataServiceFactory.getService('authors').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query : $routeParams.query });
+        obj.$promise.then(function (data) {
+            vm.authors = data.authors;
+            vm.totalItems = data.totalCount;
+            vm.itemsPerPage = ($routeParams.pageCount) ? $routeParams.pageCount : 2;
+            vm.currentPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+            
+            vm.maxSize = 5;
+        })
+
+        vm.pageChanged = function () {
+            $location.search("pageCount", vm.itemsPerPage);
+            $location.search("pageNumb", vm.currentPage);
+        };
+
 
         //activate();
 

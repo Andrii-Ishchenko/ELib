@@ -1,11 +1,40 @@
-﻿<div class="panel panel-default">
+﻿<div class="panel panel-default" ng-controller="FilterController as filter">
     <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
     <div class="panel-body">
-        <form>
+        <form role="form" >
             <dl>
                 <dt>Filtering</dt>
-                <dd>
-                    Filtering Params...
+                <dd class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control input-sm" placeholder="Title contains" ng-model="filter.title" ng-blur="filter.filterByTitle()" />
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control input-sm" placeholder="Author's name contains" ng-model="filter.author" ng-blur="filter.filterByAuthor()"/>
+                            </div>
+                        </div>
+                    <div class="form-group ">
+                        <label class="control-label col-sm-3 text-muted small" for="Genre">Genre </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control input-sm" placeholder="Genre contains" ng-model="filter.genre" ng-blur="filter.filterByGenre()"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre" ng-blur="filter.filterBySubgenre()" />
+                        </div>
+                        </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year" ng-blur="filter.filterByYear()" />
+                        </div>
+                        </div>
                 </dd>
 
                 <dt> Ordering</dt>
@@ -27,11 +56,11 @@
 
                 <dt>Page Size</dt>
                 <dd>
-                    <select>
-                        <option>5</option>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>50</option>
+                    <select ng-model="filter.pageCount" ng-change="filter.changePageCount()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
                     </select>
                 </dd>
             </dl>

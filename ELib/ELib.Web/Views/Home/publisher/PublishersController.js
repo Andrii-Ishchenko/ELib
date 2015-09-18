@@ -13,7 +13,7 @@
         }
         vm.pageCount = 3;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb });
+        var obj = dataServiceFactory.getService('publishers').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query: $routeParams.query });
         obj.$promise.then(function (data) {
             vm.publishers = data.publishers;
             vm.totalCount = data.totalCount;

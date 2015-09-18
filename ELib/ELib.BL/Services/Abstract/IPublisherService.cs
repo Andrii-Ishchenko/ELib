@@ -10,6 +10,6 @@ namespace ELib.BL.Services.Abstract
 {
     public interface IPublisherService : IBaseService<Publisher, PublisherDto>
     {
-        IEnumerable<PublisherDto> GetAll(int pageCount, int pageNumb);
+        IEnumerable<PublisherDto> GetAll(string query, int pageCount, int pageNumb);
     }
 }

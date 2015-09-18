@@ -45,31 +45,28 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well well-sm">
-                <form class="form-horizontal" role="search">
+                <form class="form-horizontal" role="search" ng-controller="SearchController as search">
                     <div class="form-group" style="margin-bottom:0">
                         <div class="col-sm-3">
                             @*<label for="searchSelector" class="control-label">
                                     Search:
                                 </label>*@
-                            <select id="searchSelector" class="form-control input-sm">
-                                <option>Books</option>
-                                <option>Authors</option>
-                                <option>Publishers</option>
+                            <select id="searchSelector" class="form-control input-sm" ng-model="search.type">
+                                <option value="books" selected>Books</option>
+                                <option value="authors">Authors</option>
+                                <option value="publishers">Publishers</option>
                                 <option>Everywhere</option>
                             </select>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control input-sm" placeholder="Search">
+                            <input type="text" ng-model="search.query" class="form-control input-sm" placeholder="Search">
                         </div>
                         <div class="col-sm-1">
-                            <button type="submit" class="btn btn-sm btn-default" style="padding-left:20px;padding-right:20px">
+                            <button type="submit" button ng-click="search.sendRequest()" class="btn btn-sm btn-default" style="padding-left:20px;padding-right:20px">
                                 
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
-                        </div>
-
-
-                    </div>
+                        </div>                    </div>
                 </form>
             </div>
         </div>

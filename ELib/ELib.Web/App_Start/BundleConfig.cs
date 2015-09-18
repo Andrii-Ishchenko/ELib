@@ -37,9 +37,10 @@ namespace ELib.Web
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/book/bookRepository.js",
+                                    "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
-
+                                    "~/Views/Home/index/SearchController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
