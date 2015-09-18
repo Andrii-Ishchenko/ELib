@@ -26,12 +26,11 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]int pageCount = 2, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage GetAuthors(string query = null, int pageNumb = 1, int pageCount = 5)
         {
             try
             {
-
-                IEnumerable<AuthorDto> authors = _authorService.GetAll(pageCount, pageNumb);
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, pageNumb, pageCount);
                 int totalCount = _authorService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { authors, totalCount });
             }

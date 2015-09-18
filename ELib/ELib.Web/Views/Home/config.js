@@ -19,6 +19,11 @@
                 controller: 'NewBookController',
                 controllerAs: 'newBookCtrl'
             })
+             .when('/books/search', {
+                 templateUrl: '/views/shared/two-column-layout.html',
+                 controller: 'BooksController',
+                 controllerAs: 'books'
+             })
             .when('/books/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',
@@ -39,6 +44,11 @@
                  controller: 'NewAuthorController',
                  controllerAs: 'newAC'
              })
+            .when('/authors/search', {
+                templateUrl: '/views/shared/two-column-layout.html',
+                controller: 'AuthorsController',
+                controllerAs: 'authors'
+            })
             .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
@@ -61,6 +71,11 @@
             })
             .when('/publishers', {
                 templateUrl: '/views/shared/two-column-layout.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publishers/search', {
+                templateUrl: '/views/home/publisher/publishers.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })
