@@ -11,7 +11,8 @@
             {
                 uploadBookImage: uploadBookImage,
                 uploadProfileImage: uploadProfileImage,
-                downloadFile: downloadFile
+                downloadFile: downloadFile,
+                uploadBookFile: uploadBookFile
             };
 
         return FileService;
@@ -29,6 +30,20 @@
             });
             
         }
+
+        function uploadBookFile(formData, bookId) {
+            var url = baseUrl + "file/book-instance/" + bookId;
+
+            return $http.post(url, formData, {
+                withCredentials: true,
+
+                headers: {
+                    'Content-Type': undefined
+                },
+                transformRequest: angular.identity
+            });
+        }
+
 
         function uploadBookImage() {
             console.log("download file function called.")

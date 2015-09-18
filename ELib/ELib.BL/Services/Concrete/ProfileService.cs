@@ -15,7 +15,5 @@ namespace ELib.BL.Services.Concrete
         public ProfileService(IUnitOfWorkFactory factory)
             : base(factory)
         { }
-
-
     }
 }

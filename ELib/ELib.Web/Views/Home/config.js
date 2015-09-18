@@ -12,7 +12,12 @@
                 controller : 'BooksController',
                 controllerAs : 'books'
             })
-            .when('/book/:id', {
+            .when('/books/new', {
+                templateUrl: '/views/home/book/new-book.html',
+                controller: 'NewBookController',
+                controllerAs: 'newBookCtrl'
+            })
+            .when('/books/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',
                 controllerAs: 'book'
@@ -27,7 +32,7 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
-            .when('/author/:id', {
+            .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
                 controllerAs: 'author'
@@ -42,10 +47,26 @@
                 controller: 'RegistrationController',
                 controllerAs: 'registrationCtrl'
             })
+            .when('/help', {
+                templateUrl: '/views/home/help/help.html',
+                controller : 'HelpController',
+                controllerAs : 'helpCtrl'
+            })
+            .when('/publishers', {
+                templateUrl: '/views/home/publisher/publishers.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publishers/:id', {
+                templateUrl: '/views/home/publisher/publisher.html',
+                controller: 'PublisherController',
+                controllerAs: 'publisher'
+            })
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',
             });
+            
 
             $httpProvider.interceptors.push('authInterceptorServiceFactory');
             $locationProvider.html5Mode({

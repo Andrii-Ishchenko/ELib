@@ -64,14 +64,17 @@
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
+    <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
+    <Compile Include="DtoEntities\LanguageDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
+    <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\BookImageExtensions.cs" />
     <Compile Include="Enums\ProfileImageExtensions.cs" />
@@ -86,9 +89,11 @@
     <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
+    <Compile Include="Services\Abstract\ILanguageService.cs" />
     <Compile Include="Services\Abstract\IProfileService.cs" />
     <Compile Include="Services\Abstract\IRatingCommentService.cs" />
     <Compile Include="Services\Abstract\IRatingService.cs" />
+    <Compile Include="Services\Abstract\ISubgenreService.cs" />
     <Compile Include="Services\Concrete\AritmeticalCaptchaGenerator.cs" />
     <Compile Include="Services\Concrete\AuthorService.cs" />
     <Compile Include="Services\Abstract\IPublisherService.cs" />
@@ -99,11 +104,13 @@
     <Compile Include="Services\Concrete\CurrentProfileService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
+    <Compile Include="Services\Concrete\LanguageService.cs" />
     <Compile Include="Services\Concrete\OrdinaryCaptchaGenerator.cs" />
     <Compile Include="Services\Concrete\ProfileService.cs" />
     <Compile Include="Services\Concrete\PublisherService.cs" />
     <Compile Include="Services\Concrete\RatingCommentService.cs" />
     <Compile Include="Services\Concrete\RatingService.cs" />
+    <Compile Include="Services\Concrete\SubgenresService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -7,7 +7,7 @@
     function bookRepository($resource) {
         var baseUrl = "/api/books/";
         var DataService = {
-            getBooksForAuthor: getBooksForAuthor, getBookById
+            getBooksForAuthor: getBooksForAuthor, getBooksForPublisher, getBookById
         };
 
         return DataService;
@@ -15,6 +15,16 @@
 
         function getBooksForAuthor() {
             var url = baseUrl + "books-for-author/:id";
+            return $resource(url, { id: '@id' }, {
+                update: {
+                    query: 'Get',
+                    isArray: true
+                }
+            });
+        }
+
+        function getBooksForPublisher() {
+            var url = "/api/publishers/id/books";
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',

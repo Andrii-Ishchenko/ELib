@@ -69,19 +69,19 @@
          <!--top pagination-->
         <hr/>
 
-             <ul class="pagination">
-                 <li ng-class="books.currPage == 1 ?'disabled' : ''">
-                     <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
+             <ul class="pagination ">
+                 <li ng-class="books.currPage == 1 ?' disabled' : ''">
+                     <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
                          <span aria-hidden="true">&laquo;</span>
                          <span class="sr-only">Previous</span>
                      </a>
                  </li>
-                 <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? 'active' : ''">
-                    <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
+                 <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
+                    <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
                  </li> <!--<span class="sr-only">(current)</span>-->
                  
-                 <li ng-class="books.currPage == books.totalPages ?'disabled' : ''">
-                     <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
+                 <li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
+                     <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
                          <span aria-hidden="true">&raquo;</span>
                          <span class="sr-only">Next</span>
                      </a>
@@ -92,23 +92,24 @@
          <ul class="list-group" book-list-directive books="books.books">
          </ul>
          <!--bottom pagination-->
-        <ul class="pagination">
-    <li ng-class="books.currPage == 1 ?'disabled' : ''">
-        <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-        </a>
-    </li>
-    <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? 'active' : ''">
-            <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
-    </li> <!--<span class="sr-only">(current)</span>-->
 
-    <li ng-class="books.currPage == books.totalPages ?'disabled' : ''">
-        <a ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-        </a>
-    </li>
-</ul>  
+      <ul class="pagination ">
+          <li ng-class="books.currPage == 1 ?' disabled' : ''">
+              <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+              </a>
+          </li>
+          <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
+              <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
+          </li> <!--<span class="sr-only">(current)</span>-->
+
+          <li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
+              <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </li>
+      </ul>
 </div>
 

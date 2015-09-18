@@ -18,10 +18,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Download</div>
                     <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="fileFormat in book.instance.FormatsNames">{{fileFormat}}</li>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="bookInstance in book.instance.BookInstances" >
+                                <a target="_self" href="/api/file/book-download/{{bookInstance.FileHash}}">{{bookInstance.Extension}}</a>
+                            </li>
                         </ul>
                     </div>
+                </div>
+                <div data-ng-hide="book.message == ''" data-ng-class="(book.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{book.message}}
+                </div>
+                <div>
+                    <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
+                    <button onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</button>
                 </div>
                </div>
             <div class="col-lg-6 col-sm-12 container">
@@ -38,7 +47,7 @@
                     <p class="lead">Authors:</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/author/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
+                    <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
                 </div>
             </div>
             <div class="row">
@@ -46,7 +55,7 @@
                     <p class="lead">Genres:</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
-                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genre/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
+                    <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
                 </div>
             </div>
             <div class="row">
@@ -62,7 +71,7 @@
                         <p class="lead">Publisher:</p>
                     </div>
                     <div class="col-lg-8 col-sm-6">
-                        <p><a ng-href="{{'/publisher/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
+                        <p><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
                     </div>
             </div>
                 <div class="row">
@@ -84,33 +93,5 @@
  </div>
 </div>
 </div>
-                <div class="container" id="comments">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="well">
-
-                                <form class="form-horizontal" role="search">
-                                    <div class="form-group">
-                                        <div class="col-md-3">
-                                            Comments:
-                                        </div>
-
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <button type="write" class="btn btn-default">Write</button>
-                                            <p>{{comments}}</p>
-                                            <div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br />
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <comments-view></comments-view>
 </div>

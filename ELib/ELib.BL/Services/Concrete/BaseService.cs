@@ -82,6 +82,7 @@ namespace ELib.BL.Services.Concrete
                 var entityToInsert = AutoMapper.Mapper.Map<TEntity>(entity);
                 uow.Repository<TEntity>().Insert(entityToInsert);
                 uow.Save();
+                AutoMapper.Mapper.Map<TEntity, TEntityDto>(entityToInsert, entity);
             }
         }
 
