@@ -12,6 +12,8 @@ namespace ELib.BL.Enums
         DJVU,
         MOBI,
         EPUB,
-        FB2
+        FB2,
+        TXT,
+        RTF
     }
 }

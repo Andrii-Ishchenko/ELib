@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ELib.BL.Enums
 {
-    public enum BookImageExtensions
+    public enum ImageExtensions
     {
         PNG,
         JPG,
-        GIF
+        GIF,
+        BMP
     }
 }

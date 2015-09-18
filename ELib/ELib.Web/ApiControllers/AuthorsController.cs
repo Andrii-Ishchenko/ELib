@@ -14,12 +14,14 @@ namespace ELib.Web.ApiControllers
     public class AuthorsController : ApiController
     {
         private readonly IAuthorService _authorService;
-        private ELogger logger;
+        private readonly IBookService _bookService;
+        private ELogger _logger;
 
-        public AuthorsController(IAuthorService authorService)
+        public AuthorsController(IAuthorService authorService, IBookService bookService)
         {
-            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
+            _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _authorService = authorService;
+            _bookService = bookService;
         }
 
         [HttpGet]
@@ -33,12 +35,13 @@ namespace ELib.Web.ApiControllers
             catch (Exception ex)
             {
                 
-                logger.Error("Error In Author/Get",ex);
+                _logger.Error("Error In Author/Get",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
         [HttpGet]
+        [ActionName("author")]
         public HttpResponseMessage GetAuthorById(int id)
         {
             try
@@ -48,12 +51,12 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/GetById",ex);
+                _logger.Error("Error In Author/GetById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         public HttpResponseMessage AddAuthor(AuthorDto authorDto)
         {
             try
@@ -61,18 +64,18 @@ namespace ELib.Web.ApiControllers
                 if (authorDto != null && ModelState.IsValid)
                 {
                     _authorService.Insert(authorDto);
-                    return Request.CreateResponse(HttpStatusCode.OK, "Ok");
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Id = authorDto.Id });
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Add",ex);
+                _logger.Error("Error In Author/Add",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public HttpResponseMessage UpdateAuthor(AuthorDto authorDto)
         {
             try
@@ -86,7 +89,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Update",ex);
+                _logger.Error("Error In Author/Update", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -101,8 +104,24 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/DeleteById",ex);
+                _logger.Error("Error In Author/DeleteById",ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("books")]
+        public HttpResponseMessage GetBooks(int id)
+        {
+            try
+            {
+                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
+                return Request.CreateResponse(HttpStatusCode.OK, books);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Error Books/GetForAuthor", e);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
         }
     }

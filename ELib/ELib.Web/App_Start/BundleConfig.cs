@@ -27,8 +27,9 @@ namespace ELib.Web
             //.Include("~/Content/site.css")
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap*",
-                            "~/Content/profile.css",
-                           "~/Content/custom.css"));
+                           "~/Content/custom.css",
+                           "~/Content/main.css",
+                            "~/Content/profile.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
@@ -38,6 +39,7 @@ namespace ELib.Web
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
+
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
@@ -49,6 +51,7 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorController.js",
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
+                                    "~/Views/Home/author/NewAuthorController.js",
 
                                     "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/book/NewBookController.js",
@@ -57,9 +60,13 @@ namespace ELib.Web
                                     "~/Views/Home/user/CurrentProfileController.js",
                                     "~/Views/Home/user/CurrentProfileFactory.js",
 
-
                                     "~/Views/Home/publisher/PublisherController.js",
-                                    "~/Views/Home/publisher/PublishersController.js"
+                                    "~/Views/Home/publisher/PublishersController.js",
+                                    "~/Views/Home/publisher/NewPublisherController.js",
+                                  
+                                    "~/Views/Home/mainpage/MainController.js",
+                                    "~/Views/Home/mainpage/ModalController.js",
+                                    "~/Views/Home/mainpage/ModalInstanceController.js"
 
                         )
                     );

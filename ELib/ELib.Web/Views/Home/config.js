@@ -5,7 +5,9 @@
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                redirectTo: 'books'
+                templateUrl: '/views/home/mainpage/main.html',
+                controller: 'MainController',
+                controllerAs: 'mainpage'
             })
             .when('/books', {
                 templateUrl: '/views/shared/two-column-layout.html',
@@ -32,6 +34,11 @@
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
+             .when('/authors/new', {
+                 templateUrl: '/views/shared/two-column-layout.html',
+                 controller: 'NewAuthorController',
+                 controllerAs: 'newAC'
+             })
             .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
@@ -53,15 +60,21 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
-                templateUrl: '/views/home/publisher/publishers.html',
+                templateUrl: '/views/shared/two-column-layout.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
+            })
+            .when('/publishers/new', {
+                templateUrl: '/views/home/publisher/new-publisher.html',
+                controller: 'NewPublisherController',
+                controllerAs: 'newPC'
             })
             .when('/publishers/:id', {
                 templateUrl: '/views/home/publisher/publisher.html',
                 controller: 'PublisherController',
                 controllerAs: 'publisher'
             })
+            
         //.........
             .otherwise({
                 templateUrl: '/views/home/errors/404.html',
