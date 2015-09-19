@@ -77,7 +77,19 @@
             <div class="form-group">
                 <label class="control-label col-xs-3">Year of publishing:</label>
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" id="inputYear" placeholder="Year" ng-model="newBookCtrl.yearOfPublishing">
+                    <input class="form-control" name="yearOfPublishing" placeholder="Year of publishing" type="number" min="0" max="{{newBookCtrl.currentYear}}"
+                         ng-model="newBookCtrl.yearOfPublishing" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-9">
+                    <div class="has-error" ng-show="newBookForm.yearOfPublishing.$dirty && newBookForm.yearOfPublishing.$invalid">
+                        <label class="control-label" ng-show="newBookForm.yearOfPublishing.$error.required">Year of publishing is required</label>
+                        <label class="control-label" ng-show="newBookForm.yearOfPublishing.$error.min ||
+                               newBookForm.yearOfPublishing.$error.max">Invalid year of publishing</label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -124,7 +136,7 @@
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-9">
                     <input type="submit" class="btn btn-primary" value="Submit" ng-click="newBookCtrl.createBook()" ng-disabled="newBookForm.title.$invalid || newBookForm.publishLanguage.$invalid 
-                                    || newBookForm.publisher.$invalid || newBookForm.subgenre.$invalid">
+                                    || newBookForm.publisher.$invalid || newBookForm.subgenre.$invalid || newBookForm.yearOfPublishing.$invalid">
                 </div>
             </div>
         </form>

@@ -16,6 +16,7 @@
         vm.message = '';
         vm.submitState = false;
         vm.createdSuccessfully = false;
+        vm.currentYear = new Date().getFullYear();
 
         var languages = dataServiceFactory.getService('languages').query();
 

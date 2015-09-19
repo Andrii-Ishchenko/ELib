@@ -8,6 +8,7 @@ namespace ELib.BL.DtoEntities
 {
     public class BookDto
     {
+        private readonly int currentYear = DateTime.Now.Year;
 
         public int Id {get; set;}
 
@@ -30,6 +31,7 @@ namespace ELib.BL.DtoEntities
 
         public int CategoryId { get; set; }
 
+        [Range(0, 9999)]
         public int PublishYear { get; set; }
 
         public DateTime AdditionDate { get; set; }
