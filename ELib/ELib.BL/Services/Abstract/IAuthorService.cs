@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using ELib.BL.DtoEntities;
 using ELib.Domain.Entities;
-using System.Collections.Generic;
 
 namespace ELib.BL.Services.Abstract
 {

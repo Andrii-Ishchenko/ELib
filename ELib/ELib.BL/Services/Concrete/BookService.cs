@@ -150,7 +150,7 @@ namespace ELib.BL.Services.Concrete
 
             if (searchDto.Year > 0)
             {
-                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year == searchDto.Year;
+                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear > 0 && x.PublishYear == searchDto.Year;
                 filter = SearchService<Book>.filterAnd(filter, searchByYear);
             }
             return filter;
@@ -180,7 +180,7 @@ namespace ELib.BL.Services.Concrete
                 Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(word);
                 filter = SearchService<Book>.filterOr(filter, searchBySubgenre);
 
-                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear.HasValue && x.PublishYear.Value.Year.ToString().Contains(word);
+                Expression<Func<Book, bool>> searchByYear = x => x.PublishYear > 0 && x.PublishYear.ToString().Contains(word);
                 filter = SearchService<Book>.filterOr(filter, searchByYear);
 
             }

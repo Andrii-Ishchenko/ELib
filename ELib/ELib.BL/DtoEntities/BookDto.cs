@@ -30,9 +30,11 @@ namespace ELib.BL.DtoEntities
 
         public int CategoryId { get; set; }
 
-        public DateTime? PublishYear { get; set; }
+        public int PublishYear { get; set; }
 
-        public String ImageHash { get; set; }
+        public DateTime AdditionDate { get; set; }
+
+        public string ImageHash { get; set; }
 
         public string Description { get; set; }
 

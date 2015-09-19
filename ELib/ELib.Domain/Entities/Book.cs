@@ -39,7 +39,9 @@ namespace ELib.Domain.Entities
         public int CategoryId { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? PublishYear { get; set; }
+        public DateTime AdditionDate { get; set; }
+
+        public int PublishYear { get; set; }
 
         public string ImageHash { get; set; }
 
