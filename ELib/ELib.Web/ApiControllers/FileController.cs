@@ -211,7 +211,7 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-
+        // maybe should use post method (becouse download counter change system)
         [HttpGet]
         [ActionName("book-download")]
         public HttpResponseMessage GetBookFile(string id)

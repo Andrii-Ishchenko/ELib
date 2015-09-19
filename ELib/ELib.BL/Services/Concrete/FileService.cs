@@ -10,6 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Drawing;
 using System.Drawing.Imaging;
+using ELib.BL.DtoEntities;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -234,10 +235,41 @@ namespace ELib.BL.Services.Concrete
 
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
 
+            var bookInstance = getBookInstanceByHash(hash);
+            increaseBookDownloadCounter(bookInstance);
+
             return fs;
         }
 
         #region PrivateMethods
+        private void increaseBookDownloadCounter(BookInstance bookInstance)
+        {
+            using (var uow = _factory.Create())
+            {
+                bookInstance.DownloadCount++;
+                uow.Repository<BookInstance>().Update(bookInstance);
+                var book = uow.Repository<Book>().GetById(bookInstance.BookId);
+                book.TotalDownloadCount++;
+                uow.Repository<Book>().Update(book);
+                uow.Save();
+            }
+        }
+
+        private BookInstance getBookInstanceByHash(string hash)
+        {
+            BookInstance bookInstance;
+
+            using (var uow = _factory.Create())
+            {
+                 bookInstance = uow.Repository<BookInstance>().Get(x => x.FileHash == hash).FirstOrDefault();
+            }
+
+            if (bookInstance == null)
+                throw new ArgumentException();
+
+            return bookInstance;
+        }
+
 
         private string getFilePath(string fileHash, string rootDirectory)
         {
