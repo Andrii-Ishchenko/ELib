@@ -46,6 +46,13 @@
                 function (response) {
                     vm.savedSuccessfully = true;
                     vm.message = "Book file has been uploaded successfully";
+                    // need refactoring (get only book instances)
+                    var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
+                        .$promise
+                        .then(
+                            function (response) {
+                                vm.instance.BookInstances = response.BookInstances;
+                        });               
                 },
                 function (error) {
                     vm.message = "Book file uploading is failed";
