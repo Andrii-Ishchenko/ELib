@@ -45,7 +45,8 @@
                 PublisherId: vm.publisher,
                 Description: vm.description,
                 SubgenreId: vm.subgenre,
-                CategoryId: vm.category
+                CategoryId: vm.category,
+                PublishYear: vm.yearOfPublishing
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(
