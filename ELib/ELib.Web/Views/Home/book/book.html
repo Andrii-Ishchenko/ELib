@@ -83,8 +83,32 @@
                  <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
                     <div class="panel-body">
-                        <div commentsDirective comments="book.comments">
+                    <!--   <div commentsDirective comments="book.comments">
 
+                        </div>--> 
+
+                        <div class="panel panel-default" ng-repeat="comment in book.comments">
+                            <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> 
+                                {{comment.CommentDate | date:'yyyy-MM-dd HH:mm:ss'}}
+                            </div>
+                                <div class="panel-body">
+                                    <div class="row right">
+                                        <div class="col-md-2">
+                                            <p>{{comment.UserId}}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>{{comment.Text}}</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="row pull-right">
+                                <button class="btn btn-info">Write</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,7 +117,8 @@
                         <p class="lead">Title:</p>
                     </div>
                     <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.Title}}</p>
+                        <p>{{book.instance.Title
+                                       }}</p>
                     </div>
                 </div>
                 <div class="row">

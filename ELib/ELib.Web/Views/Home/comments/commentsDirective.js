@@ -11,7 +11,7 @@
             scope: {
                 comments: '='
             },
-            templateUrl: '/views/home/comments/Comment.html'
+            templateUrl: '/Views/Home/comments/Comment.html'
         }
     }
 
