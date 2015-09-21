@@ -10,7 +10,7 @@
                 controllerAs: 'mainpage'
             })
             .when('/books', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/book/books.html',
                 controller : 'BooksController',
                 controllerAs : 'books'
             })
@@ -20,7 +20,7 @@
                 controllerAs: 'newBookCtrl'
             })
              .when('/books/search', {
-                 templateUrl: '/views/shared/two-column-layout.html',
+                 templateUrl: '/views/home/book/books.html',
                  controller: 'BooksController',
                  controllerAs: 'books'
              })
@@ -30,22 +30,22 @@
                 controllerAs: 'book'
             })
             .when('/profile/',{
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/user/profile.html',
                 controller: 'CurrentProfileController',
                 controllerAs: 'currentProfileCtrl'
             })
             .when('/authors', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/author/authors.html',
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
              .when('/authors/new', {
-                 templateUrl: '/views/shared/two-column-layout.html',
+                 templateUrl: '/views/home/author/new-author.html',
                  controller: 'NewAuthorController',
                  controllerAs: 'newAC'
              })
             .when('/authors/search', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/author/authors.html',
                 controller: 'AuthorsController',
                 controllerAs: 'authors'
             })
@@ -70,7 +70,7 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/publisher/publishers.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })

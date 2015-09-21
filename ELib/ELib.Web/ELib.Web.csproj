@@ -369,6 +369,7 @@
     <Content Include="Views\Home\user\profile-menu-current.html" />
     <Content Include="Views\Home\user\profile-ratings.html" />
     <Content Include="Views\Home\user\profile-social-networks.html" />
+    <Content Include="Views\Home\user\profile.html" />
     <Content Include="Views\Shared\menu.html" />
     <Content Include="Views\Home\login\login.html" />
     <Content Include="Views\Home\user\profile-menu.html" />

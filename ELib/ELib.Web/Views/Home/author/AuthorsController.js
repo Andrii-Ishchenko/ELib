@@ -2,16 +2,10 @@
     angular.module("elib")
            .controller("AuthorsController", AuthorsController);
 
-    AuthorsController.$inject = ["dataServiceFactory", "$scope", '$routeParams', "$location"];
+    AuthorsController.$inject = ["dataServiceFactory", '$routeParams', "$location"];
 
-    function AuthorsController(dataServiceFactory, $scope, $routeParams, $location) {
+    function AuthorsController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-
-        $scope.template = {
-            menu: "/views/shared/menu.html",
-            main: "/views/home/author/authors.html"
-        }
-
         var obj = dataServiceFactory.getService('authors').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query : $routeParams.query });
         obj.$promise.then(function (data) {
             vm.authors = data.authors;

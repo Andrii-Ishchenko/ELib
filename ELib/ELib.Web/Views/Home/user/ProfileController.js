@@ -2,28 +2,25 @@
     angular.module("elib")
            .controller("ProfileController", ProfileController);
 
-    ProfileController.$inject = ["ProfileFactory", "$scope"];
+    ProfileController.$inject = ["ProfileFactory"];
 
-    function ProfileController(ProfileFactory,$scope) {
+    function ProfileController(ProfileFactory) {
         var vm = this;
-       
-        $scope.template = {
-            menu: "/views/home/user/profile-menu.html",
-            main: "/views/home/user/profile-general.html"
-        }
 
-        $scope.links = {
+        vm.links = {
             "GeneralInfo": "/views/home/user/profile-general.html"           
         }
 
-        $scope.showSection = function (name) {
-            $scope.template.main = $scope.links[name];
+        vm.currUrl = vm.links["GeneralInfo"];
+
+        vm.showSection = function (name) {
+            vm.currUrl.main = vm.links[name];
         }
 
-        $scope.isActive = function (viewName) {
-            var item = $scope.links[viewName];
+        vm.isActive = function (viewName) {
+            var item = vm.links[viewName];
             //console.log("name = "+viewName+"\t"+"item = "+item);
-            var result = ($scope.template.main == item);
+            var result = (vm.currUrl == item);
             return result;
         }
 
