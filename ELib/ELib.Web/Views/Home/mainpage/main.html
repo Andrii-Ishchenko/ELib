@@ -90,10 +90,15 @@
                         <span class="paragraph-end">
                         </span>
                     </a>
+                    <div class="subtitle" title="addition date: {{book.AdditionDate| date:'short'}}" aria-hidden="true" tabindex="-1">
+                        {{book.AdditionDate | date:'short'}}
+                        <span class="paragraph-end"></span>
+                    </div>
 
                     <div class="center-block text-center text-success" id="productRate">
                         <div style="width: {{book.SumRatingValue}}%"></div>
                     </div>
+
                 </figcaption>
             </figure>
         </div>

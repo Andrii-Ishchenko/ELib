@@ -56,7 +56,9 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<BookInstance>().Get(orderBy: q => q.OrderByDescending(d => d.InsertDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount).Select(y => y.Book);
+                var repository = uow.Repository<Book>();
+                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.AdditionDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
                 {
@@ -73,7 +75,9 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<Book>().Get(orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var repository = uow.Repository<Book>();
+                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
                 {
