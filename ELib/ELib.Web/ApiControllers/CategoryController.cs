@@ -22,19 +22,36 @@ namespace ELib.Web.ApiControllers
             _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
+        //[HttpGet]
+        //[ActionName("categories")]
+        //public HttpResponseMessage GetCategories()
+        //{
+        //    try
+        //    {
+        //        IEnumerable<CategoryDto> cats = _service.GetAll().OrderBy(m=>m.Level);
+        //        return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        _logger.Error("Error In Categories/Get", e);
+        //        return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+        //    }          
+        //}
+
         [HttpGet]
-        public HttpResponseMessage GetCategories()
+        [ActionName("categories-nested")]
+        public HttpResponseMessage GetNestedCategories()
         {
             try
             {
-                IEnumerable<CategoryDto> cats = _service.GetAll();
+                IEnumerable<CategoryNestedDto> cats = _service.GetNested();
                 return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.Error("Error In Categories/Get", e);
                 return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
-            }          
+            }
         }
 
     }

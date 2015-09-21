@@ -71,6 +71,7 @@
     <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
     <Compile Include="DtoEntities\CategoryDto.cs" />
+    <Compile Include="DtoEntities\CategoryNestedDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />

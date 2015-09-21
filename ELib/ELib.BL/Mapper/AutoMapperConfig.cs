@@ -24,8 +24,14 @@ namespace ELib.BL.Mapper
             configureLanguageMapping();
             configureBookInstanceMapping();
             configureCategoryMapping();
+            configureCategoryNestedMapping();
         }
 
+        private static void configureCategoryNestedMapping()
+        {
+            AutoMapper.Mapper.CreateMap<CategoryDto, CategoryNestedDto>();
+            AutoMapper.Mapper.CreateMap<CategoryNestedDto, CategoryDto>();
+        }
 
         private static void configureCategoryMapping()
         {
