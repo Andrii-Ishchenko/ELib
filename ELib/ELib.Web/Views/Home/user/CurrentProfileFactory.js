@@ -14,7 +14,7 @@
         return CurrentProfileService;
 
         function getCurrentUser() {
-            var url = baseUrl + "CurrentProfile/GetCurrentUser";
+            var url = baseUrl + "CurrentProfile";
 
             return $resource(url, {}, {
                 query: {
@@ -26,7 +26,7 @@
         }
 
         function saveCurrentUser(user) {
-            var url = baseUrl + "CurrentProfile/UpdateCurrentUser";
+            var url = baseUrl + "CurrentProfile";
 
             return $resource(url, {}, {
                 send: {
