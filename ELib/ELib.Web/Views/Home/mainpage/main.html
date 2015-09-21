@@ -16,7 +16,7 @@
                             <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
                         </div>
                         <div class="modal-body">
-                            <img src="images/1.png" class="panel-body center-block" />
+                            <img ng-src="/api/file/book-images?hash={{modalinst.book.ImageHash}}&w=328" class="panel-body center-block" />
 
                         </div>
                         <div class="modal-footer" style="text-align:justify">
@@ -25,7 +25,7 @@
 
                     </script>
 
-                    <img class="img-rounded" src="images/1.png" id="menu" ng-click="modalctrl.open(book.Id)" />
+                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
 
                     <p></p>
                     <figcaption class="panel-footer">
@@ -67,7 +67,7 @@
                         <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
                     </div>
                     <div class="modal-body">
-                        <img src="images/1.png" class="panel-body center-block" />
+                        <img ng-src="/api/file/book-images?hash={{modalinst.book.ImageHash}}&w=328" class="panel-body center-block" />
 
                     </div>
                     <div class="modal-footer" style="text-align:justify">
@@ -76,7 +76,7 @@
 
                 </script>
 
-                <img class="img-rounded" src="images/1.png" id="menu" ng-click="modalctrl.open(book.Id)" />
+                <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
 
                 <p></p>
                 <figcaption class="panel-footer">

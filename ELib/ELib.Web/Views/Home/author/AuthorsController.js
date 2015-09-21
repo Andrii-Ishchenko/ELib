@@ -16,7 +16,7 @@
         obj.$promise.then(function (data) {
             vm.authors = data.authors;
             vm.totalItems = data.totalCount;
-            vm.itemsPerPage = ($routeParams.pageCount) ? $routeParams.pageCount : 2;
+            vm.itemsPerPage = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
             vm.currentPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
             
             vm.maxSize = 5;
