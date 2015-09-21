@@ -56,12 +56,43 @@
 <body>-->
 <div id="books">
     <div class="row">
-
-        <div class="col-md-9">
-            <p class="lead" >Books</p>
+        <div class="col-md-8">
+            <p class="lead" style="margin-bottom:0;border-bottom: 1px solid #eee " >Books</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <a class="btn btn-default pull-right" href="/books/new" ><i class="glyphicon glyphicon-file" ></i> Add Book</a>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-12">
+            <small>Ordering :    </small>
+            <!--<select>
+                <option>Title</option>
+                <option>Year</option>
+                <option>Author Name</option>
+                <option>Genre</option>
+                <option>Publisher</option>
+                <option>Rating</option>
+                <option>Date</option>
+            </select>-->
+        <ul class="list-inline"  style="display:inline;margin-left:5px">
+            <li><a href>Title</a></li>
+            <li><a href>Year</a></li>
+            <li><a href>Author Name</a></li>
+            <li><a href>Genre</a></li>
+            <li><a href>Publisher</a></li>
+            <li><a href>Rating</a></li>
+            <li><a href>Date</a></li>
+        </ul>           
+            <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
+                <small>Books Per Page:</small>
+                <select>
+                    <option>5</option>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>100</option>
+                </select>
+
         </div>
     </div>
     <!--top pagination-->
