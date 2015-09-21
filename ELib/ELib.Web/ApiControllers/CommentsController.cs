@@ -20,7 +20,7 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        [ActionName("get")]
+        [ActionName("comments-for-book")]
         public HttpResponseMessage GetCommentsByBookId(int id)
         {
             try
@@ -36,6 +36,7 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
+        [ActionName("comment")]
         public HttpResponseMessage GetCommentById(int id)
         {
             try

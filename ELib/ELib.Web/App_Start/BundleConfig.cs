@@ -67,7 +67,7 @@ namespace ELib.Web
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
-                                    "~/Views/Home/comments/commentRepository.js",
+                                    "~/Views/Home/comments/CommentsRepository.js",
                                     "~/Views/Home/comments/commentsDirective.js"
 
                         )
