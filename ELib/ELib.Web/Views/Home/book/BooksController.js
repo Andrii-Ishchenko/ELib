@@ -2,15 +2,10 @@
     angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["dataServiceFactory", "$scope", '$routeParams'];
+    BooksController.$inject = ["dataServiceFactory", '$routeParams'];
 
-    function BooksController(dataServiceFactory,$scope, $routeParams) {
+    function BooksController(dataServiceFactory, $routeParams) {
         var vm = this;
-
-        $scope.template = {
-            menu: "/views/home/book/book-list-menu.html",
-            main: "/views/home/book/books.html"
-        }
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         var parameters = {

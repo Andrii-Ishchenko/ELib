@@ -1,32 +1,38 @@
-﻿<div ng-controller="AuthorsController">
-    <div class="row">
+﻿<aside class="col-md-3">
+    <p>
+       Menu will be there
+    </p>
+</aside>
+<div class="col-md-9">
+    <div ng-controller="AuthorsController">
+        <div class="row">
 
-        <div class="col-md-9">
+            <div class="col-md-9">
 
-            <p class="lead">Authors</p>
+                <p class="lead">Authors</p>
 
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
+            </div>
         </div>
-        <div class="col-md-3">
-            <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
-        </div>
+
+        <!--book list-->
+
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="author in authors.authors">
+
+                <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60" height="60">
+                <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
+
+                <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
+            </li>
+
+
+        </ul>
+
+        <!--bottom pagination-->
+        <pagination total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()" items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
     </div>
-
-    <!--book list-->
-  
-
-    <ul class="list-group">
-        <li  class="list-group-item" ng-repeat="author in authors.authors">
-                
-            <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60"  height="60">
-            <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
-
-            <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
-        </li>
-
-
-    </ul>
-
-    <!--bottom pagination-->
-    <pagination total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()" items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
-    </div>
-
+</div>

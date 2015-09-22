@@ -10,8 +10,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class AuthorService : BaseService<Author, AuthorDto>, IAuthorService
     {
-        public AuthorService(IUnitOfWorkFactory factory) 
-            :base(factory) 
+        public AuthorService(IUnitOfWorkFactory factory)
+            : base(factory)
         {
         }
         public IEnumerable<AuthorDto> GetAll(string query, int pageNumb, int pageCount)
