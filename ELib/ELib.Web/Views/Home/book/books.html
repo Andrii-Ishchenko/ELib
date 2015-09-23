@@ -1,4 +1,6 @@
 <!--menu-->
+
+
 <aside class="col-md-3">
     <div class="panel panel-default" ng-controller="FilterController as filter">
         <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
@@ -42,7 +44,23 @@
             </form>
          </div>
     </div>
-    </aside>
+
+    <div class="panel panel-default" ng-controller="BooksController as BooksCtrl">
+        <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Categories</div>
+        <div class="panel-body">
+            <script type="text/ng-template" id="tree_item_renderer.html">
+                <a href ng-click="BooksCtrl.ToggleNode(node)"><span ng-class="node.opened ? 'glyphicon glyphicon-chevron-up':'glyphicon glyphicon-chevron-down'"></span></a>{{node.Name}}
+                <ul class="subtree" ng-show="node.opened">
+                    <li class="category" ng-repeat="node in node.Children"  ng-include="'tree_item_renderer.html'"></li>
+                </ul>
+            </script>
+
+            <ul class="subtree">
+                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree_item_renderer.html'"></li>
+            </ul>
+        </div>
+    </div>
+</aside>
 <!--main-->
 <div class="col-md-9">
     <div id="books">

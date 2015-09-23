@@ -8,16 +8,29 @@
         var vm = this;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+
+        var obj = dataServiceFactory.getService('category').query();
+        obj.$promise.then(function (data) {
+            vm.categories = data;
+            preProcessCategories(vm.categories,0);
+        });
+
+        vm.ToggleNode = function ToggleNode(node) {       
+            if (node && node.opened != undefined)
+                node.opened = !node.opened
+        }
+
+
         var parameters = {
-            pageCount : vm.pageCount,
-            pageNumb  : vm.currPage,
-            query     : $routeParams.query,
-            title     : $routeParams.title,
+            pageCount: vm.pageCount,
+            pageNumb: vm.currPage,
+            query: $routeParams.query,
+            title: $routeParams.title,
             authorName: $routeParams.author,
-            genre     : $routeParams.genre,
-            subgenre  : $routeParams.subgenre,
-            year      : $routeParams.year
-    }
+            genre: $routeParams.genre,
+            subgenre: $routeParams.subgenre,
+            year: $routeParams.year
+        }
 
         var obj = dataServiceFactory.getService('books').get(parameters);
         obj.$promise.then(function (data) {
@@ -26,7 +39,22 @@
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.pages = new Array(vm.totalPages);
         })
-      
+
+
+        function preProcessCategories(children, level) {
+
+            for (var index in children) {
+                if (children[index].Level && children[index].Level >= level) {
+                    children[index].opened = false;
+                } else {
+                    children[index].opened = true;
+                }
+               
+
+                preProcessCategories(children[index].Children,level)
+            }
+        }
+
 
         //activate();
 
