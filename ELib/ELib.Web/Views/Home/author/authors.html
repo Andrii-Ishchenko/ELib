@@ -33,6 +33,7 @@
         </ul>
 
         <!--bottom pagination-->
-        <pagination total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()" items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+        <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()"
+                    items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
     </div>
 </div>
