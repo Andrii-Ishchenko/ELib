@@ -21,6 +21,7 @@
         }
 
         vm.pageChanged = pageChanged;
+
             //$location.search("pageNumb", vm.currPage);
 
 
