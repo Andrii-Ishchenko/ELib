@@ -2,18 +2,27 @@
     angular.module("elib")
            .controller("PublishersController", PublishersController);
 
-    PublishersController.$inject = ["dataServiceFactory", '$routeParams'];
+    PublishersController.$inject = ["dataServiceFactory", '$routeParams', '$location'];
 
-    function PublishersController(dataServiceFactory, $routeParams) {
+    function PublishersController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-        vm.pageCount = 3;
+
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query: $routeParams.query });
+        
+        var obj = dataServiceFactory.getService('publishers').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query });
         obj.$promise.then(function (data) {
             vm.publishers = data.publishers;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.pages = new Array(vm.totalPages);
-        })
+        });
+
+        vm.pageChanged = pageChanged;
+
+        function pageChanged() {
+            $location.search("pageNumb", vm.currPage);
+            $location.search("pageCount", vm.pageCount);
+        }
     }
 })();

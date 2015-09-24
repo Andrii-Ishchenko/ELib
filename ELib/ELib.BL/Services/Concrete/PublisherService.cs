@@ -24,9 +24,9 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<PublisherDto>();
-
-                var entities = uow.Repository<Publisher>().Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
-
+                var repository = uow.Repository<Publisher>();
+                var entities = repository .Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
                     var entityDto = AutoMapper.Mapper.Map<PublisherDto>(item);
