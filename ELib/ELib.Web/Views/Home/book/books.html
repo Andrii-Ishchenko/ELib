@@ -77,11 +77,11 @@
                 </ul>
                 <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
                 <small>Books Per Page:</small>
-                <select ng-model="books.pageCount" ng-change="books.pageChanged()">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>25</option>
-                    <option>100</option>
+                <select ng-change="books.pageChanged()" ng-model="books.pageCount" convert-to-number >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="100">100</option>
                 </select>
 
             </div>
