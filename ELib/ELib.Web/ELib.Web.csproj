@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B9D987DF-1551-44EA-8120-BAEB59FBCD5D}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ELib.Web</RootNamespace>
@@ -27,6 +27,8 @@
     <OldToolsVersion>12.0</OldToolsVersion>
     <UseGlobalApplicationHostFile />
     <IISExpressSSLPort />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,8 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -71,12 +73,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -91,8 +93,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -103,8 +105,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -123,12 +125,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -139,12 +137,21 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Entity" />
@@ -152,52 +159,52 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.30506\lib\net40\System.Web.Http.OData.dll</HintPath>
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.Tracing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.4.0.30506\lib\net40\System.Web.Http.Tracing.dll</HintPath>
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -210,8 +217,8 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -241,6 +248,20 @@
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
     <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
     <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
     <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
@@ -279,31 +300,40 @@
     <Content Include="Images\full_star.png" />
     <Content Include="Images\profile-big.png" />
     <Content Include="packages.config" />
-    <Content Include="Areas\HelpPage\Views\Web.config" />
-    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-local-storage.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\jquery-2.1.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -311,9 +341,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Home\author\author.html" />
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors.html" />
@@ -338,6 +368,7 @@
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Views\Home\index\index.cshtml" />
     <Content Include="Views\Home\errors\404.html" />
     <Content Include="Views\Home\help\help.html" />
@@ -385,7 +416,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -460,6 +490,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
