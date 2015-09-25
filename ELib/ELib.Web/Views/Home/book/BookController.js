@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "FileFactory", "$scope"];
+    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "FileFactory", "$scope","dataServiceFactory"];
 
-    function BookController(bookRepository, CommentsRepository, $routeParams, FileFactory, $scope) {
+    function BookController(bookRepository, CommentsRepository, $routeParams, FileFactory, $scope,dataServiceFactory) {
         var vm = this;
 
         vm.savedSuccessfully = false;
@@ -12,6 +12,12 @@
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id});
+
+        vm.newComment = {
+                Text: "abc",
+                BookId: $routeParams.id,
+        }
+
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
             var arr = [];
@@ -25,6 +31,13 @@
             if (EmptyStarsNumb > 0) arr.length = EmptyStarsNumb;
             return arr;
         };
+
+
+        vm.createComment = function () {
+            
+        }
+
+
 
         $scope.uploadBookImage = function (file) {
             var fd = new FormData();
