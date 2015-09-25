@@ -152,6 +152,12 @@ namespace ELib.BL.Services.Concrete
                 filter = SearchService<Book>.filterAnd(filter, searchByPublisher);
             }
 
+            if (searchDto.GenreId > -1)
+            {
+                Expression<Func<Book, bool>> searchByGenreId = (x) => x.BookGenres.AsQueryable().Where(g => (g.Id > -1 && g.Id == searchDto.GenreId)).Count() > 0;
+                filter = SearchService<Book>.filterAnd(filter, searchByGenreId);
+            }
+
             if (searchDto.Year > 0)
             {
                 Expression<Func<Book, bool>> searchByYear = x => x.PublishYear > 0 && x.PublishYear == searchDto.Year;
@@ -183,6 +189,9 @@ namespace ELib.BL.Services.Concrete
 
                 Expression<Func<Book, bool>> searchBySubgenre = x => x.Subgenre.Name.Contains(word);
                 filter = SearchService<Book>.filterOr(filter, searchBySubgenre);
+
+                Expression<Func<Book, bool>> searchByGenreId = (x) => x.BookGenres.AsQueryable().Where(g => (g.Id > -1 && g.Id.ToString().Contains(word))).Count() > 0;
+                filter = SearchService<Book>.filterOr(filter, searchByGenreId);
 
                 Expression<Func<Book, bool>> searchByYear = x => x.PublishYear > 0 && x.PublishYear.ToString().Contains(word);
                 filter = SearchService<Book>.filterOr(filter, searchByYear);
