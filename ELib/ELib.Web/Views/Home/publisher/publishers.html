@@ -4,16 +4,15 @@
 <div class="col-md-9">
     <div id="publishers">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <p class="lead">Publishers</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a class="btn btn-default pull-right" href="/publisherss/new"><i class="glyphicon glyphicon-pencil"></i> Add Publisher</a>
             </div>
         </div>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="publisher in publishers.publishers">
-                <img class="img-thumbnail pull-left" src="/Images/orderedList7.png" alt="">
                 <p><a href="{{'/publishers/' + publisher.Id}}"><strong>{{publisher.Name}} </strong></a></p>
             </li>
         </ul>
