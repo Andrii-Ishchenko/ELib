@@ -44,7 +44,7 @@
         function preProcessCategories(children, level) {
 
             for (var index in children) {
-                if (children[index].Level && children[index].Level >= level) {
+                if (children[index].Level!=undefined && children[index].Level >= level) {
                     children[index].opened = false;
                 } else {
                     children[index].opened = true;
