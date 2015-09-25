@@ -6,7 +6,7 @@
 
     function BooksController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         var obj = dataServiceFactory.getService('category').query();
@@ -46,7 +46,8 @@
         })
       
         function pageChanged() {
-            $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
+            $location.search("pageCount", vm.pageCount);
+            $location.search("pageNumb", vm.currPage);
         }
 
 
