@@ -80,34 +80,36 @@
                         </dl>
                     </div>
                 </div>
-                 <div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
                     <div class="panel-body">
-                    <!--   <div commentsDirective comments="book.comments">
-
-                        </div>--> 
-
-                        <div class="panel panel-default" ng-repeat="comment in book.comments">
-                            <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> 
-                                {{comment.CommentDate | date:'yyyy-MM-dd HH:mm:ss'}}
-                            </div>
-                                <div class="panel-body">
-                                    <div class="row right">
-                                        <div class="col-md-2">
-                                            <p>{{comment.UserId}}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p>{{comment.Text}}</p>
-                                        </div>
-                                    </div>
+                        <!--<div commentsDirective comments="book.comments"> </div>-->
+                        <div class="panel panel-default" ng-repeat="comm in book.comments">
+                            <div class="panel-heading"> <i class="glyphicon glyphicon-user"></i>{{comm.UserId}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}} </div>
+                            <div class="panel-body">
+                                {{comm.Text}}
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="row pull-right">
-                                <button class="btn btn-info">Write</button>
+
+                        <div class="panel panel-default" >
+                            <div class="panel-heading"> Leave your comment:</div>
+                            <div class="panel-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <textarea class="col-md-12 form-control" />
+                                        </div>                                   
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <div class="pull-right">
+                                                <input type="button" class="btn btn-default" value="Clear" />
+                                                <input type="button" class="btn btn-primary" value="Send" ng-click=""/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -117,8 +119,7 @@
                         <p class="lead">Title:</p>
                     </div>
                     <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.Title
-                                       }}</p>
+                        <p>{{book.instance.Title}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -187,5 +188,4 @@
             </div>
         </div>
     </div>
-    <comments-view></comments-view>
 </div>
