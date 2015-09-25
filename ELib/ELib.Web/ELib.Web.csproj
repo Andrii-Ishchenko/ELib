@@ -289,6 +289,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\ng-rating.css" />
     <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -344,6 +345,7 @@
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ng-rating.js" />
     <Content Include="Views\Home\author\author.html" />
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors.html" />
@@ -359,6 +361,7 @@
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\book\FilterController.js" />
+    <Content Include="Views\Home\book\RatingController.js" />
     <Content Include="Views\Home\comments\Comment.html" />
     <Content Include="Views\Home\comments\CommentController.js" />
     <Content Include="Views\Home\comments\Comments.html" />

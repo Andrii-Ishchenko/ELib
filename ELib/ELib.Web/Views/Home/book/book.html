@@ -18,10 +18,22 @@
                     <figcaption class="panel-footer">
                         <p>Rating : {{book.instance.Rating}}</p>
                         <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
-                        <div class="center-block text-center text-success">
+                        <!--<div class="center-block text-center text-success">
                             <span class="glyphicon glyphicon-star" ng-repeat="i in book.getFullStarsArray() track by $index"></span>
                             <span class="glyphicon glyphicon-star-empty" ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
+                        </div>-->
+
+                        <div ng-controller="RatingController as rat" class="center-block text-center text-success">
+
+                            <ng-rating ng-model="rat.rating" ng-change="rat.change()"
+                                       icon-class="rat.iconClass"
+                                       editable="rat.editableRating"
+                                       stars-count="rat.starsCount"
+                                       based-on="rat.basedOn"
+                                       show-grade="rat.showGrade">
+                            </ng-rating>
                         </div>
+
                     </figcaption>
                 </figure>
                 <div class="panel panel-default">
@@ -83,10 +95,10 @@
                         </dl>
                     </div>
                 </div>
-                 <div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
                     <div class="panel-body">
-                        
+
                     </div>
                 </div>
                 <!--<div class="row">
@@ -147,6 +159,9 @@
                 </div>-->
 
             </div>
+
+
+            -1
             <div class="col-lg-2 col-sm-12 container">
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-stats"></i> Stats</div>
@@ -154,6 +169,10 @@
                         Statistics info
                     </div>
                 </div>
+
+
+                <div clas
+                     s=
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-usd"></i> Ads</div>
                     <div class="panel-body">
@@ -161,7 +180,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
+        <comments-view></comments-view>
     </div>
-    <comments-view></comments-view>
-</div>

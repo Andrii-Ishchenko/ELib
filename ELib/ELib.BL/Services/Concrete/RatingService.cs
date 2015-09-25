@@ -17,45 +17,45 @@ namespace ELib.BL.Services.Concrete
         
         public void AddRating(RatingBookDto rating)
         {
-            if(rating.ValueRating <=0 || rating.ValueRating > 10)
+            if(rating.ValueRating <=0 || rating.ValueRating > 100)
             {
                 return;
             }
             using (var uow = _factory.Create())
             {
                 int sumRating = 0;
-                List<RatingBook> tempBook = (List<RatingBook>)uow.Repository<RatingBook>().Get(x => x.BookId == rating.BookId);
-                if(tempBook.Count!=0 )
-                {
-                    List<RatingBook> tempRatingBook = tempBook.FindAll(x => x.UserId == rating.UserId);
-                    if(tempRatingBook.Count != 0)
-                    {
-                        foreach (var temp in tempRatingBook)
-                        {
-                            rating.Id = temp.Id;
-                            var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
-                            base.Update(rating);
-                            sumRating = (ReCalculateRatingBook(tempBook) - temp.ValueRating + rating.ValueRating) / tempBook.Count;
-                        }
+                var tempBook = uow.Repository<RatingBook>().Get(x => x.BookId == rating.BookId);
+                //if(tempBook.Count!=0 )
+                //{
+                //    List<RatingBook> tempRatingBook = tempBook.FindAll(x => x.UserId == rating.UserId);
+                //    if(tempRatingBook.Count != 0)
+                //    {
+                //        foreach (var temp in tempRatingBook)
+                //        {
+                //            rating.Id = temp.Id;
+                //            var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
+                //            base.Update(rating);
+                //            sumRating = (ReCalculateRatingBook(tempBook) - temp.ValueRating + rating.ValueRating) / tempBook.Count;
+                //        }
                         
-                    }
-                    else
-                    {
-                        var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
-                        uow.Repository<RatingBook>().Insert(entityToInsert);
-                        uow.Save();
-                        sumRating = (ReCalculateRatingBook(tempBook) + rating.ValueRating) / (tempBook.Count + 1);
-                    }
-                }
-                else
-                {
-                    var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
-                    uow.Repository<RatingBook>().Insert(entityToInsert);
-                    uow.Save();
-                    sumRating = rating.ValueRating;
-                }
-                uow.Repository<Book>().GetById(rating.BookId).SumRatingValue = sumRating;
-                uow.Save();
+                //    }
+                //    else
+                //    {
+                //        var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
+                //        uow.Repository<RatingBook>().Insert(entityToInsert);
+                //        uow.Save();
+                //        sumRating = (ReCalculateRatingBook(tempBook) + rating.ValueRating) / (tempBook.Count + 1);
+                //    }
+                //}
+                //else
+                //{
+                //    var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
+                //    uow.Repository<RatingBook>().Insert(entityToInsert);
+                //    uow.Save();
+                //    sumRating = rating.ValueRating;
+                //}
+                //uow.Repository<Book>().GetById(rating.BookId).SumRatingValue = sumRating;
+                //uow.Save();
             }
         }
 
