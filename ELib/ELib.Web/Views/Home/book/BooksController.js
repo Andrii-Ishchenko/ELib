@@ -6,7 +6,7 @@
 
     function BooksController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         var obj = dataServiceFactory.getService('category').query();
@@ -22,14 +22,14 @@
 
 
         var parameters = {
-            pageCount: vm.pageCount,
-            pageNumb: vm.currPage,
-            query: $routeParams.query,
-            title: $routeParams.title,
+            pageCount : vm.pageCount,
+            pageNumb  : vm.currPage,
+            query     : $routeParams.query,
+            title     : $routeParams.title,
             authorName: $routeParams.author,
-            genre: $routeParams.genre,
-            subgenre: $routeParams.subgenre,
-            year: $routeParams.year
+            genre     : $routeParams.genre,
+            subgenre  : $routeParams.subgenre,
+            year      : $routeParams.year
     }
 
         vm.pageChanged = pageChanged;
@@ -46,11 +46,13 @@
         })
       
         function pageChanged() {
-            $location.search("pageCount", vm.pageCount);
-            $location.search("pageNumb", vm.currPage);
+            $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
         }
 
 
+        vm.NodeButtonState = function (node) {
+
+        }
       
 
         function preProcessCategories(children, level) {

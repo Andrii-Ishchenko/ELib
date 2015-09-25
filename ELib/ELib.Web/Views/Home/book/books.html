@@ -48,16 +48,18 @@
     <div class="panel panel-default" ng-controller="BooksController as BooksCtrl">
         <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Categories</div>
         <div class="panel-body">
-            <script type="text/ng-template" id="tree_item_renderer.html">
-                <button type="button" ng-click="BooksCtrl.ToggleNode(node)"  class="btn btn-default" style="width:26px;height:26px;border-radius:13px; padding:0px"><span  ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span> </button>
+            <script type="text/ng-template" id="tree.html">
+                <button type="button" ng-click=" BooksCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0"  class="btn btn-default" style="width:26px;height:26px;border-radius:13px; padding:0px">
+                    <span  ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span> 
+                </button>
                 <a href>{{node.Name}}</a>
                 <ul class="subtree" ng-show="node.opened">
-                    <li class="category" ng-repeat="node in node.Children"  ng-include="'tree_item_renderer.html'"></li>
+                    <li class="category" ng-repeat="node in node.Children"  ng-include="'tree.html'"></li>
                 </ul>
             </script>
 
             <ul class="subtree noLeftIndent">
-                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree_item_renderer.html'"></li>
+                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree.html'"></li>
             </ul>
         </div>
     </div>
