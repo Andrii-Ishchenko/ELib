@@ -17,7 +17,7 @@ namespace ELib.Web.ApiControllers
 {
     [Authorize]
     public class AccountController : ApiController
-    {
+    {  
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
         private readonly IProfileService _profileService;
