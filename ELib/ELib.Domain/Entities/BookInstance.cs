@@ -16,7 +16,6 @@ namespace ELib.Domain.Entities
         [StringLength(400)]
         public string FileName { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime InsertDate { get; set; }
 
         public int DownloadCount { get; set; }
