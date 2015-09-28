@@ -25,7 +25,7 @@
 
                         <div ng-controller="RatingController as rat" class="center-block text-center text-success">
 
-                            <ng-rating ng-model="rat.rating" ng-change="rat.change()"
+                            <ng-rating ng-model="book.instance.Rating" ng-change="book.changeRating()"
                                        icon-class="rat.iconClass"
                                        editable="rat.editableRating"
                                        stars-count="rat.starsCount"
