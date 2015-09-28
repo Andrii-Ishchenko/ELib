@@ -28,6 +28,7 @@
             title     : $routeParams.title,
             authorName: $routeParams.author,
             genre     : $routeParams.genre,
+            genreId   : $routeParams.genreId,
             subgenre  : $routeParams.subgenre,
             year      : $routeParams.year
     }

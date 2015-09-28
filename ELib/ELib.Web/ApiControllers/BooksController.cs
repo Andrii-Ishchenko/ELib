@@ -30,8 +30,8 @@ namespace ELib.Web.ApiControllers
                                        [FromUri]string title = null,
                                        [FromUri]string publisher = null,
                                        [FromUri]string genre = null,
-                                       [FromUri]string subgenre = null,
                                        [FromUri]int genreId = -1,
+                                       [FromUri]string subgenre = null,
                                        [FromUri]int year = 0,
                                        [FromUri]int pageCount = 3,
                                        [FromUri]int pageNumb = 1)
