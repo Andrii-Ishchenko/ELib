@@ -106,7 +106,6 @@ namespace ELib.Web.ApiControllers
             {
                 if (book != null && ModelState.IsValid)
                 {
-                    book.AdditionDate = DateTime.Now;
                     _bookService.Insert(book);
                     return Request.CreateResponse(HttpStatusCode.OK, new { BookId = book.Id});
                 }
