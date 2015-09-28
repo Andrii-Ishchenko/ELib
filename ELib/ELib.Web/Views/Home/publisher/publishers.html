@@ -4,21 +4,20 @@
 <div class="col-md-9">
     <div id="publishers">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <p class="lead">Publishers</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a class="btn btn-default pull-right" href="/publisherss/new"><i class="glyphicon glyphicon-pencil"></i> Add Publisher</a>
             </div>
         </div>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="publisher in publishers.publishers">
-                <img class="img-thumbnail pull-left" src="/Images/orderedList7.png" alt="">
                 <p><a href="{{'/publishers/' + publisher.Id}}"><strong>{{publisher.Name}} </strong></a></p>
             </li>
         </ul>
 
-        <ul class="pagination">
+        <!--<ul class="pagination">
             <li ng-class="publishers.currPage == 1 ?'disabled' : ''">
                 <a ng-class="publishers.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/publishers?pageCount=' + publishers.pageCount + '&pageNumb=' + (publishers.currPage - 1)}}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -29,12 +28,14 @@
                 <a class="btn" ng-href="{{'/publishers?pageCount=' + publishers.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
             </li> <!--<span class="sr-only">(current)</span>-->
 
-            <li ng-class="publishers.currPage == publishers.totalPages ?'disabled' : ''">
+            <!--<li ng-class="publishers.currPage == publishers.totalPages ?'disabled' : ''">
                 <a ng-class="publishers.currPage == publishers.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/publishers?pageCount=' + publishers.pageCount + '&pageNumb=' + (publishers.currPage * 1 + 1)}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
             </li>
-        </ul>
+        </ul>-->
+        <pagination ng-if="publishers.totalCount" total-items="publishers.totalCount" ng-model="publishers.currPage" items-per-page="publishers.pageCount"
+                    boundary-links="true" maxSize="5" class="pagination-sm" ng-change="publishers.pageChanged()"></pagination>
     </div>
 </div>

@@ -6,13 +6,13 @@
 
     function AuthorsController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-        var obj = dataServiceFactory.getService('authors').get({ pageCount: $routeParams.pageCount, pageNumb: $routeParams.pageNumb, query : $routeParams.query });
+        vm.itemsPerPage = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.currentPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+        var obj = dataServiceFactory.getService('authors').get({ pageCount: vm.itemsPerPage, pageNumb: vm.currentPage, query: $routeParams.query });
         obj.$promise.then(function (data) {
             vm.authors = data.authors;
-            vm.totalItems = data.totalCount;
-            vm.itemsPerPage = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
-            vm.currentPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
-            
+            vm.totalItems = data.totalCount;            
+            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.maxSize = 5;
         })
 

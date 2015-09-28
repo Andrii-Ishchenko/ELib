@@ -23,14 +23,10 @@
             <ul class="list-inline">
                 <li ng-repeat="autor in book.AuthorsDto"><em><a href="/authors/{{autor.Id}}">{{autor.Name}}</a></em></li>
             </ul>        
-            <br />
             <a href="{{'/books/' + book.Id}}"><strong>{{book.Title}}</strong></a>
             <br>
-            <span>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</span>
-
-            <br />
-            
-            
+            <span ng-if="book.Genre">{{book.Genre}} -</span><span ng-if="book.Subgenre">{{book.Subgenre}} - </span><span ng-if="book.PublisherName">{{book.PublisherName}} - </span><span ng-if="book.PublishYear">{{book.PublishYear}}</span>
+            <br>          
             <span class="glyphicon glyphicon-thumbs-up"></span>
             <span style="color:forestgreen">666</span>
             <span class="glyphicon glyphicon-thumbs-down"></span>
