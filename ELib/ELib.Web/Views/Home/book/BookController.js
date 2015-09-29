@@ -3,7 +3,9 @@
            .controller("BookController", BookController);
 
     BookController.$inject = ["bookRepository","CommentsRepository", '$routeParams', "fileFactory", "authServiceFactory", "dataServiceFactory", "currentProfileFactory"];
-    function BookController(bookRepository,CommentsRepository, $routeParams, fileFactory, authServiceFactory, dataServiceFactory, currentProfileFactory) {        var vm = this;
+
+    function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, authServiceFactory, dataServiceFactory, currentProfileFactory) {
+        var vm = this;
 
         vm.savedSuccessfully = false;
         vm.message = "";
@@ -27,7 +29,7 @@
         vm.changeRating = function () {
             createRating();
         };
-        
+
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
 
         vm.newComment = {
@@ -41,58 +43,59 @@
         };
 
 
-            var createRating = function () {
+        var createRating = function () {
 
-                vm.submitState = true;
+            vm.submitState = true;
 
-                var rating = {
-                        ValueRating: vm.instance.Rating,
-                        UserId: vm.profile.Id,
-                        BookId: parseInt($routeParams.id)
+            var rating = {
+                ValueRating: vm.instance.Rating,
+                UserId: vm.profile.Id,
+                BookId: parseInt($routeParams.id)
             }
-                dataServiceFactory.getService('Ratings').save(rating).$promise.then(
-                  //success
-                  function (value) {
-                      vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-                }
+            dataServiceFactory.getService('Ratings').save(rating).$promise.then(
+              //success
+              function (value) {
+                  vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+              }
 
-             );
+         );
         };
 
         vm.uploadBookImage = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
 
-            fileFactory.uploadBookImage(fd,vm.instance.Id).then(
+            fileFactory.uploadBookImage(fd, vm.instance.Id).then(
                 function (response) {
                     // $scope.fetchData();
                     // alert("uploaded");
                     vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
                 });
+        }
             vm.createComment = function () {
 
-        }
+            }
 
 
-        vm.uploadBookFile = function (file) {
-            var fd = new FormData();
-            fd.append("file", file[0]);
+            vm.uploadBookFile = function (file) {
+                var fd = new FormData();
+                fd.append("file", file[0]);
 
-            fileFactory.uploadBookFile(fd, $routeParams.id).then(
-                function (response) {
-                    vm.savedSuccessfully = true;
-                    vm.message = "Book file has been uploaded successfully";
-                    // need refactoring (get only book instances)
-                    var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
-                        .$promise
-                        .then(
-                            function (response) {
-                                vm.instance.BookInstances = response.BookInstances;
-                            });
-                },
-                    function (error) {
-                        vm.message = "Book file uploading is failed";
-            });
+                fileFactory.uploadBookFile(fd, $routeParams.id).then(
+                    function (response) {
+                        vm.savedSuccessfully = true;
+                        vm.message = "Book file has been uploaded successfully";
+                        // need refactoring (get only book instances)
+                        var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
+                            .$promise
+                            .then(
+                                function (response) {
+                                    vm.instance.BookInstances = response.BookInstances;
+                                });
+                    },
+                        function (error) {
+                            vm.message = "Book file uploading is failed";
+                        });
             };
         }
 })();
