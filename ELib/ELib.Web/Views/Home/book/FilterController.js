@@ -6,13 +6,13 @@
 
     function FilterController(dataServiceFactory, $location, $routeParams) {
         vm = this;
+        vm.currentYear = new Date().getFullYear();
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
 
         var obj = dataServiceFactory.getService('genres').query();
         obj.$promise.then(function (data) {
             vm.genres = data;
         });
-
 
         if ($routeParams.title) {
             vm.title = $routeParams.title;
