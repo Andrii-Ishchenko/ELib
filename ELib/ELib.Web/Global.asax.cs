@@ -1,13 +1,10 @@
 ﻿using ELib.BL.Mapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ELib.Common;
+using System.Web.Http;
+
 namespace ELib.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -21,7 +18,7 @@ namespace ELib.Web
             loger.Info("Application Start");           
             AreaRegistration.RegisterAllAreas();
             loger.Info("Areas Registered");
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             loger.Info("WebApiConfig Registered");
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 

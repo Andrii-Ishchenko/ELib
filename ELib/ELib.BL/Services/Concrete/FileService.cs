@@ -141,7 +141,6 @@ namespace ELib.BL.Services.Concrete
                     {
                         bi = new BookInstance();
                         bi.BookId = book.Id;
-                        bi.InsertDate = DateTime.Now;
                         bi.FileName = fileName;
                         bi.FileHash = fileHash;
                         uow.Repository<BookInstance>().Insert(bi);

@@ -38,7 +38,7 @@ namespace ELib.Domain.Entities
 
         public int CategoryId { get; set; }
 
-        [Column(TypeName = "date")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime AdditionDate { get; set; }
 
         public int PublishYear { get; set; }
