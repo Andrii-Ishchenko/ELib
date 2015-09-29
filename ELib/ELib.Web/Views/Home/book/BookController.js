@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", '$routeParams', "FileFactory", "$scope"];
+    BookController.$inject = ["bookRepository", '$routeParams', "fileFactory"];
 
-    function BookController(bookRepository, $routeParams, FileFactory, $scope) {
+    function BookController(bookRepository, $routeParams, fileFactory) {
         var vm = this;
 
         vm.savedSuccessfully = false;
@@ -25,11 +25,11 @@
             return arr;
         };
 
-        $scope.uploadBookImage = function (file) {
+        vm.uploadBookImage = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
 
-            FileFactory.uploadBookImage(fd,vm.instance.Id).then(
+            fileFactory.uploadBookImage(fd,vm.instance.Id).then(
                 function (response) {
                     // $scope.fetchData();
                    // alert("uploaded");
@@ -38,11 +38,11 @@
         }
 
 
-        $scope.uploadBookFile = function (file) {
+        vm.uploadBookFile = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
 
-            FileFactory.uploadBookFile(fd, $routeParams.id).then(
+            fileFactory.uploadBookFile(fd, $routeParams.id).then(
                 function (response) {
                     vm.savedSuccessfully = true;
                     vm.message = "Book file has been uploaded successfully";

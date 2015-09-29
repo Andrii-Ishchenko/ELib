@@ -2,10 +2,10 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
-                    <img ng-src="/api/file/profile-image?hash= {{ (currentProfileCtrl.profile.ImageHash) ? currentProfileCtrl.profile.ImageHash: '' }}" class="img-thumbnail" />
+                    <img  ng-src="/api/file/profile-image?hash={{currentProfileCtrl.profile.ImageHash}}" class="img-thumbnail" />
                     <br>
                     <div style="text-align:center">
-                        <input type="file" id="fileUploadId" style="display:none !important" onchange="currentProfileCtrl.uploadProfileImage(document.getElementById('fileUploadId').files)" />
+                        <input type="file" id="fileUploadId"  style="display:none !important" onchange="angular.element(this).controller().uploadProfileImage(document.getElementById('fileUploadId').files)" />
                         <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
 
                     </div>

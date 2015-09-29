@@ -8,7 +8,7 @@
             <div class="col-lg-4 col-sm-12">
                 <figure class="panel panel-default" style="margin-bottom : 15px">
                     <div class="panel-heading">
-                        <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
+                        <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadBookImage(document.getElementById('bookUploadId').files)" />
                         <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()"> <i class="glyphicon glyphicon-upload"></i> Upload New</a>
                     </div>
                     <div class="panel-body">
@@ -30,7 +30,7 @@
                             <i class="glyphicon glyphicon-save-file"></i>
                             Downloads
 
-                            <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
+                            <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadBookFile(document.getElementById('fileUploadId').files)" />
                             <button class="btn btn-sm btn-primary" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()"><i class="glyphicon glyphicon-open-file"></i> Upload New File</button>
                         </div>
                     </div>
