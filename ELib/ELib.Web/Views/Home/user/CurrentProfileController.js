@@ -2,11 +2,11 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["CurrentProfileFactory","dataServiceFactory","FileFactory"];
+    CurrentProfileController.$inject = ["currentProfileFactory","dataServiceFactory","fileFactory"];
 
-    function CurrentProfileController(CurrentProfileFactory,DataServiceFactory,FileFactory) {
+    function CurrentProfileController(currentProfileFactory,dataServiceFactory,fileFactory) {
         var vm = this;
-
+        console.log(vm.person);
         vm.links = {
             "GeneralInfo": "/views/home/user/profile-general.html",
             "Ratings": "/views/home/user/profile-ratings.html",
@@ -18,6 +18,7 @@
         };
 
         vm.currUrl = vm.links["GeneralInfo"];
+        vm.files = "";
         
         vm.showSection = function (name) {
             vm.currUrl = vm.links[name];
@@ -42,8 +43,7 @@
         vm.uploadProfileImage = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
-
-            FileFactory.uploadProfileImage(fd).then(
+            fileFactory.uploadProfileImage(fd).then(
                 function (response) {
                     vm.fetchData();
                     console.log(" method 'then' in post request.")
@@ -66,12 +66,12 @@
                 Email: vm.profile.Email,
             }
 
-            DataServiceFactory.getService("CurrentProfile").update(person);
+            dataServiceFactory.getService("CurrentProfile").update(person);
             //  CurrentProfileFactory.saveCurrentUser(vm.profile).send();          
         }
 
         vm.fetchData = function() {          
-            vm.profile = CurrentProfileFactory.getCurrentUser().query();         
+            vm.profile = currentProfileFactory.getCurrentUser().query();         
         }
 
         vm.fetchData();
