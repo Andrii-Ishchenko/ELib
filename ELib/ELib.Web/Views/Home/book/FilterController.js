@@ -2,26 +2,38 @@
     angular.module("elib")
            .controller("FilterController", FilterController);
 
-    FilterController.$inject = ["$location", "$routeParams"];
+    FilterController.$inject = ['dataServiceFactory', "$location", "$routeParams"];
 
-    function FilterController($location, $routeParams) {
+    function FilterController(dataServiceFactory, $location, $routeParams) {
         vm = this;
+        vm.currentYear = new Date().getFullYear();
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
-        if ($routeParams.title)
-        {
+
+        var obj = dataServiceFactory.getService('genres').query();
+        obj.$promise.then(function (data) {
+            vm.genres = data;
+        });
+
+        if ($routeParams.title) {
             vm.title = $routeParams.title;
         }
 
         if ($routeParams.author) {
             vm.author = $routeParams.author;
         }
-        
+
         if ($routeParams.genre) {
             vm.genre = $routeParams.genre;
         }
+
+        if ($routeParams.genreId) {
+            vm.genreId = $routeParams.genreId;
+        }
+
         if ($routeParams.subgenre) {
             vm.subgenre = $routeParams.subgenre;
         }
+
         if ($routeParams.year) {
             vm.year = $routeParams.year;
         }
@@ -41,6 +53,11 @@
             $location.search('genre', vm.genre);
         }
 
+        vm.filterByGenreId = function () {
+            preparePath();
+            $location.search('genreId', vm.genreId);
+        }
+
         vm.filterBySubgenre = function () {
             preparePath();
             $location.search('subgenre', vm.subgenre);
@@ -51,8 +68,8 @@
             $location.search('year', vm.year);
         }
         vm.changePageCount = function () {
-            if ($location.path() === "/books"){
-                $location.search({pageCount : vm.pageCount});
+            if ($location.path() === "/books") {
+                $location.search({ pageCount: vm.pageCount });
             }
             else {
                 $location.search("pageCount", vm.pageCount);
@@ -67,6 +84,7 @@
                     title: undefined,
                     author: undefined,
                     genre: undefined,
+                    genreId: undefined,
                     subgenre: undefined,
                     year: undefined,
                     query: $routeParams.query,
