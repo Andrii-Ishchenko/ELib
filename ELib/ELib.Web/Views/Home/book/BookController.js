@@ -9,7 +9,7 @@
         vm.message = "";
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-        vm.profile = CurrentProfileFactory.getCurrentUser().query();
+        vm.profile = currentProfileFactory.getCurrentUser().query();
         //vm.getFullStarsArray = function () {
         //    var fullStarsNumb = parseInt(vm.instance.Rating);
         //    var arr = [];
