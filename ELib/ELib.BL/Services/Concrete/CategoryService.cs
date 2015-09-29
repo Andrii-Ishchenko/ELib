@@ -17,10 +17,33 @@ namespace ELib.BL.Services.Concrete
 
         public List<CategoryNestedDto> GetNested()
         {
-            List<CategoryDto> mixed = base.GetAll().ToList();
+            List<CategoryDto> mixed = GetAll().ToList();
             CategoryNestedDto item = new CategoryNestedDto();
             FillNestedList(mixed, item,null);
             return item.Children;
+        }
+
+        public List<CategoryDto> GetAllChildrenForCategory(int CategoryId)
+        {
+            List<CategoryDto> all = GetAll().ToList();
+
+            CategoryDto category = all.Where(c => c.Id == CategoryId).FirstOrDefault();
+            if (category == null)
+                return null;
+            return GetChildrenForCategoryRecursive(category, all);
+
+        }
+
+        private List<CategoryDto> GetChildrenForCategoryRecursive(CategoryDto c, List<CategoryDto> all)
+        {
+            List<CategoryDto> temp = new List<CategoryDto>();
+            List<CategoryDto> children = all.Where(cat => cat.ParentId == c.Id).ToList();
+            temp.AddRange(children);
+            foreach(CategoryDto cat in children)
+            {
+                temp.AddRange(GetChildrenForCategoryRecursive(cat, all));
+            }        
+            return temp;
         }
 
         private void FillNestedList(List<CategoryDto> list, CategoryNestedDto item, int? itemId)
@@ -44,5 +67,6 @@ namespace ELib.BL.Services.Concrete
 
             return list.Where(m => m.ParentId == itemId).ToList();
         }
+
     }
 }

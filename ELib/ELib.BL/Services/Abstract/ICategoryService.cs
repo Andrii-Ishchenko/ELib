@@ -11,6 +11,7 @@ namespace ELib.BL.Services.Abstract
     public interface ICategoryService :IBaseService<Category,CategoryDto>
     {
         List<CategoryNestedDto> GetNested();
+        List<CategoryDto> GetAllChildrenForCategory(int Id);
 
     }
 }
