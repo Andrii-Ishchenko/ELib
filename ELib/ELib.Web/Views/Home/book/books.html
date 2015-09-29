@@ -24,14 +24,14 @@
                         <div class="form-group ">
                             <label class="control-label col-sm-3 text-muted small" ng-model="filter.genreId">Genre</label>
                             <div class="col-sm-9">
-                                <ol class="form-control" style="list-style-type: none;">
+                                <ul class="form-control" style="list-style-type: none;">
                                     <li class="dropdown">
                                         <a data-toggle="dropdown"><span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li ng-repeat="genre in filter.genres"><a href="/books/search?genreId={{genre.Id}}">{{genre.Name}}</a></li>
                                         </ul>
                                     </li>
-                                </ol>
+                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,12 +96,6 @@
                 </select>-->
                 <ul class="list-inline" style="display:inline;margin-left:5px">
                     <li><a href>Title</a></li>
-                    <li><a href>Year</a></li>
-                    <li><a href>Author Name</a></li>
-                    <li><a href>Genre</a></li>
-                    <li><a href>Publisher</a></li>
-                    <li><a href>Rating</a></li>
-                    <li><a href>Date</a></li>
                 </ul>
                 <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
                 <small>Books Per Page:</small>
