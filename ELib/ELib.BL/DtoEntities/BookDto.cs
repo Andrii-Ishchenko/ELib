@@ -8,6 +8,7 @@ namespace ELib.BL.DtoEntities
 {
     public class BookDto
     {
+        private readonly int currentYear = DateTime.Now.Year;
 
         public int Id {get; set;}
 
@@ -28,9 +29,14 @@ namespace ELib.BL.DtoEntities
 
         public int SubgenreId { get; set;  }
 
-        public DateTime? PublishYear { get; set; }
+        public int CategoryId { get; set; }
 
-        public String ImageHash { get; set; }
+        [Range(0, 9999)]
+        public int PublishYear { get; set; }
+
+        public DateTime AdditionDate { get; set; }
+
+        public string ImageHash { get; set; }
 
         public string Description { get; set; }
 
@@ -42,11 +48,15 @@ namespace ELib.BL.DtoEntities
 
         public string SubgenreName { get; set; }
 
+        public string CategoryName { get; set; }
+
         public int SumRatingValue { get; set; }
 
         public ICollection<string> Authors { get; set; }
 
         public ICollection<int> AuthorsIds { get; set; }
+
+        public ICollection<AuthorListDto> AuthorsDto { get; set; }
 
         public ICollection<string> GenresNames { get; set; }
 

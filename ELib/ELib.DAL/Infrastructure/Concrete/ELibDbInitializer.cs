@@ -158,8 +158,9 @@ namespace ELib.DAL.Infrastructure.Concrete
                 PublisherId = 3,
                 SubgenreId = 1,
                 Isbn = "978-5-496-00433-6",
-                PublishYear = new DateTime(2013, 1, 1),
-                TotalPages = 896
+                PublishYear = 2013,
+                TotalPages = 896,
+                AdditionDate = new DateTime(2013, 1, 1)
             });
             books.Add(new Book()
             {
@@ -167,10 +168,11 @@ namespace ELib.DAL.Infrastructure.Concrete
                 Description = "",
                 PublishLangId = 3,
                 Isbn = "978-0-7356-6745-7",
-                PublishYear = new DateTime(2012, 1, 1),
+                PublishYear = 2012,
                 SubgenreId = 1,
                 TotalPages = 870,
-                PublisherId = 4
+                PublisherId = 4,
+                AdditionDate = new DateTime(2012, 1, 1)
             });
             books.Add(new Book()
             {
@@ -184,8 +186,9 @@ namespace ELib.DAL.Infrastructure.Concrete
                 SubgenreId = 1,
                 PublisherId = 1,
                 Isbn = "978-5-17-077763-1",
-                PublishYear = new DateTime(2015, 8, 3),
-                TotalPages = 1248
+                PublishYear = 2015,
+                TotalPages = 1248,
+                AdditionDate = new DateTime(2015, 8, 3)
             });
             books.Add(new Book()
             {
@@ -198,8 +201,9 @@ namespace ELib.DAL.Infrastructure.Concrete
                 SubgenreId = 1,
                 PublisherId = 2,
                 Isbn = "978-5-17-078099-0",
-                PublishYear = new DateTime(2013, 1, 1),
-                TotalPages = 320
+                PublishYear = 2013,
+                TotalPages = 320,
+                AdditionDate = new DateTime(2013, 1, 1)
             });
             books.Add(new Book()
             {
@@ -216,8 +220,9 @@ namespace ELib.DAL.Infrastructure.Concrete
                 SubgenreId = 1,
                 PublisherId = 3,
                 Isbn = "5-272-00355-1",
-                PublishYear = new DateTime(2001, 1, 1),
-                TotalPages = 352
+                PublishYear = 2001,
+                TotalPages = 352,
+                AdditionDate = new DateTime(2001, 1, 1)
             });
             context.Books.AddRange(books);
             context.SaveChanges();

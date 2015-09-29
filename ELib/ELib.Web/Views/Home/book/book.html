@@ -12,16 +12,29 @@
                         <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()"> <i class="glyphicon glyphicon-upload"></i> Upload New</a>
                     </div>
                     <div class="panel-body">
-                        <img class="img-responsive center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}&w=328" />
+                        <img class="img-thumbnail center-block" ng-src="/api/file/book-images?hash={{book.instance.ImageHash}}&w=328" />
                     </div>
 
                     <figcaption class="panel-footer">
                         <p>Rating : {{book.instance.Rating}}</p>
                         <!--зробити рейтинг-дерективу, яка дозволяє клацати рейтинг-->
-                        <div class="center-block text-center text-success">
+                        <!--<div class="center-block text-center text-success">
                             <span class="glyphicon glyphicon-star" ng-repeat="i in book.getFullStarsArray() track by $index"></span>
                             <span class="glyphicon glyphicon-star-empty" ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
                         </div>
+                           -->
+
+                        <div ng-controller="RatingController as rat" class="center-block text-center text-success">
+
+                            <ng-rating ng-model="book.instance.Rating" ng-change="book.changeRating()"
+                                       icon-class="rat.iconClass"
+                                       editable="rat.editableRating"
+                                       stars-count="rat.starsCount"
+                                       based-on="rat.basedOn"
+                                       show-grade="rat.showGrade">
+                            </ng-rating>
+                        </div>
+
                     </figcaption>
                 </figure>
                 <div class="panel panel-default">
@@ -60,6 +73,9 @@
                             <dt>Title</dt>
                             <dd>{{book.instance.Title}}</dd>
 
+                            <dt>Category</dt>
+                            <dd>{{book.instance.CategoryName}}</dd>
+
                             <dt>Authors</dt>
                             <dd><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></dd>
 
@@ -73,7 +89,7 @@
                             <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></dd>
 
                             <dt>Year of publishing</dt>
-                            <dd>{{book.instance.PublishYear|date : "yyyy"}}</dd>
+                            <dd>{{book.instance.PublishYear}}</dd>
 
                             <dt>Pages</dt>
                             <dd>{{book.instance.TotalPages}}</dd>
@@ -103,7 +119,7 @@
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <div class="pull-right">
-                                                <input type="button" class="btn btn-default" value="Clear" />
+                                                <input type="button" class="btn btn-default" value="Clear" ng-click="book.cleanComment()"/>
                                                 <input type="button" class="btn btn-primary" value="Send" ng-click=""/>
                                             </div>
 

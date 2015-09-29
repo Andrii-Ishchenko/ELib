@@ -36,8 +36,12 @@ namespace ELib.Domain.Entities
 
         public int SubgenreId { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? PublishYear { get; set; }
+        public int CategoryId { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime AdditionDate { get; set; }
+
+        public int PublishYear { get; set; }
 
         public string ImageHash { get; set; }
 
@@ -50,6 +54,8 @@ namespace ELib.Domain.Entities
         public virtual Language Language1 { get; set; }
 
         public virtual Publisher Publisher { get; set; }
+
+        public virtual Category Category { get; set; }
 
         public int SumRatingValue { get; set; }
 

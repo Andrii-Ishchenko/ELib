@@ -22,6 +22,25 @@
         height: 100%;
     }
 
+
+.subtree{
+    list-style-type:none;
+}
+
+.subtree  {
+    padding-left: 10px;
+}
+
+.category {
+    padding-left:10px;
+}
+
+.noLeftIndent {
+    padding-left: 0px;
+}
+.subtree .noLeftMargin > .category{
+    padding-left:0px;
+}
     
 
 .title,.subtitle {

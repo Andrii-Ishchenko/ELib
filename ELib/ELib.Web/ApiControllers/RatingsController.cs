@@ -52,6 +52,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPost]
+        [Authorize]
         public HttpResponseMessage AddRating(RatingBookDto rating)
         {
             try

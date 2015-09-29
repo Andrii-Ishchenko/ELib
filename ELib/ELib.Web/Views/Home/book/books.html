@@ -1,114 +1,184 @@
-<!--<html>
+<!--menu-->
 
-  <style>
-   .collection .collection-item.avatar img {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    left: 15px;
-    border : inherit;
-    display: inline-block;
-    vertical-align: middle;
-}
-     .image-block{
 
-       padding: 5px;
-
-       border-radius: 0px;
-
-      }
-     img {
-       display : block;
-       margin : auto;
-     }
-    .divider {
-
-     background-color : #29b6f6;
-
-     height : 1px;
-
-     border : 0px;
-
-     }
-   .pagination li{
-     font-size : 80%;
-    }
-   .pagination li.active {
-     background-color : #29b6f6;
-
-    }
-   .title {
-     font-weight : 600;
-}
-   .secondary-content {
-      color : black;
-      font-weight : block;
-      border-left :  1px solid black;
-      border-bottom : 1px solid black;
-      margin-top : -5px;
-      margin-right : -5px;
-      padding : 5px;
-      font-size : 200%;
-    }
-  </style>
-</head>
-<body>-->
-<div id="books">
-    <div class="row">
-
-        <div class="col-md-9">
-            <p class="lead" >Books</p>
-        </div>
-        <div class="col-md-3">
-            <a class="btn btn-default pull-right" href="/books/new" ><i class="glyphicon glyphicon-file" ></i> Add Book</a>
-        </div>
-    </div>
-    <!--top pagination-->
-    <!--<ul class="pagination ">
-        <li ng-class="books.currPage == 1 ?' disabled' : ''">
-            <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
-           <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>   
-        </li> <span class="sr-only">(current)</span>
-
-        <li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
-            <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>-->
-    <!--book list-->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <ul class="list-group" book-list-directive books="books.books"></ul>
+<aside class="col-md-3">
+    <div class="panel panel-default" ng-controller="FilterController as filter">
+        <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
+        <div class="panel-body">
+            <form role="form">
+                <dl>
+                    <dt>Filtering</dt>
+                    <dd class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm" placeholder="Title contains" ng-model="filter.title" ng-blur="filter.filterByTitle()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm" placeholder="Author's name contains" ng-model="filter.author" ng-blur="filter.filterByAuthor()" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label col-sm-3 text-muted small" ng-model="filter.genreId">Genre</label>
+                            <div class="col-sm-9">
+                                <ol class="form-control" style="list-style-type: none;">
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown"><span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li ng-repeat="genre in filter.genres"><a href="/books/search?genreId={{genre.Id}}">{{genre.Name}}</a></li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre" ng-blur="filter.filterBySubgenre()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year" ng-blur="filter.filterByYear()" />
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+            </form>
         </div>
     </div>
 
-    <!--bottom pagination-->
+    <div class="panel panel-default" ng-controller="BooksController as BooksCtrl">
+        <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Categories</div>
+        <div class="panel-body">
+            <script type="text/ng-template" id="tree.html">
+                <button type="button" ng-click=" BooksCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0" class="btn btn-default" style="width:26px;height:26px;border-radius:13px; padding:0px">
+                    <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
+                </button>
+                <a href>{{node.Name}}</a>
+                <ul class="subtree" ng-show="node.opened">
+                    <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
+                </ul>
+            </script>
 
-    <ul class="pagination ">
-        <li ng-class="books.currPage == 1 ?' disabled' : ''">
-            <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
-            <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
-        </li> <!--<span class="sr-only">(current)</span>-->
+            <ul class="subtree noLeftIndent">
+                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree.html'"></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+<!--main-->
+<div class="col-md-9">
+    <div id="books">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead" style="margin-bottom:0;border-bottom: 1px solid #eee ">Books</p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-default pull-right" href="/books/new"><i class="glyphicon glyphicon-file"></i> Add Book</a>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-md-12">
+                <small>Ordering :    </small>
+                <!--<select>
+                    <option>Title</option>
+                    <option>Year</option>
+                    <option>Author Name</option>
+                    <option>Genre</option>
+                    <option>Publisher</option>
+                    <option>Rating</option>
+                    <option>Date</option>
+                </select>-->
+                <ul class="list-inline" style="display:inline;margin-left:5px">
+                    <li><a href>Title</a></li>
+                    <li><a href>Year</a></li>
+                    <li><a href>Author Name</a></li>
+                    <li><a href>Genre</a></li>
+                    <li><a href>Publisher</a></li>
+                    <li><a href>Rating</a></li>
+                    <li><a href>Date</a></li>
+                </ul>
+                <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
+                <small>Books Per Page:</small>
+                <select ng-change="books.pageChanged()" ng-model="books.pageCount" convert-to-number>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="100">100</option>
+                </select>
 
-        <li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
-            <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
+            </div>
+        </div>
+        <!--top pagination-->
+        <!--<ul class="pagination ">
+            <li ng-class="books.currPage == 1 ?' disabled' : ''">
+                <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
+               <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
+            </li> <span class="sr-only">(current)</span>
+
+                <div class="col-md-9">
+                    <p class="lead">Books</p>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-default pull-right" href="/books/new"><i class="glyphicon glyphicon-file"></i> Add Book</a>
+                </div>
+            </div>
+            <!--top pagination-->
+        <!--<ul class="pagination ">
+            <li ng-class="books.currPage == 1 ?' disabled' : ''">
+                <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
+               <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
+            </li> <span class="sr-only">(current)</span>
+
+            <li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
+                <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>-->
+        <!--book list-->
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <ul class="list-group" book-list-directive books="books.books"></ul>
+            </div>
+        </div>
+
+        <!--bottom pagination-->
+        <!--<ul class="pagination ">
+            <li ng-class="books.currPage == 1 ?' disabled' : ''">
+                <a ng-class="books.currPage == 1 ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage - 1)}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li ng-repeat="page in books.pages track by $index" ng-class="$index + 1 == books.currPage ? ' active' : ''">
+                <a class="btn" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + ($index +1)}}">{{$index + 1}}</a>
+            </li> <!--<span class="sr-only">(current)</span>-->
+        <!--<li ng-class="books.currPage == books.totalPages ?' disabled' : ''">
+                <a ng-class="books.currPage == books.totalPages ?'btn disabled' : 'btn'" ng-href="{{'/books?pageCount=' + books.pageCount + '&pageNumb=' + (books.currPage * 1 + 1)}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>-->
+        <pagination ng-if="books.totalCount" total-items="books.totalCount" ng-model="books.currPage" items-per-page="books.pageCount"
+                    boundary-links="true" maxSize="5" class="pagination-sm" ng-change="books.pageChanged()"></pagination>
+    </div>
 </div>
 

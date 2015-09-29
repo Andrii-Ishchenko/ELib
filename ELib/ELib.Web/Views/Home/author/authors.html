@@ -1,70 +1,39 @@
-﻿<div id="books">
-    <div class="row">
+﻿<aside class="col-md-3">
+    <p>
+       Menu will be there
+    </p>
+</aside>
+<div class="col-md-9">
+    <div ng-controller="AuthorsController">
+        <div class="row">
 
-        <div class="col-md-9">
+            <div class="col-md-8">
 
-            <p class="lead">Authors</p>
+                <p class="lead">Authors</p>
 
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
+            </div>
         </div>
-        <div class="col-md-3">
-            <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
-        </div>
+
+        <!--book list-->
+
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="author in authors.authors">
+
+                <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60" height="60">
+                <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
+
+                <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
+            </li>
+
+
+        </ul>
+
+        <!--bottom pagination-->
+        <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()"
+                    items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
     </div>
-
-    <!--<ul class="pagination">
-        <li class="disabled">
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#!">2</a></li>
-        <li class=""><a href="#!">3</a></li>
-        <li class=""><a href="#!">4</a></li>
-        <li class=""><a href="#!">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>-->
-
-    <!--book list-->
-  
-
-    <ul class="list-group">
-        <li  class="list-group-item" ng-repeat="author in authors.authors">
-                
-            <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60"  height="60">
-            <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
-
-            <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
-        </li>
-
-
-    </ul>
-
-    <!--bottom pagination-->
-    <ul class="pagination">
-        <li class="disabled">
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="active"><a href="#!">1<span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#!">2</a></li>
-        <li class=""><a href="#!">3</a></li>
-        <li class=""><a href="#!">4</a></li>
-        <li class=""><a href="#!">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
 </div>
-

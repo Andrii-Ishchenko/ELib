@@ -16,6 +16,7 @@
         vm.message = '';
         vm.submitState = false;
         vm.createdSuccessfully = false;
+        vm.currentYear = new Date().getFullYear();
 
         var languages = dataServiceFactory.getService('languages').query();
 
@@ -30,6 +31,8 @@
             vm.publishers = data.publishers;
         })
 
+        vm.categories = dataServiceFactory.getService('category').query();
+
         vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
         vm.createBook = function () {
@@ -42,7 +45,9 @@
                 Isbn: vm.isbn,
                 PublisherId: vm.publisher,
                 Description: vm.description,
-                SubgenreId: vm.subgenre
+                SubgenreId: vm.subgenre,
+                CategoryId: vm.category,
+                PublishYear: vm.yearOfPublishing
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(

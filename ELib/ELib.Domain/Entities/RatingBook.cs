@@ -18,7 +18,7 @@ namespace ELib.Domain.Entities
             get { return _rating; }
             set
             {
-                if((value > 0) && (value <= 10))
+                if((value > 0) && (value <= 100))
                 {
                     _rating = value;
                 }
