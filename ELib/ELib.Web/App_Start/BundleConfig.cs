@@ -65,12 +65,13 @@ namespace ELib.Web
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
                                     "~/Views/Home/publisher/NewPublisherController.js",
-
+                                  
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
-
-                                    "~/Views/Home/book/RatingController.js"
+                                    "~/Views/Home/book/RatingController.js",
+                                    "~/Views/Home/comments/CommentsRepository.js",
+                                    "~/Views/Home/comments/commentsDirective.js"
 
                         )
                     );

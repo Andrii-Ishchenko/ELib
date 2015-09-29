@@ -364,9 +364,9 @@
     <Content Include="Views\Home\book\FilterController.js" />
     <Content Include="Views\Home\book\RatingController.js" />
     <Content Include="Views\Home\comments\Comment.html" />
-    <Content Include="Views\Home\comments\CommentController.js" />
+    <Content Include="Views\Home\comments\commentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />
-    <Content Include="Views\Home\comments\CommentsController.js" />
+    <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\config.js" />

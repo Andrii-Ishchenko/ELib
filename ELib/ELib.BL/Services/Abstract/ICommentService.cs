@@ -10,6 +10,6 @@ namespace ELib.BL.Services.Abstract
 {
     public interface ICommentService : IBaseService<Comment, CommentDto>
     {
-
+        List<CommentDto> GetCommentsByBookId(int id);
     }
 }

@@ -2,8 +2,8 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", '$routeParams', "fileFactory", "authServiceFactory", "dataServiceFactory", "currentProfileFactory"];
-    function BookController(bookRepository, $routeParams, fileFactory, authServiceFactory, dataServiceFactory, currentProfileFactory) {        var vm = this;
+    BookController.$inject = ["bookRepository","CommentsRepository", '$routeParams', "fileFactory", "authServiceFactory", "dataServiceFactory", "currentProfileFactory"];
+    function BookController(bookRepository,CommentsRepository, $routeParams, fileFactory, authServiceFactory, dataServiceFactory, currentProfileFactory) {        var vm = this;
 
         vm.savedSuccessfully = false;
         vm.message = "";
@@ -27,23 +27,36 @@
         vm.changeRating = function () {
             createRating();
         };
+        
+        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
 
-        var createRating = function () {
+        vm.newComment = {
+            Text: "abc",
+            BookId: $routeParams.id,
 
-            vm.submitState = true;
+        };
 
-            var rating = {
-                ValueRating: vm.instance.Rating,
-                UserId: vm.profile.Id,
-                BookId: parseInt($routeParams.id)
+        vm.cleanComment = function () {
+            vm.newComment.Text = "";
+        };
+
+
+            var createRating = function () {
+
+                vm.submitState = true;
+
+                var rating = {
+                        ValueRating: vm.instance.Rating,
+                        UserId: vm.profile.Id,
+                        BookId: parseInt($routeParams.id)
             }
-            dataServiceFactory.getService('Ratings').save(rating).$promise.then(
-              //success
-              function (value) {
-                  vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-                                }
+                dataServiceFactory.getService('Ratings').save(rating).$promise.then(
+                  //success
+                  function (value) {
+                      vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+                }
 
-         );
+             );
         };
 
         vm.uploadBookImage = function (file) {
@@ -56,6 +69,8 @@
                     // alert("uploaded");
                     vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
                 });
+            vm.createComment = function () {
+
         }
 
 
@@ -75,9 +90,9 @@
                                 vm.instance.BookInstances = response.BookInstances;
                             });
                 },
-                function (error) {
-                    vm.message = "Book file uploading is failed";
-                });
-        };
-    }
+                    function (error) {
+                        vm.message = "Book file uploading is failed";
+            });
+            };
+        }
 })();
