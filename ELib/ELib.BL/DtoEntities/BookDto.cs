@@ -40,9 +40,9 @@ namespace ELib.BL.DtoEntities
 
         public string Description { get; set; }
 
-        public string LanguageName { get; set; }
+  //      public string LanguageName { get; set; }
 
-        public string Language1Name { get; set; }
+ //       public string Language1Name { get; set; }
 
         public string PublisherName { get; set; }
 
