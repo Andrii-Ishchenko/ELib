@@ -48,7 +48,7 @@ namespace ELib.BL.DtoEntities
 
         //public string SubgenreName { get; set; }
 
-        public string CategoryName { get; set; }
+        //public string CategoryName { get; set; }
 
         public int SumRatingValue { get; set; }
 
