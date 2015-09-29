@@ -1,10 +1,10 @@
 ﻿(function () {
     angular.module("elib")
-           .factory("FileFactory", FileFactory);
+           .factory("fileFactory", fileFactory);
 
-    FileFactory.$inject = ['$http'];
+    fileFactory.$inject = ['$http'];
 
-    function FileFactory($http) {
+    function fileFactory($http) {
         var baseUrl = "/api/";
 
         var FileService =
@@ -19,7 +19,7 @@
         return FileService;
 
         function uploadProfileImage(formData) {
-            var url = baseUrl + "file/profile-image";
+             var url = baseUrl + "file/profile-image";
 
             return $http.post(url, formData, {
                 withCredentials: true,

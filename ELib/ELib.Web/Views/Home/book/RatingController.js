@@ -1,9 +1,9 @@
 ﻿(function () {
     angular.module("elib").controller('RatingController', RatingController)
 
-    RatingController.$inject = ["dataServiceFactory", "CurrentProfileFactory", "authServiceFactory"];
+    RatingController.$inject = ["dataServiceFactory", "authServiceFactory"];
 
-    function RatingController(dataServiceFactory, CurrentProfileFactory, authServiceFactory) {
+    function RatingController(dataServiceFactory, authServiceFactory) {
 
 
         var vm = this;

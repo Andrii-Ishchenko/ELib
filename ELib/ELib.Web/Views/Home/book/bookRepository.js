@@ -7,7 +7,9 @@
     function bookRepository($resource) {
         var baseUrl = "/api/books/";
         var DataService = {
-            getBooksForAuthor: getBooksForAuthor, getBooksForPublisher, getBookById
+            getBooksForAuthor: getBooksForAuthor,
+            getBooksForPublisher: getBooksForPublisher,
+            getBookById: getBookById
         };
 
         return DataService;

@@ -367,9 +367,9 @@
     <Content Include="Views\Home\book\FilterController.js" />
     <Content Include="Views\Home\book\RatingController.js" />
     <Content Include="Views\Home\comments\Comment.html" />
-    <Content Include="Views\Home\comments\CommentController.js" />
+    <Content Include="Views\Home\comments\commentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />
-    <Content Include="Views\Home\comments\CommentsController.js" />
+    <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\config.js" />
@@ -395,11 +395,11 @@
     <Content Include="Views\Home\publisher\PublishersController.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
     <Content Include="Views\Home\files\FileController.js" />
-    <Content Include="Views\Home\files\FileFactory.js" />
+    <Content Include="Views\Home\files\fileFactory.js" />
     <Content Include="Views\Home\book\new-book.html" />
     <Content Include="Views\Home\book\NewBookController.js" />
     <Content Include="Views\Home\user\CurrentProfileController.js" />
-    <Content Include="Views\Home\user\CurrentProfileFactory.js" />
+    <Content Include="Views\Home\user\currentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />
@@ -414,7 +414,7 @@
     <Content Include="Views\Home\user\profile-general.html" />
     <Content Include="Views\Home\registration\registration.html" />
     <Content Include="Views\Home\user\ProfileController.js" />
-    <Content Include="Views\Home\user\ProfileFactory.js" />
+    <Content Include="Views\Home\user\profileFactory.js" />
     <Content Include="Views\Shared\two-column-layout.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("ProfileController", ProfileController);
 
-    ProfileController.$inject = ["ProfileFactory"];
+    ProfileController.$inject = ["profileFactory"];
 
-    function ProfileController(ProfileFactory) {
+    function ProfileController(profileFactory) {
         var vm = this;
 
         vm.links = {
@@ -24,7 +24,7 @@
             return result;
         }
 
-        vm.profile = ProfileFactory.getCurrentUser().query();
+        vm.profile = profileFactory.getCurrentUser().query();
         //console.log("profile: "+vm.profile);
     }
 
