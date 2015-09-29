@@ -14,9 +14,9 @@
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id});
 
         vm.newComment = {
-                Text: "abc",
-                BookId: $routeParams.id,
-        }
+            Text: "Hello World!!!",
+            BookId: $routeParams.id
+        };
 
         vm.getFullStarsArray = function () {
             var fullStarsNumb = parseInt(vm.instance.Rating);
@@ -34,10 +34,12 @@
 
 
         vm.createComment = function () {
-            
-        }
 
+        };
 
+        vm.clean = function () {
+            vm.newComment.Text = "";
+        };
 
         $scope.uploadBookImage = function (file) {
             var fd = new FormData();
