@@ -28,14 +28,14 @@ namespace ELib.Web.ApiControllers
         //{
         //    try
         //    {
-        //        IEnumerable<CategoryDto> cats = _service.GetAll().OrderBy(m=>m.Level);
+        //        IEnumerable<CategoryDto> cats = _service.GetAll().OrderBy(m => m.Level);
         //        return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
         //    }
-        //    catch(Exception e)
+        //    catch (Exception e)
         //    {
         //        _logger.Error("Error In Categories/Get", e);
         //        return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
-        //    }          
+        //    }
         //}
 
         [HttpGet]
@@ -50,6 +50,22 @@ namespace ELib.Web.ApiControllers
             catch (Exception e)
             {
                 _logger.Error("Error In Categories/Get", e);
+                return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("Children")]
+        public HttpResponseMessage GetAllChildrenCategories(int categoryId)
+        {
+            try
+            {
+                IEnumerable<CategoryDto> cats = _service.GetAllChildrenForCategory(categoryId);
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
+            }
+            catch(Exception e)
+            {
+                _logger.Error("Error In Categories/GetAllChildren", e);
                 return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
             }
         }
