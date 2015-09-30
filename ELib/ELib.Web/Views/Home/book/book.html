@@ -8,7 +8,7 @@
             <div class="col-lg-4 col-sm-12">
                 <figure class="panel panel-default" style="margin-bottom : 15px">
                     <div class="panel-heading">
-                        <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookImage(document.getElementById('bookUploadId').files)" />
+                        <input type="file" id="bookUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadBookImage(document.getElementById('bookUploadId').files)" />
                         <a href="#" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('bookUploadId').click()"> <i class="glyphicon glyphicon-upload"></i> Upload New</a>
                     </div>
                     <div class="panel-body">
@@ -21,7 +21,8 @@
                         <!--<div class="center-block text-center text-success">
                             <span class="glyphicon glyphicon-star" ng-repeat="i in book.getFullStarsArray() track by $index"></span>
                             <span class="glyphicon glyphicon-star-empty" ng-repeat="i in book.getEmptyStarsArray() track by $index"></span>
-                        </div>-->
+                        </div>
+                           -->
 
                         <div ng-controller="RatingController as rat" class="center-block text-center text-success">
 
@@ -42,7 +43,7 @@
                             <i class="glyphicon glyphicon-save-file"></i>
                             Downloads
 
-                            <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadBookFile(document.getElementById('fileUploadId').files)" />
+                            <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadBookFile(document.getElementById('fileUploadId').files)" />
                             <button class="btn btn-sm btn-primary" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()"><i class="glyphicon glyphicon-open-file"></i> Upload New File</button>
                         </div>
                     </div>
@@ -98,7 +99,35 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
                     <div class="panel-body">
+                        <!--<div commentsDirective comments="book.comments"> </div>-->
+                        <div class="panel panel-default" ng-repeat="comm in book.comments">
+                            <div class="panel-heading"> <i class="glyphicon glyphicon-user"></i>{{comm.UserId}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}</div>
+                            <div class="panel-body">
+                                {{comm.Text}}
+                            </div>
+                        </div>
 
+                        <div class="panel panel-default" >
+                            <div class="panel-heading"> Leave your comment:</div>
+                            <div class="panel-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <textarea class="col-md-12 form-control" ng-model="book.newComment.Text"/>
+                                        </div>                                   
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <div class="pull-right">
+                                                <input type="button" class="btn btn-default" value="Clear" ng-click="book.cleanComment()"/>
+                                                <input type="button" class="btn btn-primary" value="Send" ng-click=""/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--<div class="row">
@@ -159,9 +188,6 @@
                 </div>-->
 
             </div>
-
-
-            -1
             <div class="col-lg-2 col-sm-12 container">
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-stats"></i> Stats</div>
@@ -169,10 +195,6 @@
                         Statistics info
                     </div>
                 </div>
-
-
-                <div clas
-                     s=
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-usd"></i> Ads</div>
                     <div class="panel-body">
@@ -180,7 +202,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
-        <comments-view></comments-view>
     </div>
+</div>

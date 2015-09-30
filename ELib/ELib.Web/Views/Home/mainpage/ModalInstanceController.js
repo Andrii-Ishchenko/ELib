@@ -1,9 +1,9 @@
 ﻿(function () {
     angular.module('elib').controller('ModalInstanceController', ModalInstanceController)
 
-    ModalInstanceController.$inject = ["$scope", "$modalInstance", "book"];
+    ModalInstanceController.$inject = [ "$modalInstance", "book"];
 
-    function ModalInstanceController($scope, $modalInstance, book) {
+    function ModalInstanceController( $modalInstance, book) {
         var vm = this;
         vm.book = book;
 

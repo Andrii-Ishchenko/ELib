@@ -36,7 +36,7 @@ namespace ELib.Web
                         .Include("~/Views/Home/Elib.js",
                                     "~/Views/Home/common/authServiceFactory.js",
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
-                                    "~/Views/Home/common/DataServiceFactory.js",
+                                    "~/Views/Home/common/dataServiceFactory.js",
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
@@ -44,9 +44,9 @@ namespace ELib.Web
                                     "~/Views/Home/index/SearchController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
-                                    "~/Views/Home/user/ProfileFactory.js",
+                                    "~/Views/Home/user/profileFactory.js",
                                     "~/Views/Home/user/ProfileController.js",
-                                    "~/Views/Home/files/FileFactory.js",
+                                    "~/Views/Home/files/fileFactory.js",
                                     "~/Views/Home/files/FileController.js",
                                     "~/Views/Home/book/bookListDirective.js",
 
@@ -60,17 +60,18 @@ namespace ELib.Web
                                     "~/Views/Home/registration/RegistrationController.js",
                                      "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/user/CurrentProfileController.js",
-                                    "~/Views/Home/user/CurrentProfileFactory.js",
+                                    "~/Views/Home/user/currentProfileFactory.js",
 
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
                                     "~/Views/Home/publisher/NewPublisherController.js",
-
+                                  
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
-
-                                    "~/Views/Home/book/RatingController.js"
+                                    "~/Views/Home/book/RatingController.js",
+                                    "~/Views/Home/comments/CommentsRepository.js",
+                                    "~/Views/Home/comments/commentsDirective.js"
 
                         )
                     );

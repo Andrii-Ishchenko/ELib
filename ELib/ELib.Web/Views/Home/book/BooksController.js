@@ -81,6 +81,7 @@
 
         //function getBooks() {
         //    return DataService.getAll('book')
+
         //    .then(function (data) {
         //        vm.books = data;
         //        console.log(vm.books);

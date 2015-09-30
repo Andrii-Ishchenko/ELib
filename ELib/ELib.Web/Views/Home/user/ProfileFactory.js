@@ -1,10 +1,10 @@
 ﻿(function () {
     angular.module("elib")
-           .factory("ProfileFactory", ProfileFactory);
+           .factory("profileFactory", profileFactory);
 
-    ProfileFactory.$inject = ['$resource'];
+    profileFactory.$inject = ['$resource'];
 
-    function ProfileFactory($resource) {
+    function profileFactory($resource) {
         var baseUrl = "/api/";
         var ProfileService = {
             getCurrentUser: getCurrentUser,

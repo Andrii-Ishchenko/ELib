@@ -4,7 +4,7 @@
 
     LoginController.$inject = ["authServiceFactory", '$location'];
 
-    function LoginController(authServiceFactory, $location, $scope) {
+    function LoginController(authServiceFactory, $location) {
         var vm = this;
 
         authServiceFactory.fillAuthData();

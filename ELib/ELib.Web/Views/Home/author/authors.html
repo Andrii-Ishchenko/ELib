@@ -1,39 +1,62 @@
 ﻿<aside class="col-md-3">
     <p>
-       Menu will be there
+        Menu will be there
     </p>
 </aside>
 <div class="col-md-9">
     <div ng-controller="AuthorsController">
         <div class="row">
-
             <div class="col-md-8">
-
-                <p class="lead">Authors</p>
-
+                <p class="lead" style="margin-bottom:0;border-bottom: 1px solid #eee ">Authors</p>
             </div>
+
             <div class="col-md-4">
                 <a class="btn btn-default pull-right" href="/authors/new"><i class="glyphicon glyphicon-pencil"></i> Add Author</a>
             </div>
         </div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-md-12">
+                <small>Ordering :    </small>
 
-        <!--book list-->
-
-
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="author in authors.authors">
-
-                <img class="pull-left" ng-src="/api/file/author-image?hash={{author.ImageHash}}&h=60" height="60">
-                <p><a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a></p>
-
-                <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
-            </li>
-
-
-        </ul>
+                <ul class="list-inline" style="display:inline;margin-left:5px">
+                    <li><a href>First Name</a></li>
+                    <li><a href>Last Name</a></li>
+                    <li><a href>Date of birth</a></li>
+                </ul>
+                <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
+                <small>Authors Per Page:</small>
+                <select ng-change="authors.pageChanged()" ng-model="authors.pageCount" convert-to-number>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <!--author list-->
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="author in authors.authors">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="img-thumbnail center-block" ng-src="/api/file/book-images?hash={{author.ImageHash}}&h=80&w=80" alt="" width="100" height="100">
+                            </div>
+                            <div class="col-md-10">
+                                <ul class="list-inline">
+                                    <li ng-repeat="autor in book.AuthorsDto"><em><a href="/authors/{{autor.Id}}">{{autor.Name}}</a></em></li>
+                                </ul>
+                                <a href="{{'/authors/' + author.Id}}"><strong>{{author.FirstName}} {{author.LastName}}</strong></a>
+                                <p>{{author.DateOfBirth|date : "dd/MM/yyyy"}} - {{author.DeathDate|date : "dd/MM/yyyy"}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <!--bottom pagination-->
-        <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currentPage" ng-change="authors.pageChanged()"
-                    items-per-page="authors.itemsPerPage" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+        <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currPage" ng-change="authors.pageChanged()"
+                    items-per-page="authors.pageCount" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
     </div>
 </div>
