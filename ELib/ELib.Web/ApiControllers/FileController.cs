@@ -211,21 +211,19 @@ namespace ELib.Web.ApiControllers
             }
         }
 
-
+        // maybe should use post method (becouse download counter change system)
         [HttpGet]
         [ActionName("book-download")]
         public HttpResponseMessage GetBookFile(string id)
         {
             try
             {
-                string filePath = _fileService.GetBookFilePath(id);
-
                 HttpResponseMessage result = null;
 
                 result = Request.CreateResponse(HttpStatusCode.OK);
-                result.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                result.Content = new StreamContent(_fileService.GetBookFile(id));
                 result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileNameByHash(id);
+                result.Content.Headers.ContentDisposition.FileName = _fileService.GetBookFileName(id);
 
                 return result;
             }
@@ -242,22 +240,9 @@ namespace ELib.Web.ApiControllers
         public HttpResponseMessage GetBookImage(string hash, int w=0, int h=0)
         {
             HttpResponseMessage message = new HttpResponseMessage();
-            byte[] image;
-            if (hash == "" || hash == null)
-            {
-                String rootpath = HostingEnvironment.MapPath("~/Content/");
-                var path = Path.Combine(rootpath, "no-photo.png");
-                Image i = Image.FromFile(path);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    i.Save(ms, ImageFormat.Png);
-                    image = ms.ToArray();
-                }
-
-            } else
-            {
+            byte[] image = null;
+            if (hash != "" && hash != null)
                 image = _fileService.GetBookImage(hash, w, h);
-            }
 
             if (image == null)
             {
@@ -282,12 +267,22 @@ namespace ELib.Web.ApiControllers
         [ActionName("profile-image")]
         public HttpResponseMessage GetProfileImage(string hash, int w=0, int h=0)
         {
-            if (hash == "" || hash==null)
-              return  Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, "Hash cannot be null");
-
             HttpResponseMessage message = new HttpResponseMessage();
+            byte[] image = null;
+            if (hash != "" && hash != null)
+                image = _fileService.GetProfileImage(hash, w, h);
 
-            byte[] image = _fileService.GetProfileImage(hash, w, h);
+            if (image == null)
+            {
+                String rootpath = HostingEnvironment.MapPath("~/Content/");
+                var path = Path.Combine(rootpath, "no-photo.png");
+                Image i = Image.FromFile(path);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    i.Save(ms, ImageFormat.Png);
+                    image = ms.ToArray();
+                }
+            }
             message.Content = new ByteArrayContent(image);
             message.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             message.StatusCode = HttpStatusCode.OK;
@@ -299,23 +294,10 @@ namespace ELib.Web.ApiControllers
         public HttpResponseMessage GetAuthorImage(string hash, int w=0,int h = 0)
         {
             HttpResponseMessage message = new HttpResponseMessage();
-            byte[] image;
-            if (hash == "" || hash == null)
-            {
-                String rootpath = HostingEnvironment.MapPath("~/Content/");
-                var path = Path.Combine(rootpath, "no-photo.png");
-                Image i = Image.FromFile(path);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    i.Save(ms, ImageFormat.Png);
-                    image = ms.ToArray();
-                }
-
-            }
-            else
-            {
+            byte[] image = null;
+            if (hash != "" && hash != null)
                 image = _fileService.GetAuthorImage(hash, w, h);
-            }
+
 
             if (image == null)
             {

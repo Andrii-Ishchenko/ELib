@@ -2,17 +2,12 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["CurrentProfileFactory","dataServiceFactory","FileFactory", "$scope"];
+    CurrentProfileController.$inject = ["CurrentProfileFactory","dataServiceFactory","FileFactory"];
 
-    function CurrentProfileController(CurrentProfileFactory,DataServiceFactory,FileFactory ,$scope) {
+    function CurrentProfileController(CurrentProfileFactory,DataServiceFactory,FileFactory) {
         var vm = this;
 
-        $scope.template = {
-            menu: "/views/home/user/profile-menu-current.html",
-            main: "/views/home/user/profile-general.html"
-        }
-
-        $scope.links = {
+        vm.links = {
             "GeneralInfo": "/views/home/user/profile-general.html",
             "Ratings": "/views/home/user/profile-ratings.html",
             "Comments": '/views/home/user/profile-comments.html',
@@ -20,49 +15,50 @@
             "BooksToRead": "/views/home/user/profile-books-to-read.html",
             "AlreadyReadBooks": "/views/home/user/profile-already-read-books.html",
             "SocialNetworks": "/views/home/user/profile-social-networks.html"
-        }
+        };
 
-        $scope.showSection = function (name) {
-            $scope.template.main = $scope.links[name];
+        vm.currUrl = vm.links["GeneralInfo"];
+        
+        vm.showSection = function (name) {
+            vm.currUrl = vm.links[name];
         }
-
-        $scope.isActive = function (viewName) {
-            var item = $scope.links[viewName];
+        
+        vm.isActive = function (viewName) {
+            var item = vm.links[viewName];
            // console.log("name = " + viewName + "\t" + "item = " + item);
-            var result = ($scope.template.main == item);
+            var result = (vm.currUrl == item);
             return result;
         }
         
-        $scope.isEditMode = false;
+        vm.isEditMode = false;
 
-        $scope.ToggleEditMode = function () {
-            if ($scope.isEditMode) {
+        vm.ToggleEditMode = function () {
+            if (vm.isEditMode) {
             //post
             //in done() put ($scope.isEditMode = !$scope.isEditMode;)
             }
-            $scope.isEditMode = !$scope.isEditMode;
+            vm.isEditMode = !vm.isEditMode;
         }
-
-        $scope.uploadProfileImage = function (file) {
+        vm.uploadProfileImage = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
 
             FileFactory.uploadProfileImage(fd).then(
                 function (response) {
-                    $scope.fetchData();
+                    vm.fetchData();
                     console.log(" method 'then' in post request.")
                 });                      
         }
 
-        $scope.edit = function(){
+       vm.edit = function(){
             vm.backup = angular.copy(vm.profile);
         }
 
-        $scope.cancel = function(){
+        vm.cancel = function(){
             vm.profile = vm.backup;
         }
 
-        $scope.save = function(){
+        vm.save = function(){
             //save logic
             var person = {
                 FirstName: vm.profile.FirstName,
@@ -74,11 +70,11 @@
             //  CurrentProfileFactory.saveCurrentUser(vm.profile).send();          
         }
 
-        $scope.fetchData = function() {          
+        vm.fetchData = function() {          
             vm.profile = CurrentProfileFactory.getCurrentUser().query();         
         }
 
-        $scope.fetchData();
+        vm.fetchData();
         
     }
 

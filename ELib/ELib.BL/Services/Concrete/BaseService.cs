@@ -18,16 +18,8 @@ namespace ELib.BL.Services.Concrete
             _factory = factory;
         }
 
-        public int TotalCount
-        {
-            get
-            {
-                using (var uow = _factory.Create())
-                {
-                    return uow.Repository<TEntity>().TotalCount;
-                }
-            }
-        }
+        public int TotalCount { get; protected set; }
+        
 
         public void Delete(TEntityDto entity)
         {
@@ -54,7 +46,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<TEntityDto>();
                 var entities = uow.Repository<TEntity>().Get();
-
+                TotalCount = uow.Repository<TEntity>().TotalCount;
                 foreach(var item in entities)
                 {
                     var entityDto = AutoMapper.Mapper.Map<TEntityDto>(item);

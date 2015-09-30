@@ -17,18 +17,23 @@ namespace ELib.BL.Services.Concrete
         
         public void AddRating(RatingBookDto rating)
         {
-            if(rating.ValueRating <=0 || rating.ValueRating > 10)
+            if(rating.ValueRating <=0 || rating.ValueRating > 100)
             {
                 return;
             }
             using (var uow = _factory.Create())
             {
                 int sumRating = 0;
-                List<RatingBook> tempBook = (List<RatingBook>)uow.Repository<RatingBook>().Get(x => x.BookId == rating.BookId);
-                if(tempBook.Count!=0 )
+                List<RatingBook> tempBook = new List<RatingBook>();
+                var colection = uow.Repository<RatingBook>().Get(x => x.BookId == rating.BookId);
+                foreach (var book in colection)
+                {
+                    tempBook.Add(book);
+                }
+                if (tempBook.Count != 0)
                 {
                     List<RatingBook> tempRatingBook = tempBook.FindAll(x => x.UserId == rating.UserId);
-                    if(tempRatingBook.Count != 0)
+                    if (tempRatingBook.Count != 0)
                     {
                         foreach (var temp in tempRatingBook)
                         {
@@ -37,7 +42,7 @@ namespace ELib.BL.Services.Concrete
                             base.Update(rating);
                             sumRating = (ReCalculateRatingBook(tempBook) - temp.ValueRating + rating.ValueRating) / tempBook.Count;
                         }
-                        
+
                     }
                     else
                     {

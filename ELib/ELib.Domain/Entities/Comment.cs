@@ -23,7 +23,7 @@ namespace ELib.Domain.Entities
 
         public int UserId { get; set; }
 
-        [Column(TypeName = "date")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CommentDate { get; set; }
 
         public int SumLike { get; set; }

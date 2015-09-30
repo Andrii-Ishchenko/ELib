@@ -29,7 +29,8 @@ namespace ELib.Web
                 .Include("~/Content/bootstrap*",
                            "~/Content/custom.css",
                            "~/Content/main.css",
-                            "~/Content/profile.css"));
+                            "~/Content/profile.css",
+                             "~/Content/ng-rating.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
@@ -37,9 +38,10 @@ namespace ELib.Web
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/DataServiceFactory.js",
                                     "~/Views/Home/book/bookRepository.js",
+                                    "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
-
+                                    "~/Views/Home/index/SearchController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/ProfileFactory.js",
@@ -67,6 +69,7 @@ namespace ELib.Web
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
+                                    "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/comments/CommentsRepository.js",
                                     "~/Views/Home/comments/commentsDirective.js"
 

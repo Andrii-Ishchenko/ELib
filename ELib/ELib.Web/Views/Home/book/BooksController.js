@@ -2,18 +2,43 @@
     angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["dataServiceFactory", "$scope", '$routeParams'];
+    BooksController.$inject = ["dataServiceFactory", '$routeParams', "$location"];
 
-    function BooksController(dataServiceFactory,$scope, $routeParams) {
+    function BooksController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-
-        $scope.template = {
-            menu: "/views/home/book/book-list-menu.html",
-            main: "/views/home/book/books.html"
-        }
-        vm.pageCount = 3;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
-        var obj = dataServiceFactory.getService('books').get({ pageCount: $routeParams.pageCount, pageNumb : $routeParams.pageNumb});
+
+        var obj = dataServiceFactory.getService('category').query();
+        obj.$promise.then(function (data) {
+            vm.categories = data;
+            preProcessCategories(vm.categories,0);
+        });
+
+        vm.ToggleNode = function ToggleNode(node) {       
+            if (node && node.opened != undefined)
+                node.opened = !node.opened
+        }
+
+
+        var parameters = {
+            pageCount : vm.pageCount,
+            pageNumb  : vm.currPage,
+            query     : $routeParams.query,
+            title     : $routeParams.title,
+            authorName: $routeParams.author,
+            genre     : $routeParams.genre,
+            genreId   : $routeParams.genreId,
+            subgenre  : $routeParams.subgenre,
+            year      : $routeParams.year
+    }
+
+        vm.pageChanged = pageChanged;
+
+            //$location.search("pageNumb", vm.currPage);
+
+
+        var obj = dataServiceFactory.getService('books').get(parameters);
         obj.$promise.then(function (data) {
             vm.books = data.books;
             vm.totalCount = data.totalCount;
@@ -21,6 +46,30 @@
             vm.pages = new Array(vm.totalPages);
         })
       
+        function pageChanged() {
+            $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
+        }
+
+
+        vm.NodeButtonState = function (node) {
+
+        }
+      
+
+        function preProcessCategories(children, level) {
+
+            for (var index in children) {
+                if (children[index].Level!=undefined && children[index].Level >= level) {
+                    children[index].opened = false;
+                } else {
+                    children[index].opened = true;
+                }
+               
+
+                preProcessCategories(children[index].Children,level)
+            }
+        }
+
 
         //activate();
 

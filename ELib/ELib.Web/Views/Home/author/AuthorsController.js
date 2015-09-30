@@ -2,33 +2,23 @@
     angular.module("elib")
            .controller("AuthorsController", AuthorsController);
 
-   AuthorsController.$inject = ["dataServiceFactory", "$scope"];
+    AuthorsController.$inject = ["dataServiceFactory", '$routeParams', "$location"];
 
-    function AuthorsController(dataServiceFactory, $scope) {
+    function AuthorsController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
-        $scope.template = {
-            menu: "/views/shared/menu.html",
-            main: "/views/home/author/authors.html"
-        }
+        var obj = dataServiceFactory.getService('authors').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query });
+        obj.$promise.then(function (data) {
+            vm.authors = data.authors;
+            vm.totalItems = data.totalCount;
+            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+            vm.maxSize = 5;
+        })
 
-        vm.authors = dataServiceFactory.getService('authors').query();
-
-        //activate();
-
-        //function activate() {
-        //    return getBooks().then(function () {
-        //        console.log('Activated Books View');
-        //    });
-        //}
-
-        //function getBooks() {
-        //    return DataService.getAll('book')
-        //    .then(function (data) {
-        //        vm.books = data;
-        //        console.log(vm.books);
-        //        return vm.books;
-        //    });
-        //}
+        vm.pageChanged = function () {
+            $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
+        };
     }
 })();

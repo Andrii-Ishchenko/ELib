@@ -10,7 +10,7 @@
                 controllerAs: 'mainpage'
             })
             .when('/books', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/book/books.html',
                 controller : 'BooksController',
                 controllerAs : 'books'
             })
@@ -19,26 +19,36 @@
                 controller: 'NewBookController',
                 controllerAs: 'newBookCtrl'
             })
+             .when('/books/search', {
+                 templateUrl: '/views/home/book/books.html',
+                 controller: 'BooksController',
+                 controllerAs: 'books'
+             })
             .when('/books/:id', {
                 templateUrl: '/views/home/book/book.html',
                 controller: 'BookController',
                 controllerAs: 'book'
             })
             .when('/profile/',{
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/user/profile.html',
                 controller: 'CurrentProfileController',
                 controllerAs: 'currentProfileCtrl'
             })
             .when('/authors', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/author/authors.html',
                 controller: 'AuthorsController',
                 controllerAs:'authors'
             })
              .when('/authors/new', {
-                 templateUrl: '/views/shared/two-column-layout.html',
+                 templateUrl: '/views/home/author/new-author.html',
                  controller: 'NewAuthorController',
                  controllerAs: 'newAC'
              })
+            .when('/authors/search', {
+                templateUrl: '/views/home/author/authors.html',
+                controller: 'AuthorsController',
+                controllerAs: 'authors'
+            })
             .when('/authors/:id', {
                 templateUrl: '/views/home/author/author.html',
                 controller: 'AuthorController',
@@ -60,7 +70,12 @@
                 controllerAs : 'helpCtrl'
             })
             .when('/publishers', {
-                templateUrl: '/views/shared/two-column-layout.html',
+                templateUrl: '/views/home/publisher/publishers.html',
+                controller: 'PublishersController',
+                controllerAs: 'publishers'
+            })
+            .when('/publishers/search', {
+                templateUrl: '/views/home/publisher/publishers.html',
                 controller: 'PublishersController',
                 controllerAs: 'publishers'
             })

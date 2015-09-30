@@ -35,11 +35,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.2.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LINQKit.1.1.2\lib\net45\LinqKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -63,9 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
+    <Compile Include="DtoEntities\AuthorListDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
     <Compile Include="DtoEntities\BookInstanceDto.cs" />
     <Compile Include="DtoEntities\CaptchaDto.cs" />
+    <Compile Include="DtoEntities\CategoryDto.cs" />
+    <Compile Include="DtoEntities\CategoryNestedDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
@@ -74,6 +81,7 @@
     <Compile Include="DtoEntities\PublisherDto.cs" />
     <Compile Include="DtoEntities\RatingBookDto.cs" />
     <Compile Include="DtoEntities\RatingCommentDto.cs" />
+    <Compile Include="DtoEntities\SearchDto.cs" />
     <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\ImageExtensions.cs" />
@@ -84,6 +92,7 @@
     <Compile Include="Services\Abstract\IBookService.cs" />
     <Compile Include="Services\Abstract\ICaptchaGenerator.cs" />
     <Compile Include="Services\Abstract\ICaptchaService.cs" />
+    <Compile Include="Services\Abstract\ICategoryService.cs" />
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
@@ -99,6 +108,7 @@
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\BookService.cs" />
     <Compile Include="Services\Concrete\CaptchaService.cs" />
+    <Compile Include="Services\Concrete\CategoryService.cs" />
     <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\CurrentProfileService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
@@ -109,6 +119,7 @@
     <Compile Include="Services\Concrete\PublisherService.cs" />
     <Compile Include="Services\Concrete\RatingCommentService.cs" />
     <Compile Include="Services\Concrete\RatingService.cs" />
+    <Compile Include="Services\Concrete\SearchService.cs" />
     <Compile Include="Services\Concrete\SubgenresService.cs" />
   </ItemGroup>
   <ItemGroup>

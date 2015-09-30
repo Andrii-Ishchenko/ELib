@@ -242,6 +242,24 @@
             languages.ForEach(x => context.Languages.AddOrUpdate(l => l.Name, x));
             context.SaveChanges();
 
+            //Categories
+
+            var categories = new List<Category>()
+            {
+                new Category { Name="French Literature", Level=0, ParentId=null,  },
+                new Category { Name="Ukrainian Literature", Level=0, ParentId=null },
+                new Category { Name="IT Tutorials", Level=0, ParentId=null },
+                new Category { Name="Cat 4", Level=0, ParentId=null },
+                new Category { Name="Cat 5", Level=0, ParentId=null },
+                new Category { Name="Cat 6", Level=0, ParentId=null },
+                new Category { Name="Cat 7", Level=0, ParentId=null },
+                new Category { Name="Cat 8", Level=0, ParentId=null }
+
+            };
+
+            categories.ForEach(x => context.Categories.AddOrUpdate(c => c.Name, x));
+            context.SaveChanges();
+
             //books
             var books = new List<Book>()
             {
@@ -259,8 +277,10 @@
                     PublisherId = 3,
                     SubgenreId = 1,
                     Isbn = "978-5-496-00433-6",
-                    PublishYear = new DateTime(2013, 1, 1),
-                    TotalPages = 896
+                    PublishYear = 2013,
+                    TotalPages = 896,
+                    CategoryId = 1,
+                    AdditionDate = new DateTime(2013, 1, 1)
                 },
                 new Book()
                 {
@@ -268,10 +288,12 @@
                     Description = "",
                     PublishLangId = 3,
                     Isbn = "978-0-7356-6745-7",
-                    PublishYear = new DateTime(2012, 1, 1),
+                    PublishYear = 2012,
                     SubgenreId = 1,
                     TotalPages = 870,
-                    PublisherId = 4
+                    PublisherId = 4,
+                    CategoryId = 1,
+                    AdditionDate = new DateTime(2012, 1, 1)
                 },
                 new Book()
                 {
@@ -285,8 +307,10 @@
                     SubgenreId = 1,
                     PublisherId = 1,
                     Isbn = "978-5-17-077763-1",
-                    PublishYear = new DateTime(2015, 8, 3),
-                    TotalPages = 1248
+                    PublishYear = 2015,
+                    TotalPages = 1248,
+                    CategoryId = 1,
+                    AdditionDate = new DateTime(2015, 8, 3)
                 },
                 new Book()
                 {
@@ -299,8 +323,10 @@
                     SubgenreId = 1,
                     PublisherId = 2,
                     Isbn = "978-5-17-078099-0",
-                    PublishYear = new DateTime(2013, 1, 1),
-                    TotalPages = 320
+                    PublishYear = 2013,
+                    TotalPages = 320,
+                    CategoryId = 1,
+                    AdditionDate = new DateTime(2013, 1, 1)
                 },
                 new Book()
                 {
@@ -317,8 +343,10 @@
                     SubgenreId = 1,
                     PublisherId = 3,
                     Isbn = "5-272-00355-1",
-                    PublishYear = new DateTime(2001, 1, 1),
-                    TotalPages = 352
+                    PublishYear = 2001,
+                    TotalPages = 352,
+                    CategoryId = 1,
+                    AdditionDate = new DateTime(2001, 1, 1)
                 }
             };
 

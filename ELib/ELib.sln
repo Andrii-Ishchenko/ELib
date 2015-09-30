@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Domain", "ELib.Domain\ELib.Domain.csproj", "{6556E528-064A-4BD9-A613-C60B182E130C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Web", "ELib.Web\ELib.Web.csproj", "{B9D987DF-1551-44EA-8120-BAEB59FBCD5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.DAL", "ELib.DAL\ELib.DAL.csproj", "{388B9056-CBE1-4E9A-A637-17BDF5D85C8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.BL", "ELib.BL\ELib.BL.csproj", "{DA127493-AB50-43F3-BFEB-ECED72CE1890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Web", "ELib.Web\ELib.Web.csproj", "{B9D987DF-1551-44EA-8120-BAEB59FBCD5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Domain", "ELib.Domain\ELib.Domain.csproj", "{6556E528-064A-4BD9-A613-C60B182E130C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Common", "ELib.Common\ELib.Common.csproj", "{3DF22B2B-64DF-4CC5-8956-ADDB4195A021}"
 EndProject

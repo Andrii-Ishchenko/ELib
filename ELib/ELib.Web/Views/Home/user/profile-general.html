@@ -1,70 +1,70 @@
-<div class="row ">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-4">
-                <img ng-src="{{'/api/file/profile-image?hash=' +currentProfileCtrl.profile.ImageHash}}" class="img-thumbnail" />
-                <br>
-                <div style="text-align:center">
-                    <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).scope().uploadProfileImage(document.getElementById('fileUploadId').files)" />
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <img ng-src="/api/file/profile-image?hash= {{ (currentProfileCtrl.profile.ImageHash) ? currentProfileCtrl.profile.ImageHash: '' }}" class="img-thumbnail" />
+                    <br>
+                    <div style="text-align:center">
+                        <input type="file" id="fileUploadId" style="display:none !important" onchange="currentProfileCtrl.uploadProfileImage(document.getElementById('fileUploadId').files)" />
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
 
+                    </div>
+                </div>
+                <div class="col-md-8 profile" ng-hide="currentProfileCtrl.isEditMode">
+                    <form name="formShow">
+                        <div class="info-item form-group">
+                            <span class="info-label">Username</span>
+                            <span class="info-value ">{{currentProfileCtrl.profile.UserName}} </span>
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">First Name</span>
+                            <span class="info-value ">{{currentProfileCtrl.profile.FirstName}}</span>
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">Last Name</span>
+                            <span class="info-value ">{{currentProfileCtrl.profile.LastName}}</span>
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">Email</span>
+                            <span class="info-value ">{{currentProfileCtrl.profile.Email}}</span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-8 profile-edit" ng-show="currentProfileCtrl.isEditMode">
+                    <form name="formEdit" novalidate>
+                        <div class="info-item form-group">
+                            <span class="info-label">Username</span>
+                            <span class="info-value">{{currentProfileCtrl.profile.UserName}} </span>
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">First Name</span>
+                            <input type="text" name="firstname" class="info-editable" ng-model="currentProfileCtrl.profile.FirstName" contenteditable="true" ng-required>
+                            <span class="error" ng-show="formEdit.firstname.$error.required">error</span>
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">Last Name</span>
+                            <input type="text" name="secondname" class="info-editable" ng-model="currentProfileCtrl.profile.LastName" contenteditable="true">
+                        </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">Email</span>
+                            <input type="email" name="email" class="info-editable" ng-model="currentProfileCtrl.profile.Email" contenteditable="true">
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="col-md-8 profile" ng-hide="isEditMode">
-                <form name="formShow">
-                    <div class="info-item form-group">
-                        <span class="info-label">Username</span>
-                        <span class="info-value ">{{currentProfileCtrl.profile.UserName}} </span>
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">First Name</span>
-                        <span class="info-value ">{{currentProfileCtrl.profile.FirstName}}</span>
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">Last Name</span>
-                        <span class="info-value ">{{currentProfileCtrl.profile.LastName}}</span>
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">Email</span>
-                        <span class="info-value ">{{currentProfileCtrl.profile.Email}}</span>
-                    </div>
-                </form>
-            </div>
 
-            <div class="col-md-8 profile-edit" ng-show="isEditMode">
-                <form name="formEdit" novalidate>
-                    <div class="info-item form-group">
-                        <span class="info-label">Username</span>
-                        <span class="info-value">{{currentProfileCtrl.profile.UserName}} </span>
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">First Name</span>
-                        <input type="text" name="firstname" class="info-editable" ng-model="currentProfileCtrl.profile.FirstName" contenteditable="true" ng-required>
-                        <span class="error" ng-show="formEdit.firstname.$error.required">error</span>
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">Last Name</span>
-                        <input type="text" name="secondname" class="info-editable" ng-model="currentProfileCtrl.profile.LastName" contenteditable="true">
-                    </div>
-                    <div class="info-item form-group">
-                        <span class="info-label">Email</span>
-                        <input type="email" name="email" class="info-editable" ng-model="currentProfileCtrl.profile.Email" contenteditable="true">
-                    </div>
-                </form>
-            </div>
-        </div>
+            <div class="row">
+                <div class="col-md-12 buttons">
+                    <p ng-hide="currentProfileCtrl.isEditMode">
+                        <btn class="btn btn-primary pull-right" ng-click="currentProfileCtrl.ToggleEditMode(); currentProfileCtrl.edit();"> Edit</btn>
+                    </p>
+                    <p ng-show="currentProfileCtrl.isEditMode" class="pull-right">
+                        <btn class="btn btn-primary" ng-click="currentProfileCtrl.ToggleEditMode(); currentProfileCtrl.save();"> <i class="glyphicon glyphicon-ok"></i> </btn>
+                        <btn class="btn btn-primary" ng-click="currentProfileCtrl.ToggleEditMode(); currentProfileCtrl.cancel();"> <i class="glyphicon glyphicon-remove"></i> </btn>
+                    </p>
+                </div>
 
-        <div class="row">
-            <div class="col-md-12 buttons">
-                <p ng-hide="isEditMode">
-                    <btn class="btn btn-primary pull-right" ng-click="ToggleEditMode(); edit();"> Edit</btn>
-                </p>
-                <p ng-show="isEditMode" class="pull-right">
-                    <btn class="btn btn-primary" ng-click="ToggleEditMode(); save();"> <i class="glyphicon glyphicon-ok"></i> </btn>
-                    <btn class="btn btn-primary" ng-click="ToggleEditMode(); cancel();"> <i class="glyphicon glyphicon-remove"></i> </btn>
-                </p>
             </div>
-
         </div>
     </div>
-</div>

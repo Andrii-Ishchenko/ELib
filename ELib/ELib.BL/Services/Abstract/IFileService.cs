@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ELib.BL.Services.Abstract
 {
@@ -13,13 +9,12 @@ namespace ELib.BL.Services.Abstract
         bool SaveBookImage(byte[] file, string fileName, int bookId, int userId);
         bool SaveAuthorImage(byte[] file, string fileName, int authorId, int userId);
         bool SaveBookFile(byte[] file, string fileName, int bookInstanceId, int userId);
-        String GetBookImagePath(String hash);
-        string GetBookFilePath(string hash);
-        string GetBookFileNameByHash(string hash);
 
-        byte[] GetBookImage(String hash, int w, int h);
-        byte[] GetProfileImage(String hash, int w, int h);
-        byte[] GetAuthorImage(String hash, int w, int h);
+        string GetBookFileName(string hash);
+        FileStream GetBookFile(string hash);
 
+        byte[] GetBookImage(String hash, int width, int height);
+        byte[] GetProfileImage(String hash, int width, int height);
+        byte[] GetAuthorImage(String hash, int width, int height);
     }
 }

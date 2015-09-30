@@ -30,6 +30,7 @@ namespace ELib.DAL.Infrastructure.Concrete
         public virtual DbSet<RatingComment> RatingComments { get; set; }
         public virtual DbSet<UserBookStatus> UserBookStatus { get; set; }
         public virtual DbSet<Subgenre> Subgenres { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -116,7 +117,6 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
             
-
             modelBuilder.Entity<Publisher>()
                 .HasMany(e => e.Books)
                 .WithRequired(e => e.Publisher)
@@ -131,7 +131,14 @@ namespace ELib.DAL.Infrastructure.Concrete
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
+            modelBuilder.Entity<Category>()
+                .HasKey(c => c.Id);
 
+            modelBuilder.Entity<Category>()
+                .HasMany(e => e.Books)
+                .WithRequired(e => e.Category)
+                .WillCascadeOnDelete(false);
+            
         }
         public static ELibDbContext Create()
         {

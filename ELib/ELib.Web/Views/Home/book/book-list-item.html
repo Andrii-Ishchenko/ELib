@@ -1,10 +1,44 @@
-﻿<li class="list-group-item" ng-repeat="book in books">
+﻿<!--
+<li class="list-group-item" ng-repeat="book in books">
 
-    <!--<img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">-->
+    /*<img class="img-thumbnail pull-left" src="/Images/orderedList9.png" alt="">*/
     <img class="img-thumbnail pull-left" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=60&w=60" alt="" width="60" height="60">
     <p class="label label-default label-pill pull-right">{{book.Rating}}<p>
     <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
     <p><a href="{{'/books/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>
 
     <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>
+</li>
+-->
+
+<li class="list-group-item" ng-repeat="book in books">
+    <div class="row">
+        <div class="col-md-2">
+
+
+            <img class="img-thumbnail center-block" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=80&w=80" alt="" width="100" height="100">
+            
+        </div>
+        <div class="col-md-10">
+            <ul class="list-inline">
+                <li ng-repeat="autor in book.AuthorsDto"><em><a href="/authors/{{autor.Id}}">{{autor.Name}}</a></em></li>
+            </ul>        
+            <a href="{{'/books/' + book.Id}}"><strong>{{book.Title}}</strong></a>
+            <br>
+            <span ng-if="book.Genre">{{book.Genre}} -</span><span ng-if="book.Subgenre">{{book.Subgenre}} - </span><span ng-if="book.PublisherName">{{book.PublisherName}} - </span><span ng-if="book.PublishYear">{{book.PublishYear}}</span>
+            <br>          
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <span style="color:forestgreen">666</span>
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+            <span style="color:darkred">123</span>
+            <span >Rating: </span>
+            <span class="label label-default label-pill">{{book.Rating}}</span>
+        </div>
+    </div>
+  
+    <!--<p class="label label-default label-pill pull-right">{{book.Rating}}<p>
+    <p><em><span ng-repeat="autor in book.Authors">{{autor  + " "}}</span></em></p>
+    <p><a href="{{'/books/' + book.Id}}"><strong>{{book.Title}}</strong></a></p>
+
+    <p>{{book.Genre}} - {{book.Subgenre}} - {{book.PublisherName}} - {{book.PublishYear|date : 'yyyy'}}</p>-->
 </li>
