@@ -36,7 +36,7 @@
         vm.newComment = {
             Text: "abc",
             BookId: $routeParams.id,
-            UserId: this.profile.Id,
+            UserId: null,
             CommentDate: null,
             SumLike: 0,
             SumDisLike: 0
@@ -64,10 +64,16 @@
         };
 
 
-            vm.createComment = function () {
-                vm.newComment.CommentDate = new Date();
-                dataServiceFactory.getService('Comments').save(vm.newComment);
-        }
+        vm.createComment = function () {
+            vm.newComment.CommentDate = new Date();
+            var userIdCmnt = vm.profile.Id;
+            vm.newComment.UserId = userIdCmnt;
+            dataServiceFactory.getService('Comments').save(vm.newComment);
+
+
+            location.reload();
+
+        };
 
 
 

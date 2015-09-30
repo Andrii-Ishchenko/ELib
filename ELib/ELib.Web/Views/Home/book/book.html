@@ -97,18 +97,24 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading"><i class="glyphicon glyphicon-comment"></i> Comments</div>
+                    <div class="panel-heading">
+                        <i class="glyphicon glyphicon-comment"></i> 
+                        Comments
+                    </div>
                     <div class="panel-body">
                         <!--<div commentsDirective comments="book.comments"> </div>-->
                         <div class="panel panel-default" ng-repeat="comm in book.comments">
-                            <div class="panel-heading"> <i class="glyphicon glyphicon-user"></i>{{comm.UserId}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}</div>
+                            <div class="panel-heading"> <i class="glyphicon glyphicon-user"></i>{{comm.UserId}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
+                                <button class="btn-sm btn-success pull-right">3</button>
+                                <button class="btn-sm btn-danger pull-right">2</button>
+                            </div>
                             <div class="panel-body">
                                 {{comm.Text}}
                             </div>
                         </div>
 
                         <div class="panel panel-default" >
-                            <div class="panel-heading"> {{book.profile.UserName}}, leave your comment:{{book.profile.Id}}</div>
+                            <div class="panel-heading"> {{book.profile.UserName}}, leave your comment:</div>
                             <div class="panel-body">
                                 <form>
                                     <div class="row">
