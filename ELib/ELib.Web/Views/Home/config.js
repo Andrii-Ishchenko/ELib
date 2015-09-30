@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module("elib")
-           .config(config);
+           .config(['$routeProvider', '$httpProvider', '$locationProvider', config]);
 
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider

@@ -2,16 +2,16 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "FileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "CurrentProfileFactory"];
+    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory"];
 
-    function BookController(bookRepository, CommentsRepository, $routeParams, FileFactory, $scope, authServiceFactory, dataServiceFactory, CurrentProfileFactory) {
+    function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory) {
         var vm = this;
 
         vm.savedSuccessfully = false;
         vm.message = "";
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-        vm.profile = CurrentProfileFactory.getCurrentUser().query();
+        vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
         //vm.getFullStarsArray = function () {
         //    var fullStarsNumb = parseInt(vm.instance.Rating);
@@ -77,11 +77,11 @@
 
 
 
-            $scope.uploadBookImage = function (file) {
+            vm.uploadBookImage = function (file) {
                 var fd = new FormData();
                 fd.append("file", file[0]);
 
-                FileFactory.uploadBookImage(fd, vm.instance.Id).then(
+                fileFactory.uploadBookImage(fd, vm.instance.Id).then(
                     function (response) {
                         // $scope.fetchData();
                         // alert("uploaded");
@@ -94,11 +94,11 @@
         }
 
 
-            $scope.uploadBookFile = function (file) {
+            vm.uploadBookFile = function (file) {
                 var fd = new FormData();
                 fd.append("file", file[0]);
 
-                FileFactory.uploadBookFile(fd, $routeParams.id).then(
+                fileFactory.uploadBookFile(fd, $routeParams.id).then(
                     function (response) {
                         vm.savedSuccessfully = true;
                         vm.message = "Book file has been uploaded successfully";

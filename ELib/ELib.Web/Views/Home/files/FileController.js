@@ -2,12 +2,12 @@
     angular.module("elib")
            .controller("FileController", FileController);
 
-    FileController.$inject = ["FileFactory", "$scope"];
+    FileController.$inject = ["fileFactory"];
 
-    function FileController(FileFactory, $scope) {
+    function FileController(fileFactory) {
         var vm = this;
 
-        $scope.uploadProfileImage = function (file) {
+        vm.uploadProfileImage = function (file) {
             var fd = new FormData();
             fd.append("file", file[0]);
 

@@ -7,11 +7,15 @@
     function FilterController(dataServiceFactory, $location, $routeParams) {
         vm = this;
         vm.currentYear = new Date().getFullYear();
+        vm.genreName = false;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
 
         var obj = dataServiceFactory.getService('genres').query();
         obj.$promise.then(function (data) {
             vm.genres = data;
+            if ($routeParams.genreId > 0) {
+                vm.genreName = vm.genres[$routeParams.genreId - 1].Name;
+            }
         });
 
         if ($routeParams.title) {
@@ -67,6 +71,7 @@
             preparePath();
             $location.search('year', vm.year);
         }
+
         vm.changePageCount = function () {
             if ($location.path() === "/books") {
                 $location.search({ pageCount: vm.pageCount });
@@ -74,7 +79,6 @@
             else {
                 $location.search("pageCount", vm.pageCount);
             }
-
         }
 
         function preparePath() {
