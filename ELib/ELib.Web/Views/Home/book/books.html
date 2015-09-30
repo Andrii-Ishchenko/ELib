@@ -23,10 +23,10 @@
                         </div>
                         <div class="form-group ">
                             <label class="control-label col-sm-3 text-muted small">Genre</label>
-                            <div class="col-xs-9">
-                                <select class="form-control"  ng-model="filter.genreId" ng-blur="filter.filterByGenreId()" >
-                                    <option class="text-muted">{{filter.genreName}}</option>
-                                    <option ng-repeat="genre in filter.genres" value="{{genre.Id}}">{{genre.Name}}</option>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-model="filter.genreId" ng-blur="filter.filterByGenreId()" >
+                                    <option value="" class="text-muted input-sm">{{filter.genreName?filter.genreName:"Genre"}}</option>
+                                    <option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>
                                 </select>
                             </div>
                         </div>

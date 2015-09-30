@@ -7,13 +7,15 @@
     function FilterController(dataServiceFactory, $location, $routeParams) {
         vm = this;
         vm.currentYear = new Date().getFullYear();
-        vm.genreName = "";
+        vm.genreName = false;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
 
         var obj = dataServiceFactory.getService('genres').query();
         obj.$promise.then(function (data) {
             vm.genres = data;
-            vm.genreName = vm.genres[$routeParams.genreId-1].Name;
+            if ($routeParams.genreId > 0) {
+                vm.genreName = vm.genres[$routeParams.genreId - 1].Name;
+            }
         });
 
         if ($routeParams.title) {
