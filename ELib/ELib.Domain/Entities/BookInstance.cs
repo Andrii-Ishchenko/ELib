@@ -16,10 +16,10 @@ namespace ELib.Domain.Entities
         [StringLength(400)]
         public string FileName { get; set; }
 
+        public int DownloadCount { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime InsertDate { get; set; }
-
-        public int DownloadCount { get; set; }
 
         public virtual Book Book { get; set; }
     }

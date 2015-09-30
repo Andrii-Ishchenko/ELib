@@ -40,15 +40,19 @@ namespace ELib.BL.DtoEntities
 
         public string Description { get; set; }
 
-        //public string LanguageName { get; set; }
+        [StringLength(20)]
+        public string LanguageName { get; set; }
 
-        //public string Language1Name { get; set; }
+        [StringLength(20)]
+        public string Language1Name { get; set; }
 
-        //public string PublisherName { get; set; }
+        [StringLength(40)]
+        public string PublisherName { get; set; }
 
-        //public string SubgenreName { get; set; }
+        [StringLength(40)]
+        public string SubgenreName { get; set; }
 
-        //public string CategoryName { get; set; }
+        public string CategoryName { get; set; }
 
         public int SumRatingValue { get; set; }
 
