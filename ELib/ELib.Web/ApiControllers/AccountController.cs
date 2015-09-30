@@ -16,35 +16,25 @@ using System.Web.Http;
 namespace ELib.Web.ApiControllers
 {
     [Authorize]
+    [RoutePrefix("api/Account")]
     public class AccountController : ApiController
-    {  
-        private  ApplicationUserManager _userManager;
-        private readonly ELogger logger;
+    {
+        private const string LocalLoginProvider = "Local";
+        private ApplicationUserManager _userManager;
+        private readonly ELogger _logger;
         private readonly IProfileService _profileService;
 
         public AccountController(IProfileService profileService)
         {
             _profileService = profileService;
-            logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
+            _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
-
-        /*
-        public AccountController(ApplicationUserManager userManager, IProfileService profileService) : this(profileService)
-        {
-            UserManager = userManager;
-        }
-
-        public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IProfileService profileService) : this(userManager, profileService)
-        { 
-            AccessTokenFormat = accessTokenFormat;   
-        }*/
 
         public ApplicationUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -55,7 +45,7 @@ namespace ELib.Web.ApiControllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         [AllowAnonymous]
-        [ActionName("register")]
+        [Route("register")]
         public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
             try
@@ -65,27 +55,27 @@ namespace ELib.Web.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
 
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email};
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
                 {
-                    logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
+                    _logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
-                var person = new PersonDto() { ApplicationUserId = user.Id};
+                var person = new PersonDto() { ApplicationUserId = user.Id };
                 _profileService.Insert(person);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Ok");
             }
             catch (Exception ex)
             {
-                logger.Error("Error In Author/Add", ex);
+                _logger.Error("Error In Author/Add", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-  
+
         private IAuthenticationManager Authentication
         {
             get { return HttpContext.Current.GetOwinContext().Authentication; }
