@@ -25,7 +25,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -43,7 +43,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -62,7 +62,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -81,7 +81,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -111,7 +111,7 @@ namespace ELib.BL.Services.Concrete
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entitiesDto.Add(entityDto);
                 }
 

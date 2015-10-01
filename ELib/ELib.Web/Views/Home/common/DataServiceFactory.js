@@ -48,15 +48,15 @@
     //    }
 
 
-    //    function add(entity) {
-    //        var url = baseUrl + entity;
-    //        return $resource(url, {}, {
-    //            save: {
-    //                method: 'POST',
-    //                isArray: false
-    //            }
-    //        });
-    //    }
+        function add(entity) {
+            var url = baseUrl + entity;
+            return $resource(url, {}, {
+                save: {
+                    method: 'POST',
+                    isArray: false
+                }
+            });
+        }
 
     //    function update(entity) {
     //        var url = baseUrl + entity;
