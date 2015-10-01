@@ -83,7 +83,7 @@
                             <dd><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></dd>
 
                             <dt>Subgenre</dt>
-                            <dd>{{book.instance.Subgenre}}</dd>
+                            <dd>{{book.instance.SubgenreName}}</dd>
 
                             <dt>Publisher</dt>
                             <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></dd>
