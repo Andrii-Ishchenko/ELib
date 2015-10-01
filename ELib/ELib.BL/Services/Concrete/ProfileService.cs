@@ -1,4 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
@@ -12,8 +13,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class ProfileService : BaseService<Person,PersonDto>, IProfileService
     {
-        public ProfileService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public ProfileService(IUnitOfWorkFactory factory, IMapper<Person, PersonDto> mapper)
+            : base(factory, mapper)
         { }
     }
 }

@@ -12,8 +12,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class GenreService : BaseService<Genre, GenreDto>, IGenreService
     {
-        public GenreService(IUnitOfWorkFactory factory) 
-            :base(factory) 
+        public GenreService(IUnitOfWorkFactory factory, IMapper<Genre, GenreDto> mapper) 
+            :base(factory, mapper) 
         {
 
         }

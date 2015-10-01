@@ -4,14 +4,14 @@ using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
-
+using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
     public class CommentService : BaseService<Comment, CommentDto>, ICommentService
     {
-        public CommentService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public CommentService(IUnitOfWorkFactory factory, IMapper<Comment, CommentDto> mapper)
+            : base(factory, mapper)
         {
            
         }

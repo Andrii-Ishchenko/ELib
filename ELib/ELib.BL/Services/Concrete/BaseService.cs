@@ -1,9 +1,7 @@
 ﻿using ELib.BL.Services.Abstract;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using ELib.DAL.Infrastructure.Abstract;
+using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -12,8 +10,9 @@ namespace ELib.BL.Services.Concrete
         where TEntity : class
     {
         protected readonly IUnitOfWorkFactory _factory;
+        protected readonly IMapper<TEntity,TEntityDto> _mapper;
 
-        public BaseService(IUnitOfWorkFactory factory)
+        public BaseService(IUnitOfWorkFactory factory, IMapper<TEntity,TEntityDto> mapper)
         {
             _factory = factory;
         }
@@ -25,7 +24,7 @@ namespace ELib.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var entityToDelete = AutoMapper.Mapper.Map<TEntity>(entity);
+                var entityToDelete = _mapper.Map(entity);
                 uow.Repository<TEntity>().Delete(entityToDelete);
                 uow.Save();
             }
@@ -49,7 +48,7 @@ namespace ELib.BL.Services.Concrete
                 TotalCount = uow.Repository<TEntity>().TotalCount;
                 foreach(var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<TEntityDto>(item);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -62,7 +61,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entity = uow.Repository<TEntity>().GetById(id);
-                var entityDto = AutoMapper.Mapper.Map<TEntityDto>(entity);
+                var entityDto = _mapper.Map(entity);
                 return entityDto;
             }
         }
@@ -71,10 +70,10 @@ namespace ELib.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var entityToInsert = AutoMapper.Mapper.Map<TEntity>(entity);
+                var entityToInsert = _mapper.Map(entity);
                 uow.Repository<TEntity>().Insert(entityToInsert);
                 uow.Save();
-                AutoMapper.Mapper.Map<TEntity, TEntityDto>(entityToInsert, entity);
+                entity = _mapper.Map(entityToInsert);
             }
         }
 
@@ -82,7 +81,7 @@ namespace ELib.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var entityToUpdate = AutoMapper.Mapper.Map<TEntity>(entity);
+                var entityToUpdate = _mapper.Map(entity);
                 uow.Repository<TEntity>().Update(entityToUpdate);
                 uow.Save();
             }

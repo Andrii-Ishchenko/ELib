@@ -6,13 +6,14 @@ using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
+using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
     public class BookService : BaseService<Book, BookDto>, IBookService
     {
-        public BookService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public BookService(IUnitOfWorkFactory factory, IMapper<Book, BookDto> mapper)
+            : base(factory, mapper)
         {
 
         }

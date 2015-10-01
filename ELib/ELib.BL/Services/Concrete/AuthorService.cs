@@ -5,13 +5,14 @@ using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
+using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
     public class AuthorService : BaseService<Author, AuthorDto>, IAuthorService
     {
-        public AuthorService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public AuthorService(IUnitOfWorkFactory factory, IMapper<Author, AuthorDto> mapper)
+            : base(factory, mapper)
         {
         }
         public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year,int pageNumb, int pageCount)

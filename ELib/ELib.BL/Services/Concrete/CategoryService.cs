@@ -1,4 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
@@ -12,8 +13,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class CategoryService : BaseService<Category,CategoryDto>, ICategoryService
     {
-        public CategoryService(IUnitOfWorkFactory factory) 
-            :base(factory){ }
+        public CategoryService(IUnitOfWorkFactory factory, IMapper<Category, CategoryDto> category) 
+            :base(factory, category){ }
 
         public List<CategoryNestedDto> GetNested()
         {

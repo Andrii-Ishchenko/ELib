@@ -7,13 +7,14 @@ using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
+using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
     public class PublisherService:  BaseService<Publisher,PublisherDto>, IPublisherService
     {
-        public PublisherService(IUnitOfWorkFactory factory) 
-            :base(factory) 
+        public PublisherService(IUnitOfWorkFactory factory, IMapper<Publisher, PublisherDto> mapper) 
+            :base(factory, mapper) 
         {
 
         }

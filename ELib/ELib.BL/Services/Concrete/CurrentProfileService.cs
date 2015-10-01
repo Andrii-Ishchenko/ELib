@@ -1,4 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Infrastructure.Concrete;
@@ -13,8 +14,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class CurrentProfileService : BaseService<Person,CurrentPersonDto>, ICurrentProfileService
     {
-        public CurrentProfileService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public CurrentProfileService(IUnitOfWorkFactory factory, IMapper<Person, CurrentPersonDto> mapper)
+            : base(factory, mapper)
         { }
 
         public CurrentPersonDto GetByApplicationUserId(string id)
