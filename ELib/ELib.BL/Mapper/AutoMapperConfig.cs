@@ -5,6 +5,7 @@ using System;
 using ELib.BL.Services.Concrete;
 using ELib.DAL.Infrastructure.Concrete;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace ELib.BL.Mapper
 {
@@ -137,8 +138,8 @@ namespace ELib.BL.Mapper
             AutoMapper.Mapper.CreateMap<BookInstance, BookInstanceDto>();
             AutoMapper.Mapper.CreateMap<BookInstanceDto, BookInstance>();
 
-            AutoMapper.Mapper.CreateMap<ICollection<BookInstance>, ICollection<BookInstanceDto>>();
-            AutoMapper.Mapper.CreateMap<ICollection<BookInstanceDto>, ICollection<BookInstance>>();
+            AutoMapper.Mapper.CreateMap<ICollection<BookInstance>, ICollection<BookInstanceDto>>().ConstructUsing((ResolutionContext rc) => new List<BookInstanceDto>());
+            AutoMapper.Mapper.CreateMap<ICollection<BookInstanceDto>, ICollection<BookInstance>>().ConstructUsing((ResolutionContext rc) => new List<BookInstance>());
         }
     }
 }
