@@ -25,7 +25,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
+                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
                     entityDto.BookInstances = AutoMapper.Mapper.Map<ICollection<BookInstance>, ICollection<BookInstanceDto>>(item.BookInstances);
                     entitiesDto.Add(entityDto);
                 }

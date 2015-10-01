@@ -6,7 +6,7 @@
     function MainController(dataServiceFactory) {
 
         var vm = this;
-        vm.itemsPerPage = 2;
+        vm.itemsPerPage = 6;
 
         vm.currentPage = 1;
         vm.currentPageNew = 1;
