@@ -25,7 +25,7 @@ namespace ELib.BL.Services.Concrete
                     filter = SearchService<Author>.filterAnd(filter, byParameter);
             }
             else
-            {
+        {
                 filter = byParameter;
             }
 
@@ -44,7 +44,7 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
-       
+
         private Expression<Func<Author, bool>> buildFilterExpression(string query, string authorName, int year)
         {
             Expression<Func<Author, bool>> filter = SearchService<Author>.True;

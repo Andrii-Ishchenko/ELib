@@ -41,6 +41,7 @@ namespace ELib.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime AdditionDate { get; set; }
 
+        [Range(0, 9999)]
         public int PublishYear { get; set; }
 
         public string ImageHash { get; set; }

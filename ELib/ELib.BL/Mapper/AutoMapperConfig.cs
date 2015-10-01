@@ -4,6 +4,8 @@ using System.Linq;
 using System;
 using ELib.BL.Services.Concrete;
 using ELib.DAL.Infrastructure.Concrete;
+using System.Collections.Generic;
+using AutoMapper;
 
 namespace ELib.BL.Mapper
 {
@@ -11,6 +13,7 @@ namespace ELib.BL.Mapper
     {
         public static void Configure()
         {
+
             configureGenreMapping();
             configureSubgenreMapping();
             configurePublisherMapping();
@@ -91,7 +94,11 @@ namespace ELib.BL.Mapper
                   .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
                   .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.GenreId)))
                   .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue))
-                //  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name))
+                  .ForMember(d => d.LanguageName, o => o.MapFrom(s => s.Language.Name))
+                  .ForMember(d => d.Language1Name, o => o.MapFrom(s => s.Language1.Name))
+                  .ForMember (d => d.PublisherName, o => o.MapFrom(s => s.Publisher.Name))
+                  .ForMember(d => d.SubgenreName, o => o.MapFrom(s => s.Subgenre.Name))
+                  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name))
                   .ForMember(d=>d.AuthorsDto,o=>o.MapFrom(s=>s.BookAuthors==null? null :s.BookAuthors.Select(x=>new AuthorListDto() {Id=x.Id, Name=x.Author.FirstName +" "+ x.Author.LastName })));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }
@@ -130,6 +137,9 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<BookInstance, BookInstanceDto>();
             AutoMapper.Mapper.CreateMap<BookInstanceDto, BookInstance>();
+
+            AutoMapper.Mapper.CreateMap<ICollection<BookInstance>, ICollection<BookInstanceDto>>().ConstructUsing((ResolutionContext rc) => new List<BookInstanceDto>());
+            AutoMapper.Mapper.CreateMap<ICollection<BookInstanceDto>, ICollection<BookInstance>>().ConstructUsing((ResolutionContext rc) => new List<BookInstance>());
         }
     }
 }
