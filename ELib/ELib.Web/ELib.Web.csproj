@@ -358,6 +358,7 @@
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors.html" />
     <Content Include="Views\Home\author\AuthorsController.js" />
+    <Content Include="Views\Home\author\FilterForAuthorsController.js" />
     <Content Include="Views\Home\author\new-author.html" />
     <Content Include="Views\Home\author\NewAuthorController.js" />
     <Content Include="Views\Home\book\book-list-menu.html" />

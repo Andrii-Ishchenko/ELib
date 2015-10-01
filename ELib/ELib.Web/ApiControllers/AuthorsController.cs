@@ -26,11 +26,15 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        public HttpResponseMessage GetAuthors(string query = null, int pageNumb = 1, int pageCount = 5)
+        public HttpResponseMessage Get([FromUri]string query = null,
+                                       [FromUri]string authorName = null,
+                                       [FromUri]int year = 0,
+                                       [FromUri]int pageCount = 5,
+                                       [FromUri]int pageNumb = 1)
         {
             try
             {
-                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, pageNumb, pageCount);
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, authorName, year, pageNumb, pageCount);
                 int totalCount = _authorService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { authors, totalCount });
             }
@@ -55,7 +59,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                _logger.Error("Error In Author/GetById",ex);
+                _logger.Error("Error In Author/GetById", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -74,7 +78,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                _logger.Error("Error In Author/Add",ex);
+                _logger.Error("Error In Author/Add", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
@@ -108,7 +112,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception ex)
             {
-                _logger.Error("Error In Author/DeleteById",ex);
+                _logger.Error("Error In Author/DeleteById", ex);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }

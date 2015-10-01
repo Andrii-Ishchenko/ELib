@@ -14,9 +14,21 @@ namespace ELib.BL.Services.Concrete
             : base(factory)
         {
         }
-        public IEnumerable<AuthorDto> GetAll(string query, int pageNumb, int pageCount)
+        public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year,int pageNumb, int pageCount)
         {
-            Expression<Func<Author, bool>> filter = (string.IsNullOrEmpty(query)) ? SearchService<Author>.True : buildFullExpression(query);
+            Expression<Func<Author, bool>> filter;
+            var byParameter = buildFilterExpression(query,authorName,year);
+            if (query != null)
+            {
+                filter = buildFullExpression(query);
+                if (byParameter != SearchService<Author>.False)
+                    filter = SearchService<Author>.filterAnd(filter, byParameter);
+            }
+            else
+            {
+                filter = byParameter;
+            }
+
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<AuthorDto>();
@@ -32,7 +44,23 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
-
+       
+        private Expression<Func<Author, bool>> buildFilterExpression(string query, string authorName, int year)
+        {
+            Expression<Func<Author, bool>> filter = SearchService<Author>.True;
+            if (!string.IsNullOrEmpty(authorName))
+            {
+                Expression<Func<Author, bool>> searchByAuthor = (x) => (x.FirstName+" "+x.LastName).Contains(authorName)|| (x.LastName+" "+ x.FirstName).Contains(authorName);
+                filter = SearchService<Author>.filterAnd(filter, searchByAuthor);
+            }
+            
+            if (year > 0)
+            {
+                Expression<Func<Author, bool>> searchByYear = x => x.DateOfBirth.Value.Year > 0 && x.DateOfBirth.Value.Year== year;
+                filter = SearchService<Author>.filterAnd(filter, searchByYear);
+            }
+            return filter;
+        }
         private Expression<Func<Author, bool>> buildFullExpression(string query)
         {
             Expression<Func<Author, bool>> filter = SearchService<Author>.False;

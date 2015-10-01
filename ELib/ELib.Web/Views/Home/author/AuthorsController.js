@@ -9,16 +9,25 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
-        var obj = dataServiceFactory.getService('authors').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query });
-        obj.$promise.then(function (data) {
+        var parameters = {
+            pageCount: vm.pageCount,
+            pageNumb: vm.currPage,
+            query: $routeParams.query,
+            authorName: $routeParams.author,
+            year: $routeParams.year
+        }
+        vm.pageChanged = pageChanged;
+
+        var obj = dataServiceFactory.getService('authors').get(parameters).$promise.then(function (data) {
             vm.authors = data.authors;
             vm.totalItems = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.maxSize = 5;
         })
 
-        vm.pageChanged = function () {
+        function pageChanged() {
             $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
-        };
+        }
     }
 })();
+
