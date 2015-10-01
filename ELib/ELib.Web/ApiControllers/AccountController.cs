@@ -16,7 +16,7 @@ using System.Web.Http;
 namespace ELib.Web.ApiControllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
