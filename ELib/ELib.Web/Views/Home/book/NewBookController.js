@@ -31,7 +31,11 @@
             vm.publishers = data.publishers;
         })
 
-        vm.categories = dataServiceFactory.getService('category').query();
+        var catParameters = {
+            isNested: false
+        }
+
+        vm.categories = dataServiceFactory.getService('category').query(catParameters);
 
         vm.subgenres = dataServiceFactory.getService('subgenres').query();
         
