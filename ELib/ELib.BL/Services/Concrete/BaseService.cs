@@ -1,7 +1,7 @@
 ﻿using ELib.BL.Services.Abstract;
 using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {

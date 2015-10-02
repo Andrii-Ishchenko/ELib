@@ -1,5 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Infrastructure.Concrete;
@@ -26,7 +26,7 @@ namespace ELib.BL.Services.Concrete
                 //if (au == null)
                 //    return null;
                 Person p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id).FirstOrDefault();
-                return AutoMapper.Mapper.Map<CurrentPersonDto>(p);
+                return _mapper.Map(p);
             }
         }
     }

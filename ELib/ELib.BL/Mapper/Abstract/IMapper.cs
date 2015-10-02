@@ -1,4 +1,4 @@
-﻿namespace ELib.BL.Mapper
+﻿namespace ELib.BL.Mapper.Abstract
 {
     public interface IMapper<T1, T2>
     {

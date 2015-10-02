@@ -6,7 +6,7 @@ using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -26,8 +26,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>((Book)item);
-                    entityDto.BookInstances = AutoMapper.Mapper.Map<ICollection<BookInstance>, ICollection<BookInstanceDto>>(item.BookInstances);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -45,8 +44,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
-                    entityDto.BookInstances = AutoMapper.Mapper.Map<ICollection<BookInstance>, ICollection<BookInstanceDto>>(item.BookInstances);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -65,8 +63,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
-                    entityDto.BookInstances = AutoMapper.Mapper.Map<ICollection<BookInstance>, ICollection<BookInstanceDto>>(item.BookInstances);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -85,8 +82,7 @@ namespace ELib.BL.Services.Concrete
 
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
-                    entityDto.BookInstances = AutoMapper.Mapper.Map < ICollection<BookInstance>,ICollection < BookInstanceDto >> (item.BookInstances);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 
@@ -116,8 +112,7 @@ namespace ELib.BL.Services.Concrete
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<BookDto>(item);
-                    entityDto.BookInstances = AutoMapper.Mapper.Map<ICollection<BookInstance>,ICollection<BookInstanceDto>>(item.BookInstances);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
 

@@ -1,5 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Mapper.Concrete;
 using ELib.BL.Services.Abstract;
 using ELib.BL.Services.Concrete;
@@ -88,6 +88,9 @@ namespace ELib.Web
             container.RegisterType<ISubgenreService, SubgenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICategoryService, CategoryService>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IMapper<Author, AuthorListDto>, AuthorsListMapping>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Person, CurrentPersonDto>, CurrentPersonMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Book,BookDto>, BookMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Author, AuthorDto>, AuthorMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Genre, GenreDto>, GenreMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Subgenre, SubgenreDto>, SubgenreMapper>(new HierarchicalLifetimeManager());
