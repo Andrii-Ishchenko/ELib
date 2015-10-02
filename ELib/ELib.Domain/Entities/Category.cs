@@ -7,7 +7,6 @@
     [Table("Category")]
     public partial class Category
     {
-
         public Category()
         {
             Books = new HashSet<Book>();
@@ -25,8 +24,6 @@
 
         public int BookCount { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
-
-       
+        public virtual ICollection<Book> Books { get; set; }       
     }
 }
