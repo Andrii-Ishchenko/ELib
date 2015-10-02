@@ -15,7 +15,7 @@
                 <label class="control-label col-xs-3">Name:</label>
                 <div class="col-xs-9">
                     <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" ng-model="newPC.name"  maxlength="40" required>
-                    <span style="color:red" ng-show="newPublisherForm.name.$dirty && newPublisherForm.name.$invalid || newPublisherForm.name.$pristine">
+                    <span style="color:red" ng-show="newPublisherForm.name.$dirty && newPublisherForm.name.$invalid">
                         <span ng-show="newPublisherForm.name.$error.required">Name is required.</span>
                     </span>
                 </div>
