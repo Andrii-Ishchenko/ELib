@@ -86,6 +86,7 @@
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\ImageExtensions.cs" />
     <Compile Include="Mapper\Concrete\AuthorMapper.cs" />
+    <Compile Include="Mapper\Concrete\AuthorsListMapping.cs" />
     <Compile Include="Mapper\Concrete\AutoMapperConfig.cs" />
     <Compile Include="Mapper\Abstract\IMapper.cs" />
     <Compile Include="Mapper\Concrete\BookInstanceMapper.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Mapper\Concrete\CategoryMapper.cs" />
     <Compile Include="Mapper\Concrete\CategoryNestedMapper.cs" />
     <Compile Include="Mapper\Concrete\CommentMapper.cs" />
+    <Compile Include="Mapper\Concrete\CurrentPersonMapper.cs" />
     <Compile Include="Mapper\Concrete\GenreMapper.cs" />
     <Compile Include="Mapper\Concrete\LanguageMapper.cs" />
     <Compile Include="Mapper\Concrete\PersonMapper.cs" />
@@ -138,7 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ELib.Common\ELib.Common.csproj">

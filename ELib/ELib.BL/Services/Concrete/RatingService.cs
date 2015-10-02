@@ -1,5 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
@@ -39,7 +39,7 @@ namespace ELib.BL.Services.Concrete
                         foreach (var temp in tempRatingBook)
                         {
                             rating.Id = temp.Id;
-                            var entityToUpdate = AutoMapper.Mapper.Map<RatingBook>(rating);
+                            var entityToUpdate = _mapper.Map(rating);
                             base.Update(rating);
                             sumRating = (ReCalculateRatingBook(tempBook) - temp.ValueRating + rating.ValueRating) / tempBook.Count;
                         }
@@ -47,7 +47,7 @@ namespace ELib.BL.Services.Concrete
                     }
                     else
                     {
-                        var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
+                        var entityToInsert = _mapper.Map(rating);
                         uow.Repository<RatingBook>().Insert(entityToInsert);
                         uow.Save();
                         sumRating = (ReCalculateRatingBook(tempBook) + rating.ValueRating) / (tempBook.Count + 1);
@@ -55,7 +55,7 @@ namespace ELib.BL.Services.Concrete
                 }
                 else
                 {
-                    var entityToInsert = AutoMapper.Mapper.Map<RatingBook>(rating);
+                    var entityToInsert = _mapper.Map(rating);
                     uow.Repository<RatingBook>().Insert(entityToInsert);
                     uow.Save();
                     sumRating = rating.ValueRating;

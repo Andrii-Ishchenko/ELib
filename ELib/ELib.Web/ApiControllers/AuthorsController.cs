@@ -71,8 +71,8 @@ namespace ELib.Web.ApiControllers
             {
                 if (authorDto != null && ModelState.IsValid)
                 {
-                    _authorService.Insert(authorDto);
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Id = authorDto.Id });
+                    var newAuthor = _authorService.Insert(authorDto);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Id = newAuthor.Id });
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }

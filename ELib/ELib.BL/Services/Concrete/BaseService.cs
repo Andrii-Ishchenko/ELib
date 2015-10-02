@@ -1,7 +1,7 @@
 ﻿using ELib.BL.Services.Abstract;
 using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -67,14 +67,14 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        public void Insert(TEntityDto entity)
+        public TEntityDto Insert(TEntityDto entity)
         {
             using (var uow = _factory.Create())
             {
                 var entityToInsert = _mapper.Map(entity);
                 uow.Repository<TEntity>().Insert(entityToInsert);
                 uow.Save();
-                entity = _mapper.Map(entityToInsert);
+                return entity = _mapper.Map(entityToInsert);
             }
         }
 

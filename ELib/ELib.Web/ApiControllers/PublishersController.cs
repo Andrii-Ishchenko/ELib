@@ -65,8 +65,8 @@ namespace ELib.Web.ApiControllers
             {
                 if (publisher!=null && ModelState.IsValid)
                 {
-                    _pubisherService.Insert(publisher);
-                    return Request.CreateResponse(HttpStatusCode.OK, publisher);
+                    var newPublisher = _pubisherService.Insert(publisher);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Id = newPublisher.Id });
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State is not valid.");
             }

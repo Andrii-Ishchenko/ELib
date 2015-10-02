@@ -56,7 +56,7 @@ namespace ELib.Web.ApiControllers
             {
                 if (ModelState.IsValid)
                 {
-                    _languageService.Insert(language);
+                    var newLanguage = _languageService.Insert(language);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid model state");

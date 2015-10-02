@@ -75,7 +75,7 @@ namespace ELib.Web.ApiControllers
             {
                 if (commentDto != null && ModelState.IsValid)
                 {
-                    _commentService.Insert(commentDto);
+                    var newComment = _commentService.Insert(commentDto);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");

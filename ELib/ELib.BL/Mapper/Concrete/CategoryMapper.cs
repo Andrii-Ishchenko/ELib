@@ -1,5 +1,7 @@
 ﻿using ELib.BL.DtoEntities;
 using ELib.Domain.Entities;
+using ELib.BL.Mapper.Abstract;
+using System;
 
 namespace ELib.BL.Mapper.Concrete
 {

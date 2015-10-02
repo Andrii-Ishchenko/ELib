@@ -13,6 +13,7 @@ namespace ELib.Domain.Entities
         {
             BookInstances = new HashSet<BookInstance>();
             BookGenres = new HashSet<BookGenre>();
+            BookAuthors = new HashSet<BookAuthor>();
             RatingBooks = new HashSet<RatingBook>();
             UserBookStatus = new HashSet<UserBookStatus>();
         }
