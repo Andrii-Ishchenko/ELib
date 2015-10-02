@@ -95,7 +95,7 @@ namespace ELib.Web
             container.RegisterType<IMapper<BookInstance, BookInstanceDto>, BookInstanceMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Comment, CommentDto>, CommentMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Language, LanguageDto>, LanguageMapper>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMapper<Category, CategoryNestedDto>, CategoryNestedMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<CategoryDto, CategoryNestedDto>, CategoryNestedMapper>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
         }
     }
