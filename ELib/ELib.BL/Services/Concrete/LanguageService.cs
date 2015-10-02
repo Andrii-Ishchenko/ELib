@@ -10,7 +10,6 @@ namespace ELib.BL.Services.Concrete
     {
         public LanguageService(IUnitOfWorkFactory factory, IMapper<Language, LanguageDto> mapper)
             : base(factory, mapper)
-        {
-        }
+        { }
     }
 }

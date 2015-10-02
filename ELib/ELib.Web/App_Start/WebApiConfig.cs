@@ -1,15 +1,15 @@
-﻿using ELib.BL.Services.Abstract;
+﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper;
+using ELib.BL.Mapper.Concrete;
+using ELib.BL.Services.Abstract;
 using ELib.BL.Services.Concrete;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Infrastructure.Concrete;
 using ELib.DAL.Repositories.Abstract;
 using ELib.DAL.Repositories.Concrete;
+using ELib.Domain.Entities;
 using ELib.Web.Infrastructure.Concrete;
-using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 
 namespace ELib.Web
@@ -87,6 +87,15 @@ namespace ELib.Web
             container.RegisterType<ILanguageService, LanguageService>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubgenreService, SubgenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICategoryService, CategoryService>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IMapper<Author, AuthorDto>, AuthorMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Genre, GenreDto>, GenreMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Subgenre, SubgenreDto>, SubgenreMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Category, CategoryDto>, CategoryMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<BookInstance, BookInstanceDto>, BookInstanceMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Comment, CommentDto>, CommentMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Language, LanguageDto>, LanguageMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Category, CategoryNestedDto>, CategoryNestedMapper>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
         }
     }

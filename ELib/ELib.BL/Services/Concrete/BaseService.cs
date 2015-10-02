@@ -5,20 +5,21 @@ using ELib.BL.Mapper;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, TEntityDto> 
+    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, TEntityDto>
         where TEntityDto : class
         where TEntity : class
     {
         protected readonly IUnitOfWorkFactory _factory;
-        protected readonly IMapper<TEntity,TEntityDto> _mapper;
+        protected readonly IMapper<TEntity, TEntityDto> _mapper;
 
-        public BaseService(IUnitOfWorkFactory factory, IMapper<TEntity,TEntityDto> mapper)
+        public BaseService(IUnitOfWorkFactory factory, IMapper<TEntity, TEntityDto> mapper)
         {
             _factory = factory;
+            _mapper = mapper;
         }
 
         public int TotalCount { get; protected set; }
-        
+
 
         public void Delete(TEntityDto entity)
         {
@@ -46,7 +47,7 @@ namespace ELib.BL.Services.Concrete
                 var entitiesDto = new List<TEntityDto>();
                 var entities = uow.Repository<TEntity>().Get();
                 TotalCount = uow.Repository<TEntity>().TotalCount;
-                foreach(var item in entities)
+                foreach (var item in entities)
                 {
                     var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);

@@ -13,12 +13,12 @@ namespace ELib.BL.Services.Concrete
     {
         public AuthorService(IUnitOfWorkFactory factory, IMapper<Author, AuthorDto> mapper)
             : base(factory, mapper)
-        {
-        }
-        public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year,int pageNumb, int pageCount)
+        { }
+
+        public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year, int pageNumb, int pageCount)
         {
             Expression<Func<Author, bool>> filter;
-            var byParameter = buildFilterExpression(query,authorName,year);
+            var byParameter = buildFilterExpression(query, authorName, year);
             if (query != null)
             {
                 filter = buildFullExpression(query);
@@ -26,7 +26,7 @@ namespace ELib.BL.Services.Concrete
                     filter = SearchService<Author>.filterAnd(filter, byParameter);
             }
             else
-        {
+            {
                 filter = byParameter;
             }
 
@@ -38,10 +38,9 @@ namespace ELib.BL.Services.Concrete
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
-                    var entityDto = AutoMapper.Mapper.Map<AuthorDto>(item);
+                    var entityDto = _mapper.Map(item);
                     entitiesDto.Add(entityDto);
                 }
-
                 return entitiesDto;
             }
         }
@@ -51,13 +50,13 @@ namespace ELib.BL.Services.Concrete
             Expression<Func<Author, bool>> filter = SearchService<Author>.True;
             if (!string.IsNullOrEmpty(authorName))
             {
-                Expression<Func<Author, bool>> searchByAuthor = (x) => (x.FirstName+" "+x.LastName).Contains(authorName)|| (x.LastName+" "+ x.FirstName).Contains(authorName);
+                Expression<Func<Author, bool>> searchByAuthor = (x) => (x.FirstName + " " + x.LastName).Contains(authorName) || (x.LastName + " " + x.FirstName).Contains(authorName);
                 filter = SearchService<Author>.filterAnd(filter, searchByAuthor);
             }
-            
+
             if (year > 0)
             {
-                Expression<Func<Author, bool>> searchByYear = x => x.DateOfBirth.Value.Year > 0 && x.DateOfBirth.Value.Year== year;
+                Expression<Func<Author, bool>> searchByYear = x => x.DateOfBirth.Value.Year > 0 && x.DateOfBirth.Value.Year == year;
                 filter = SearchService<Author>.filterAnd(filter, searchByYear);
             }
             return filter;
