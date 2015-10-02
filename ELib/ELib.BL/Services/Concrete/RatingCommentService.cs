@@ -1,4 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
@@ -8,8 +9,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class RatingCommentService : BaseService<RatingComment, RatingCommentDto>, IRatingCommentService
     {
-        public RatingCommentService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public RatingCommentService(IUnitOfWorkFactory factory, IMapper<RatingComment, RatingCommentDto> mapper)
+            : base(factory, mapper)
         {
 
         }
