@@ -4,6 +4,10 @@ using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Infrastructure.Concrete;
 using ELib.DAL.Repositories.Abstract;
 using ELib.DAL.Repositories.Concrete;
+using ELib.Domain.Entities;
+using ELib.BL.DtoEntities;
+using ELib.BL.Mapper.Abstract;
+using ELib.BL.Mapper.Concrete;
 using ELib.Web.Infrastructure.Concrete;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
@@ -87,6 +91,10 @@ namespace ELib.Web
             container.RegisterType<ILanguageService, LanguageService>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubgenreService, SubgenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICategoryService, CategoryService>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IMapper<Author, AuthorListDto>, AuthorsListMapping>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Person, CurrentPersonDto>, CurrentPersonMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<Book,BookDto>, BookMapper>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
         }
     }

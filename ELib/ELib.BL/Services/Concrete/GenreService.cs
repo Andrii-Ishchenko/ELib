@@ -6,7 +6,7 @@ using System.Linq;
 using ELib.BL.DtoEntities;
 using System.Linq.Expressions;
 using ELib.DAL.Infrastructure.Abstract;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {

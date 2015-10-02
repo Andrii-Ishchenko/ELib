@@ -1,5 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;

@@ -4,7 +4,7 @@ using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {

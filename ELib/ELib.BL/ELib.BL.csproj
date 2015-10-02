@@ -85,8 +85,11 @@
     <Compile Include="DtoEntities\SubgenreDto.cs" />
     <Compile Include="Enums\BookFileExtensions.cs" />
     <Compile Include="Enums\ImageExtensions.cs" />
+    <Compile Include="Mapper\Concrete\AuthorsListMapping.cs" />
     <Compile Include="Mapper\Concrete\AutoMapperConfig.cs" />
     <Compile Include="Mapper\Abstract\IMapper.cs" />
+    <Compile Include="Mapper\Concrete\BookMapper.cs" />
+    <Compile Include="Mapper\Concrete\CurrentPersonMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IAuthorService.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />

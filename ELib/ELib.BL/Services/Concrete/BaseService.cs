@@ -1,7 +1,7 @@
 ﻿using ELib.BL.Services.Abstract;
 using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
-using ELib.BL.Mapper;
+using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -15,6 +15,7 @@ namespace ELib.BL.Services.Concrete
         public BaseService(IUnitOfWorkFactory factory, IMapper<TEntity,TEntityDto> mapper)
         {
             _factory = factory;
+            _mapper = mapper;
         }
 
         public int TotalCount { get; protected set; }
