@@ -87,6 +87,7 @@
     <Compile Include="Enums\ImageExtensions.cs" />
     <Compile Include="Mapper\Concrete\AutoMapperConfig.cs" />
     <Compile Include="Mapper\Abstract\IMapper.cs" />
+    <Compile Include="Mapper\Concrete\PublisherMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IAuthorService.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
