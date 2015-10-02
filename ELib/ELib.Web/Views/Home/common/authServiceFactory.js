@@ -26,10 +26,8 @@
             logOut();
 
             return $http.post('api/account/register', registration).then(function (response) {
-                console.log('registration');
                 return response;
-            });
-
+            })
         };
 
         function login(loginData) {

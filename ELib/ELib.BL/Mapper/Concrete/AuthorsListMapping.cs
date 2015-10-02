@@ -9,7 +9,7 @@ using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Mapper.Concrete
 {
-    public class AuthorsListMapping : IMapper<Author, AuthorListDto>
+    public class AuthorsListMapper : IMapper<Author, AuthorListDto>
     {
         public Author Map(AuthorListDto input)
         {

@@ -22,7 +22,7 @@ namespace ELib.BL.Mapper.Concrete
 
         public Book Map(BookDto input)
         {
-            Book result = new Book() // ? решта полів нулі?
+            Book result = new Book() 
             {
                 Id = input.Id,
                 Title = input.Title,
@@ -65,11 +65,11 @@ namespace ELib.BL.Mapper.Concrete
                 TotalDownloadCount = input.TotalDownloadCount,
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount,
-                CategoryName = input.Category.Name,
-                Language1Name = input.Language1.Name,
-                LanguageName = input.Language.Name,
-                PublisherName = input.Publisher.Name,
-                SubgenreName = input.Subgenre.Name
+                CategoryName = (input.Category == null)? null : input.Category.Name,
+                Language1Name = (input.Language1 == null) ? null : input.Language1.Name,
+                LanguageName = (input.Language == null) ? null : input.Language.Name,
+                PublisherName = (input.Publisher == null) ? null : input.Publisher.Name,
+                SubgenreName = (input.Subgenre == null) ? null : input.Subgenre.Name
             };
 
             result.Authors = input.BookAuthors.Select(a => a.Author.FirstName + " " + a.Author.LastName).ToList();

@@ -60,7 +60,7 @@ namespace ELib.Web.ApiControllers
             {
                 if (ModelState.IsValid)
                 {
-                    _genreService.Insert(genre);
+                    var newGenre = _genreService.Insert(genre);
                     return Request.CreateResponse(HttpStatusCode.OK, "Ok");
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid model state");
