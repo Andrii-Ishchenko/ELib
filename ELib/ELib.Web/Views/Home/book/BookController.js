@@ -13,19 +13,6 @@
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
-        //vm.getFullStarsArray = function () {
-        //    var fullStarsNumb = parseInt(vm.instance.Rating);
-        //    var arr = [];
-        //    if (fullStarsNumb > 0) arr.length = fullStarsNumb;
-        //    return arr;
-        //};
-
-        //vm.getEmptyStarsArray = function () {
-        //    var EmptyStarsNumb = 10 - parseInt(vm.instance.Rating);
-        //    var arr = [];
-        //    if (EmptyStarsNumb > 0) arr.length = EmptyStarsNumb;
-        //    return arr;
-        //};
 
         vm.changeRating = function () {
             createRating();
@@ -34,12 +21,13 @@
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
 
         vm.newComment = {
-            Text: "abc",
+            Text: "",
             BookId: $routeParams.id,
             UserId: null,
             CommentDate: null,
             SumLike: 0,
-            SumDisLike: 0
+            SumDisLike: 0,
+            UserName: ""
         };
 
         vm.cleanComment = function () {
@@ -68,11 +56,9 @@
             vm.newComment.CommentDate = new Date();
             var userIdCmnt = vm.profile.Id;
             vm.newComment.UserId = userIdCmnt;
+            vm.newComment.UserName = vm.profile.UserName;
             dataServiceFactory.getService('Comments').save(vm.newComment);
-
-
-            location.reload();
-
+            setTimeout('location.reload()', 2000); 
         };
 
 
@@ -89,9 +75,7 @@
             });
         }
 
-            $scope.postComment = function (text) {
-                CommentsRepository.S
-        }
+
 
 
             vm.uploadBookFile = function (file) {

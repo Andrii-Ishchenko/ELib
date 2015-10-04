@@ -10,5 +10,6 @@ namespace ELib.BL.Services.Abstract
 {
     public interface IProfileService:IBaseService<Person,PersonDto>
     {
+        List<PersonDto> GetUsersByArray(int[] id);
     }
 }

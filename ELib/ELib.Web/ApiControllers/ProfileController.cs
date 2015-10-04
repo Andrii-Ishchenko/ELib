@@ -46,5 +46,24 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        /*
+        [HttpGet]
+        public HttpResponseMessage GetUsers([FromUri]int[] ids)
+        {
+            try
+            {
+                List<PersonDto> persons = _profileService.GetUsersByArray(ids);
+                return Request.CreateResponse(HttpStatusCode.OK, persons);
+            }
+            catch (NullReferenceException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, e.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        */
     }
 }

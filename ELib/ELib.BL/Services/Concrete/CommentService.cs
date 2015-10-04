@@ -26,11 +26,24 @@ namespace ELib.BL.Services.Concrete
                     return null;
                 }
                 var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).ToList();
+                //var Persons = uow.Repository<Person>().Get(i => Comments.All(s => s.UserId == i.Id)).ToList();
+                //var User = uow.Repository<ApplicationUser>().Get(k => Persons.All(t => t.ApplicationUserId == k.Id)).ToList();
+
                 foreach (var item in Comments)
                 {
+                    if(item.ImageHash == null || item.UserName == null)
+                    {
+                        var Person = uow.Repository<Person>().Get(i => i.Id == item.UserId).First();
+                        var User = uow.Repository<ApplicationUser>().Get(k => k.Id == Person.ApplicationUserId).First();
+                        item.ImageHash = Person.ImageHash;
+                        item.UserName = User.UserName;
+                        uow.Repository<Comment>().Update(item);
+                    }
+
                     var entityDto = _mapper.Map(item);
                     commentList.Add(entityDto);
                 }
+                uow.Save();
                 return commentList;
             }
         }
