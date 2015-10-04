@@ -30,6 +30,10 @@ namespace ELib.Domain.Entities
 
         public int SumDisLike { get; set; }
 
+        public string UserName { get; set; }
+
+        public string ImageHash { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatingComment> RatingComments { get; set; }
     }
