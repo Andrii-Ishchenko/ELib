@@ -16,7 +16,10 @@ namespace ELib.BL.Mapper.Concrete
                 UserId = input.UserId,
                 CommentDate = input.CommentDate,
                 SumDisLike = input.SumDisLike,
-                SumLike = input.SumLike
+                SumLike = input.SumLike,
+                ImageHash = input.ImageHash,
+                UserName = input.UserName
+
             };
         }
 
@@ -30,7 +33,9 @@ namespace ELib.BL.Mapper.Concrete
                 UserId = input.UserId,
                 CommentDate = input.CommentDate,
                 SumDisLike = input.SumDisLike,
-                SumLike = input.SumLike
+                SumLike = input.SumLike,
+                ImageHash = input.ImageHash,
+                UserName = input.UserName
             };
         }
     }

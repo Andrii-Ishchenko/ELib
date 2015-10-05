@@ -104,12 +104,16 @@
                     <div class="panel-body">
                         <!--<div commentsDirective comments="book.comments"> </div>-->
                         <div class="panel panel-default" ng-repeat="comm in book.comments">
-                            <div class="panel-heading"> <i class="glyphicon glyphicon-user"></i>{{comm.UserId}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
-                                <button class="btn-sm btn-success pull-right">3</button>
-                                <button class="btn-sm btn-danger pull-right">2</button>
+                            <div class="panel-heading"> 
+                                <i class="glyphicon glyphicon-user"></i> {{comm.UserName}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
                             </div>
-                            <div class="panel-body">
-                                {{comm.Text}}
+                            <div class="panel-body"> 
+                                <div class="col-sm-2">
+                                    <img class="img-circle" width="70" height="70" ng-src="/api/file/profile-image?w=70&h=70&hash={{comm.ImageHash}}" />
+                                </div>
+                                <div class="col-sm-10">
+                                    {{comm.Text}}
+                                </div>
                             </div>
                         </div>
 
@@ -136,63 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Title:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.Title}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Authors:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Genres:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Subgenre:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.Subgenre}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Publisher:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Year of publishing:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.PublishYear|date : "yyyy"}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <p class="lead">Pages:</p>
-                    </div>
-                    <div class="col-lg-8 col-sm-6">
-                        <p>{{book.instance.TotalPages}}</p>
-                    </div>
-                </div>-->
-
+               
             </div>
             <div class="col-lg-2 col-sm-12 container">
                 <div class="panel panel-default">

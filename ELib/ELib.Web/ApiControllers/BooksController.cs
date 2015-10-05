@@ -46,7 +46,7 @@ namespace ELib.Web.ApiControllers
             catch (Exception e)
             {
                 _logger.Error("Error In Books/Get", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.StackTrace.ToString());
             }
 
         }
@@ -67,7 +67,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.StackTrace.ToString());
             }
 
         }

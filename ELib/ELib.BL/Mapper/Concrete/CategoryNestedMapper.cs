@@ -4,11 +4,11 @@ using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Mapper.Concrete
 {
-    public class CategoryNestedMapper : IMapper<Category, CategoryNestedDto>
+    public class CategoryNestedMapper : IMapper<CategoryDto, CategoryNestedDto>
     {
-        public Category Map(CategoryNestedDto input)
+        public CategoryDto Map(CategoryNestedDto input)
         {
-            return new Category()
+            return new CategoryDto()
             {
                 Id = input.Id,
                 Name = input.Name,
@@ -18,7 +18,7 @@ namespace ELib.BL.Mapper.Concrete
             };
         }
 
-        public CategoryNestedDto Map(Category input)
+        public CategoryNestedDto Map(CategoryDto input)
         {
             return new CategoryNestedDto()
             {

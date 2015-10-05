@@ -3,24 +3,26 @@ using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class CategoryService : BaseService<Category,CategoryDto>, ICategoryService
+    public class CategoryService : BaseService<Category, CategoryDto>, ICategoryService
     {
-        public CategoryService(IUnitOfWorkFactory factory, IMapper<Category, CategoryDto> category) 
-            :base(factory, category){ }
+        IMapper<CategoryDto, CategoryNestedDto> _categoryNestedMapper;
+
+        public CategoryService(IUnitOfWorkFactory factory, IMapper<Category, CategoryDto> category,
+            IMapper<CategoryDto, CategoryNestedDto> categoryNested) : base(factory, category)
+        {
+            _categoryNestedMapper = categoryNested;
+        }
 
         public List<CategoryNestedDto> GetNested()
         {
             List<CategoryDto> mixed = GetAll().ToList();
             CategoryNestedDto item = new CategoryNestedDto();
-            FillNestedList(mixed, item,null);
+            FillNestedList(mixed, item, null);
             return item.Children;
         }
 
@@ -40,10 +42,10 @@ namespace ELib.BL.Services.Concrete
             List<CategoryDto> temp = new List<CategoryDto>();
             List<CategoryDto> children = all.Where(cat => cat.ParentId == c.Id).ToList();
             temp.AddRange(children);
-            foreach(CategoryDto cat in children)
+            foreach (CategoryDto cat in children)
             {
                 temp.AddRange(GetChildrenForCategoryRecursive(cat, all));
-            }        
+            }
             return temp;
         }
 
@@ -53,12 +55,12 @@ namespace ELib.BL.Services.Concrete
             List<CategoryDto> children = GetChildren(list, itemId);
             foreach (CategoryDto child in children)
             {
-                item.Children.Add(AutoMapper.Mapper.Map<CategoryNestedDto>(child));
+                item.Children.Add(_categoryNestedMapper.Map(child));
             }
             list.RemoveAll(p => children.Contains(p));
 
             foreach (CategoryNestedDto t in item.Children)
-                FillNestedList(list, t,t.Id);
+                FillNestedList(list, t, t.Id);
         }
 
         private List<CategoryDto> GetChildren(List<CategoryDto> list, int? itemId)
@@ -68,6 +70,5 @@ namespace ELib.BL.Services.Concrete
 
             return list.Where(m => m.ParentId == itemId).ToList();
         }
-
     }
 }

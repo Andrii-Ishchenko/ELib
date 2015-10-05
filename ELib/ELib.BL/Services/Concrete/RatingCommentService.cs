@@ -30,7 +30,7 @@ namespace ELib.BL.Services.Concrete
                         foreach(var temp in tempRatingComment)
                         {
                             rating.Id = temp.Id;
-                            var entityToUpdate = AutoMapper.Mapper.Map<RatingComment>(rating);
+                            var entityToUpdate = _mapper.Map(rating);
                             if(rating.IsLike == temp.IsLike)
                                 base.Delete(rating);
                             else
@@ -41,7 +41,7 @@ namespace ELib.BL.Services.Concrete
                     }
                     else
                     {
-                        var entityToInsert = AutoMapper.Mapper.Map<RatingComment>(rating);
+                        var entityToInsert = _mapper.Map(rating);
                         uow.Repository<RatingComment>().Insert(entityToInsert);
                         uow.Save();
                         sumRatingLike = ReCalculateRatingPlus(tempComment, rating);
@@ -54,7 +54,7 @@ namespace ELib.BL.Services.Concrete
                 }
                 else
                 {
-                    var entityToInsert = AutoMapper.Mapper.Map<RatingComment>(rating);
+                    var entityToInsert = _mapper.Map(rating);
                     uow.Repository<RatingComment>().Insert(entityToInsert);
                     uow.Save();
                     if (rating.IsLike)

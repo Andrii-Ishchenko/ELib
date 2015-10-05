@@ -86,8 +86,9 @@ namespace ELib.Web
             container.RegisterType<IMapper<BookInstance, BookInstanceDto>, BookInstanceMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Comment, CommentDto>, CommentMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IMapper<Language, LanguageDto>, LanguageMapper>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMapper<Category, CategoryNestedDto>, CategoryNestedMapper>(new HierarchicalLifetimeManager());
-
+            container.RegisterType<IMapper<CategoryDto, CategoryNestedDto>, CategoryNestedMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<RatingComment, RatingCommentDto>, RatingCommentMapper>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMapper<RatingBook, RatingBookDto>, RatingBookMapper>(new HierarchicalLifetimeManager());
             container.RegisterType(typeof(IBaseService<,>), typeof(BaseService<,>));
             container.RegisterType<IGenreService, GenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<IPublisherService, PublisherService>(new HierarchicalLifetimeManager());

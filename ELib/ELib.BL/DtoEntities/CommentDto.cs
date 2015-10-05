@@ -24,5 +24,9 @@ namespace ELib.BL.DtoEntities
         public int SumLike { get; set; }
 
         public int SumDisLike { get; set; }
+
+        public string UserName { get; set; }
+
+        public string ImageHash { get; set; }
     }
 }
