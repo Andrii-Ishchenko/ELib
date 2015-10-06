@@ -39,5 +39,7 @@ namespace ELib.Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBookStatus> UserBookStatus { get; set; }
+
+        public virtual ICollection<Favorite> Favorites { get; set; }
     }
 }
