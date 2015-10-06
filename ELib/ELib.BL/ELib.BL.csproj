@@ -75,6 +75,8 @@
     <Compile Include="DtoEntities\CategoryNestedDto.cs" />
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
+    <Compile Include="DtoEntities\FavoriteDto.cs" />
+    <Compile Include="DtoEntities\FavoriteListDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
     <Compile Include="DtoEntities\LanguageDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
@@ -95,6 +97,8 @@
     <Compile Include="Mapper\Concrete\CategoryNestedMapper.cs" />
     <Compile Include="Mapper\Concrete\CommentMapper.cs" />
     <Compile Include="Mapper\Concrete\CurrentPersonMapper.cs" />
+    <Compile Include="Mapper\Concrete\FavoriteListMapper.cs" />
+    <Compile Include="Mapper\Concrete\FavoriteMapper.cs" />
     <Compile Include="Mapper\Concrete\GenreMapper.cs" />
     <Compile Include="Mapper\Concrete\LanguageMapper.cs" />
     <Compile Include="Mapper\Concrete\PersonMapper.cs" />
