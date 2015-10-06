@@ -22,7 +22,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue).ToList();
+                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).ToList().Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue);
 
                 foreach (var item in entities)
                 {
