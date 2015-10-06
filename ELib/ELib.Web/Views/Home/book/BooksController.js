@@ -9,7 +9,11 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
-        var obj = dataServiceFactory.getService('category').query();
+        var catParameters = {
+            isNested:true
+        }
+
+        var obj = dataServiceFactory.getService('category').query(catParameters);
         obj.$promise.then(function (data) {
             vm.categories = data;
             preProcessCategories(vm.categories,0);
