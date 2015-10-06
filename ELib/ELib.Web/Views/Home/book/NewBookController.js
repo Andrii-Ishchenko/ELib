@@ -59,7 +59,7 @@
                  function (value) {
                      vm.createdSuccessfully = true;
                      vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
-                     startTimer(value.BookId);
+                     startTimer(value.Id);
                  },
                  //error
                  function (error) {

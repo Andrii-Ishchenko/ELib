@@ -1,4 +1,5 @@
 ﻿using ELib.BL.DtoEntities;
+using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
@@ -8,8 +9,8 @@ namespace ELib.BL.Services.Concrete
 {
     public class RatingCommentService : BaseService<RatingComment, RatingCommentDto>, IRatingCommentService
     {
-        public RatingCommentService(IUnitOfWorkFactory factory)
-            : base(factory)
+        public RatingCommentService(IUnitOfWorkFactory factory, IMapper<RatingComment, RatingCommentDto> mapper)
+            : base(factory, mapper)
         {
 
         }
@@ -29,7 +30,7 @@ namespace ELib.BL.Services.Concrete
                         foreach(var temp in tempRatingComment)
                         {
                             rating.Id = temp.Id;
-                            var entityToUpdate = AutoMapper.Mapper.Map<RatingComment>(rating);
+                            var entityToUpdate = _mapper.Map(rating);
                             if(rating.IsLike == temp.IsLike)
                                 base.Delete(rating);
                             else
@@ -40,7 +41,7 @@ namespace ELib.BL.Services.Concrete
                     }
                     else
                     {
-                        var entityToInsert = AutoMapper.Mapper.Map<RatingComment>(rating);
+                        var entityToInsert = _mapper.Map(rating);
                         uow.Repository<RatingComment>().Insert(entityToInsert);
                         uow.Save();
                         sumRatingLike = ReCalculateRatingPlus(tempComment, rating);
@@ -53,7 +54,7 @@ namespace ELib.BL.Services.Concrete
                 }
                 else
                 {
-                    var entityToInsert = AutoMapper.Mapper.Map<RatingComment>(rating);
+                    var entityToInsert = _mapper.Map(rating);
                     uow.Repository<RatingComment>().Insert(entityToInsert);
                     uow.Save();
                     if (rating.IsLike)

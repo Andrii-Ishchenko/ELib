@@ -46,7 +46,7 @@ namespace ELib.Web.ApiControllers
             catch (Exception e)
             {
                 _logger.Error("Error In Books/Get", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.StackTrace.ToString());
             }
 
         }
@@ -67,7 +67,7 @@ namespace ELib.Web.ApiControllers
             }
             catch (Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.StackTrace.ToString());
             }
 
         }
@@ -107,8 +107,8 @@ namespace ELib.Web.ApiControllers
             {
                 if (book != null && ModelState.IsValid)
                 {
-                    _bookService.Insert(book);
-                    return Request.CreateResponse(HttpStatusCode.OK, new { BookId = book.Id});
+                    var newBook = _bookService.Insert(book);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Id = newBook.Id });
                 }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
             }

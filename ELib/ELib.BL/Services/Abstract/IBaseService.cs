@@ -13,7 +13,7 @@ namespace ELib.BL.Services.Abstract
 
         TEntityDto GetById(object id);
 
-        void Insert(TEntityDto entity);
+        TEntityDto Insert(TEntityDto entity);
 
         void Delete(TEntityDto entity);
 
