@@ -50,14 +50,14 @@ namespace ELib.DAL.Repositories.Concrete
             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
         {
             IQueryable<TEntity> query = dbSet;
-            if (filter != null)
-            {
-                query = query.AsExpandable().Where(filter);
-            }
-
             foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(item);
+            }
+
+            if (filter != null)
+            {
+                query = query.AsExpandable().Where(filter);
             }
 
             _totalCount = query.Count<TEntity>();
