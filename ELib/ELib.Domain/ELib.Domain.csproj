@@ -65,6 +65,7 @@
     <Compile Include="Entities\BookGenre.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Favorite.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Language.cs" />
     <Compile Include="Entities\Person.cs" />

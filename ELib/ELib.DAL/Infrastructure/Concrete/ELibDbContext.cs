@@ -31,6 +31,7 @@ namespace ELib.DAL.Infrastructure.Concrete
         public virtual DbSet<UserBookStatus> UserBookStatus { get; set; }
         public virtual DbSet<Subgenre> Subgenres { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -138,7 +139,19 @@ namespace ELib.DAL.Infrastructure.Concrete
                 .HasMany(e => e.Books)
                 .WithRequired(e => e.Category)
                 .WillCascadeOnDelete(false);
-            
+
+            modelBuilder.Entity<Person>()
+                 .HasMany(p => p.Favorites)
+                 .WithRequired(p => p.User)
+                 .HasForeignKey(p => p.UserId)
+                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(b => b.Favorites)
+                .WithRequired(p => p.Book)
+                .HasForeignKey(p => p.BookId)
+                .WillCascadeOnDelete(false);
+
         }
         public static ELibDbContext Create()
         {
