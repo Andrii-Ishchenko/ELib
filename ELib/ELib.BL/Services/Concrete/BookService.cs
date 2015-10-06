@@ -39,7 +39,6 @@ namespace ELib.BL.Services.Concrete
            using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
                 var entities = uow.Repository<Book>().Get(x => x.PublisherId == id);
 
                 foreach (var item in entities)
@@ -200,9 +199,6 @@ namespace ELib.BL.Services.Concrete
             }
 
             return filter;
-        }
-
-
-        
+        }        
     }
 }

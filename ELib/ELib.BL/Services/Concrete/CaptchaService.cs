@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 
@@ -30,5 +28,4 @@ namespace ELib.BL.Services.Concrete
             return generators[selected].Generate(width,height);
         }
     }
-
 }
