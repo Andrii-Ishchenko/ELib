@@ -49,6 +49,7 @@ namespace ELib.DAL.Repositories.Concrete
         public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
         {
+            context.Configuration.LazyLoadingEnabled = false;
             IQueryable<TEntity> query = dbSet;
             foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {

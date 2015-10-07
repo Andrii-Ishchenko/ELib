@@ -14,7 +14,7 @@ namespace ELib.DAL.Infrastructure.Concrete
            : base("ELibDb")
         {
             //  Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
-            this.Configuration.LazyLoadingEnabled = false;
+
         }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<AuthorGenre> AuthorGenres { get; set; }
