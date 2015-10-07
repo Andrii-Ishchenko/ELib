@@ -37,7 +37,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetGenreById(int id)
+        public HttpResponseMessage GetRatingById(int id)
         {
             try
             {

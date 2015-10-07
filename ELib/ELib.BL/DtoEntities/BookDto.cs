@@ -10,11 +10,11 @@ namespace ELib.BL.DtoEntities
     {
         private readonly int currentYear = DateTime.Now.Year;
 
-        public int Id {get; set;}
+        public int Id { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Title { get; set;}
+        public string Title { get; set; }
 
         public int PublishLangId { get; set; }
 
@@ -27,7 +27,7 @@ namespace ELib.BL.DtoEntities
 
         public int PublisherId { get; set; }
 
-        public int SubgenreId { get; set;  }
+        public int SubgenreId { get; set; }
 
         public int CategoryId { get; set; }
 
@@ -53,8 +53,6 @@ namespace ELib.BL.DtoEntities
         public string SubgenreName { get; set; }
 
         public string CategoryName { get; set; }
-
-        public int SumRatingValue { get; set; }
 
         public ICollection<string> Authors { get; set; }
 
