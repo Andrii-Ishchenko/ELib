@@ -115,6 +115,7 @@
     <Compile Include="Services\Abstract\ICategoryService.cs" />
     <Compile Include="Services\Abstract\ICommentService.cs" />
     <Compile Include="Services\Abstract\ICurrentProfileService.cs" />
+    <Compile Include="Services\Abstract\IFavoriteService.cs" />
     <Compile Include="Services\Abstract\IFileService.cs" />
     <Compile Include="Services\Abstract\IGenreService.cs" />
     <Compile Include="Services\Abstract\ILanguageService.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Services\Concrete\CategoryService.cs" />
     <Compile Include="Services\Concrete\CommentService.cs" />
     <Compile Include="Services\Concrete\CurrentProfileService.cs" />
+    <Compile Include="Services\Concrete\FavoriteService.cs" />
     <Compile Include="Services\Concrete\FileService.cs" />
     <Compile Include="Services\Concrete\GenreService.cs" />
     <Compile Include="Services\Concrete\LanguageService.cs" />

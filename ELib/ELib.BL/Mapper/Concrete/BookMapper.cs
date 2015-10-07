@@ -13,11 +13,13 @@ namespace ELib.BL.Mapper.Concrete
     {
         IMapper<BookInstance, BookInstanceDto> _bookInstanceMapper;
         IMapper<Author, AuthorListDto> _authorMapper;
+        IMapper<Favorite, FavoriteDto> _favoriteMapper;
 
-        public BookMapper(IMapper<BookInstance, BookInstanceDto>bookInstanceMapper, IMapper<Author, AuthorListDto>authorMapper)
+        public BookMapper(IMapper<BookInstance, BookInstanceDto>bookInstanceMapper, IMapper<Author, AuthorListDto>authorMapper, IMapper<Favorite, FavoriteDto> favoriteMapper)
         {
             _bookInstanceMapper = bookInstanceMapper;
             _authorMapper = authorMapper;
+            _favoriteMapper = favoriteMapper;
         }
 
         public Book Map(BookDto input)
@@ -78,6 +80,7 @@ namespace ELib.BL.Mapper.Concrete
             result.GenresIds = input.BookGenres.Select(g => g.GenreId).ToList();
             result.BookInstances = input.BookInstances.Select(bi => _bookInstanceMapper.Map(bi)).ToList();
             result.AuthorsDto = input.BookAuthors.Select(a => _authorMapper.Map(a.Author)).ToList();
+            result.Favorites = input.Favorites.Select(a => _favoriteMapper.Map(a)).ToList();
             return result;
         }
     }

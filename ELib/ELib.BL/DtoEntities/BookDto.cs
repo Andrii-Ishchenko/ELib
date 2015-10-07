@@ -68,6 +68,8 @@ namespace ELib.BL.DtoEntities
 
         public ICollection<BookInstanceDto> BookInstances { get; set; }
 
+        public ICollection<FavoriteDto> Favorites { get; set; }
+
         public int Rating { get; set; }
 
         public int TotalDownloadCount { get; set; }

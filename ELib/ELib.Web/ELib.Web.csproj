@@ -227,6 +227,7 @@
     <Compile Include="ApiControllers\AuthorsController.cs" />
     <Compile Include="ApiControllers\CategoryController.cs" />
     <Compile Include="ApiControllers\CurrentProfileController.cs" />
+    <Compile Include="ApiControllers\FavoriteController.cs" />
     <Compile Include="ApiControllers\FileController.cs" />
     <Compile Include="ApiControllers\CommentsController.cs" />
     <Compile Include="ApiControllers\GenresController.cs" />
