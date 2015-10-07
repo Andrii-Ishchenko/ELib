@@ -159,7 +159,7 @@ namespace ELib.BL.Services.Concrete
         {
             using (IUnitOfWork uow = _factory.Create())
             {
-                var book = uow.Repository<Book>().Get(b => b.ImageHash == hash).FirstOrDefault();
+                var book = uow.Repository<Book>().Get(b => b.ImageHash == hash, topCount : 1);
                 if (book == null)
                     return null;
 
@@ -181,7 +181,7 @@ namespace ELib.BL.Services.Concrete
         {
             using(IUnitOfWork uow = _factory.Create())
             {
-                var profile = uow.Repository<Person>().Get(p => p.ImageHash == hash).FirstOrDefault();
+                var profile = uow.Repository<Person>().Get(p => p.ImageHash == hash, topCount : 1);
                 if (profile == null)
                     return null;
                 String fileName = getFilePath(hash, PROFILE_IMAGES_FOLDER_PATH);

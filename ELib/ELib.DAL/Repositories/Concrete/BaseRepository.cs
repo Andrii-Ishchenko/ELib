@@ -51,6 +51,7 @@ namespace ELib.DAL.Repositories.Concrete
         {
             context.Configuration.LazyLoadingEnabled = false;
             IQueryable<TEntity> query = dbSet;
+
             foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(item);
