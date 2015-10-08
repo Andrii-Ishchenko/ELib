@@ -29,7 +29,10 @@ namespace ELib.Tests.Fake
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            var identityValue = GetIdentityValue(entity);
+            if (!_dictionary.ContainsKey(identityValue))
+                throw new Exception("Cannot delete");
+            _dictionary.Remove(identityValue);
         }
 
         public void DeleteById(object id)
@@ -50,7 +53,7 @@ namespace ELib.Tests.Fake
         public T Insert(T entity)
         {
             var newKey = _dictionary.Count == 0 ? 1 : _dictionary.Keys.Max() + 1;
-            SetIdentityValue(entity, newKey);////????????????????????????
+            SetIdentityValue(entity, newKey);////////////
             _dictionary.Add(newKey, entity);
             return entity;
         }

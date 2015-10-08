@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ELib.DAL.Infrastructure.Abstract;
 
 namespace ELib.Tests.Fake
 {
-    class FakeUnitOfWorkFactory
+    public class FakeUnitOfWorkFactory : IUnitOfWorkFactory
     {
+        public IUnitOfWork Create()
+        {
+            return new FakeUnitofWork();
+        }
     }
 }
