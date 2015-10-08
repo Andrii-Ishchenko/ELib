@@ -12,19 +12,20 @@ namespace ELib.BL.Services.Concrete
 {
     public class BookService : BaseService<Book, BookDto>, IBookService
     {
-        private string includeProperties = "Category,Language,Language1,Publisher,Subgenre,BookAuthors,BookAuthors.Author,BookGenres,BookGenres.Genre,BookInstances";
+        private List<Expression<Func<Book, object>>> _includeProperties;
 
         public BookService(IUnitOfWorkFactory factory, IMapper<Book, BookDto> mapper)
             : base(factory, mapper)
         {
-
+            _includeProperties = getIncludeProperties();
         }
+
         public IEnumerable<BookDto> GetForAuthor(int idAuthor)
         {
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<Book>().Get(x => x.BookAuthors.Where( a => a.AuthorId == idAuthor).Count() > 0, includeProperties : includeProperties).OrderByDescending(rating => rating.SumRatingValue);
+                var entities = uow.Repository<Book>().Get(x => x.BookAuthors.Where( a => a.AuthorId == idAuthor).Count() > 0, includeProperties : _includeProperties).OrderByDescending(rating => rating.SumRatingValue);
 
                 foreach (var item in entities)
                 {
@@ -42,7 +43,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
-                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id, includeProperties: includeProperties);
+                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id, includeProperties: _includeProperties);
 
                 foreach (var item in entities)
                 {
@@ -60,7 +61,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(includeProperties: includeProperties, orderBy: q => q.OrderByDescending(d => d.AdditionDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(includeProperties: _includeProperties, orderBy: q => q.OrderByDescending(d => d.AdditionDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
@@ -79,7 +80,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(includeProperties: includeProperties, orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(includeProperties: _includeProperties, orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
@@ -110,7 +111,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: filter, includeProperties : includeProperties, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, includeProperties : _includeProperties, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -120,6 +121,22 @@ namespace ELib.BL.Services.Concrete
 
                 return entitiesDto;
             }
+        }
+
+        //private string includeProperties = "Category,Language,Language1,Publisher,Subgenre,BookAuthors,BookAuthors.Author,BookGenres,BookGenres.Genre,BookInstances";
+        private List<Expression<Func<Book, object>>> getIncludeProperties()
+        {
+            List<Expression<Func<Book,object>>>includeProperties = new List<Expression<Func<Book, object>>>();
+            includeProperties.Add(b => b.Category);
+            includeProperties.Add(b => b.Language);
+            includeProperties.Add(b => b.Language1);
+            includeProperties.Add(b => b.Publisher);
+            includeProperties.Add(b => b.Subgenre);
+            includeProperties.Add(b => b.BookAuthors);
+            includeProperties.Add(b => b.BookAuthors.Select(a => a.Author));
+            includeProperties.Add(b => b.BookGenres);
+            includeProperties.Add(b => b.BookGenres.Select(g => g.Genre));
+            return includeProperties;
         }
 
         private Expression<Func<Book, bool>> buildFilterExpression(SearchDto searchDto)

@@ -7,6 +7,7 @@ using ELib.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,9 @@ namespace ELib.BL.Services.Concrete
                 //ApplicationUser au = uow.Repository<ApplicationUser>().Get(x => x.Id == id).FirstOrDefault();
                 //if (au == null)
                 //    return null;
-                Person p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id, includeProperties : "ApplicationUser").FirstOrDefault();
+                Person p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id,
+                                                    includeProperties : new List<Expression<Func<Person, object>>>() { pers => pers.ApplicationUser})
+                                                    .FirstOrDefault();
                 return _mapper.Map(p);
             }
         }

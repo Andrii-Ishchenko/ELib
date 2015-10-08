@@ -47,14 +47,17 @@ namespace ELib.DAL.Repositories.Concrete
         }
 
         public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-            IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
+            IOrderedQueryable<TEntity>> orderBy = null, List<Expression<Func<TEntity, object>>> includeProperties = null, int skipCount = 0, int topCount = 0)
         {
             context.Configuration.LazyLoadingEnabled = false;
             IQueryable<TEntity> query = dbSet;
 
-            foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            if (includeProperties != null)
             {
-                query = query.Include(item);
+                foreach (var item in includeProperties)
+                {
+                    query = query.Include(item);
+                }
             }
 
             if (filter != null)
@@ -67,7 +70,7 @@ namespace ELib.DAL.Repositories.Concrete
             query = (orderBy != null) ? orderBy(query) : query;
             if (skipCount >= 0 && topCount > 0)
             {
-                return (query.AsEnumerable()).Skip(skipCount).Take(topCount);
+                 query = query.Skip(skipCount).Take(topCount);
             }
             return query.AsEnumerable();
             
