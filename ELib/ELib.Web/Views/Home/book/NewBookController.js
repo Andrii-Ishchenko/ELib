@@ -7,7 +7,7 @@
     function NewBookController(authServiceFactory, dataServiceFactory, $location, $timeout) {
         var vm = this;
 
-        authServiceFactory.fillAuthData();
+       authServiceFactory.fillAuthData();
         
         if (!authServiceFactory.authentication.isAuth) {
             $location.path('/login');
@@ -17,20 +17,42 @@
         vm.submitState = false;
         vm.createdSuccessfully = false;
         vm.currentYear = new Date().getFullYear();
+        vm.author = {};
+        vm.authorsMas = [];
+        vm.selectedAuthorIndex = "";
 
         var languages = dataServiceFactory.getService('languages').query();
 
         vm.originalLanguages = languages;
         vm.publishLanguages = languages;
 
-        //    vm.publishers = dataServiceFactory.getService('publishers').query();
-
         // need improvement
         var obj = dataServiceFactory.getService('publishers').get({ pageCount: 100, pageNumb: 1 });
         obj.$promise.then(function (data) {
             vm.publishers = data.publishers;
         })
+        vm.authors = dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
+            vm.authors = data.authors;
+        })
 
+        vm.authorSelected = function () {
+            if (vm.author != undefined) {
+                var selectedAuthor = vm.authors[vm.authorId - 1];
+                vm.authorsMas.push(selectedAuthor);
+                var index = vm.authors.indexOf(selectedAuthor);
+                vm.authors.splice(index, 1);
+            }           
+        }
+
+        vm.deleteAuthor = function (author2) {
+           /* console.log("1111");
+            if (author != undefined) {
+                console.log("22222");
+                vm.authorsMas.pop(author);
+                console.log(vm.authorsMas);
+            }   */         
+        }
+                
         var catParameters = {
             isNested: false
         }
