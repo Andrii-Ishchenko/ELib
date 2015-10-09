@@ -22,7 +22,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue);
+                var entities = uow.Repository<BookAuthor>().Get(x => x.AuthorId == idAuthor).ToList().Select(y => y.Book).OrderByDescending(rating => rating.SumRatingValue);
 
                 foreach (var item in entities)
                 {
@@ -58,7 +58,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.AdditionDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.AdditionDate), skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
                 TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
@@ -77,7 +77,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(orderBy: q => q.OrderByDescending(d => d.SumRatingValue), skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
                 TotalCount = repository.TotalCount;
 
                 foreach (var item in entities)
@@ -108,7 +108,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {

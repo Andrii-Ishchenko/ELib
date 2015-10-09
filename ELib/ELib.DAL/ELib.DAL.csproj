@@ -127,6 +127,10 @@
     <Compile Include="Migrations\201510040411289_Add_ImageHash_and_UserName_field_for_Comment.Designer.cs">
       <DependentUpon>201510040411289_Add_ImageHash_and_UserName_field_for_Comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510061016560_added-favs.cs" />
+    <Compile Include="Migrations\201510061016560_added-favs.Designer.cs">
+      <DependentUpon>201510061016560_added-favs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
@@ -177,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510040411289_Add_ImageHash_and_UserName_field_for_Comment.resx">
       <DependentUpon>201510040411289_Add_ImageHash_and_UserName_field_for_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510061016560_added-favs.resx">
+      <DependentUpon>201510061016560_added-favs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

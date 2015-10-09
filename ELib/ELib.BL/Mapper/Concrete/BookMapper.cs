@@ -32,7 +32,7 @@ namespace ELib.BL.Mapper.Concrete
                 PublisherId = input.PublisherId,
                 PublishLangId = input.PublishLangId,
                 PublishYear = input.PublishYear,
-                SumRatingValue = input.SumRatingValue,
+                SumRatingValue = input.Rating,
                 ImageHash = input.ImageHash,
                 Isbn = input.Isbn,
                 TotalPages = input.TotalPages,

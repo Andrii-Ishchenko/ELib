@@ -39,13 +39,22 @@ namespace ELib.Web.ApiControllers
         //}
 
         [HttpGet]
-        [ActionName("categories-nested")]
-        public HttpResponseMessage GetNestedCategories()
+        [ActionName("categories")]
+        public HttpResponseMessage GetCategories(bool isNested)
         {
             try
             {
-                IEnumerable<CategoryNestedDto> cats = _service.GetNested();
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
+                if (isNested)
+                {
+                    IEnumerable<CategoryNestedDto> cats = _service.GetNested();
+                    return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
+                }
+                else
+                {
+                    IEnumerable<CategoryDto> cats = _service.GetAll().OrderBy(m => m.Level);
+                    return Request.CreateResponse(System.Net.HttpStatusCode.OK, cats);
+                }
+
             }
             catch (Exception e)
             {
