@@ -9,7 +9,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Author Name">Author</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input-sm" placeholder="Author name contains" ng-model="fil.author" ng-blur="fil.filterByAuthor()" />
+                                <input type="text" class="form-control input-sm" placeholder="Author name contains" ng-model="fil.author" ng-blur="fil.filterByAuthor()"  lib-enter-press="fil.filterByAuthor()" />
                             </div>
                         </div>
                        
@@ -17,7 +17,7 @@
                             <label class="control-label col-sm-3 text-muted small" for="Year of birth">Year</label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control input-sm" placeholder="Year of birth" ng-model="fil.year"
-                                       ng-blur="fil.filterByYear()" min="0" max="{{fil.currentYear}}" />
+                                       ng-blur="fil.filterByYear()" lib-enter-press="fil.filterByYear()" min="0" max="{{fil.currentYear}}" />
                             </div>
                         </div>
                     </dd>

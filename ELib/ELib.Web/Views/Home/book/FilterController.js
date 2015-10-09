@@ -8,10 +8,9 @@
         vm = this;
         vm.currentYear = new Date().getFullYear();
         vm.genreName = false;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
 
-        var obj = dataServiceFactory.getService('genres').query();
-        obj.$promise.then(function (data) {
+        var obj = dataServiceFactory.getService('genres').query().$promise.then(function (data) {
             vm.genres = data;
             if ($routeParams.genreId > 0) {
                 vm.genreName = vm.genres[$routeParams.genreId - 1].Name;
@@ -43,18 +42,24 @@
         }
 
         vm.filterByTitle = function () {
-            preparePath();
-            $location.search('title', vm.title);
+            if (isValid(vm.title)) {
+                preparePath();
+                $location.search('title', vm.title);
+            }
         }
 
         vm.filterByAuthor = function () {
-            preparePath();
-            $location.search('author', vm.author);
+            if (isValid(vm.author)) {
+                preparePath();
+                $location.search('author', vm.author);
+            }
         }
 
         vm.filterByGenre = function () {
-            preparePath();
-            $location.search('genre', vm.genre);
+            if (isValid(vm.genre)) {
+                preparePath();
+                $location.search('genre', vm.genre);
+            }
         }
 
         vm.filterByGenreId = function () {
@@ -63,8 +68,10 @@
         }
 
         vm.filterBySubgenre = function () {
-            preparePath();
-            $location.search('subgenre', vm.subgenre);
+            if (isValid(vm.subgenre)) {
+                preparePath();
+                $location.search('subgenre', vm.subgenre);
+            }
         }
 
         vm.filterByYear = function () {
@@ -85,17 +92,20 @@
             if ($location.path() !== "/books/search") {
                 $location.path("/books/search");
                 $location.search({
-                    title: undefined,
-                    author: undefined,
-                    genre: undefined,
-                    genreId: undefined,
-                    subgenre: undefined,
-                    year: undefined,
+                    title: $routeParams.title,
+                    author: $routeParams.author,
+                    genre: $routeParams.genre,
+                    genreId: $routeParams.genreId,
+                    subgenre: $routeParams.subgenre,
+                    year: $routeParams.year,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,
                     pageNumb: $routeParams.pageNumb
                 });
             }
+        }
+        function isValid(str) {
+            return str !== "" && str !== " ";
         }
     }
 })();

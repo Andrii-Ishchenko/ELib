@@ -40,7 +40,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
-                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id);
+                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).ToList();
 
                 foreach (var item in entities)
                 {

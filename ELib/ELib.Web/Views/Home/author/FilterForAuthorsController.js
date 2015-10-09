@@ -7,10 +7,12 @@
     function FilterForAuthorsController(dataServiceFactory, $location, $routeParams) {
         vm = this;
         vm.currentYear = new Date().getFullYear();
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
        
         if ($routeParams.author) {
-            vm.author = $routeParams.author;
+            if (isValid(vm.author)) {
+                vm.author = $routeParams.author;
+           }
         }
 
         if ($routeParams.year) {
@@ -40,13 +42,16 @@
             if ($location.path() !== "/authors/search") {
                 $location.path("/authors/search");
                 $location.search({
-                    author: undefined,
-                    year: undefined,
+                    author: $routeParams.author,
+                    year: $routeParams.year,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,
                     pageNumb: $routeParams.pageNumb
                 });
             }
+        }
+        function isValid(str) {
+            return str !== "" && str !== " ";
         }
     }
 })();
