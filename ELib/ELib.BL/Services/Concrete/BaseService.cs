@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Mapper.Abstract;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -11,6 +14,8 @@ namespace ELib.BL.Services.Concrete
     {
         protected readonly IUnitOfWorkFactory _factory;
         protected readonly IMapper<TEntity, TEntityDto> _mapper;
+        protected Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> _defaultSort;
+        protected List<Expression<Func<TEntity, object>>> _includeProperties ;
 
         public BaseService(IUnitOfWorkFactory factory, IMapper<TEntity, TEntityDto> mapper)
         {
@@ -45,7 +50,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<TEntityDto>();
-                var entities = uow.Repository<TEntity>().Get();
+                var entities = uow.Repository<TEntity>().Get(orderBy : _defaultSort, includeProperties : _includeProperties);
                 TotalCount = uow.Repository<TEntity>().TotalCount;
                 foreach (var item in entities)
                 {

@@ -4,6 +4,7 @@ using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.DtoEntities;
+using System.Linq;
 using System.Linq.Expressions;
 using ELib.BL.Mapper.Abstract;
 
@@ -11,9 +12,12 @@ namespace ELib.BL.Services.Concrete
 {
     public class AuthorService : BaseService<Author, AuthorDto>, IAuthorService
     {
+
         public AuthorService(IUnitOfWorkFactory factory, IMapper<Author, AuthorDto> mapper)
             : base(factory, mapper)
-        { }
+        {
+            _defaultSort = q => q.OrderByDescending(a => a.LastName);
+        }
 
         public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year, int pageNumb, int pageCount)
         {
@@ -34,7 +38,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<AuthorDto>();
                 var repository = uow.Repository<Author>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy: _defaultSort, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {

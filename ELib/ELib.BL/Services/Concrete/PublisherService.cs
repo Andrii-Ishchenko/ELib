@@ -6,6 +6,7 @@ using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Mapper.Abstract;
+using System.Linq;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -13,7 +14,9 @@ namespace ELib.BL.Services.Concrete
     {
         public PublisherService(IUnitOfWorkFactory factory, IMapper<Publisher, PublisherDto> mapper)
             : base(factory, mapper)
-        { }
+        {
+            _defaultSort = q => q.OrderBy(p => p.Name);
+        }
 
         public IEnumerable<PublisherDto> GetAll(string query, int pageCount, int pageNumb)
         {
@@ -22,7 +25,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<PublisherDto>();
                 var repository = uow.Repository<Publisher>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy:_defaultSort, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {

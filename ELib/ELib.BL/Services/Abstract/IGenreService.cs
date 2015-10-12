@@ -10,6 +10,5 @@ namespace ELib.BL.Services.Abstract
 {
     public interface IGenreService : IBaseService<Genre, GenreDto>
     {
-
     }
 }

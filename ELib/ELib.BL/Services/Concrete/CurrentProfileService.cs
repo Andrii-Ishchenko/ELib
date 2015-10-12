@@ -27,7 +27,7 @@ namespace ELib.BL.Services.Concrete
                 //if (au == null)
                 //    return null;
                 Person p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id,
-                                                    includeProperties : new List<Expression<Func<Person, object>>>() { pers => pers.ApplicationUser})
+                                                    includeProperties : new List<Expression<Func<Person, object>>>() { pers => pers.ApplicationUser}, topCount : 1)
                                                     .FirstOrDefault();
                 return _mapper.Map(p);
             }

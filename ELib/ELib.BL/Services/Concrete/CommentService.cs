@@ -5,6 +5,7 @@ using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
 using ELib.BL.Mapper.Abstract;
+using System;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -12,7 +13,9 @@ namespace ELib.BL.Services.Concrete
     {
         public CommentService(IUnitOfWorkFactory factory, IMapper<Comment, CommentDto> mapper)
             : base(factory, mapper)
-        { }
+        {
+            _defaultSort = q => q.OrderByDescending(c => c.CommentDate);
+        }
 
         public List<CommentDto> GetCommentsByBookId(int id)
         {
@@ -25,7 +28,7 @@ namespace ELib.BL.Services.Concrete
                 {
                     return null;
                 }
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).ToList();
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, orderBy : _defaultSort).ToList();
                 //var Persons = uow.Repository<Person>().Get(i => Comments.All(s => s.UserId == i.Id)).ToList();
                 //var User = uow.Repository<ApplicationUser>().Get(k => Persons.All(t => t.ApplicationUserId == k.Id)).ToList();
 

@@ -12,12 +12,11 @@ namespace ELib.BL.Services.Concrete
 {
     public class BookService : BaseService<Book, BookDto>, IBookService
     {
-        private List<Expression<Func<Book, object>>> _includeProperties;
-
         public BookService(IUnitOfWorkFactory factory, IMapper<Book, BookDto> mapper)
             : base(factory, mapper)
         {
             _includeProperties = getIncludeProperties();
+            _defaultSort = q => q.OrderByDescending(d => d.AdditionDate);
         }
 
         public IEnumerable<BookDto> GetForAuthor(int idAuthor)
@@ -25,7 +24,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
-                var entities = uow.Repository<Book>().Get(x => x.BookAuthors.Where( a => a.AuthorId == idAuthor).Count() > 0, includeProperties : _includeProperties).OrderByDescending(rating => rating.SumRatingValue);
+                var entities = uow.Repository<Book>().Get(x => x.BookAuthors.Where( a => a.AuthorId == idAuthor).Count() > 0, orderBy : q => q.OrderByDescending(b => b.SumRatingValue), includeProperties : _includeProperties);
 
                 foreach (var item in entities)
                 {
@@ -43,7 +42,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
-                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id, includeProperties: _includeProperties);
+                var entities = uow.Repository<Book>().Get(x => x.PublisherId == id, orderBy : _defaultSort, includeProperties: _includeProperties);
 
                 foreach (var item in entities)
                 {
@@ -111,7 +110,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: filter, includeProperties : _includeProperties, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy: _defaultSort, includeProperties : _includeProperties, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {

@@ -5,17 +5,19 @@ using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace ELib.BL.Services.Concrete
 {
     public class CategoryService : BaseService<Category, CategoryDto>, ICategoryService
     {
-        IMapper<CategoryDto, CategoryNestedDto> _categoryNestedMapper;
+        private IMapper<CategoryDto, CategoryNestedDto> _categoryNestedMapper;
 
         public CategoryService(IUnitOfWorkFactory factory, IMapper<Category, CategoryDto> category,
             IMapper<CategoryDto, CategoryNestedDto> categoryNested) : base(factory, category)
         {
             _categoryNestedMapper = categoryNested;
+            _defaultSort = q => q.OrderBy(c => c.Name);
         }
 
         public List<CategoryNestedDto> GetNested()

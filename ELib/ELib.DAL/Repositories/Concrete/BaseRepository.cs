@@ -67,10 +67,27 @@ namespace ELib.DAL.Repositories.Concrete
 
             _totalCount = query.Count<TEntity>();
 
-            query = (orderBy != null) ? orderBy(query) : query;
-            if (skipCount >= 0 && topCount > 0)
+            if (orderBy != null) {
+                query = orderBy(query);
+                if (skipCount == 0 && topCount > 0)
+                {
+                    query = query.Take(topCount);
+                }
+
+                else if (orderBy != null && skipCount > 0 && topCount > 0)
+                {
+                    query = query.Skip(skipCount).Take(topCount);
+                }
+            }
+
+            else if (orderBy == null && skipCount == 0 && topCount > 0)
             {
-                 query = query.Skip(skipCount).Take(topCount);
+                query = query.Take(topCount);
+            }
+
+            else if (orderBy == null && skipCount > 0 && topCount > 0)
+            {
+                return query.AsEnumerable().Skip(skipCount).Take(topCount);
             }
             return query.AsEnumerable();
             
