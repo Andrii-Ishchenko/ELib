@@ -9,6 +9,11 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
+        vm.status = {
+            isFirstOpen: true
+               };
+       
+
         var catParameters = {
             isNested:true
         }
