@@ -41,7 +41,12 @@ namespace ELib.BL.Mapper.Concrete
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount
             };
-
+            if(input.AuthorsIds != null)
+                foreach(int id in input.AuthorsIds)
+                    result.BookAuthors.Add(new BookAuthor() { AuthorId = id, BookId = input.Id });
+            else if (input.AuthorsDto != null)
+                foreach (var author in input.AuthorsDto)
+                    result.BookAuthors.Add(new BookAuthor() { AuthorId = author.Id, BookId = input.Id});
             return result;
         }
 
@@ -72,7 +77,7 @@ namespace ELib.BL.Mapper.Concrete
                 SubgenreName = (input.Subgenre == null) ? null : input.Subgenre.Name
             };
 
-            result.Authors = input.BookAuthors.Select(a => a.Author.FirstName + " " + a.Author.LastName).ToList();
+       //     result.Authors = input.BookAuthors.Select(a => a.Author.FirstName + " " + a.Author.LastName).ToList();
             result.AuthorsIds = input.BookAuthors.Select(a => a.AuthorId).ToList();
             result.GenresNames = input.BookGenres.Select(g => g.Genre.Name).ToList();
             result.GenresIds = input.BookGenres.Select(g => g.GenreId).ToList();

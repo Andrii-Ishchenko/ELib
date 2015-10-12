@@ -17,9 +17,7 @@
         vm.submitState = false;
         vm.createdSuccessfully = false;
         vm.currentYear = new Date().getFullYear();
-        vm.author = {};
         vm.authorsMas = [];
-        vm.selectedAuthorIndex = "";
 
         var languages = dataServiceFactory.getService('languages').query();
 
@@ -36,21 +34,33 @@
         })
 
         vm.authorSelected = function () {
-            if (vm.author != undefined) {
-                var selectedAuthor = vm.authors[vm.authorId - 1];
+            var selectedAuthor;
+            var index;
+            if (vm.authorId != undefined) {
+                for (var i = 0; i < vm.authors.length; i++) {
+                    if (vm.authors[i].Id == vm.authorId) {
+                        selectedAuthor = vm.authors[i];
+                        index = i;
+                    }
+                }
                 vm.authorsMas.push(selectedAuthor);
-                var index = vm.authors.indexOf(selectedAuthor);
                 vm.authors.splice(index, 1);
             }           
         }
 
-        vm.deleteAuthor = function (author2) {
-           /* console.log("1111");
-            if (author != undefined) {
-                console.log("22222");
-                vm.authorsMas.pop(author);
-                console.log(vm.authorsMas);
-            }   */         
+        vm.deleteAuthor = function (author) {
+            var selectedAuthor;
+            var index;
+            if (author.Id != undefined) {
+                for (var i = 0; i < vm.authorsMas.length; i++) {
+                    if (vm.authorsMas[i].Id == author.Id) {
+                        selectedAuthor = vm.authorsMas[i];
+                        index = i;
+                    }
+                }
+                vm.authorsMas.splice(index, 1);
+                vm.authors.push(selectedAuthor);
+            }      
         }
                 
         var catParameters = {
@@ -73,12 +83,14 @@
                 Description: vm.description,
                 SubgenreId: vm.subgenre,
                 CategoryId: vm.category,
-                PublishYear: vm.yearOfPublishing
+                PublishYear: vm.yearOfPublishing,
+                AuthorsDto: vm.authorsMas
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(
                  //success
                  function (value) {
+                     alert(value);
                      vm.createdSuccessfully = true;
                      vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
                      startTimer(value.Id);
