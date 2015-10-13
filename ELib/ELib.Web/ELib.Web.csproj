@@ -379,7 +379,6 @@
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\common\sorting-directive.html" />
-    <Content Include="Views\Home\common\sorting-menu.html" />
     <Content Include="Views\Home\common\sortingDirective.js" />
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
