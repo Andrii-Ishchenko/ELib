@@ -21,7 +21,6 @@
                 var arrow = $("#sorting-direction-arrow", element)[0];
                 arrow.insertAfter(selected);
 
-
                 if (!scope.orderBy) {
                     scope.orderBy = scope.defaultOrder;
                 }
