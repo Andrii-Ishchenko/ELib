@@ -41,6 +41,26 @@
 .subtree .noLeftMargin > .category{
     padding-left:0px;
 }
+
+.order-list-item{
+
+}
+
+.order-list-item:hover{
+    background-color:#5bc0de;
+    color:#fff; 
+    cursor:pointer;
+}
+
+.order-list-item.selected:hover {
+    background-color: #5bc0de;
+    cursor:pointer;
+}
+
+.order-list-item.selected{
+    color:#fff;
+    background-color:#337ab7;
+}
     
 
 .title,.subtitle {

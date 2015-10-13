@@ -29,8 +29,9 @@
                 node.opened = !node.opened
         }
 
-        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'Title';
-        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection:'DESC';
+        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre';
+        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
+        vm.orderParameters = ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"];
 
         var parameters = {
             pageCount : vm.pageCount,
@@ -48,8 +49,7 @@
 
         vm.pageChanged = pageChanged;
 
-            //$location.search("pageNumb", vm.currPage);
-
+        //$location.search("pageNumb", vm.currPage);
 
         var obj = dataServiceFactory.getService('books').get(parameters);
         obj.$promise.then(function (data) {
@@ -63,12 +63,10 @@
             $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
         }
 
-
         vm.NodeButtonState = function (node) {
 
         }
       
-
         function preProcessCategories(children, level) {
 
             for (var index in children) {
@@ -78,28 +76,9 @@
                     children[index].opened = true;
                 }
                
-
                 preProcessCategories(children[index].Children,level)
             }
         }
 
-
-        //activate();
-
-        //function activate() {
-        //    return getBooks().then(function () {
-        //        console.log('Activated Books View');
-        //    });
-        //}
-
-        //function getBooks() {
-        //    return DataService.getAll('book')
-
-        //    .then(function (data) {
-        //        vm.books = data;
-        //        console.log(vm.books);
-        //        return vm.books;
-        //    });
-        //}
     }
 })();

@@ -1,4 +1,4 @@
 ﻿<ul class="list-inline" style="display:inline;margin-left:5px">
-<li ng-repeat="orderItem in items"> <span ng-class="orderItem==orderBy?'bg-primary':''">{{orderItem}} </span></li>
+<li ng-repeat="item in orderParameters"  ng-class="item==orderBy?'order-list-item selected':'order-list-item'" ng-click="changeOrder(item)"> <span>{{item}}</span></li>
 </ul>
 <a><span id="sorting-direction-arrow" ng-class="orderDirection=='ASC'?'glyphicon glyphicon-triangle-top':'glyphicon glyphicon-triangle-bottom'" style="margin-right:7px"></span></a>

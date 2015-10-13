@@ -12,15 +12,29 @@
                 orderBy: "=",
                 orderDirection: "=",
                 defaultOrder: "=",
-                defaultDirection: "="
+                defaultDirection: "=",
+                orderParameters:"="
             },
+            controller:function(){},
             link: function(scope,element,attrs){
-                scope.items = attrs.params.split(",");
+             
+                scope.changeOrder = function (item) {
+                    if (scope.orderBy == item) {
+                        if (scope.orderDirection == "ASC") {
+                            scope.orderDirection = "DESC";
+                        } else {
+                            scope.orderDirection = "ASC";
+                        }
+
+                    } else {
+                        scope.orderBy = item;
+                        scope.orderDirection = "ASC";
+                    }
+                }
 
                 var selected = $(".bg-primary", element)[0];
                 var arrow = $("#sorting-direction-arrow", element)[0];
-                arrow.insertAfter(selected);
-
+               // arrow.insertAfter(selected);
 
                 if (!scope.orderBy) {
                     scope.orderBy = scope.defaultOrder;
