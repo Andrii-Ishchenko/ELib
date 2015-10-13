@@ -84,13 +84,12 @@
                 SubgenreId: vm.subgenre,
                 CategoryId: vm.category,
                 PublishYear: vm.yearOfPublishing,
-                AuthorsDto: vm.authorsMas
+                Authors: vm.authorsMas
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(
                  //success
                  function (value) {
-                     alert(value);
                      vm.createdSuccessfully = true;
                      vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
                      startTimer(value.Id);
