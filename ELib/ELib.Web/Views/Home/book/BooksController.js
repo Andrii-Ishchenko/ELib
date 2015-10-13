@@ -10,7 +10,8 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         vm.status = {
-            isFirstOpen: true
+            isFirstOpen: true,
+            isSecondOpen:true
                };
        
 
