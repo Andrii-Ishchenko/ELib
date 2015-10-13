@@ -3,9 +3,9 @@
 <aside class="col-md-3">
 
     <accordion close-others=true>
-        <accordion-group  is-open="books.status.isFirstOpen">
+        <accordion-group is-open="books.status.isFirstOpen">
             <div ng-controller="FilterController as filter">
-                <accordion-heading >
+                <accordion-heading>
                     <i class="glyphicon glyphicon-filter"></i> Filters<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': books.status.isFirstOpen, 'glyphicon-chevron-right': !books.status.isFirstOpen}"></i>
                 </accordion-heading>
 
@@ -183,6 +183,6 @@
             </li>
         </ul>-->
         <pagination ng-if="books.totalCount" total-items="books.totalCount" ng-model="books.currPage" items-per-page="books.pageCount"
-                    boundary-links="true" maxSize="5" class="pagination-sm" ng-change="books.pageChanged()"></pagination>
+                    boundary-links="true" max-size="books.maxSize" class="pagination-sm" ng-change="books.pageChanged()"></pagination>
     </div>
 </div>
