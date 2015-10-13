@@ -25,7 +25,7 @@ namespace ELib.BL.Services.Concrete
                 {
                     return null;
                 }
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).ToList();
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
                 //var Persons = uow.Repository<Person>().Get(i => Comments.All(s => s.UserId == i.Id)).ToList();
                 //var User = uow.Repository<ApplicationUser>().Get(k => Persons.All(t => t.ApplicationUserId == k.Id)).ToList();
 
@@ -44,6 +44,7 @@ namespace ELib.BL.Services.Concrete
                     commentList.Add(entityDto);
                 }
                 uow.Save();
+
                 return commentList;
             }
         }
