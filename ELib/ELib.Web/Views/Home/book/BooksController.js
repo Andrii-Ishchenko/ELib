@@ -29,8 +29,8 @@
                 node.opened = !node.opened
         }
 
-        vm.orderBy = 'Monkey';
-        vm.orderDirection = 'DESC';
+        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'Title';
+        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection:'DESC';
 
         var parameters = {
             pageCount : vm.pageCount,
@@ -41,7 +41,9 @@
             genre     : $routeParams.genre,
             genreId   : $routeParams.genreId,
             subgenre  : $routeParams.subgenre,
-            year      : $routeParams.year
+            year      : $routeParams.year,
+            orderBy: vm.orderBy,
+            orderDirection: vm.orderDirection
     }
 
         vm.pageChanged = pageChanged;

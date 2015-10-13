@@ -103,7 +103,7 @@
                     <li><a href>Date</a></li>
                 </ul>-->
                 
-                <sorting-directive params="FirstName,LastName,Elephant,Monkey" order-by="books.orderBy" order-direction="books.orderDirection" default-order="LastName" default-direction="ASC"></sorting-directive>
+                <sorting-directive params="Title, FirstName,LastName,Elephant,Monkey" order-by="books.orderBy" order-direction="books.orderDirection" default-order="LastName" default-direction="ASC"></sorting-directive>
              
                 <small>Books Per Page:</small>
                 <select ng-change="books.pageChanged()" ng-model="books.pageCount" convert-to-number>
