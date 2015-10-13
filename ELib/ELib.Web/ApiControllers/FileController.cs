@@ -45,6 +45,15 @@ namespace ELib.Web.ApiControllers
                     p = uow.Repository<Person>().Get(pers => pers.ApplicationUserId == id).FirstOrDefault();
                     if (p == null)
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "User Not Found");
+                    else
+                    {
+                        var Comments = uow.Repository<Comment>().Get(x => x.UserId == p.Id).ToList();
+                        foreach(var comment in Comments)
+                        {
+                            comment.ImageHash = null;
+                        }
+                        uow.Save();
+                    }
                 }
                 int userId = p.Id;
 
