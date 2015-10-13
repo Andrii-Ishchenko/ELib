@@ -1,59 +1,69 @@
-﻿<div class="panel panel-default" ng-controller="FilterController as filter">
-    <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
-    <div class="panel-body">
-        <form role="form" >
-            <dl>
-                <dt>Filtering</dt>
-                <dd class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control input-sm" placeholder="Title contains" ng-model="filter.title" ng-blur="filter.filterByTitle()" />
+﻿
+    <div class="panel panel-default" ng-controller="FilterController as filter">
+        <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
+        <div class="panel-body">
+            <form role="form">
+                <dl>
+                    <dt>Filtering</dt>
+                    <dd class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm" placeholder="Title contains" ng-model="filter.title" ng-blur="filter.filterByTitle()" lib-enter-press="filter.filterByTitle()" />
                             </div>
                         </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control input-sm" placeholder="Author's name contains" ng-model="filter.author" ng-blur="filter.filterByAuthor()"/>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm" placeholder="Author's name contains" ng-model="filter.author" ng-blur="filter.filterByAuthor()" lib-enter-press="filter.filterByAuthor()" />
                             </div>
                         </div>
-                    <div class="form-group ">
-                        <label class="control-label col-sm-3 text-muted small" for="Genre">Genre </label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control input-sm" placeholder="Genre contains" ng-model="filter.genre" ng-blur="filter.filterByGenre()"/>
+                        <div class="form-group ">
+                            <label class="control-label col-sm-3 text-muted small">Genre</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-options="genre.Id as genre.Name for genre in filter.genres" ng-model="filter.genreId" ng-blur="filter.filterByGenreId()"
+                                        lib-enter-press="filter.filterByGenreId()" ng-change="filter.filterByGenreId()">
+                                    <!--<option value="" class="text-muted input-sm">{{filter.genreName?filter.genreName:"Genre"}}</option>
+                                    <option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>-->
+                                </select>
+                            </div>
                         </div>
-                    </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre" ng-blur="filter.filterBySubgenre()" />
+                                <input type="text" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre"
+                                       ng-blur="filter.filterBySubgenre()" lib-enter-press="filter.filterBySubgenre()" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year" ng-blur="filter.filterByYear()" />
+                                <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year"
+                                       ng-blur="filter.filterByYear()" lib-enter-press="filter.filterByYear()" min="0" max="{{filter.currentYear}}" />
                             </div>
                         </div>
-</dd>
-
-                <!--<dt> Ordering</dt>
-                <dd>
-                    <select>
-                        <option>Title</option>
-                        <option>Year</option>
-                        <option>Author Name</option>
-                        <option>Genre</option>
-                        <option>Publisher</option>
-                        <option>Rating</option>
-                        <option>Date</option>
-                    </select>
-                    <select>
-                        <option>ASC</option>
-                        <option>DESC</option>
-                    </select>
-                </dd>-->            
-            </dl>
-        </form>
+                    </dd>
+                </dl>
+            </form>
+        </div>
     </div>
-</div>
+    <div class="panel panel-default" ng-controller="BooksController as BooksCtrl">
+        <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Categories</div>
+        <div class="panel-body">
+            <script type="text/ng-template" id="tree.html">
+                <button type="button" ng-click=" BooksCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0" class="btn btn-default"
+                        style="width:26px;height:26px;border-radius:13px; padding:0px">
+                    <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
+                </button>
+                <a href>{{node.Name}}</a>
+                <ul class="subtree" ng-show="node.opened">
+                    <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
+                </ul>
+            </script>
+
+            <ul class="subtree noLeftIndent">
+                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree.html'"></li>
+            </ul>
+        </div>
+    </div>
+</aside>

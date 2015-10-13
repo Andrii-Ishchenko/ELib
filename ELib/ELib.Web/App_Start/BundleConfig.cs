@@ -44,6 +44,7 @@ namespace ELib.Web
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/index/SearchController.js",
+                                    "~/Views/Home/index/MenuController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/profileFactory.js",

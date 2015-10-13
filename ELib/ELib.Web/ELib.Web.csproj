@@ -356,6 +356,7 @@
     <Content Include="Scripts\ng-rating.js" />
     <Content Include="Views\Home\author\author.html" />
     <Content Include="Views\Home\author\AuthorController.js" />
+    <Content Include="Views\Home\author\authors-menu.html" />
     <Content Include="Views\Home\author\authors.html" />
     <Content Include="Views\Home\author\AuthorsController.js" />
     <Content Include="Views\Home\author\FilterForAuthorsController.js" />
@@ -387,6 +388,7 @@
     <Content Include="Views\Home\help\help.html" />
     <Content Include="Views\Home\help\HelpController.js" />
     <Content Include="Views\Home\index\IndexController.js" />
+    <Content Include="Views\Home\index\MenuController.js" />
     <Content Include="Views\Home\index\SearchController.js" />
     <Content Include="Views\Home\login\LoginController.js" />
     <Content Include="Views\Home\mainpage\ModalController.js" />
@@ -397,6 +399,7 @@
     <Content Include="Views\Home\publisher\NewPublisherController.js" />
     <Content Include="Views\Home\publisher\publisher.html" />
     <Content Include="Views\Home\publisher\PublisherController.js" />
+    <Content Include="Views\Home\publisher\publishers-menu.html" />
     <Content Include="Views\Home\publisher\publishers.html" />
     <Content Include="Views\Home\publisher\PublishersController.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
