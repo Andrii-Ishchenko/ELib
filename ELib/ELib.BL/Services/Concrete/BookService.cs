@@ -9,7 +9,9 @@ using System.Linq.Expressions;
 using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
+
 {
+
     public class BookService : BaseService<Book, BookDto>, IBookService
     {
         public BookService(IUnitOfWorkFactory factory, IMapper<Book, BookDto> mapper)
@@ -17,6 +19,8 @@ namespace ELib.BL.Services.Concrete
         {
 
         }
+
+      
         public IEnumerable<BookDto> GetForAuthor(int idAuthor)
         {
             using (var uow = _factory.Create())
@@ -36,7 +40,7 @@ namespace ELib.BL.Services.Concrete
 
         public IEnumerable<BookDto> GetBooksForPublisher(int id)
         {
-           using (var uow = _factory.Create())
+            using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
                 //var entities = uow.Repository<Book>().Get(x => x.PublisherId == id).OrderByDescending(rating => rating.SumRatingValue);
@@ -102,8 +106,8 @@ namespace ELib.BL.Services.Concrete
             else
             {
                 filter = byParameter;
-            }  
-                                                                        
+            }
+
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<BookDto>();
@@ -122,7 +126,7 @@ namespace ELib.BL.Services.Concrete
 
         private Expression<Func<Book, bool>> buildFilterExpression(SearchDto searchDto)
         {
-            Expression<Func<Book, bool>> filter =SearchService<Book>.True;
+            Expression<Func<Book, bool>> filter = SearchService<Book>.True;
             if (!string.IsNullOrEmpty(searchDto.Title))
             {
                 Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(searchDto.Title);
@@ -164,6 +168,12 @@ namespace ELib.BL.Services.Concrete
                 Expression<Func<Book, bool>> searchByYear = x => x.PublishYear > 0 && x.PublishYear == searchDto.Year;
                 filter = SearchService<Book>.filterAnd(filter, searchByYear);
             }
+
+            if (searchDto.CategoryIds!=null)
+            {                
+                Expression<Func<Book, bool>> searchByCategoryId =(x) => searchDto.CategoryIds.Contains(x.CategoryId);
+                filter = SearchService<Book>.filterAnd(filter, searchByCategoryId);
+            }
             return filter;
         }
 
@@ -173,7 +183,7 @@ namespace ELib.BL.Services.Concrete
                 return SearchService<Book>.True;
 
             string[] words = query.Split(' ');
-            Expression<Func<Book, bool>> filter =SearchService<Book>.False;
+            Expression<Func<Book, bool>> filter = SearchService<Book>.False;
             foreach (string word in words)
             {
                 Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(word);
@@ -203,6 +213,7 @@ namespace ELib.BL.Services.Concrete
         }
 
 
-        
+
+
     }
 }

@@ -33,6 +33,9 @@
         if ($routeParams.genreId) {
             vm.genreId = $routeParams.genreId;
         }
+        if ($routeParams.categoryId) {
+            vm.categoryId = $routeParams.categoryId;
+        }
 
         if ($routeParams.subgenre) {
             vm.subgenre = $routeParams.subgenre;
@@ -60,6 +63,11 @@
         vm.filterByGenreId = function () {
             preparePath();
             $location.search('genreId', vm.genreId);
+        }
+
+        vm.filterByCategoryId = function () {
+            preparePath();
+            $location.search('categoryId', vm.categoryId);
         }
 
         vm.filterBySubgenre = function () {
@@ -91,6 +99,7 @@
                     genreId: undefined,
                     subgenre: undefined,
                     year: undefined,
+                    categoryId:undefined,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,
                     pageNumb: $routeParams.pageNumb
