@@ -29,6 +29,8 @@
                 node.opened = !node.opened
         }
 
+        vm.orderBy = 'Monkey';
+        vm.orderDirection = 'DESC';
 
         var parameters = {
             pageCount : vm.pageCount,

@@ -73,7 +73,8 @@ namespace ELib.Web
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
                                     "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/comments/CommentsRepository.js",
-                                    "~/Views/Home/comments/commentsDirective.js"
+                                    "~/Views/Home/comments/commentsDirective.js",
+                                    "~/Views/Home/common/sortingDirective.js"
 
                         )
                     );
