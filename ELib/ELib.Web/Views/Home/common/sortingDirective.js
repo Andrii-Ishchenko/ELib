@@ -18,7 +18,7 @@
             controller:function(){},
             link: function(scope,element,attrs){
              
-                scope.changeOrder = function (item) {
+                scope.changeOrder = function (item, node) {
                     if (scope.orderBy == item) {
                         if (scope.orderDirection == "ASC") {
                             scope.orderDirection = "DESC";
@@ -28,12 +28,13 @@
 
                     } else {
                         scope.orderBy = item;
-                        scope.orderDirection = "ASC";
+                        scope.orderDirection = "ASC";                    
                     }
+
+                   // var arrow = $("#sorting-direction-arrow", element).first().detach();
+                    //arrow.append();
                 }
 
-                var selected = $(".bg-primary", element)[0];
-                var arrow = $("#sorting-direction-arrow", element)[0];
                // arrow.insertAfter(selected);
 
                 if (!scope.orderBy) {
