@@ -140,6 +140,11 @@
 
                         
                     </div>
+
+                    <!--bottom pagination-->
+                    <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currPage" ng-change="authors.pageChanged()"
+                                items-per-page="authors.pageCount" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+
                 </div>
                
             </div>

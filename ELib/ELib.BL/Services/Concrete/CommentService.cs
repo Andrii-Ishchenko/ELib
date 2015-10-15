@@ -14,7 +14,7 @@ namespace ELib.BL.Services.Concrete
             : base(factory, mapper)
         { }
 
-        public List<CommentDto> GetCommentsByBookId(int id)
+        public List<CommentDto> GetCommentsByBookId(int id, int pageCount, int pageNumb)
         {
             using (var uow = _factory.Create())
             {
@@ -25,9 +25,12 @@ namespace ELib.BL.Services.Concrete
                 {
                     return null;
                 }
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
-                //var Persons = uow.Repository<Person>().Get(i => Comments.All(s => s.UserId == i.Id)).ToList();
-                //var User = uow.Repository<ApplicationUser>().Get(k => Persons.All(t => t.ApplicationUserId == k.Id)).ToList();
+
+
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).OrderByDescending(x => x.CommentDate).ToList();
+
+
+               // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
 
                 foreach (var item in Comments)
                 {
