@@ -60,16 +60,18 @@
             $location.search('genre', vm.genre);
         }
 
+        vm.filterByCategoryId = function filterByCategoryId (id) {
+            vm.categoryId = id;
+            preparePath();
+            $location.search('categoryId', vm.categoryId);
+        }
+
         vm.filterByGenreId = function () {
             preparePath();
             $location.search('genreId', vm.genreId);
         }
 
-        vm.filterByCategoryId = function () {
-            preparePath();
-            $location.search('categoryId', vm.categoryId);
-        }
-
+       
         vm.filterBySubgenre = function () {
             preparePath();
             $location.search('subgenre', vm.subgenre);
