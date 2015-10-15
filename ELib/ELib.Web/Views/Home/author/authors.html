@@ -40,13 +40,13 @@
         <div class="row" style="margin-bottom:10px">
             <div class="col-md-12">
                 <small>Ordering :    </small>
-
-                <ul class="list-inline" style="display:inline;margin-left:5px">
+                <sorting-directive order-parameters="authors.orderParameters" order-by="authors.orderBy" order-direction="authors.orderDirection" default-order="LastName" default-direction="ASC"></sorting-directive>
+                <!--<ul class="list-inline" style="display:inline;margin-left:5px">
                     <li><a href>First Name</a></li>
                     <li><a href>Last Name</a></li>
                     <li><a href>Date of birth</a></li>
-                </ul>
-                <a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>
+                </ul>-->
+                <!--<a><span class="glyphicon glyphicon-triangle-bottom" style="margin-right:7px"></span></a>-->
                 <small>Authors Per Page:</small>
                 <select ng-change="authors.pageChanged()" ng-model="authors.pageCount" convert-to-number>
                     <option value="5">5</option>
