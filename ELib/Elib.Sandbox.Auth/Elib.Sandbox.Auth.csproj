@@ -220,6 +220,7 @@
     </Compile>
     <Compile Include="Infrastructure\Context\AuthDbContext.cs" />
     <Compile Include="Infrastructure\Identity\ApplicationUser.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
