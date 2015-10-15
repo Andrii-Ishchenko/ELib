@@ -220,6 +220,10 @@
     </Compile>
     <Compile Include="Infrastructure\Context\AuthDbContext.cs" />
     <Compile Include="Infrastructure\Identity\ApplicationUser.cs" />
+    <Compile Include="Migrations\201510151005022_InitialCreate.cs" />
+    <Compile Include="Migrations\201510151005022_InitialCreate.Designer.cs">
+      <DependentUpon>201510151005022_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -275,7 +279,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510151005022_InitialCreate.resx">
+      <DependentUpon>201510151005022_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

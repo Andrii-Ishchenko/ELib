@@ -1,5 +1,9 @@
 namespace Elib.Sandbox.Auth.Migrations
 {
+    using Infrastructure.Context;
+    using Infrastructure.Identity;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +30,19 @@ namespace Elib.Sandbox.Auth.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new AuthDbContext()));
+
+            var user = new ApplicationUser()
+            {
+                UserName = "JohnDoe",
+                Email = "john_doe@mymail.com",
+                EmailConfirmed = true,
+                FirstName = "John",
+                LastName = "Doe"
+            };
+
+            manager.Create(user, "11");
         }
     }
 }
