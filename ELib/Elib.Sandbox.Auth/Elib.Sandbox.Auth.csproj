@@ -220,6 +220,7 @@
     </Compile>
     <Compile Include="Infrastructure\Context\AuthDbContext.cs" />
     <Compile Include="Infrastructure\Identity\ApplicationUser.cs" />
+    <Compile Include="Infrastructure\Identity\ApplicationUserManager.cs" />
     <Compile Include="Migrations\201510151005022_InitialCreate.cs" />
     <Compile Include="Migrations\201510151005022_InitialCreate.Designer.cs">
       <DependentUpon>201510151005022_InitialCreate.cs</DependentUpon>
