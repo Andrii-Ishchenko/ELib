@@ -9,39 +9,56 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input-sm" placeholder="Title contains" ng-model="filter.title" ng-blur="filter.filterByTitle()" lib-enter-press="filter.filterByTitle()" />
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control input-sm" maxlength="30" placeholder="Title contains" ng-model="filter.title"
+                                           ng-blur="filter.addFilter(filter.title,'title',true)" lib-enter-press="filter.addFilter(filter.title,'title', true)" />
+                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('title')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control input-sm" placeholder="Author's name contains" ng-model="filter.author" ng-blur="filter.filterByAuthor()" lib-enter-press="filter.filterByAuthor()" />
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control input-sm" maxlength="30" placeholder="Author's name contains" ng-model="filter.author"
+                                           ng-blur="filter.addFilter(filter.author,'author', true)" lib-enter-press="filter.addFilter(filter.author, 'author', true)" />
+                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('author')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small">Genre</label>
                             <div class="col-sm-9">
-                                <select class="form-control" ng-options="genre.Id as genre.Name for genre in filter.genres" ng-model="filter.genreId" ng-blur="filter.filterByGenreId()"
-                                        lib-enter-press="filter.filterByGenreId()" ng-change="filter.filterByGenreId()">
-                                    <!--<option value="" class="text-muted input-sm">{{filter.genreName?filter.genreName:"Genre"}}</option>
-                                    <option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>-->
-                                </select>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-control text-muted input-sm" ng-options="genre.Id as genre.Name for genre in filter.genres" ng-model="filter.genreId" ng-blur="filter.addFilter(filter.genreId,'genreId', false)"
+                                            lib-enter-press="filter.addFilter(filter.genreId,'genreId', false)" ng-change="filter.addFilter(filter.genreId,'genreId', false)">
+                                        <option value="" class="text-muted input-sm">Genre</option>
+                                        <!--<option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>-->
+                                    </select>
+                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('genreId')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre"
-                                       ng-blur="filter.filterBySubgenre()" lib-enter-press="filter.filterBySubgenre()" />
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" maxlength="30" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre"
+                                               ng-blur="filter.addFilter(filter.subgenre,'subgenre', true)" lib-enter-press="filter.addFilter(filter.subgenre,'subgenre', true)" />
+                                        <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('subgenre')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year"
-                                       ng-blur="filter.filterByYear()" lib-enter-press="filter.filterByYear()" min="0" max="{{filter.currentYear}}" />
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year"
+                                               ng-blur="filter.addFilter(filter.year, 'year', false)" lib-enter-press="filter.addFilter(filter.year,'year', false)" value="{{filter.currentYear}}" min="0" max="{{filter.currentYear}}" />
+                                        <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('year')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                     </dd>
                 </dl>
             </form>

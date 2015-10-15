@@ -25,7 +25,13 @@ function MenuController($location, $route, $scope) {
                 break;
             case "/publishers": vm.Url = urls["publishers"];
                 break;
-            case "/profile": vm.Url = urls["profile"];
+            case "/profile":;
+            case "/profile/ratings":;
+            case "/profile/comments":;
+            case "/profile/favs":;
+            case "/profile/books/wishlist":;
+            case "/profile/books/donelist":;
+            case "/profile/social-networks" : vm.Url = urls["profile"];
                 break;
             default: vm.Url = "";
                 break;

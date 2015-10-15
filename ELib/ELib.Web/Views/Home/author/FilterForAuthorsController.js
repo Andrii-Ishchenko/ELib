@@ -7,11 +7,11 @@
     function FilterForAuthorsController(dataServiceFactory, $location, $routeParams) {
         vm = this;
         vm.currentYear = new Date().getFullYear();
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
        
         if ($routeParams.author) {
             if (isValid(vm.author)) {
-                vm.author = $routeParams.author;
+                vm.author = $routeParams.authorName;
            }
         }
 
@@ -21,7 +21,7 @@
 
         vm.filterByAuthor = function () {
             preparePath();
-            $location.search('author', vm.author);
+            $location.search('authorName', vm.author);
         }
 
         vm.filterByYear = function () {
@@ -42,7 +42,7 @@
             if ($location.path() !== "/authors/search") {
                 $location.path("/authors/search");
                 $location.search({
-                    author: $routeParams.author,
+                    authorName: $routeParams.authorName,
                     year: $routeParams.year,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,

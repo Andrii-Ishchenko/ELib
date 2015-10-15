@@ -6,7 +6,7 @@
 
     function BooksController(dataServiceFactory, $routeParams, $location) {
         var vm = this;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         var catParameters = {
@@ -25,33 +25,33 @@
         }
 
 
-        var parameters = {
-            pageCount : vm.pageCount,
-            pageNumb  : vm.currPage,
-            query     : $routeParams.query,
-            title     : $routeParams.title,
-            authorName: $routeParams.author,
-            genre     : $routeParams.genre,
-            genreId   : $routeParams.genreId,
-            subgenre  : $routeParams.subgenre,
-            year      : $routeParams.year
-    }
+        var parameters = getParameters()
 
         vm.pageChanged = pageChanged;
 
-            //$location.search("pageNumb", vm.currPage);
-
-
-        var obj = dataServiceFactory.getService('books').get(parameters);
-        obj.$promise.then(function (data) {
+        var obj = dataServiceFactory.getService('books').get(parameters)
+            .$promise.then(function (data) {
             vm.books = data.books;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.pages = new Array(vm.totalPages);
         })
       
+        function getParameters() {
+            return {
+                pageCount: vm.pageCount,
+                pageNumb: vm.currPage,
+                query: $routeParams.query,
+                title: $routeParams.title,
+                authorName: $routeParams.author,
+                genre: $routeParams.genre,
+                genreId: $routeParams.genreId,
+                subgenre: $routeParams.subgenre,
+                year: $routeParams.year
+            };
+        }
         function pageChanged() {
-            $location.search({ "pageCount": vm.pageCount, "pageNumb": vm.currPage });
+            $location.search(getParameters());
         }
 
 

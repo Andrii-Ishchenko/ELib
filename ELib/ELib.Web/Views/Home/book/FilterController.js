@@ -17,70 +17,24 @@
             }
         });
 
-        if ($routeParams.title) {
-            vm.title = $routeParams.title;
-        }
-
-        if ($routeParams.author) {
-            vm.author = $routeParams.author;
-        }
-
-        if ($routeParams.genre) {
-            vm.genre = $routeParams.genre;
-        }
-
-        if ($routeParams.genreId) {
-            vm.genreId = $routeParams.genreId;
-        }
-
-        if ($routeParams.subgenre) {
-            vm.subgenre = $routeParams.subgenre;
-        }
-
-        if ($routeParams.year) {
-            vm.year = $routeParams.year;
-        }
-
-        vm.filterByTitle = function () {
-            if (isValid(vm.title)) {
+        vm.addFilter = function (value, property, isString) {
+            var valid = true;
+            if (isString) {
+                valid = isValid(value);
+            }
+            if (valid) {
                 preparePath();
-                $location.search('title', vm.title);
+                $location.search(property, value);
             }
         }
 
-        vm.filterByAuthor = function () {
-            if (isValid(vm.author)) {
-                preparePath();
-                $location.search('author', vm.author);
-            }
-        }
-
-        vm.filterByGenre = function () {
-            if (isValid(vm.genre)) {
-                preparePath();
-                $location.search('genre', vm.genre);
-            }
-        }
-
-        vm.filterByGenreId = function () {
-            preparePath();
-            $location.search('genreId', vm.genreId);
-        }
-
-        vm.filterBySubgenre = function () {
-            if (isValid(vm.subgenre)) {
-                preparePath();
-                $location.search('subgenre', vm.subgenre);
-            }
-        }
-
-        vm.filterByYear = function () {
-            preparePath();
-            $location.search('year', vm.year);
+        vm.removeFilter = function(property){
+            vm[property] = undefined;
+            $location.search(property, undefined);
         }
 
         vm.changePageCount = function () {
-            if ($location.path() === "/books") {
+            if ($location.url() === "/books") {
                 $location.search({ pageCount: vm.pageCount });
             }
             else {
