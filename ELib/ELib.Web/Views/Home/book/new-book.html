@@ -22,6 +22,21 @@
                     </div>
                 </div>
             </div>
+             <div class="form-group">
+                 <label class="control-label col-xs-3">Author:</label>
+                 <div class="col-xs-6">
+                     <select class="form-control" ng-model="newBookCtrl.authorId" name="authors" ng-change="newBookCtrl.authorSelected()">
+                         <option value="" class="text-muted">Add</option>
+                         <option ng-repeat="author in newBookCtrl.authors" value="{{author.Id}}" >{{author.FirstName}} {{author.LastName}}</option>
+                     </select>
+                     <div class="input-group col-xs-3" style="float:left; outline-offset:inherit" ng-repeat="author in newBookCtrl.authorsMas">                         
+                         <input type="text" readonly class="form-control" placeholder={{author.FirstName}}{{author.LastName}} >
+                         <span class="input-group-btn"  >
+                             <button class="btn btn-default" type="button" ng-click="newBookCtrl.deleteAuthor(author)">X</button>
+                         </span>
+                     </div>
+                  </div>
+             </div>
             <div class="form-group">
                 <label class="control-label col-xs-3">ISBN:</label>
                 <div class="col-xs-6">
@@ -117,8 +132,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-3" for="description">Description:</label>
-                <div class="col-xs-9">
-                    <textarea rows="3" class="form-control" id="description" placeholder="Description" ng-model="newBookCtrl.description"></textarea>
+                <div class="col-xs-6">
+                    <textarea rows="5" class="form-control" id="description" placeholder="Description" ng-model="newBookCtrl.description"></textarea>
                 </div>
             </div>
             <br>
