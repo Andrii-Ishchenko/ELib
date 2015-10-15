@@ -26,11 +26,31 @@ namespace ELib.BL.Services.Concrete
                     return null;
                 }
 
+                int TotalCount = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).Count();
 
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).OrderByDescending(x => x.CommentDate).ToList();
+                int c;
+
+                if (pageCount * pageNumb > TotalCount)
+                {
+                    if(TotalCount % pageCount != 0)
+                    {
+                        pageCount = TotalCount % pageCount;
+                    }
+                    c = 0;
+
+                }
+                else
+                {
+                    c = TotalCount - pageCount * pageNumb;
+                }
+
+var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: c, topCount: pageCount).Reverse().OrderByDescending(x => x.CommentDate).ToList();
 
 
-               // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
+                // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: TotalCount - pageCount , topCount: pageCount).OrderByDescending(x => x.CommentDate).ToList();
+
+
+                // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
 
                 foreach (var item in Comments)
                 {
