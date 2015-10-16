@@ -8,6 +8,12 @@
         var vm = this;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+        
+        vm.alrt = function () {
+             alert(vm.ordering.orderBy + " " + vm.ordering.orderDirection);
+            //console.log("alert callback"); 
+        }
+
 
         vm.status = {
             isFirstOpen: true
@@ -29,9 +35,18 @@
                 node.opened = !node.opened
         }
 
-        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre';
-        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
-        vm.orderParameters = ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"];
+       
+
+        vm.ordering ={
+            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre',
+            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
+            defaultOrder: "AuthorName",
+            defaultDirection:"DESC",
+            orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
+        }
+        //vm.orderByParam = ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre';
+        //vm.orderDirectionParam = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
+        //vm.orderParameters = ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"];
 
         var parameters = {
             pageCount : vm.pageCount,
@@ -43,8 +58,8 @@
             genreId   : $routeParams.genreId,
             subgenre  : $routeParams.subgenre,
             year      : $routeParams.year,
-            orderBy: vm.orderBy,
-            orderDirection: vm.orderDirection
+            orderBy   : vm.ordering.orderBy,
+            orderDirection: vm.ordering.orderDirection
     }
 
         vm.pageChanged = pageChanged;

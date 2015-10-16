@@ -103,7 +103,8 @@
                     <li><a href>Date</a></li>
                 </ul>-->
                 
-                <sorting-directive order-parameters="books.orderParameters" order-by="books.orderBy" order-direction="books.orderDirection" default-order="LastName" default-direction="ASC"></sorting-directive>
+                <!--<sorting-directive order-parameters="books.ordering.orderParameters" order-by="books.ordering.orderBy" order-direction="books.ordering.orderDirection" default-order="LastName" default-direction="ASC" callback="books.alrt"></sorting-directive>-->
+                <sorting-directive ordering="books.ordering"  callback="books.alrt"></sorting-directive>
              
                 <small>Books Per Page:</small>
                 <select ng-change="books.pageChanged()" ng-model="books.pageCount" convert-to-number>
