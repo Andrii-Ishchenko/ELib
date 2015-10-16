@@ -31,7 +31,8 @@ namespace ELib.Web
                            "~/Content/main.css",
                             "~/Content/profile.css",
                              "~/Content/ng-rating.css",
-                             "~/Content/font-awesome.min.css"));
+                             "~/Content/font-awesome.min.css",
+                             "~/Content/bold-text.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",

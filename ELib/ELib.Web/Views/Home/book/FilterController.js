@@ -35,6 +35,7 @@
         }
         if ($routeParams.categoryId) {
             vm.categoryId = $routeParams.categoryId;
+            vm.i = vm.categoryId;
         }
 
         if ($routeParams.subgenre) {

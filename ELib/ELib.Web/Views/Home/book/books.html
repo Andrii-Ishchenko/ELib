@@ -63,7 +63,7 @@
                             style="width:26px;height:26px;border-radius:13px; padding:0px">
                         <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
                     </button>
-                <a href="" ng-click="filter.filterByCategoryId(node.Id)">{{node.Name}}</a>
+                    <a href="" ng-class="{bold: filter.i=={{node.Id}}}" ng-click="filter.filterByCategoryId(node.Id)">{{node.Name}}</a>
                     <ul class="subtree" ng-show="node.opened">
                         <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
                     </ul>
