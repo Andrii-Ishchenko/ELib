@@ -5,46 +5,44 @@
         .module('elib')
         .directive('sortingDirective', sortingDirective);
 
-    function sortingDirective($compile) {
+    function sortingDirective($timeout) {
         return {
             restrict: 'E',
             scope: {
-                orderBy: "=",
-                orderDirection: "=",
-                defaultOrder: "=",
-                defaultDirection: "=",
-                orderParameters:"="
+                ordering:"=",
+                callback:"="
             },
             controller:function(){},
             link: function(scope,element,attrs){
              
-                scope.changeOrder = function (item, node) {
-                    if (scope.orderBy == item) {
-                        if (scope.orderDirection == "ASC") {
-                            scope.orderDirection = "DESC";
+              
+                scope.changeOrder = function (item) {
+                    if (scope.ordering.orderBy == item) {
+                        if (scope.ordering.orderDirection == "ASC") {
+                            scope.ordering.orderDirection = "DESC";
                         } else {
-                            scope.orderDirection = "ASC";
+                            scope.ordering.orderDirection = "ASC";
                         }
 
                     } else {
-                        scope.orderBy = item;
-                        scope.orderDirection = "ASC";                    
+                        scope.ordering.orderBy = item;
+                        scope.ordering.orderDirection = "ASC";
                     }
-
-                   // var arrow = $("#sorting-direction-arrow", element).first().detach();
-                    //arrow.append();
+                    //need for callback calling in new $digest loop after scope changed.
+                    $timeout(scope.callback(), 0, true);     
                 }
 
-               // arrow.insertAfter(selected);
-
-                if (!scope.orderBy) {
-                    scope.orderBy = scope.defaultOrder;
+                //assign default values
+                if (!scope.ordering.orderBy) {
+                    scope.ordering.orderBy = scope.ordering.defaultOrder;                    
                 }
 
-                if(!scope.orderDirection)
+                //assign default values
+                if (!scope.ordering.orderDirection)
                 {
-                    scope.orderDirection = scope.defaultDirection;
+                    scope.ordering.orderDirection = scope.ordering.defaultDirection;                 
                 }
+
             },
            
             templateUrl: '/views/home/common/sorting-directive.html'

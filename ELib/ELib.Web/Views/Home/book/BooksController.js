@@ -9,6 +9,11 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
+        vm.OrderingChanged = function () {
+            //server post should be here after updating parameters object
+        }
+
+
         vm.status = {
             isFirstOpen: true,
             isSecondOpen:true
@@ -30,9 +35,16 @@
                 node.opened = !node.opened
         }
 
-        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre';
-        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
-        vm.orderParameters = ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"];
+       
+
+        vm.ordering ={
+            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre',
+            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
+            defaultOrder: "AuthorName",
+            defaultDirection:"DESC",
+            orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
+        }
+       
 
         var parameters = {
             pageCount: vm.pageCount,
@@ -51,7 +63,7 @@
 
         vm.pageChanged = pageChanged;
 
-            //$location.search("pageNumb", vm.currPage);
+        //$location.search("pageNumb", vm.currPage);
 
         var obj = dataServiceFactory.getService('books').get(parameters);
         obj.$promise.then(function (data) {
