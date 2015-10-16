@@ -89,17 +89,14 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                 .ForMember(d => d.Authors, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.Author == null ? null : x.Author.FirstName + " " + x.Author.LastName)))
-                  .ForMember(d => d.AuthorsIds, o => o.MapFrom(s => s.BookAuthors == null ? null : s.BookAuthors.Select(x => x.AuthorId)))
                   .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
                   .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.GenreId)))
                   .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue))
                   .ForMember(d => d.LanguageName, o => o.MapFrom(s => s.Language.Name))
                   .ForMember(d => d.Language1Name, o => o.MapFrom(s => s.Language1.Name))
-                  .ForMember (d => d.PublisherName, o => o.MapFrom(s => s.Publisher.Name))
+                  .ForMember(d => d.PublisherName, o => o.MapFrom(s => s.Publisher.Name))
                   .ForMember(d => d.SubgenreName, o => o.MapFrom(s => s.Subgenre.Name))
-                  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name))
-                  .ForMember(d=>d.AuthorsDto,o=>o.MapFrom(s=>s.BookAuthors==null? null :s.BookAuthors.Select(x=>new AuthorListDto() {Id=x.Id, Name=x.Author.FirstName +" "+ x.Author.LastName })));
+                  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }
 

@@ -9,14 +9,25 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
+        vm.OrderingChanged = function () {
+            //server post should be here after updating parameters object
+        }
+
+
+        vm.status = {
+            isFirstOpen: true,
+            isSecondOpen:true
+               };
+       
+
         var catParameters = {
-            isNested:true
+            isNested: true
         }
 
         var obj = dataServiceFactory.getService('category').query(catParameters);
         obj.$promise.then(function (data) {
             vm.categories = data;
-            preProcessCategories(vm.categories,0);
+            preProcessCategories(vm.categories, 0);
         });
 
         vm.ToggleNode = function ToggleNode(node) {       
@@ -24,8 +35,18 @@
                 node.opened = !node.opened
         }
 
+       
 
-        var parameters = getParameters()
+        vm.ordering ={
+            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre',
+            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
+            defaultOrder: "AuthorName",
+            defaultDirection:"DESC",
+            orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
+        }
+       
+
+         var parameters = getParameters()
 
         vm.pageChanged = pageChanged;
 
@@ -34,6 +55,7 @@
             vm.books = data.books;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+            vm.maxSize = 5;
             vm.pages = new Array(vm.totalPages);
         })
       
@@ -55,43 +77,22 @@
             $location.search(getParameters());
         }
 
-
         vm.NodeButtonState = function (node) {
 
         }
       
-
         function preProcessCategories(children, level) {
 
             for (var index in children) {
-                if (children[index].Level!=undefined && children[index].Level >= level) {
+                if (children[index].Level != undefined && children[index].Level >= level) {
                     children[index].opened = false;
                 } else {
                     children[index].opened = true;
                 }
                
-
                 preProcessCategories(children[index].Children,level)
             }
         }
 
-
-        //activate();
-
-        //function activate() {
-        //    return getBooks().then(function () {
-        //        console.log('Activated Books View');
-        //    });
-        //}
-
-        //function getBooks() {
-        //    return DataService.getAll('book')
-
-        //    .then(function (data) {
-        //        vm.books = data;
-        //        console.log(vm.books);
-        //        return vm.books;
-        //    });
-        //}
     }
 })();

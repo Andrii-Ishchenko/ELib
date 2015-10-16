@@ -7,6 +7,16 @@
     function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory) {
         var vm = this;
 
+        vm.IsPostEnabled = true;
+
+        vm.CanPost = function () {
+            if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < 400)
+                return true;
+            else
+                return false;
+        };
+
+
         vm.savedSuccessfully = false;
         vm.message = "";
 
@@ -53,12 +63,24 @@
 
 
         vm.createComment = function () {
+            vm.IsPostEnabled = false;
             vm.newComment.CommentDate = new Date();
             var userIdCmnt = vm.profile.Id;
             vm.newComment.UserId = userIdCmnt;
             vm.newComment.UserName = vm.profile.UserName;
-            dataServiceFactory.getService('Comments').save(vm.newComment);
-            setTimeout('location.reload()', 2000); 
+            dataServiceFactory.getService('Comments').save(vm.newComment).$promise.then(
+                 //success
+                 function (value) {
+                     vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+                     vm.newComment.Text = "";
+                     vm.IsPostEnabled = true;
+                 },
+                 //error
+                 function (error) {
+                     vm.newComment.Text = "";
+                     vm.IsPostEnabled = true;
+                 }
+            );
         };
 
 

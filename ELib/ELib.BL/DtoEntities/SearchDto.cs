@@ -15,11 +15,12 @@ namespace ELib.BL.DtoEntities
         public string Subgenre { get; private set; }
         public string Publisher { get; private set; }
         public int GenreId { get; private set; }
+        public List<int> CategoryIds { get; private set; }
         public int Year { get; private set; }
         public int SubgenreId { get; private set; }
 
         public SearchDto(string query, string authorName, string title, string publisher, string genre,
-            string subgenre, int genreId,int subgenreId, int year) {
+                          string subgenre, int genreId, int subgenreId, int year,List<int> categoryIds) {
             Query = query;
             Title = title;
             AuthorName = authorName;
@@ -29,6 +30,7 @@ namespace ELib.BL.DtoEntities
             GenreId = genreId;
             SubgenreId = subgenreId;
             Year = year;
+            CategoryIds = categoryIds;
         }
     }
 }

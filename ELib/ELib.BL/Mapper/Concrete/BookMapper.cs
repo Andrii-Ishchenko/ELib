@@ -1,11 +1,8 @@
 ﻿using ELib.BL.DtoEntities;
 using ELib.Domain.Entities;
 using ELib.BL.Mapper.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ELib.BL.Mapper.Concrete
 {
@@ -41,7 +38,12 @@ namespace ELib.BL.Mapper.Concrete
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount
             };
-
+            if (input.Authors != null)
+                foreach (var author in input.Authors)
+                    result.BookAuthors.Add(new BookAuthor() {
+                        AuthorId = author.Id,
+                        BookId = input.Id,
+                        Author = new Author() {Id = author.Id, FirstName = author.FirstName, LastName = author.LastName } });
             return result;
         }
 
@@ -71,13 +73,20 @@ namespace ELib.BL.Mapper.Concrete
                 PublisherName = (input.Publisher == null) ? null : input.Publisher.Name,
                 SubgenreName = (input.Subgenre == null) ? null : input.Subgenre.Name
             };
-
-            result.Authors = input.BookAuthors.Select(a => a.Author.FirstName + " " + a.Author.LastName).ToList();
-            result.AuthorsIds = input.BookAuthors.Select(a => a.AuthorId).ToList();
+                        
             result.GenresNames = input.BookGenres.Select(g => g.Genre.Name).ToList();
             result.GenresIds = input.BookGenres.Select(g => g.GenreId).ToList();
             result.BookInstances = input.BookInstances.Select(bi => _bookInstanceMapper.Map(bi)).ToList();
-            result.AuthorsDto = input.BookAuthors.Select(a => _authorMapper.Map(a.Author)).ToList();
+            List<AuthorDto> authors = new List<AuthorDto>();
+            if (input.BookAuthors != null)
+                foreach (var author in input.BookAuthors)
+                    authors.Add(new AuthorDto()
+                    {
+                        Id = author.AuthorId,
+                        FirstName = author.Author.FirstName,
+                        LastName = author.Author.LastName
+                    });
+            result.Authors = authors;
             return result;
         }
     }

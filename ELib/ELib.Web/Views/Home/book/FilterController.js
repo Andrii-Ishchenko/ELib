@@ -33,6 +33,15 @@
             $location.search(property, undefined);
         }
 
+if ($routeParams.categoryId) {
+            vm.categoryId = $routeParams.categoryId;
+            vm.i = vm.categoryId;
+        }
+        vm.filterByCategoryId = function filterByCategoryId (id) {
+            vm.categoryId = id;
+            preparePath();
+            $location.search('categoryId', vm.categoryId);
+        }
         vm.changePageCount = function () {
             if ($location.url() === "/books") {
                 $location.search({ pageCount: vm.pageCount });
@@ -52,6 +61,7 @@
                     genreId: $routeParams.genreId,
                     subgenre: $routeParams.subgenre,
                     year: $routeParams.year,
+                    categoryId:undefined,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,
                     pageNumb: $routeParams.pageNumb

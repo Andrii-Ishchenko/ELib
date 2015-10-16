@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bold-text.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -379,6 +380,8 @@
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\common\libEnterPressDirective.js" />
+    <Content Include="Views\Home\common\sorting-directive.html" />
+    <Content Include="Views\Home\common\sortingDirective.js" />
     <Content Include="Views\Home\config.js" />
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
