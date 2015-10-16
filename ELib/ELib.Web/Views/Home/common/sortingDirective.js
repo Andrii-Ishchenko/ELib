@@ -9,7 +9,6 @@
         return {
             restrict: 'E',
             scope: {
-
                 ordering:"=",
                 callback:"="
             },
@@ -29,32 +28,20 @@
                         scope.ordering.orderBy = item;
                         scope.ordering.orderDirection = "ASC";
                     }
-                    $timeout(scope.callback(), 0, true);
-                    //scope.$apply();
-                    
-
-                    
+                    //need for callback calling in new $digest loop after scope changed.
+                    $timeout(scope.callback(), 0, true);     
                 }
 
-
+                //assign default values
                 if (!scope.ordering.orderBy) {
-                    scope.ordering.orderBy = scope.ordering.defaultOrder;
-                    
+                    scope.ordering.orderBy = scope.ordering.defaultOrder;                    
                 }
 
+                //assign default values
                 if (!scope.ordering.orderDirection)
                 {
-                    scope.ordering.orderDirection = scope.ordering.defaultDirection;
-                   
+                    scope.ordering.orderDirection = scope.ordering.defaultDirection;                 
                 }
-
-                //scope.$watch('orderBy', function (newValue, oldValue) {
-                //    scope.callback();
-                //});
-
-                //scope.$watch('orderDirection', function (newValue, oldValue) {
-                //    scope.callback();
-                //})
 
             },
            

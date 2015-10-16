@@ -104,7 +104,7 @@
                 </ul>-->
                 
                 <!--<sorting-directive order-parameters="books.ordering.orderParameters" order-by="books.ordering.orderBy" order-direction="books.ordering.orderDirection" default-order="LastName" default-direction="ASC" callback="books.alrt"></sorting-directive>-->
-                <sorting-directive ordering="books.ordering"  callback="books.alrt"></sorting-directive>
+                <sorting-directive ordering="books.ordering"  callback="books.OrderingChanged"></sorting-directive>
              
                 <small>Books Per Page:</small>
                 <select ng-change="books.pageChanged()" ng-model="books.pageCount" convert-to-number>

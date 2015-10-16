@@ -9,9 +9,8 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         
-        vm.alrt = function () {
-             alert(vm.ordering.orderBy + " " + vm.ordering.orderDirection);
-            //console.log("alert callback"); 
+        vm.OrderingChanged = function () {
+            //server post should be here after updating parameters object
         }
 
 
@@ -44,9 +43,7 @@
             defaultDirection:"DESC",
             orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
         }
-        //vm.orderByParam = ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre';
-        //vm.orderDirectionParam = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
-        //vm.orderParameters = ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"];
+       
 
         var parameters = {
             pageCount : vm.pageCount,
