@@ -1,4 +1,4 @@
-namespace Elib.Sandbox.Auth.Areas.HelpPage
+namespace ELib.Sandbox.Auth.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

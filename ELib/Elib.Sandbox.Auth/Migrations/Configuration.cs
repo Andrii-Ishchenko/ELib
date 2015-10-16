@@ -1,4 +1,4 @@
-namespace Elib.Sandbox.Auth.Migrations
+namespace ELib.Sandbox.Auth.Migrations
 {
     using Infrastructure.Context;
     using Infrastructure.Identity;
@@ -9,14 +9,14 @@ namespace Elib.Sandbox.Auth.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Elib.Sandbox.Auth.Infrastructure.Context.AuthDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ELib.Sandbox.Auth.Infrastructure.Context.AuthDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Elib.Sandbox.Auth.Infrastructure.Context.AuthDbContext context)
+        protected override void Seed(ELib.Sandbox.Auth.Infrastructure.Context.AuthDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

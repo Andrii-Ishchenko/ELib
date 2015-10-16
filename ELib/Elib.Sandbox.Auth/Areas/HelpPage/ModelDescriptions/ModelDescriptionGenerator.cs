@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
+namespace ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
-using Elib.Sandbox.Auth.Areas.HelpPage.Models;
+using ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
+using ELib.Sandbox.Auth.Areas.HelpPage.Models;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.Controllers
+namespace ELib.Sandbox.Auth.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

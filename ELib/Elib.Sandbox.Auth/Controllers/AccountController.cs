@@ -1,5 +1,5 @@
-﻿using Elib.Sandbox.Auth.Infrastructure.Identity;
-using Elib.Sandbox.Auth.Models;
+﻿using ELib.Sandbox.Auth.Infrastructure.Identity;
+using ELib.Sandbox.Auth.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Elib.Sandbox.Auth.Controllers
+namespace ELib.Sandbox.Auth.Controllers
 {
     [RoutePrefix("api/account")]
     public class AccountController : ApiController

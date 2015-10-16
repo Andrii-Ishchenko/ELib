@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
+using ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.Models
+namespace ELib.Sandbox.Auth.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

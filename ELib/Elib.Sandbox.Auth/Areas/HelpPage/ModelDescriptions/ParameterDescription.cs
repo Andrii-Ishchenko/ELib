@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
+namespace ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

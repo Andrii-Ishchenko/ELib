@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Elib.Sandbox.Auth
+namespace ELib.Sandbox.Auth
 {
     public static class WebApiConfig
     {

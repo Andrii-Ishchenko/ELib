@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Elib.Sandbox.Auth.Controllers
+namespace ELib.Sandbox.Auth.Controllers
 {
     public class HomeController : Controller
     {

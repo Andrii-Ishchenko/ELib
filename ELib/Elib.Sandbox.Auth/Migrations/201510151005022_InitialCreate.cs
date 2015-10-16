@@ -1,4 +1,4 @@
-namespace Elib.Sandbox.Auth.Migrations
+namespace ELib.Sandbox.Auth.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

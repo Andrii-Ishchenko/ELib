@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
+using ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage
+namespace ELib.Sandbox.Auth.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

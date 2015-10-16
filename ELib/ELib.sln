@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Common", "ELib.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Sandbox", "ELib.Sandbox\ELib.Sandbox.csproj", "{831E1DA5-A7D7-494B-8F72-3D04DA5A2950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elib.Sandbox.Auth", "Elib.Sandbox.Auth\Elib.Sandbox.Auth.csproj", "{910B670E-9FD0-4515-A613-4DED77FF1178}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELib.Sandbox.Auth", "Elib.Sandbox.Auth\ELib.Sandbox.Auth.csproj", "{910B670E-9FD0-4515-A613-4DED77FF1178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

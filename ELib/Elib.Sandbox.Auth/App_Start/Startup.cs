@@ -1,5 +1,6 @@
-﻿using Elib.Sandbox.Auth.Infrastructure.Context;
-using Elib.Sandbox.Auth.Infrastructure.Identity;
+﻿using ELib.Sandbox.Auth.Infrastructure.Context;
+using ELib.Sandbox.Auth.Infrastructure.Identity;
+using Microsoft.Owin;
 using Newtonsoft.Json.Serialization;
 using Owin;
 using System;
@@ -9,7 +10,9 @@ using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 
-namespace Elib.Sandbox.Auth.App_Start
+[assembly: OwinStartup(typeof(ELib.Sandbox.Auth.App_Start.Startup))]
+
+namespace ELib.Sandbox.Auth.App_Start
 {
     public class Startup
     {

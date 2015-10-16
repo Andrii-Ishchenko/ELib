@@ -1,6 +1,6 @@
 using System;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
+namespace ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterAnnotation
     {

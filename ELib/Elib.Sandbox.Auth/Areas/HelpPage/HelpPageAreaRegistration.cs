@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage
+namespace ELib.Sandbox.Auth.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

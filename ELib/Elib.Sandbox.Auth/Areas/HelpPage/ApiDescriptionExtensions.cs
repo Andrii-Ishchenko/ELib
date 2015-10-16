@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage
+namespace ELib.Sandbox.Auth.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

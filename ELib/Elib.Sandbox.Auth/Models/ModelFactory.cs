@@ -1,4 +1,4 @@
-﻿using Elib.Sandbox.Auth.Infrastructure.Identity;
+﻿using ELib.Sandbox.Auth.Infrastructure.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Routing;
 
-namespace Elib.Sandbox.Auth.Models
+namespace ELib.Sandbox.Auth.Models
 {
     public class ModelFactory
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Elib.Sandbox.Auth.Controllers
+namespace ELib.Sandbox.Auth.Controllers
 {
     public class ValuesController : ApiController
     {

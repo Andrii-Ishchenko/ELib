@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Elib.Sandbox.Auth
+namespace ELib.Sandbox.Auth
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

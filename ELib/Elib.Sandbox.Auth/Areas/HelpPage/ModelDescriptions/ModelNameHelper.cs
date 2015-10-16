@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
+namespace ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

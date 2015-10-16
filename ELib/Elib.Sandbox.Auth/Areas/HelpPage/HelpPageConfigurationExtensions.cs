@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using Elib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
-using Elib.Sandbox.Auth.Areas.HelpPage.Models;
+using ELib.Sandbox.Auth.Areas.HelpPage.ModelDescriptions;
+using ELib.Sandbox.Auth.Areas.HelpPage.Models;
 
-namespace Elib.Sandbox.Auth.Areas.HelpPage
+namespace ELib.Sandbox.Auth.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

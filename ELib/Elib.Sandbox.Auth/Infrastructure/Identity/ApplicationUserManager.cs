@@ -1,4 +1,4 @@
-﻿using Elib.Sandbox.Auth.Infrastructure.Context;
+﻿using ELib.Sandbox.Auth.Infrastructure.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Elib.Sandbox.Auth.Infrastructure.Identity
+namespace ELib.Sandbox.Auth.Infrastructure.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
