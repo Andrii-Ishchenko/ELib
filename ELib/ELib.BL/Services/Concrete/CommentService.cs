@@ -21,36 +21,33 @@ namespace ELib.BL.Services.Concrete
                 List<CommentDto> commentList = new List<CommentDto>();
 
                 var Book = uow.Repository<Book>().GetById(id);
-                if (Book == null)
+                if (Book == null | pageCount <= 0 | pageNumb <= 0)
                 {
                     return null;
                 }
 
                 int TotalCount = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).Count();
 
-                int c;
+                int skip;
 
                 if (pageCount * pageNumb > TotalCount)
                 {
-                    if(TotalCount % pageCount != 0)
-                    {
-                        pageCount = TotalCount % pageCount;
-                    }
-                    c = 0;
 
+                    if (TotalCount % pageCount > 0)
+                    {
+                        if (TotalCount / pageCount +1 >= pageNumb)
+                            pageCount = TotalCount % pageCount;
+                        else
+                            return null;
+                    }
+                    skip = 0;
                 }
                 else
                 {
-                    c = TotalCount - pageCount * pageNumb;
+                    skip = TotalCount - pageCount * pageNumb;
                 }
 
-var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: c, topCount: pageCount).Reverse().OrderByDescending(x => x.CommentDate).ToList();
-
-
-                // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: TotalCount - pageCount , topCount: pageCount).OrderByDescending(x => x.CommentDate).ToList();
-
-
-                // var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().OrderByDescending(x => x.CommentDate).ToList();
 
                 foreach (var item in Comments)
                 {
