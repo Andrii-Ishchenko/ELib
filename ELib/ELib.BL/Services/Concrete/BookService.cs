@@ -131,8 +131,12 @@ namespace ELib.BL.Services.Concrete
 
             if (!string.IsNullOrEmpty(searchDto.AuthorName))
             {
-                Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName + a.Author.FirstName).Contains(searchDto.AuthorName)).Count() > 0;
-                filter = SearchService<Book>.filterAnd(filter, searchByAuthor);
+                string[] authorNames = searchDto.AuthorName.Split(' ');
+                foreach (string authorName in authorNames)
+                {
+                    Expression<Func<Book, bool>> searchByAuthor = (x) => x.BookAuthors.AsQueryable().Where(a => (a.Author.LastName.Contains(authorName) || a.Author.FirstName.Contains(authorName))).Count() > 0;
+                    filter = SearchService<Book>.filterAnd(filter, searchByAuthor);
+                }
             }
 
             if (!string.IsNullOrEmpty(searchDto.Genre))
@@ -157,6 +161,12 @@ namespace ELib.BL.Services.Concrete
             {
                 Expression<Func<Book, bool>> searchByGenreId = (x) => x.BookGenres.AsQueryable().Where(g => (g.Id > -1 && g.Id == searchDto.GenreId)).Count() > 0;
                 filter = SearchService<Book>.filterAnd(filter, searchByGenreId);
+            }
+
+            if (searchDto.SubgenreId > -1)
+            {
+                Expression<Func<Book, bool>> searchBySubgenreId = (x) => x.SubgenreId == searchDto.SubgenreId;
+                filter = SearchService<Book>.filterAnd(filter, searchBySubgenreId);
             }
 
             if (searchDto.Year > 0)

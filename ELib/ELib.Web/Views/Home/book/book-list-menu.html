@@ -1,64 +1,16 @@
 ﻿
-    <div class="panel panel-default" ng-controller="FilterController as filter">
+    <div class="panel panel-default" >
         <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
         <div class="panel-body">
             <form role="form">
                 <dl>
                     <dt>Filtering</dt>
                     <dd class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-sm-3 text-muted small" for="Title">Title </label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control input-sm" maxlength="30" placeholder="Title contains" ng-model="filter.title"
-                                           ng-blur="filter.addFilter(filter.title,'title',true)" lib-enter-press="filter.addFilter(filter.title,'title', true)" />
-                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('title')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-3 text-muted small" for="Author Name">Authors</label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control input-sm" maxlength="30" placeholder="Author's name contains" ng-model="filter.author"
-                                           ng-blur="filter.addFilter(filter.author,'author', true)" lib-enter-press="filter.addFilter(filter.author, 'author', true)" />
-                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('author')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-3 text-muted small">Genre</label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-sm">
-                                    <select class="form-control text-muted input-sm" ng-options="genre.Id as genre.Name for genre in filter.genres" ng-model="filter.genreId" ng-blur="filter.addFilter(filter.genreId,'genreId', false)"
-                                            lib-enter-press="filter.addFilter(filter.genreId,'genreId', false)" ng-change="filter.addFilter(filter.genreId,'genreId', false)">
-                                        <option value="" class="text-muted input-sm">Genre</option>
-                                        <!--<option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>-->
-                                    </select>
-                                    <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('genreId')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 text-muted small" for="Subgenre">Subgenr.</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" maxlength="30" class="form-control input-sm" placeholder="Subgenre contains" ng-model="filter.subgenre"
-                                               ng-blur="filter.addFilter(filter.subgenre,'subgenre', true)" lib-enter-press="filter.addFilter(filter.subgenre,'subgenre', true)" />
-                                        <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('subgenre')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 text-muted small" for="Year">Year </label>
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-sm">
-                                        <input type="number" class="form-control input-sm" placeholder="Year" ng-model="filter.year"
-                                               ng-blur="filter.addFilter(filter.year, 'year', false)" lib-enter-press="filter.addFilter(filter.year,'year', false)" value="{{filter.currentYear}}" min="0" max="{{filter.currentYear}}" />
-                                        <span class="input-group-btn"><button class="btn btn-default btn-sm" ng-click="filter.removeFilter('year')"><span class="glyphicon glyphicon-remove-circle text-muted sm"></span></button></span>
-                                    </div>
-                                </div>
-                            </div>
+                        <lib-filter entity="book" type="text" property="title" placeholder="Title containce" label="Title"></lib-filter>
+                        <lib-filter entity="book" type="text" property="authorName" placeholder="Author name containce" label="Author"></lib-filter>
+                        <lib-filter entity="book" type="select" property="genreId" source-name="genres" placeholder="Genre" label="Genre"></lib-filter>
+                        <lib-filter entity="book" type="select" property="subgenreId" source-name="subgenres" placeholder="Subgenre" label="Subgenre"></lib-filter>
+                        <lib-filter entity="book" type="year" property="year" max="0" label="Publish. year"></lib-filter>
                     </dd>
                 </dl>
             </form>

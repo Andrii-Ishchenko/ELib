@@ -1,0 +1,16 @@
+﻿<div class="form-group">
+    <label class="control-label col-sm-3 text-muted small" for="{{filter.property}}">
+        {{filter.label}}
+    </label>
+    <div class="col-sm-9">
+        <div class="input-group input-group-sm">
+            <input type="number" ng-blur="filter.addFilter()" class="form-control input-sm" placeholder="{{filter.property}}" ng-model="filter.value"
+                value="{{filter.currentYear}}" min="0" max="{{filter.currentYear}}" />
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-sm" ng-click="filter.removeFilter(filter.property)">
+                    <span class="glyphicon glyphicon-remove-circle text-muted sm"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

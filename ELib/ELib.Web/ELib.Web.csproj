@@ -383,6 +383,10 @@
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Home\filter\libFilterDirective.js" />
+    <Content Include="Views\Home\filter\select-filter.html" />
+    <Content Include="Views\Home\filter\text-filter.html" />
+    <Content Include="Views\Home\filter\year-filter.html" />
     <Content Include="Views\Home\index\index.cshtml" />
     <Content Include="Views\Home\errors\404.html" />
     <Content Include="Views\Home\help\help.html" />

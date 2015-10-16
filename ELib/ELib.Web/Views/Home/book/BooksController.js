@@ -43,10 +43,11 @@
                 pageNumb: vm.currPage,
                 query: $routeParams.query,
                 title: $routeParams.title,
-                authorName: $routeParams.author,
+                authorName: $routeParams.authorName,
                 genre: $routeParams.genre,
                 genreId: $routeParams.genreId,
                 subgenre: $routeParams.subgenre,
+                subgenreId: $routeParams.subgenreId,
                 year: $routeParams.year
             };
         }

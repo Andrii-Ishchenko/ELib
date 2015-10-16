@@ -50,8 +50,12 @@ namespace ELib.BL.Services.Concrete
             Expression<Func<Author, bool>> filter = SearchService<Author>.True;
             if (!string.IsNullOrEmpty(authorName))
             {
-                Expression<Func<Author, bool>> searchByAuthor = (x) => (x.FirstName + " " + x.LastName).Contains(authorName) || (x.LastName + " " + x.FirstName).Contains(authorName);
-                filter = SearchService<Author>.filterAnd(filter, searchByAuthor);
+                string[] authorNames = authorName.Split(' ');
+                foreach (string author in authorNames)
+                {
+                    Expression<Func<Author, bool>> searchByName = a => (a.LastName.Contains(author) || a.FirstName.Contains(author));
+                    filter = SearchService<Author>.filterAnd(filter, searchByName);
+                }
             }
 
             if (year > 0)
