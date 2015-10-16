@@ -22,6 +22,8 @@ namespace ELib.Sandbox.Auth.Infrastructure.Identity
             var appDbContext = context.Get<AuthDbContext>();
             var appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDbContext));
 
+            
+
             return appUserManager;
         }
     }

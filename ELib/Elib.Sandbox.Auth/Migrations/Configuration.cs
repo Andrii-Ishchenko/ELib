@@ -39,10 +39,10 @@ namespace ELib.Sandbox.Auth.Migrations
                 Email = "john_doe@mymail.com",
                 EmailConfirmed = true,
                 FirstName = "John",
-                LastName = "Doe"
+                LastName = "Doe",
             };
 
-            manager.Create(user, "11");
+            manager.Create(user, "MySuperP@ssword!");
         }
     }
 }
