@@ -29,8 +29,38 @@
                 controller: 'BookController',
                 controllerAs: 'book'
             })
-            .when('/profile/',{
-                templateUrl: '/views/home/user/profile.html',
+            .when('/profile',{
+                templateUrl: '/views/home/user/profile-general.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/ratings', {
+                templateUrl: '/views/home/user/profile-ratings.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/comments', {
+                templateUrl: '/views/home/user/profile-comments.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/favs', {
+                templateUrl: '/views/home/user/profile-favs.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/books/wishlist', {
+                templateUrl: '/views/home/user/profile-books-to-read.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/books/donelist', {
+                templateUrl: '/views/home/user/profile-already-read-books.html',
+                controller: 'CurrentProfileController',
+                controllerAs: 'currentProfileCtrl'
+            })
+            .when('/profile/social-networks', {
+                templateUrl: '/views/home/user/profile-social-networks.html',
                 controller: 'CurrentProfileController',
                 controllerAs: 'currentProfileCtrl'
             })

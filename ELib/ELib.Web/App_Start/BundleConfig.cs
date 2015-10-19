@@ -44,6 +44,8 @@ namespace ELib.Web
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/index/SearchController.js",
+                                    "~/Views/Home/filter/libFilterDirective.js",
+                                    "~/Views/Home/index/MenuController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/profileFactory.js",
@@ -56,7 +58,6 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
                                     "~/Views/Home/author/NewAuthorController.js",
-                                    "~/Views/Home/author/FilterForAuthorsController.js",
 
                                     "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/book/NewBookController.js",

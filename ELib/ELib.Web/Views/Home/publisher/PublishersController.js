@@ -10,8 +10,8 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query });
-        obj.$promise.then(function (data) {
+        var obj = dataServiceFactory.getService('publishers').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query })
+                                    .$promise.then(function (data) {
             vm.publishers = data.publishers;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);

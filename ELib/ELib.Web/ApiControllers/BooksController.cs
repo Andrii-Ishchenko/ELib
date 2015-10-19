@@ -33,6 +33,7 @@ namespace ELib.Web.ApiControllers
                                        [FromUri]string publisher = null,
                                        [FromUri]string genre = null,
                                        [FromUri]int genreId = -1,
+                                       [FromUri]int subgenreId = -1,
                                        [FromUri]string subgenre = null,
                                        [FromUri]int year = 0,
                                        [FromUri]int pageCount = 3,
@@ -47,7 +48,7 @@ namespace ELib.Web.ApiControllers
                     categoryIds = _categoryService.GetAllChildrenForCategory(categoryId).Select(x => x.Id).ToList();
                     categoryIds.Add(categoryId);
                 }
-                SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, genreId, year,categoryIds);
+                SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, genreId, subgenreId, year,categoryIds);
                 IEnumerable<BookDto> books = _bookService.GetAll(searchDto, pageCount, pageNumb);
                 int totalCount = _bookService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});

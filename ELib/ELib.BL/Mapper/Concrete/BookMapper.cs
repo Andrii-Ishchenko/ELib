@@ -9,9 +9,9 @@ namespace ELib.BL.Mapper.Concrete
     public class BookMapper : IMapper<Book, BookDto>
     {
         IMapper<BookInstance, BookInstanceDto> _bookInstanceMapper;
-        IMapper<Author, AuthorListDto> _authorMapper;
+        IMapper<Author, AuthorDto> _authorMapper;
 
-        public BookMapper(IMapper<BookInstance, BookInstanceDto>bookInstanceMapper, IMapper<Author, AuthorListDto>authorMapper)
+        public BookMapper(IMapper<BookInstance, BookInstanceDto>bookInstanceMapper, IMapper<Author, AuthorDto>authorMapper)
         {
             _bookInstanceMapper = bookInstanceMapper;
             _authorMapper = authorMapper;
@@ -77,16 +77,17 @@ namespace ELib.BL.Mapper.Concrete
             result.GenresNames = input.BookGenres.Select(g => g.Genre.Name).ToList();
             result.GenresIds = input.BookGenres.Select(g => g.GenreId).ToList();
             result.BookInstances = input.BookInstances.Select(bi => _bookInstanceMapper.Map(bi)).ToList();
-            List<AuthorDto> authors = new List<AuthorDto>();
-            if (input.BookAuthors != null)
-                foreach (var author in input.BookAuthors)
-                    authors.Add(new AuthorDto()
-                    {
-                        Id = author.AuthorId,
-                        FirstName = author.Author.FirstName,
-                        LastName = author.Author.LastName
-                    });
-            result.Authors = authors;
+            result.Authors = input.BookAuthors.Select(ba => _authorMapper.Map(ba.Author)).ToList();
+            //List<AuthorDto> authors = new List<AuthorDto>();
+            //if (input.BookAuthors != null)
+            //    foreach (var author in input.BookAuthors)
+            //        authors.Add(new AuthorDto()
+            //        {
+            //            Id = author.AuthorId,
+            //            FirstName = author.Author.FirstName,
+            //            LastName = author.Author.LastName
+            //        });
+            //result.Authors = authors;
             return result;
         }
     }

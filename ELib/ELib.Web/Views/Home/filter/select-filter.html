@@ -1,0 +1,18 @@
+﻿<div class="form-group">
+    <label class="control-label col-sm-3 text-muted small">
+        {{filter.label}}</label>
+    <div class="col-sm-9">
+        <div class="input-group input-group-sm">
+            <select class="form-control text-muted input-sm" ng-options="item.Id as item.Name for item in filter.source"
+                ng-model="filter.value" ng-blur="filter.addFilter()">
+                <option value="" class="text-muted input-sm">{{filter.placeholder}}</option>
+                <!--<option ng-repeat="genre in filter.genres" class="text-muted input-sm" value="{{genre.Id}}">{{genre.Name}}</option>-->
+            </select>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-sm" ng-click="filter.removeFilter(filter.property)">
+                    <span class="glyphicon glyphicon-remove-circle text-muted sm"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

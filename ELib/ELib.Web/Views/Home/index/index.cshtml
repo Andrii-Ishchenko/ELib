@@ -65,9 +65,9 @@
         </div>
     </div>
     <div class="row row-bottom-buffer">
-        <ng-view>
-        </ng-view>
-    </div>
+        <aside class="col-md-3" ng-controller="MenuController as menuCtrl "><ng-include src="menuCtrl.Url"></ng-include></aside>
+        <ng-view></ng-view>
+</div>
     <div class="row ">
         <div class="container-fluid">
             <div class="col-md-12 bg-success">
