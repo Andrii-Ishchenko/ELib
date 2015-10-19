@@ -14,29 +14,6 @@
         }
 
 
-        vm.status = {
-            isFirstOpen: true,
-            isSecondOpen:true
-               };
-       
-
-        var catParameters = {
-            isNested: true
-        }
-
-        var obj = dataServiceFactory.getService('category').query(catParameters);
-        obj.$promise.then(function (data) {
-            vm.categories = data;
-            preProcessCategories(vm.categories, 0);
-        });
-
-        vm.ToggleNode = function ToggleNode(node) {       
-            if (node && node.opened != undefined)
-                node.opened = !node.opened
-        }
-
-       
-
         vm.ordering ={
             orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre',
             orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
@@ -70,6 +47,7 @@
                 genreId: $routeParams.genreId,
                 subgenre: $routeParams.subgenre,
                 subgenreId: $routeParams.subgenreId,
+                categoryId : $routeParams.categoryId,
                 year: $routeParams.year
             };
         }
@@ -81,18 +59,5 @@
 
         }
       
-        function preProcessCategories(children, level) {
-
-            for (var index in children) {
-                if (children[index].Level != undefined && children[index].Level >= level) {
-                    children[index].opened = false;
-                } else {
-                    children[index].opened = true;
-                }
-               
-                preProcessCategories(children[index].Children,level)
-            }
-        }
-
     }
 })();

@@ -360,7 +360,6 @@
     <Content Include="Views\Home\author\authors-menu.html" />
     <Content Include="Views\Home\author\authors.html" />
     <Content Include="Views\Home\author\AuthorsController.js" />
-    <Content Include="Views\Home\author\FilterForAuthorsController.js" />
     <Content Include="Views\Home\author\new-author.html" />
     <Content Include="Views\Home\author\NewAuthorController.js" />
     <Content Include="Views\Home\book\book-list-menu.html" />
@@ -379,7 +378,6 @@
     <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
-    <Content Include="Views\Home\common\libEnterPressDirective.js" />
     <Content Include="Views\Home\common\sorting-directive.html" />
     <Content Include="Views\Home\common\sortingDirective.js" />
     <Content Include="Views\Home\config.js" />

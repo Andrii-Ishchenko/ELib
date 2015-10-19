@@ -9,9 +9,7 @@ using System.Linq.Expressions;
 using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
-
 {
-
     public class BookService : BaseService<Book, BookDto>, IBookService
     {
         public BookService(IUnitOfWorkFactory factory, IMapper<Book, BookDto> mapper)
@@ -20,7 +18,6 @@ namespace ELib.BL.Services.Concrete
 
         }
 
-      
         public IEnumerable<BookDto> GetForAuthor(int idAuthor)
         {
             using (var uow = _factory.Create())
@@ -93,13 +90,14 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
+
         public IEnumerable<BookDto> GetAll(SearchDto searchDto, int pageCount, int pageNumb)
         {
             Expression<Func<Book, bool>> filter;
             var byParameter = buildFilterExpression(searchDto);
             if (searchDto.Query != null)
             {
-                filter = buildFullExpression(searchDto.Query);
+                filter = buildSearchExpression(searchDto.Query);
                 if (byParameter != SearchService<Book>.False)
                     filter = SearchService<Book>.filterAnd(filter, byParameter);
             }
@@ -129,8 +127,12 @@ namespace ELib.BL.Services.Concrete
             Expression<Func<Book, bool>> filter = SearchService<Book>.True;
             if (!string.IsNullOrEmpty(searchDto.Title))
             {
-                Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(searchDto.Title);
-                filter = SearchService<Book>.filterAnd(filter, searchrByTitle);
+                string[] titleWords = searchDto.Title.Split(' ');
+                foreach (string word in titleWords)
+                {
+                    Expression<Func<Book, bool>> searchrByTitle = x => x.Title.Contains(word);
+                    filter = SearchService<Book>.filterAnd(filter, searchrByTitle);
+                }
             }
 
             if (!string.IsNullOrEmpty(searchDto.AuthorName))
@@ -187,7 +189,7 @@ namespace ELib.BL.Services.Concrete
             return filter;
         }
 
-        private Expression<Func<Book, bool>> buildFullExpression(string query)
+        private Expression<Func<Book, bool>> buildSearchExpression(string query)
         {
             if (string.IsNullOrEmpty(query))
                 return SearchService<Book>.True;
@@ -221,9 +223,5 @@ namespace ELib.BL.Services.Concrete
 
             return filter;
         }
-
-
-
-
     }
 }

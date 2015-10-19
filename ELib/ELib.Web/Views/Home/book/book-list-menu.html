@@ -1,38 +1,40 @@
 ﻿
-    <div class="panel panel-default" >
-        <div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>
-        <div class="panel-body">
-            <form role="form">
-                <dl>
-                    <dt>Filtering</dt>
-                    <dd class="form-horizontal">
-                        <lib-filter entity="book" type="text" property="title" placeholder="Title containce" label="Title"></lib-filter>
-                        <lib-filter entity="book" type="text" property="authorName" placeholder="Author name containce" label="Author"></lib-filter>
-                        <lib-filter entity="book" type="select" property="genreId" source-name="genres" placeholder="Genre" label="Genre"></lib-filter>
-                        <lib-filter entity="book" type="select" property="subgenreId" source-name="subgenres" placeholder="Subgenre" label="Subgenre"></lib-filter>
-                        <lib-filter entity="book" type="year" property="year" max="0" label="Publish. year"></lib-filter>
-                    </dd>
-                </dl>
-            </form>
-        </div>
-    </div>
-    <div class="panel panel-default" ng-controller="BooksController as BooksCtrl">
-        <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Categories</div>
-        <div class="panel-body">
-            <script type="text/ng-template" id="tree.html">
-                <button type="button" ng-click=" BooksCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0" class="btn btn-default"
-                        style="width:26px;height:26px;border-radius:13px; padding:0px">
-                    <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
-                </button>
-                <a href>{{node.Name}}</a>
-                <ul class="subtree" ng-show="node.opened">
-                    <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
-                </ul>
-            </script>
+    <accordion close-others=false>
+    <accordion-group is-open="menuCtrl.status.isFirstOpen">
 
-            <ul class="subtree noLeftIndent">
-                <li class="category" ng-repeat="node in BooksCtrl.categories" ng-include="'tree.html'"></li>
+        <accordion-heading>
+            <i class="glyphicon glyphicon-filter"></i> Filters<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.status.isFirstOpen, 'glyphicon-chevron-right': !menuCtrl.status.isFirstOpen}"></i>
+        </accordion-heading>
+        <form role="form">
+            <dl>
+                <dt>Filtering</dt>
+                <dd class="form-horizontal">
+                    <lib-filter entity="book" type="text" property="title" placeholder="Title containce" label="Title"></lib-filter>
+                    <lib-filter entity="book" type="text" property="authorName" placeholder="Author name containce" label="Author"></lib-filter>
+                    <lib-filter entity="book" type="select" property="genreId" source-name="genres" placeholder="Genre" label="Genre"></lib-filter>
+                    <lib-filter entity="book" type="select" property="subgenreId" source-name="subgenres" placeholder="Subgenre" label="Subgenre"></lib-filter>
+                    <lib-filter entity="book" type="year" property="year" max="0" label="Publish. year"></lib-filter>
+                </dd>
+            </dl>
+        </form>
+    </accordion-group>
+    <accordion-group is-open="menuCtrl.status.isSecondOpen" >
+        <accordion-heading>
+            <i class="glyphicon glyphicon-th-list"></i> Categories<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.status.isSecondOpen, 'glyphicon-chevron-right': !menuCtrl.status.isSecondOpen}"></i>
+        </accordion-heading>
+
+        <script type="text/ng-template" id="tree.html">
+            <button type="button" ng-click=" menuCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0" class="btn btn-default"
+                    style="width:26px;height:26px;border-radius:13px; padding:0px">
+                <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
+            </button>
+            <a href="" ng-class="{'bold': filter.IsMatching(node.Id, filter.categoryId)}" ng-click="filter.filterByCategoryId(node.Id)">{{node.Name}}</a>
+            <ul class="subtree" ng-show="node.opened">
+                <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
             </ul>
-        </div>
-    </div>
-</aside>
+        </script>
+        <ul class="subtree noLeftIndent" ng-controller="FilterController as filter">
+            <li class="category"  ng-repeat="node in menuCtrl.categories" ng-include="'tree.html'"></li>
+        </ul>
+    </accordion-group>
+</accordion>

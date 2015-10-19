@@ -70,7 +70,7 @@
                             <dd>{{book.instance.CategoryName}}</dd>
 
                             <dt>Authors</dt>
-                            <dd><span ng-repeat="(i,author) in book.instance.AuthorsDto"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author.Name + " "}}</a></span></dd>
+                            <dd><span ng-repeat="author in book.instance.Authors"><a ng-href="{{'/authors/' + author.Id}}">{{author.FirstName + " " + author.LastName + " "}}</a></span></dd>
 
                             <dt>Genres</dt>
                             <dd><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></dd>

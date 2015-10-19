@@ -20,7 +20,9 @@
         vm.savedSuccessfully = false;
         vm.message = "";
 
-        vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+        bookRepository.getBookById().get({ id: $routeParams.id }).$promise.then(function (data) {
+            vm.instance = data;
+        });
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
 

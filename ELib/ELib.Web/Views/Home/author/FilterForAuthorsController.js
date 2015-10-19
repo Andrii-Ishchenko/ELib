@@ -6,30 +6,9 @@
 
     function FilterForAuthorsController(dataServiceFactory, $location, $routeParams) {
         vm = this;
-        vm.currentYear = new Date().getFullYear();
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
        
-        if ($routeParams.author) {
-            if (isValid(vm.author)) {
-                vm.author = $routeParams.authorName;
-           }
-        }
-
-        if ($routeParams.year) {
-            vm.year = $routeParams.year;
-        }
-
-        vm.filterByAuthor = function () {
-            preparePath();
-            $location.search('authorName', vm.author);
-        }
-
-        vm.filterByYear = function () {
-            preparePath();
-            $location.search('year', vm.year);
-        }
-
-        vm.changePageCount = function () {
+            vm.changePageCount = function () {
             if ($location.path() === "/authors") {
                 $location.search({ pageCount: vm.pageCount });
             }
@@ -49,9 +28,6 @@
                     pageNumb: $routeParams.pageNumb
                 });
             }
-        }
-        function isValid(str) {
-            return str !== "" && str !== " ";
         }
     }
 })();
