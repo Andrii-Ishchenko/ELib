@@ -24,10 +24,10 @@
                         </div>
 
                     </script>
+                    <figure class="thumbnail myimg">
+                        <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                    </figure>
 
-                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
-
-                    <p></p>
                     <figcaption class="panel-footer">
                         <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
                             {{book.Title}}
@@ -75,10 +75,10 @@
                     </div>
 
                 </script>
-
-                <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
-
-                <p></p>
+                <figure class="thumbnail myimg">
+                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                </figure>
+                
                 <figcaption class="panel-footer">
                     <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
                         {{book.Title}}
