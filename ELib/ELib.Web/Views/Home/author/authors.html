@@ -12,7 +12,7 @@
                                 <input type="text" class="form-control input-sm" placeholder="Author name contains" ng-model="fil.author" ng-blur="fil.filterByAuthor()" />
                             </div>
                         </div>
-                       
+
                         <div class="form-group">
                             <label class="control-label col-sm-3 text-muted small" for="Year of birth">Year</label>
                             <div class="col-sm-9">
@@ -40,7 +40,7 @@
         <div class="row" style="margin-bottom:10px">
             <div class="col-md-12">
                 <small>Ordering :    </small>
-                <sorting-directive order-parameters="authors.orderParameters" order-by="authors.orderBy" order-direction="authors.orderDirection" default-order="LastName" default-direction="ASC"></sorting-directive>
+                <sorting-directive ordering="authors.ordering" callback="authors.OrderingChanged"></sorting-directive>
                 <!--<ul class="list-inline" style="display:inline;margin-left:5px">
                     <li><a href>First Name</a></li>
                     <li><a href>Last Name</a></li>

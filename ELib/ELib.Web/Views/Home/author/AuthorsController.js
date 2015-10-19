@@ -9,10 +9,19 @@
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
-        vm.orderBy = ($routeParams.orderBy) ? $routeParams.orderBy : 'FirstName';
-        vm.orderDirection = ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC';
-        vm.orderParameters = ["FirstName", "LastName", "Date of birth"];
+        vm.OrderingChanged = function () {
+            //server post should be here after updating parameters object
+        }
 
+        vm.ordering = {
+            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'FirstName',
+            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
+            defaultOrder: "FirstName",
+            defaultDirection: "DESC",
+            orderParameters: ["FirstName", "LastName", "Date of birth"]
+        }
+
+       
         var parameters = {
             pageCount: vm.pageCount,
             pageNumb: vm.currPage,
