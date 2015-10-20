@@ -25,8 +25,7 @@
         vm.publishLanguages = languages;
 
         // need improvement
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: 100, pageNumb: 1 });
-        obj.$promise.then(function (data) {
+        var obj = dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
             vm.publishers = data.publishers;
         })
         vm.authors = dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
