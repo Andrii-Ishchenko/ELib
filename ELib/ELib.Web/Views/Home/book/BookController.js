@@ -153,8 +153,7 @@
                 PublishLangId: vm.instance.PublishLangId,
                 TotalPages: vm.instance.TotalPages
             }
-            alert(book.Id + book.Title + book.CategoryId + book.SubgenreId + book.PublisherId + book.PublishYear + book.OriginalLangId + book.PublishLangId + book.TotalPages);
-            dataServiceFactory.getService("Book").update(book);
+            dataServiceFactory.getService("Books").update(book);
         }
 
         vm.addAuthor = function () {

@@ -85,7 +85,7 @@
                             <dt>Authors</dt>
                             <dd>
                                 <span ng-repeat="(i,author) in book.instance.Authors">
-                                    <a ng-href="{{'/authors/' + book.instance.Authors[i].Id}}">{{author.FirstName}}{{author.LastName}}</a>
+                                    <a ng-href="{{'/authors/' + book.instance.Authors[i].Id}}">{{author.FirstName +" "+ author.LastName}}</a>
                                 </span>
                             </dd>
 
@@ -137,12 +137,12 @@
                                 <label class="control-label col-xs-3">Authors:</label>
                                 <div class="col-xs-6">
                                     <select class="form-control" ng-model="book.authorId" name="authors" ng-change="book.addAuthor()">
-                                        <option ng-repeat="author in book.allAuthors" value="{{author.Id}}">{{author.FirstName}} {{author.LastName}}</option>
+                                        <option ng-repeat="author in book.allAuthors" value="{{author.Id}}">{{author.FirstName +" "+ author.LastName}}</option>
                                     </select>
-                                    <div class="input-group col-xs-3" style="float:left; outline-offset:inherit" ng-repeat="author in book.instance.Authors">
-                                        <input type="text" class="form-group-lg" readonly placeholder={{author.FirstName}}{{author.LastName}}>
+                                    <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="author in book.instance.Authors">
+                                        <input type="text" readonly class="form-control" placeholder={{author.FirstName}}{{author.LastName}}>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-group-justified" type="button" ng-click="book.deleteAuthor(author)">X</button>
+                                            <button class="btn btn-default" type="button" ng-click="book.deleteAuthor(author)">X</button>
                                         </span>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                     <select class="form-control" ng-model="book.genreId" ng-change="book.addGenre()">
                                         <option ng-repeat="genre in book.genres" value="{{genre.Id}}">{{genre.Name}}</option>
                                     </select>
-                                    <div class="input-group col-xs-3" style="float:left; outline-offset:inherit" ng-repeat="">
+                                    <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="">
                                         <input type="text" class="form-group-lg" readonly placeholder={{}}>
                                         <span class="input-group-btn">
                                             <button class="btn btn-group-justified" type="button" ng-click="book.deleteGenre(genre)">X</button>
