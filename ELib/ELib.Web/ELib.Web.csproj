@@ -378,6 +378,8 @@
     <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
+    <Content Include="Views\Home\common\lib-page-changer.html" />
+    <Content Include="Views\Home\common\libPageCountChangerDirective.js" />
     <Content Include="Views\Home\common\sorting-directive.html" />
     <Content Include="Views\Home\common\sortingDirective.js" />
     <Content Include="Views\Home\config.js" />

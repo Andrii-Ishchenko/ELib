@@ -25,16 +25,9 @@
                 
                 <!--<sorting-directive order-parameters="books.ordering.orderParameters" order-by="books.ordering.orderBy" order-direction="books.ordering.orderDirection" default-order="LastName" default-direction="ASC" callback="books.alrt"></sorting-directive>-->
                 <sorting-directive ordering="books.ordering"  callback="books.OrderingChanged"></sorting-directive>
+                <lib-page-count-changer entity-name="Books"></lib-page-count-changer>
              
-                <small>Books Per Page:</small>
-                <select ng-change="books.pageChanged()" ng-model="books.pageCount">
-                    <option value="" ng-if="false"></option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
+               </div>
         </div>
     
         <div class="row">

@@ -39,6 +39,7 @@ namespace ELib.Web
                                     "~/Views/Home/common/authServiceFactory.js",
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/dataServiceFactory.js",
+                                    "~/Views/Home/common/libPageCountChangerDirective.js",
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
