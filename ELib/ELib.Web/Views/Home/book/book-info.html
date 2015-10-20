@@ -1,0 +1,35 @@
+﻿<<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <i class="glyphicon glyphicon-question-sign"></i> Info
+            <i class="glyphicon glyphicon-pencil" style="float:right"></i>
+        </h4>
+    </div>
+    <div class="panel-body bg-warning">
+        <dl class="dl-horizontal" style="margin-bottom : 0px">
+            <dt>Title</dt>
+            <dd>{{book.instance.Title}}</dd>
+
+            <dt>Category</dt>
+            <dd>{{book.instance.CategoryName}}</dd>
+
+            <dt>Authors</dt>
+            <dd><span ng-repeat="(i,author) in book.instance.AuthorsDto"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author.Name + " "}}</a></span></dd>
+
+            <dt>Genres</dt>
+            <dd><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></dd>
+
+            <dt>Subgenre</dt>
+            <dd>{{book.instance.SubgenreName}}</dd>
+
+            <dt>Publisher</dt>
+            <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></dd>
+
+            <dt>Year of publishing</dt>
+            <dd>{{book.instance.PublishYear}}</dd>
+
+            <dt>Pages</dt>
+            <dd>{{book.instance.TotalPages}}</dd>
+        </dl>
+    </div>
+</div>

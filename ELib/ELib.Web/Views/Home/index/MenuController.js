@@ -14,9 +14,13 @@
 
         var vm = this;
 
-        vm.status = {
+        vm.statusBooks = {
             isFirstOpen: true,
             isSecondOpen: true
+        };
+
+        vm.statusAuthors = {
+            isFirstOpen: true
         };
 
         vm.ToggleNode = function ToggleNode(node) {
