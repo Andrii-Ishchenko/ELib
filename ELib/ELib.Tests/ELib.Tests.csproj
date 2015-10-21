@@ -64,12 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseServiceTest.cs" />
-    <Compile Include="BookServiceTest.cs" />
-    <Compile Include="Fake\FakeRepository.cs" />
-    <Compile Include="Fake\FakeUnitofWork.cs" />
-    <Compile Include="Fake\FakeUnitOfWorkFactory.cs" />
-    <Compile Include="Fake\IFakeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
