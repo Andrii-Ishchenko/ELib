@@ -27,8 +27,12 @@
         vm.changeRating = function () {
             createRating();
         };
-        
-        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+
+        var currentFetchedPageOfComments = 1;
+        var countOfFetchComments = 5;
+
+        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
+        vm.temp = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
 
         vm.newComment = {
             Text: "",
@@ -44,6 +48,30 @@
             vm.newComment.Text = "";
         };
 
+        vm.fetchComments = function () {
+            currentFetchedPageOfComments = currentFetchedPageOfComments + 1;
+            console.log(vm.comments.length);
+  /*
+                var count = 0;
+                for (var e in vm.comments)
+                {
+                    if (vm.comments.hasOwnProperty(e)) count++;
+                }
+                console.log(count);
+*/
+            CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
+                 function (value) {
+                     vm.temp = value;
+                     var iterator = vm.temp.length;
+                     for (var i = 0; i < iterator; i++)
+                     {
+                         vm.comments.push(vm.temp[i]);
+                     }
+                 }
+                );
+            console.log(vm.temp);
+            console.log(vm.comments);
+        };
 
         var createRating = function () {
                 vm.submitState = true;
