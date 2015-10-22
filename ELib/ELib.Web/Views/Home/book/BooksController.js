@@ -10,18 +10,30 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         vm.OrderingChanged = function () {
-            //server post should be here after updating parameters object
+
+            var params = getParameters();
+            var obj = dataServiceFactory.getService('books').get(params)
+                .$promise.then(function (data) {
+              vm.books = data.books;
+              vm.totalCount = data.totalCount;
+              vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+              vm.maxSize = 5;
+              vm.pages = new Array(vm.totalPages);
+          })
         }
 
 
-        vm.ordering ={
-            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'Genre',
-            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
-            defaultOrder: "AuthorName",
-            defaultDirection:"DESC",
-            orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
-        }
+        vm.ordering = fetchOrderingWithDefaultParams();
        
+        function fetchOrderingWithDefaultParams() {
+            return {
+                defaultOrder: "AuthorName",
+                defaultDirection: "ASC",
+                orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "AuthorName",
+                orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "ASC",
+                orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
+            }
+        }
 
          var parameters = getParameters()
 
@@ -48,7 +60,9 @@
                 subgenre: $routeParams.subgenre,
                 subgenreId: $routeParams.subgenreId,
                 categoryId : $routeParams.categoryId,
-                year: $routeParams.year
+                year: $routeParams.year,
+                orderBy: vm.ordering.orderBy,
+                orderDirection: vm.ordering.orderDirection
             };
         }
         function pageChanged() {

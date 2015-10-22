@@ -105,11 +105,14 @@ namespace ELib.BL.Services.Concrete
                 filter = byParameter;
             }
 
+            var orderExpression = buildOrderExpression(searchDto);
+
             using (var uow = _factory.Create())
             {
+               
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
+                var entities = repository.Get(filter: filter,orderBy:orderExpression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -120,6 +123,61 @@ namespace ELib.BL.Services.Concrete
                 return entitiesDto;
             }
         }
+
+        private Func<IQueryable<Book>, IOrderedQueryable<Book>> buildOrderExpression(SearchDto searchDto){
+            string orderby = searchDto.OrderBy;
+            bool isOrderASC = searchDto.OrderDirection=="ASC";
+
+            if (isOrderASC)
+            {
+                switch (orderby)
+                {
+                    case "Title":
+                        return query => query.OrderBy(b => b.Title);
+                    case "Year":
+                        return query => query.OrderBy(b => b.PublishYear);
+                    case "AuthorName":
+                        return query => query.OrderBy(b => (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a=>a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                    case "Genre":
+                        return query => query.OrderBy(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                    case "Publisher":
+                        return query => query.OrderBy(b => b.Publisher.Name);
+                    case "Rating":
+                        return query => query.OrderBy(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                    case "Date":
+                        return query => query.OrderBy(b => b.AdditionDate);
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (orderby)
+                {
+                    case "Title":
+                        return query => query.OrderByDescending(b => b.Title);
+                    case "Year":
+                        return query => query.OrderByDescending(b => b.PublishYear);
+                    case "AuthorName":
+                        return query => query.OrderByDescending(b => (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                    case "Genre":
+                        return query => query.OrderByDescending(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                    case "Publisher":
+                        return query => query.OrderByDescending(b => b.Publisher.Name);
+                    case "Rating":
+                        return query => query.OrderByDescending(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                    case "Date":
+                        return query => query.OrderByDescending(b => b.AdditionDate);
+                    default:
+                        break;
+                }
+            }
+           
+            //default 
+            return query => query.OrderBy(b => b.Title);
+            
+        }
+
 
         private Expression<Func<Book, bool>> buildFilterExpression(SearchDto searchDto)
         {
