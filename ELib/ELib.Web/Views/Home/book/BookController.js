@@ -16,6 +16,8 @@
                 return false;
         };
 
+        
+
 
         vm.savedSuccessfully = false;
         vm.message = "";
@@ -51,14 +53,8 @@
         vm.fetchComments = function () {
             currentFetchedPageOfComments = currentFetchedPageOfComments + 1;
             console.log(vm.comments.length);
-  /*
-                var count = 0;
-                for (var e in vm.comments)
-                {
-                    if (vm.comments.hasOwnProperty(e)) count++;
-                }
-                console.log(count);
-*/
+
+
             CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
                  function (value) {
                      vm.temp = value;

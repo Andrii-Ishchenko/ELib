@@ -47,7 +47,7 @@ namespace ELib.BL.Services.Concrete
                     skip = TotalCount - pageCount * pageNumb;
                 }
 
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().OrderByDescending(x => x.CommentDate).ToList();
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().ToList().OrderByDescending(x => x.CommentDate);
 
                 foreach (var item in Comments)
                 {
