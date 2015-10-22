@@ -29,7 +29,7 @@ namespace ELib.DAL.Repositories.Concrete
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
-
+        
         public virtual void Delete(TEntity entity)
         {
             if(context.Entry(entity).State == EntityState.Detached)

@@ -14,20 +14,40 @@ namespace ELib.BL.Services.Concrete
             : base(factory, mapper)
         { }
 
-        public List<CommentDto> GetCommentsByBookId(int id)
+        public List<CommentDto> GetCommentsByBookId(int id, int pageCount, int pageNumb)
         {
             using (var uow = _factory.Create())
             {
                 List<CommentDto> commentList = new List<CommentDto>();
 
                 var Book = uow.Repository<Book>().GetById(id);
-                if (Book == null)
+                if (Book == null | pageCount <= 0 | pageNumb <= 0)
                 {
                     return null;
                 }
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).OrderByDescending(x => x.CommentDate).ToList();//change 
-                //var Persons = uow.Repository<Person>().Get(i => Comments.All(s => s.UserId == i.Id)).ToList();
-                //var User = uow.Repository<ApplicationUser>().Get(k => Persons.All(t => t.ApplicationUserId == k.Id)).ToList();
+
+                int TotalCount = uow.Repository<Comment>().Get(x => x.BookId == Book.Id).Count();
+
+                int skip;
+
+                if (pageCount * pageNumb > TotalCount)
+                {
+
+                    if (TotalCount % pageCount > 0)
+                    {
+                        if (TotalCount / pageCount +1 >= pageNumb)
+                            pageCount = TotalCount % pageCount;
+                        else
+                            return null;
+                    }
+                    skip = 0;
+                }
+                else
+                {
+                    skip = TotalCount - pageCount * pageNumb;
+                }
+
+                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().ToList().OrderByDescending(x => x.CommentDate);
 
                 foreach (var item in Comments)
                 {

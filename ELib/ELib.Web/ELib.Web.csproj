@@ -373,6 +373,7 @@
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\book\FilterController.js" />
     <Content Include="Views\Home\book\RatingController.js" />
+    <Content Include="Views\Home\book\whenScrolled.js" />
     <Content Include="Views\Home\comments\Comment.html" />
     <Content Include="Views\Home\comments\commentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />

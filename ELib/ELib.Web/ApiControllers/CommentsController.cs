@@ -21,11 +21,11 @@ namespace ELib.Web.ApiControllers
 
         [HttpGet]
         [ActionName("comments-for-book")]
-        public HttpResponseMessage GetCommentsByBookId(int id)
+        public HttpResponseMessage GetCommentsByBookId([FromUri] int id, [FromUri] int pageCount = 5, [FromUri] int pageNumb = 1)
         {
             try
             {
-                List<CommentDto> commentList = _commentService.GetCommentsByBookId(id);
+                List<CommentDto> commentList = _commentService.GetCommentsByBookId(id, pageCount, pageNumb);
                 return Request.CreateResponse(HttpStatusCode.OK, commentList);
             }
             catch (Exception ex)

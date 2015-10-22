@@ -1,9 +1,8 @@
 ﻿
-    <accordion close-others=false>
+<accordion close-others=false>
     <accordion-group is-open="menuCtrl.statusBooks.isFirstOpen">
-
         <accordion-heading>
-            <i class="glyphicon glyphicon-filter"></i> Filters<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.status.isFirstOpen, 'glyphicon-chevron-right': !menuCtrl.status.isFirstOpen}"></i>
+            <i class="glyphicon glyphicon-filter"></i> Filters<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.statusBooks.isFirstOpen, 'glyphicon-chevron-right': !menuCtrl.statusBooks.isFirstOpen}"></i>
         </accordion-heading>
         <form role="form">
             <dl>
@@ -18,23 +17,22 @@
             </dl>
         </form>
     </accordion-group>
-    <accordion-group is-open="menuCtrl.statusBooks.isSecondOpen" >
+    <accordion-group is-open="menuCtrl.statusBooks.isSecondOpen">
         <accordion-heading>
-            <i class="glyphicon glyphicon-th-list"></i> Categories<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.status.isSecondOpen, 'glyphicon-chevron-right': !menuCtrl.status.isSecondOpen}"></i>
+            <i class="glyphicon glyphicon-th-list"></i> Categories<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.statusBooks.isSecondOpen, 'glyphicon-chevron-right': !menuCtrl.statusBooks.isSecondOpen}"></i>
         </accordion-heading>
-
         <script type="text/ng-template" id="tree.html">
             <button type="button" ng-click=" menuCtrl.ToggleNode(node)" ng-disabled="node.Children.length==0" class="btn btn-default"
                     style="width:26px;height:26px;border-radius:13px; padding:0px">
                 <span ng-class="node.opened ? 'glyphicon glyphicon-chevron-down center-block':'glyphicon glyphicon-chevron-right center-block'"></span>
             </button>
-            <a href="" ng-class="{'bold': filter.IsMatching(node.Id, filter.categoryId)}" ng-click="filter.filterByCategoryId(node.Id)">{{node.Name}}</a>
+            <a href="" ng-class="{'bold': filter.IsMatching(node.Id)}" ng-click="filter.filterByCategoryId(node.Id)">{{node.Name}}</a>
             <ul class="subtree" ng-show="node.opened">
                 <li class="category" ng-repeat="node in node.Children" ng-include="'tree.html'"></li>
             </ul>
         </script>
         <ul class="subtree noLeftIndent" ng-controller="FilterController as filter">
-            <li class="category"  ng-repeat="node in menuCtrl.categories" ng-include="'tree.html'"></li>
+            <li class="category" ng-repeat="node in menuCtrl.categories" ng-include="'tree.html'"></li>
         </ul>
     </accordion-group>
 </accordion>
