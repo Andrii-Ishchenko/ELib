@@ -66,15 +66,9 @@
 
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <i class="glyphicon glyphicon-question-sign"></i> Info
-                            <i ng-hide="book.isEditMode" class="glyphicon glyphicon-pencil" style="float:right" ng-click="book.ToggleEditMode(); book.edit();"></i>
-                            <i ng-show="book.isEditMode" class="glyphicon glyphicon-remove" style="float:right" ng-click="book.ToggleEditMode(); book.cancel();"></i>
-                            <i ng-show="book.isEditMode" class="glyphicon glyphicon-ok" style="float:right" ng-click="book.ToggleEditMode(); book.save();"></i>
-                        </h4>
+                        <h4 class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> Info</h4>
                     </div>
-
-                    <div class="panel-body bg-warning" ng-hide="book.isEditMode">
+                    <div class="panel-body bg-warning">
                         <dl class="dl-horizontal" style="margin-bottom : 0px">
                             <dt>Title</dt>
                             <dd>{{book.instance.Title}}</dd>
@@ -83,18 +77,10 @@
                             <dd>{{book.instance.CategoryName}}</dd>
 
                             <dt>Authors</dt>
-                            <dd>
-                                <span ng-repeat="(i,author) in book.instance.Authors">
-                                    <a ng-href="{{'/authors/' + book.instance.Authors[i].Id}}">{{author.FirstName +" "+ author.LastName}}</a>
-                                </span>
-                            </dd>
+                            <dd><span ng-repeat="(i,author) in book.instance.Authors"><a ng-href="{{'/authors/' + book.instance.AuthorsIds[i]}}">{{author + " "}}</a></span></dd>
 
                             <dt>Genres</dt>
-                            <dd>
-                                <span ng-repeat="(i,genre) in book.instance.GenresNames">
-                                    <a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a>
-                                </span>
-                            </dd>
+                            <dd><span ng-repeat="(i,genre) in book.instance.GenresNames"><a ng-href="{{'/genres/' + book.instance.GenresIds[i]}}">{{genre + " "}}</a></span></dd>
 
                             <dt>Subgenre</dt>
                             <dd>{{book.instance.SubgenreName}}</dd>
@@ -105,156 +91,64 @@
                             <dt>Year of publishing</dt>
                             <dd>{{book.instance.PublishYear}}</dd>
 
-                            <dt>Original language</dt>
-                            <dd>{{book.instance.Language1Name}}</dd>
-
-                            <dt>Language of publishing</dt>
-                            <dd>{{book.instance.LanguageName}}</dd>
-
                             <dt>Pages</dt>
                             <dd>{{book.instance.TotalPages}}</dd>
                         </dl>
                     </div>
-
-                    <div class="panel-body bg-warning-edit" ng-show="book.isEditMode">
-                        <form class="form-horizontal" name="newBookForm" novalidate>
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Title:</label>
-                                <div class="col-xs-6">
-                                    <input type="text" class="form-control" maxlength="200" ng-model="book.instance.Title">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Category:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-init="book.instance.CategoryId" ng-model="book.instance.CategoryId"
-                                            ng-options="category.Id as category.Name for category in book.categories"></select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Authors:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-model="book.authorId" name="authors" ng-change="book.addAuthor()">
-                                        <option ng-repeat="author in book.allAuthors" value="{{author.Id}}">{{author.FirstName +" "+ author.LastName}}</option>
-                                    </select>
-                                    <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="author in book.instance.Authors">
-                                        <input type="text" readonly class="form-control" placeholder={{author.FirstName}}{{author.LastName}}>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" ng-click="book.deleteAuthor(author)">X</button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Genres:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-model="book.genreId" ng-change="book.addGenre()">
-                                        <option ng-repeat="genre in book.genres" value="{{genre.Id}}">{{genre.Name}}</option>
-                                    </select>
-                                    <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="">
-                                        <input type="text" class="form-group-lg" readonly placeholder={{}}>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-group-justified" type="button" ng-click="book.deleteGenre(genre)">X</button>
-                                        </span>
-                                    </div>
-                                </div>                               
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Subgenre:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-init="book.instance.SubgenreId" ng-model="book.instance.SubgenreId"
-                                            ng-options="subgenre.Id as subgenre.Name for subgenre in book.subgenres"></select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Publisher:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-init="book.instance.PublisherId" ng-model="book.instance.PublisherId"
-                                            ng-options="publisher.Id as publisher.Name for publisher in book.publishers"></select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Year of publishing:</label>
-                                <div class="col-xs-6">
-                                    <input type="text" class="form-control" maxlength="4" ng-model="book.instance.PublishYear">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Original language:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-init="book.instance.OriginalLangId" ng-model="book.instance.OriginalLangId"
-                                            ng-options="language.Id as language.Name for language in book.languages"></select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Language of publish:</label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" ng-init="book.instance.PublishLangId" ng-model="book.instance.PublishLangId"
-                                            ng-options="language.Id as language.Name for language in book.languages"></select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3">Pages:</label>
-                                <div class="col-xs-6">
-                                    <input type="text" class="form-control" maxlength="200" ng-model="book.instance.TotalPages">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="glyphicon glyphicon-comment"></i>
-                            Comments
-                        </div>
-                        <div class="panel-body">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"> {{book.profile.UserName}}, leave your comment:</div>
-                                <div class="panel-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-12 form-group">
-                                                <textarea class="col-md-12 form-control" ng-model="book.newComment.Text" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 form-group">
-                                                <div class="pull-right">
-                                                    <input type="button" class="btn btn-default" value="Clear" ng-click="book.cleanComment()" />
-                                                    <input type="button" class="btn btn-primary" value="Send" ng-click="book.createComment()" ng-disabled="!book.CanPost()" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!--<div commentsDirective comments="book.comments"> </div>-->
-                            <div class="panel panel-default" ng-repeat="comm in book.comments">
-                                <div class="panel-heading">
-                                    <i class="glyphicon glyphicon-user"></i> {{comm.UserName}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-sm-2">
-                                        <img class="img-circle" width="70" height="70" ng-src="/api/file/profile-image?w=70&h=70&hash={{comm.ImageHash}}" />
-                                    </div>
-                                    <div class="col-sm-10">
-                                        {{comm.Text}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="glyphicon glyphicon-comment"></i> 
+                        Comments
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"> {{book.profile.UserName}}, leave your comment:</div>
+                            <div class="panel-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <textarea class="col-md-12 form-control" ng-model="book.newComment.Text" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <div class="pull-right">
+                                                <input type="button" class="btn btn-default" value="Clear" ng-click="book.fetchComments()"/>
+                                                <input type="button" class="btn btn-primary" value="Send" ng-click="book.createComment()" ng-disabled="!book.CanPost()"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--<div commentsDirective comments="book.comments"> </div>-->
+                        <div class="panel panel-default" ng-repeat="comm in book.comments">
+                            <div class="panel-heading"> 
+                                <i class="glyphicon glyphicon-user"></i> {{comm.UserName}} wrote {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
+                            </div>
+                            <div class="panel-body"> 
+                                <div class="col-sm-2">
+                                    <img class="img-circle" width="70" height="70" ng-src="/api/file/profile-image?w=70&h=70&hash={{comm.ImageHash}}" />
+                                </div>
+                                <div class="col-sm-10">
+                                    {{comm.Text}}
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <!--bottom pagination-->
+                    <pagination ng-if="authors.totalItems" total-items="authors.totalItems" ng-model="authors.currPage" ng-change="authors.pageChanged()"
+                                items-per-page="authors.pageCount" max-size="authors.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+
+                </div>
+               
             </div>
-            <div class="col-lg-2 col-sm-9 container">
+            <div class="col-lg-2 col-sm-12 container">
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="glyphicon glyphicon-stats"></i> Stats</div>
                     <div class="panel-body">
