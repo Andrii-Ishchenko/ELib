@@ -164,7 +164,7 @@ namespace ELib.BL.Services.Concrete
 
             if (searchDto.GenreId > -1)
             {
-                Expression<Func<Book, bool>> searchByGenreId = (x) => x.BookGenres.AsQueryable().Where(g => (g.Id > -1 && g.Id == searchDto.GenreId)).Count() > 0;
+                Expression<Func<Book, bool>> searchByGenreId = (x) => x.BookGenres.AsQueryable().Where(g => (g.GenreId > -1 && g.GenreId == searchDto.GenreId)).Count() > 0;
                 filter = SearchService<Book>.filterAnd(filter, searchByGenreId);
             }
 
