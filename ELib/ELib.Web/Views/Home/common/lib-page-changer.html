@@ -1,0 +1,10 @@
+﻿<span>
+    <small>{{pageChangeCtrl.entityName}} Per Page:</small>
+    <select ng-change="pageChangeCtrl.pageCountChanged()" ng-model="pageChangeCtrl.pageCount">
+        <option value="" ng-if="false"></option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="100">100</option>
+    </select>
+</span>

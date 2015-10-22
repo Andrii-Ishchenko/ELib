@@ -1,0 +1,21 @@
+﻿<!--<div class="panel panel-default" >-->
+<accordion close-others=false>
+    <accordion-group is-open="menuCtrl.statusAuthors.isFirstOpen">
+        <accordion-heading>
+            <i class="glyphicon glyphicon-filter"></i> Filters<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': menuCtrl.status.isFirstOpen, 'glyphicon-chevron-right': !menuCtrl.status.isFirstOpen}"></i>
+        </accordion-heading>
+        <!--<div class="panel-heading"><i class="glyphicon glyphicon-filter"></i> Filters</div>-->
+        <!--<div class="panel-body">-->
+        <form role="form">
+            <dl>
+                <dt>Filtering</dt>
+                <dd class="form-horizontal">
+                    <lib-filter entity="author" type="text" property="authorName" placeholder="Author name containce" label="Name"></lib-filter>
+                    <lib-filter entity="author" type="year" property="year" max="-50" label="Birth year"></lib-filter>
+                </dd>
+            </dl>
+        </form>
+    </accordion-group>
+    </accordion>
+    <!--</div>
+    </div>-->

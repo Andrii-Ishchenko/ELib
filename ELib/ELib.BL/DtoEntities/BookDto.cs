@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 namespace ELib.BL.DtoEntities
 {
     public class BookDto
     {
-        private readonly int currentYear = DateTime.Now.Year;
-
         public int Id { get; set; }
 
         [Required]
@@ -54,11 +50,7 @@ namespace ELib.BL.DtoEntities
 
         public string CategoryName { get; set; }
 
-        public ICollection<string> Authors { get; set; }
-
-        public ICollection<int> AuthorsIds { get; set; }
-
-        public ICollection<AuthorListDto> AuthorsDto { get; set; }
+        public ICollection<AuthorDto> Authors { get; set; }
 
         public ICollection<string> GenresNames { get; set; }
 

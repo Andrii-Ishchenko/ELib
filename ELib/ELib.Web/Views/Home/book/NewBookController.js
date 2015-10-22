@@ -7,7 +7,7 @@
     function NewBookController(authServiceFactory, dataServiceFactory, $location, $timeout) {
         var vm = this;
 
-        authServiceFactory.fillAuthData();
+       authServiceFactory.fillAuthData();
         
         if (!authServiceFactory.authentication.isAuth) {
             $location.path('/login');
@@ -17,20 +17,51 @@
         vm.submitState = false;
         vm.createdSuccessfully = false;
         vm.currentYear = new Date().getFullYear();
+        vm.authorsMas = [];
 
         var languages = dataServiceFactory.getService('languages').query();
 
         vm.originalLanguages = languages;
         vm.publishLanguages = languages;
 
-        //    vm.publishers = dataServiceFactory.getService('publishers').query();
-
         // need improvement
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: 100, pageNumb: 1 });
-        obj.$promise.then(function (data) {
+        var obj = dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
             vm.publishers = data.publishers;
         })
+        vm.authors = dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
+            vm.authors = data.authors;
+        })
 
+        vm.authorSelected = function () {
+            var selectedAuthor;
+            var index;
+            if (vm.authorId != undefined) {
+                for (var i = 0; i < vm.authors.length; i++) {
+                    if (vm.authors[i].Id == vm.authorId) {
+                        selectedAuthor = vm.authors[i];
+                        index = i;
+                    }
+                }
+                vm.authorsMas.push(selectedAuthor);
+                vm.authors.splice(index, 1);
+            }           
+        }
+
+        vm.deleteAuthor = function (author) {
+            var selectedAuthor;
+            var index;
+            if (author.Id != undefined) {
+                for (var i = 0; i < vm.authorsMas.length; i++) {
+                    if (vm.authorsMas[i].Id == author.Id) {
+                        selectedAuthor = vm.authorsMas[i];
+                        index = i;
+                    }
+                }
+                vm.authorsMas.splice(index, 1);
+                vm.authors.push(selectedAuthor);
+            }      
+        }
+                
         var catParameters = {
             isNested: false
         }
@@ -51,7 +82,8 @@
                 Description: vm.description,
                 SubgenreId: vm.subgenre,
                 CategoryId: vm.category,
-                PublishYear: vm.yearOfPublishing
+                PublishYear: vm.yearOfPublishing,
+                Authors: vm.authorsMas
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(

@@ -31,18 +31,22 @@ namespace ELib.Web
                            "~/Content/main.css",
                             "~/Content/profile.css",
                              "~/Content/ng-rating.css",
-                             "~/Content/font-awesome.min.css"));
+                             "~/Content/font-awesome.min.css",
+                             "~/Content/bold-text.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
                                     "~/Views/Home/common/authServiceFactory.js",
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/dataServiceFactory.js",
+                                    "~/Views/Home/common/libPageCountChangerDirective.js",
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
                                     "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/index/SearchController.js",
+                                    "~/Views/Home/filter/libFilterDirective.js",
+                                    "~/Views/Home/index/MenuController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
                                     "~/Views/Home/user/profileFactory.js",
@@ -55,7 +59,6 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
                                     "~/Views/Home/author/NewAuthorController.js",
-                                    "~/Views/Home/author/FilterForAuthorsController.js",
 
                                     "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/book/NewBookController.js",
@@ -73,7 +76,8 @@ namespace ELib.Web
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
                                     "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/comments/CommentsRepository.js",
-                                    "~/Views/Home/comments/commentsDirective.js"
+                                    "~/Views/Home/comments/commentsDirective.js",
+                                    "~/Views/Home/common/sortingDirective.js"
 
                         )
                     );

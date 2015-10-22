@@ -2,32 +2,27 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["currentProfileFactory","dataServiceFactory","fileFactory"];
+    CurrentProfileController.$inject = ["currentProfileFactory","dataServiceFactory","fileFactory", "$location"];
 
-    function CurrentProfileController(currentProfileFactory,dataServiceFactory,fileFactory) {
+    function CurrentProfileController(currentProfileFactory,dataServiceFactory,fileFactory, $location) {
         var vm = this;
-        console.log(vm.person);
         vm.links = {
-            "GeneralInfo": "/views/home/user/profile-general.html",
-            "Ratings": "/views/home/user/profile-ratings.html",
-            "Comments": '/views/home/user/profile-comments.html',
-            "Favourites": "/views/home/user/profile-favs.html",
-            "BooksToRead": "/views/home/user/profile-books-to-read.html",
-            "AlreadyReadBooks": "/views/home/user/profile-already-read-books.html",
-            "SocialNetworks": "/views/home/user/profile-social-networks.html"
+            "GeneralInfo": "/profile",
+            "Ratings": "/profile/ratings",
+            "Comments": '/profile/comments',
+            "Favourites": "/profile/favs",
+            "BooksToRead": "/profile/books/wishlist",
+            "AlreadyReadBooks": "/profile/books/donelist",
+            "SocialNetworks": "/profile/social-networks"
         };
 
-        vm.currUrl = vm.links["GeneralInfo"];
         vm.files = "";
-        
-        vm.showSection = function (name) {
-            vm.currUrl = vm.links[name];
-        }
+       
         
         vm.isActive = function (viewName) {
             var item = vm.links[viewName];
            // console.log("name = " + viewName + "\t" + "item = " + item);
-            var result = (vm.currUrl == item);
+            var result = ($location.path() == item);
             return result;
         }
         

@@ -24,18 +24,18 @@
                         </div>
 
                     </script>
+                    <figure class="thumbnail myimg">
+                        <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                    </figure>
 
-                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
-
-                    <p></p>
                     <figcaption class="panel-footer">
                         <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
                             {{book.Title}}
                             <span class="paragraph-end"></span>
                         </a>
 
-                        <a class="subtitle" href="{{'/authors/'+book.AuthorsIds[0]}}" title="{{book.Authors[0]}}">
-                            {{book.Authors[0]}}
+                        <a class="subtitle" href="{{'/authors/'+book.Authors[0].Id}}" title="{{book.Authors[0].Title}}">
+                            {{book.Authors[0].FirstName}} {{book.Authors[0].LastName}}
                             <span class="paragraph-end">
                             </span>
                         </a>
@@ -75,18 +75,18 @@
                     </div>
 
                 </script>
-
-                <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
-
-                <p></p>
+                <figure class="thumbnail myimg">
+                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                </figure>
+                
                 <figcaption class="panel-footer">
                     <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
                         {{book.Title}}
                         <span class="paragraph-end"></span>
                     </a>
 
-                    <a class="subtitle" href="{{'/authors/'+book.AuthorsIds[0]}}" title="{{book.Authors[0]}}">
-                        {{book.Authors[0]}}
+                    <a class="subtitle" href="{{'/authors/'+book.Authors[0].Id}}" title="{{book.Authors[0].Title}}">
+                        {{book.Authors[0].FirstName}} {{book.Authors[0].LastName}}
                         <span class="paragraph-end">
                         </span>
                     </a>

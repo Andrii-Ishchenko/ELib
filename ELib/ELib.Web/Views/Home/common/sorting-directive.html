@@ -1,0 +1,7 @@
+﻿<ul class="list-inline" style="display:inline;margin-left:5px">
+    <li ng-repeat="item in ordering.orderParameters"   ng-class="item==ordering.orderBy?'order-list-item selected':'order-list-item'" ng-click="changeOrder(item)"> 
+        <span class="noselect">{{item}}</span>   
+        <span ng-class="ordering.orderDirection=='ASC'?'glyphicon glyphicon-triangle-top noselect':'glyphicon glyphicon-triangle-bottom noselect'" ng-show="ordering.orderBy==item" style="margin-right:7px"></span>   
+    </li>
+</ul>
+

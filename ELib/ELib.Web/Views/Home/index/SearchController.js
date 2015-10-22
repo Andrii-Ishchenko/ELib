@@ -2,11 +2,11 @@
     angular.module("elib")
            .controller("SearchController", SearchController);
 
-    SearchController.$inject = ["$location"];
+    SearchController.$inject = ["$location", "$routeParams"];
 
-    function SearchController( $location) {
+    function SearchController($location, $routeParams) {
         var vm = this;
-        vm.query = null;
+        vm.query =$routeParams.query;
         vm.type = "books";
         vm.sendRequest = function () {
             if (vm.type === "books") {

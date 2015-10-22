@@ -1,16 +1,4 @@
-﻿<!--menu-->
-<aside class="col-md-3">
-    <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('GeneralInfo')}">        <a ng-click="currentProfileCtrl.showSection('GeneralInfo')"> <i class="glyphicon glyphicon-list"></i> General Info </a></li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('Ratings')}">            <a ng-click="currentProfileCtrl.showSection('Ratings')"> <i class="glyphicon glyphicon-star"></i> Ratings </a> </li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('Comments')}">           <a ng-click="currentProfileCtrl.showSection('Comments')"> <i class="glyphicon glyphicon-comment"></i> Comments </a> </li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('Favourites')}">         <a ng-click="currentProfileCtrl.showSection('Favourites')"> <i class="glyphicon glyphicon-heart"></i> Favs </a></li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('BooksToRead')}">        <a ng-click="currentProfileCtrl.showSection('BooksToRead')"> <i class="glyphicon glyphicon-time"></i> Books To Read </a></li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('AlreadyReadBooks')}">   <a ng-click="currentProfileCtrl.showSection('AlreadyReadBooks')"> <i class="glyphicon glyphicon-ok-circle"></i> Already Read Books  </a></li>
-        <li role="presentation" ng-class="{active:currentProfileCtrl.isActive('SocialNetworks')}">     <a ng-click="currentProfileCtrl.showSection('SocialNetworks')"> <i class="glyphicon glyphicon-globe"></i> Social Network Integration </a> </li>
-    </ul>
-</aside>
-<!--main-->
+﻿<!--main-->
 <div class="col-md-9">
     <ng-include src="currentProfileCtrl.currUrl"></ng-include>
 </div>

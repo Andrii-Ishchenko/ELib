@@ -1,12 +1,8 @@
 ﻿using ELib.BL.Services.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ELib.BL.DtoEntities;
 using System.Drawing;
-
 
 namespace ELib.BL.Services.Concrete
 {
@@ -67,9 +63,5 @@ namespace ELib.BL.Services.Concrete
             return captcha;
 
         }
-
-
-
-
     }
 }

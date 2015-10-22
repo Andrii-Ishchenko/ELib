@@ -1,11 +1,12 @@
+<div class="col-md-9">
     <div class="row ">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
-                    <img  ng-src="/api/file/profile-image?w=190&h=190&hash={{currentProfileCtrl.profile.ImageHash}}" width="190" height="190" class="img-thumbnail center-block" />
+                    <img ng-src="/api/file/profile-image?w=190&h=190&hash={{currentProfileCtrl.profile.ImageHash}}" width="190" height="190" class="img-thumbnail center-block" />
                     <br>
                     <div style="text-align:center">
-                        <input type="file" id="fileUploadId"  style="display:none !important" onchange="angular.element(this).controller().uploadProfileImage(document.getElementById('fileUploadId').files)" />
+                        <input type="file" id="fileUploadId" style="display:none !important" onchange="angular.element(this).controller().uploadProfileImage(document.getElementById('fileUploadId').files)" />
                         <a href="#" onclick="event.preventDefault(); document.getElementById('fileUploadId').click()">Upload New</a>
 
                     </div>
@@ -68,3 +69,4 @@
             </div>
         </div>
     </div>
+</div>

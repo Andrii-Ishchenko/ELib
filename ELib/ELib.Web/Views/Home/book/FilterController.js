@@ -2,95 +2,39 @@
     angular.module("elib")
            .controller("FilterController", FilterController);
 
-    FilterController.$inject = ['dataServiceFactory', "$location", "$routeParams"];
+    FilterController.$inject = ['dataServiceFactory', "$location", "$route", "$routeParams", "$scope"];
 
-    function FilterController(dataServiceFactory, $location, $routeParams) {
+    function FilterController(dataServiceFactory, $location, $route, $routeParams, $scope) {
         vm = this;
         vm.currentYear = new Date().getFullYear();
         vm.genreName = false;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : 5;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
 
-        var obj = dataServiceFactory.getService('genres').query();
-        obj.$promise.then(function (data) {
-            vm.genres = data;
-            if ($routeParams.genreId > 0) {
-                vm.genreName = vm.genres[$routeParams.genreId - 1].Name;
-            }
-        });
-
-        if ($routeParams.title) {
-            vm.title = $routeParams.title;
+        if ($routeParams.categoryId) {
+            vm.categoryId = $routeParams.categoryId;
         }
 
-        if ($routeParams.author) {
-            vm.author = $routeParams.author;
-        }
-
-        if ($routeParams.genre) {
-            vm.genre = $routeParams.genre;
-        }
-
-        if ($routeParams.genreId) {
-            vm.genreId = $routeParams.genreId;
-        }
-
-        if ($routeParams.subgenre) {
-            vm.subgenre = $routeParams.subgenre;
-        }
-
-        if ($routeParams.year) {
-            vm.year = $routeParams.year;
-        }
-
-        vm.filterByTitle = function () {
+        vm.filterByCategoryId = function filterByCategoryId (id) {
+            vm.categoryId = id;
             preparePath();
-            $location.search('title', vm.title);
+            $location.search('categoryId', vm.categoryId);
         }
 
-        vm.filterByAuthor = function () {
-            preparePath();
-            $location.search('author', vm.author);
-        }
-
-        vm.filterByGenre = function () {
-            preparePath();
-            $location.search('genre', vm.genre);
-        }
-
-        vm.filterByGenreId = function () {
-            preparePath();
-            $location.search('genreId', vm.genreId);
-        }
-
-        vm.filterBySubgenre = function () {
-            preparePath();
-            $location.search('subgenre', vm.subgenre);
-        }
-
-        vm.filterByYear = function () {
-            preparePath();
-            $location.search('year', vm.year);
-        }
-
-        vm.changePageCount = function () {
-            if ($location.path() === "/books") {
-                $location.search({ pageCount: vm.pageCount });
-            }
-            else {
-                $location.search("pageCount", vm.pageCount);
-            }
+        vm.IsMatching = function(a, b){
+            return a == b;
         }
 
         function preparePath() {
             if ($location.path() !== "/books/search") {
                 $location.path("/books/search");
                 $location.search({
-                    title: undefined,
-                    author: undefined,
-                    genre: undefined,
-                    genreId: undefined,
-                    subgenre: undefined,
-                    year: undefined,
+                    title: $routeParams.title,
+                    author: $routeParams.author,
+                    genre: $routeParams.genre,
+                    genreId: $routeParams.genreId,
+                    subgenre: $routeParams.subgenre,
+                    year: $routeParams.year,
+                    categoryId:$routeParams.categoryId,
                     query: $routeParams.query,
                     pageCount: $routeParams.pageCount,
                     pageNumb: $routeParams.pageNumb
