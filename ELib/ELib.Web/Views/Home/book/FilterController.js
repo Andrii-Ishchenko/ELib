@@ -20,8 +20,8 @@
             $location.search('categoryId', vm.categoryId);
         }
 
-        vm.IsMatching = function(a, b){
-            return a == b;
+        vm.IsMatching = function(a){
+            return a == $routeParams.categoryId;
         }
 
         function preparePath() {
