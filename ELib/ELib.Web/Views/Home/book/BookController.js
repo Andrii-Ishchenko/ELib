@@ -121,9 +121,16 @@
 
             dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
                 vm.allAuthors = data.authors;
-                for (var a in vm.instance.Authors ) {
-                    var index = vm.allAuthors.indexOf({ Id: a.Id });
-                     vm.allAuthors.splice(index, 1);
+                for (var a = 0; a < vm.instance.Authors.length; a++) {
+                    console.log("before second for");
+                    for (var i = 0; i < vm.allAuthors.length; i++) {
+                        console.log("before if" + vm.instance.Authors[a].Id + vm.allAuthors[i].Id);
+                        if (vm.instance.Authors[a].Id == vm.allAuthors[i].Id) {
+                            console.log("after if");
+                            vm.allAuthors.splice(i, 1);
+                            break;
+                        }
+                    }
                 }
             })
             dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
@@ -158,31 +165,28 @@
 
         vm.addAuthor = function () {
             var selectedAuthor;
-            var index;
             if (vm.authorId != undefined) {
                 for (var i = 0; i < vm.allAuthors.length; i++) {
                     if (vm.allAuthors[i].Id == vm.authorId) {
                         selectedAuthor = vm.allAuthors[i];
-                        index = i;
+                        vm.instance.Authors.push(selectedAuthor);
+                        vm.allAuthors.splice(i, 1);
                     }
                 }
-                vm.instance.Authors.push(selectedAuthor);
-                vm.allAuthors.splice(index, 1);
             }
         }
 
         vm.deleteAuthor = function (author) {
             var selectedAuthor;
-            var index;
             if (author.Id != undefined) {
                 for (var i = 0; i < vm.instance.Authors.length; i++) {
                     if (vm.instance.Authors[i].Id == author.Id) {
                         selectedAuthor = vm.instance.Authors[i];
-                        index = i;
+                        vm.instance.Authors.splice(i, 1);
+                        vm.allAuthors.push(selectedAuthor);
+                        return;
                     }
                 }
-                vm.instance.Authors.splice(index, 1);
-                vm.allAuthors.push(selectedAuthor);
             }
         }
 
