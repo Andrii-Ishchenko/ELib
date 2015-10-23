@@ -116,8 +116,8 @@ namespace ELib.Web.ApiControllers
                 BookDto book = _bookService.GetById(id);
                 if (book == null)
                     throw new NullReferenceException();
-                book.TotalViewCount += 1;
-                _bookService.Update(book);
+                //book.TotalViewCount += 1;
+                //_bookService.Update(book);
                 return Request.CreateResponse(HttpStatusCode.OK, book);
             }
             catch (NullReferenceException e)
