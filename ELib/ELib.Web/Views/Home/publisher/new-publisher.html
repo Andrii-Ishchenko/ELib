@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label class="control-label col-xs-3">Name:</label>
                 <div class="col-xs-6">
-                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" ng-model="newPC.name"  maxlength="40" required>
+                    <input type="text" class="form-control" id="Name" name="name" placeholder="Name" ng-model="newPC.name"  maxlength="40" required>
                     <span style="color:red" ng-show="newPublisherForm.name.$dirty && newPublisherForm.name.$invalid">
                         <span ng-show="newPublisherForm.name.$error.required">Name is required.</span>
                     </span>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-6">
-                    <input type="submit" class="btn btn-primary" value="Submit" ng-click="newPC.createPublisher()" ng-disabled="newPublisherForm.name.$invalid || newPublisherForm.name.$pristine">
+                    <input id="submit" type="submit" class="btn btn-primary" value="Submit" ng-click="newPC.createPublisher()" ng-disabled="newPublisherForm.name.$invalid || newPublisherForm.name.$pristine">
                 </div>
             </div> 
         </form>

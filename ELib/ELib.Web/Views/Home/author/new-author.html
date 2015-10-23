@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="control-label col-xs-3">First Name:</label>
             <div class="col-xs-6">
-                <input type="text" class="form-control" name="firstName" placeholder="First name" ng-model="newAC.firstName" maxlength="50" required>
+                <input id="first-name" type="text" class="form-control" name="firstName" placeholder="First name" ng-model="newAC.firstName" maxlength="50" required>
                 <span style="color:red" ng-show="newAuthorForm.firstName.$dirty && newAuthorForm.firstName.$invalid">
                     <span ng-show="newAuthorForm.firstName.$error.required">First name is required.</span>
                 </span>
@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label col-xs-3">LastName:</label>
             <div class="col-xs-6">
-                <input type="text" class="form-control" name="lastName" placeholder="LastName" ng-model="newAC.lastName" maxlength="50" required>
+                <input id="last-name" type="text" class="form-control" name="lastName" placeholder="LastName" ng-model="newAC.lastName" maxlength="50" required>
                 <span style="color:red" ng-show="newAuthorForm.lastName.$dirty && newAuthorForm.lastName.$invalid">
                     <span ng-show="newAuthorForm.lastName.$error.required">Last name is required.</span>
                 </span>
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label class="control-label col-xs-3">Date of birth:</label>
             <div class="col-xs-6">
-                <input type="date" class="form-control" name="DateOfBirth" placeholder="1978-01-29" ng-model="newAC.dateOfBirth"
+                <input id="date-of-birth" type="date" class="form-control" name="DateOfBirth" placeholder="1978-01-29" ng-model="newAC.dateOfBirth"
                        min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" required>
                 <span class="error" ng-show="newAuthorForm.DateOfBirth.$error.date">Not a valid date!</span>
             </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="control-label col-xs-3">Death date:</label>
             <div class="col-xs-6">
-                <input type="date" class="form-control" name="DeathDate" placeholder="1998-05-19" ng-model="newAC.deathDate"
+                <input id="date-of-death" type="date" class="form-control" name="DeathDate" placeholder="1998-05-19" ng-model="newAC.deathDate"
                        min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" required>
                 <span style="color:red" ng-show="newAuthorForm.DeathDate.$invalid">
                     <span class="error" ng-show="newAuthorForm.DeathDate.$error.date">Not a valid date!</span>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group">
             <div class="col-xs-offset-3 col-xs-9">
-                <input type="submit" class="btn btn-primary" value="Submit" ng-click="newAC.createAuthor()"
+                <input id="submit" type="submit" class="btn btn-primary" value="Submit" ng-click="newAC.createAuthor()"
                        ng-disabled="newAuthorForm.firstName.$invalid || newAuthorForm.firstName.$pristine
                            || newAuthorForm.lastName.$invalid || newAuthorForm.lastName.$pristine ">
             </div>
