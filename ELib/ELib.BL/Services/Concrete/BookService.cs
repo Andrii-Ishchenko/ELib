@@ -136,7 +136,7 @@ namespace ELib.BL.Services.Concrete
                         return query => query.OrderBy(b => b.Title);
                     case "Year":
                         return query => query.OrderBy(b => b.PublishYear);
-                    case "AuthorName":
+                    case "Author":
                         return query => query.OrderBy(b => (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a=>a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
                     case "Genre":
                         return query => query.OrderBy(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
