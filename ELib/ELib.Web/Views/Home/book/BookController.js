@@ -122,11 +122,8 @@
             dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
                 vm.allAuthors = data.authors;
                 for (var a = 0; a < vm.instance.Authors.length; a++) {
-                    console.log("before second for");
                     for (var i = 0; i < vm.allAuthors.length; i++) {
-                        console.log("before if" + vm.instance.Authors[a].Id + vm.allAuthors[i].Id);
                         if (vm.instance.Authors[a].Id == vm.allAuthors[i].Id) {
-                            console.log("after if");
                             vm.allAuthors.splice(i, 1);
                             break;
                         }
