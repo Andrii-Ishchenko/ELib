@@ -73,7 +73,7 @@
                             <i ng-show="book.isEditMode" class="glyphicon glyphicon-ok" style="float:right" ng-click="book.ToggleEditMode(); book.save();"></i>
                         </h4>
                     </div>
-                    <div class="panel-body bg-warning">
+                    <div class="panel-body bg-warning" ng-hide="book.isEditMode">
                         <dl class="dl-horizontal" style="margin-bottom : 0px">
                             <dt>Title</dt>
                             <dd>{{book.instance.Title}}</dd>
