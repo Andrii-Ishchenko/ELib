@@ -96,6 +96,99 @@
                         </dl>
                     </div>
                 </div>
+                <div class="panel-body bg-warning-edit" ng-show="book.isEditMode">
+                    <form class="form-horizontal" name="newBookForm" novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Title:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" maxlength="200" ng-model="book.instance.Title">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Category:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-init="book.instance.CategoryId" ng-model="book.instance.CategoryId"
+                                        ng-options="category.Id as category.Name for category in book.categories"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Authors:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-model="book.authorId" name="authors" ng-change="book.addAuthor()">
+                                    <option ng-repeat="author in book.allAuthors" value="{{author.Id}}">{{author.FirstName +" "+ author.LastName}}</option>
+                                </select>
+                                <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="author in book.instance.Authors">
+                                    <input type="text" readonly class="form-control" placeholder={{author.FirstName}}{{author.LastName}}>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="book.deleteAuthor(author)">X</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Genres:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-model="book.genreId" ng-change="book.addGenre()">
+                                    <option ng-repeat="genre in book.genres" value="{{genre.Id}}">{{genre.Name}}</option>
+                                </select>
+                                <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="">
+                                    <input type="text" class="form-group-lg" readonly placeholder={{}}>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-group-justified" type="button" ng-click="book.deleteGenre(genre)">X</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Subgenre:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-init="book.instance.SubgenreId" ng-model="book.instance.SubgenreId"
+                                        ng-options="subgenre.Id as subgenre.Name for subgenre in book.subgenres"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Publisher:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-init="book.instance.PublisherId" ng-model="book.instance.PublisherId"
+                                        ng-options="publisher.Id as publisher.Name for publisher in book.publishers"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Year of publishing:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" maxlength="4" ng-model="book.instance.PublishYear">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Original language:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-init="book.instance.OriginalLangId" ng-model="book.instance.OriginalLangId"
+                                        ng-options="language.Id as language.Name for language in book.languages"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Language of publish:</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" ng-init="book.instance.PublishLangId" ng-model="book.instance.PublishLangId"
+                                        ng-options="language.Id as language.Name for language in book.languages"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Pages:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" maxlength="200" ng-model="book.instance.TotalPages">
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="glyphicon glyphicon-comment"></i> 
