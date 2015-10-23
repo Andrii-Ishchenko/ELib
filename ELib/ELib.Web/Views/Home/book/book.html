@@ -66,7 +66,12 @@
 
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h4 class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> Info</h4>
+                        <h4 class="panel-title">
+                            <i class="glyphicon glyphicon-question-sign"></i> Info
+                            <i ng-hide="book.isEditMode" class="glyphicon glyphicon-pencil" style="float:right" ng-click="book.ToggleEditMode(); book.edit();"></i>
+                            <i ng-show="book.isEditMode" class="glyphicon glyphicon-remove" style="float:right" ng-click="book.ToggleEditMode(); book.cancel();"></i>
+                            <i ng-show="book.isEditMode" class="glyphicon glyphicon-ok" style="float:right" ng-click="book.ToggleEditMode(); book.save();"></i>
+                        </h4>
                     </div>
                     <div class="panel-body bg-warning">
                         <dl class="dl-horizontal" style="margin-bottom : 0px">
