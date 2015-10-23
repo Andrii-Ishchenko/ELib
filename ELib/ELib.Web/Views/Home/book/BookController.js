@@ -121,9 +121,13 @@
 
             dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
                 vm.allAuthors = data.authors;
-                for (var a in vm.instance.Authors ) {
-                    var index = vm.allAuthors.indexOf({ Id: a.Id });
-                     vm.allAuthors.splice(index, 1);
+                for (var a = 0; a < vm.instance.Authors.length; a++) {
+                    for (var i = 0; i < vm.allAuthors.length; i++) {
+                        if (vm.allAuthors[i].Id == vm.instance.Authors[a].Id) {
+                            vm.allAuthors.splice(i, 1);
+                            break;
+                        }
+                    }                     
                 }
             })
             dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
