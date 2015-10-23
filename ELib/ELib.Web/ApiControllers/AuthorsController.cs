@@ -30,11 +30,13 @@ namespace ELib.Web.ApiControllers
                                        [FromUri]string authorName = null,
                                        [FromUri]int year = 0,
                                        [FromUri]int pageCount = 5,
-                                       [FromUri]int pageNumb = 1)
+                                       [FromUri]int pageNumb = 1,
+                                       [FromUri]string orderBy = "LastName",
+                                       [FromUri]string orderDirection = "ASC")
         {
             try
             {
-                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, authorName, year, pageNumb, pageCount);
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, authorName, orderBy,orderDirection, year, pageNumb, pageCount);
                 int totalCount = _authorService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { authors, totalCount });
             }
