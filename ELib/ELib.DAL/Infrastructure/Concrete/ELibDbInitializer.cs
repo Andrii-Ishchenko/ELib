@@ -243,8 +243,7 @@ namespace ELib.DAL.Infrastructure.Concrete
             context.BookAuthors.Add(new BookAuthor { AuthorId = 4, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 5, BookId = 5 });
             context.BookAuthors.Add(new BookAuthor { AuthorId = 6, BookId = 5 });
-
-
+            
             context.SaveChanges();
             base.Seed(context);
         }
