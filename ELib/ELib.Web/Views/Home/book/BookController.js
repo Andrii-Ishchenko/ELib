@@ -27,7 +27,12 @@
             createRating();
         };
 
-        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+        var currentFetchedPageOfComments = 1;
+        var countOfFetchComments = 5;
+
+        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
+        vm.temp = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
+
 
         vm.newComment = {
             Text: "",
