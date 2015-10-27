@@ -51,6 +51,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPut]
+        [Authorize]
         public HttpResponseMessage AddComment(CommentDto commentDto)
         {
             try
@@ -69,6 +70,7 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpPost]
+        [Authorize]
         public HttpResponseMessage UpdateComment(CommentDto commentDto)
         {
             try
@@ -87,6 +89,7 @@ namespace ELib.Web.ApiControllers
         }        
 
         [HttpDelete]
+        [Authorize]
         public HttpResponseMessage DeleteCommentById(int id)
         {
             try
