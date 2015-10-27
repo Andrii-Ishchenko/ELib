@@ -109,10 +109,10 @@ namespace ELib.BL.Services.Concrete
 
             using (var uow = _factory.Create())
             {
-               
+
                 var entitiesDto = new List<BookDto>();
                 var repository = uow.Repository<Book>();
-                var entities = repository.Get(filter: filter,orderBy:orderExpression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
+                var entities = repository.Get(filter: filter, orderBy: orderExpression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount).ToList();
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -124,9 +124,10 @@ namespace ELib.BL.Services.Concrete
             }
         }
 
-        private Func<IQueryable<Book>, IOrderedQueryable<Book>> buildOrderExpression(SearchDto searchDto){
+        private Func<IQueryable<Book>, IOrderedQueryable<Book>> buildOrderExpression(SearchDto searchDto)
+        {
             string orderby = searchDto.OrderBy;
-            bool isOrderASC = searchDto.OrderDirection=="ASC";
+            bool isOrderASC = searchDto.OrderDirection == "ASC";
 
             if (isOrderASC)
             {
@@ -137,15 +138,17 @@ namespace ELib.BL.Services.Concrete
                     case "Year":
                         return query => query.OrderBy(b => b.PublishYear);
                     case "Author":
-                        return query => query.OrderBy(b => (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a=>a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                        //return query => query.OrderBy(b => (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a=>a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.FirstName);
                     case "Genre":
-                        return query => query.OrderBy(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                        //return query => query.OrderBy(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                        return query => query.OrderBy(b=>b.BookGenres.FirstOrDefault()==null).ThenBy(b => b.BookGenres.FirstOrDefault().Genre.Name);
                     case "Publisher":
                         return query => query.OrderBy(b => b.Publisher.Name);
                     case "Rating":
                         return query => query.OrderBy(b => b.RatingBooks.Average(rb => rb.ValueRating));
                     case "Date":
-                        return query => query.OrderBy(b => b.AdditionDate);
+                        return query => query.OrderBy(b => b.AdditionDate == null).ThenBy(b => b.AdditionDate);
                     default:
                         break;
                 }
@@ -158,24 +161,26 @@ namespace ELib.BL.Services.Concrete
                         return query => query.OrderByDescending(b => b.Title);
                     case "Year":
                         return query => query.OrderByDescending(b => b.PublishYear);
-                    case "AuthorName":
-                        return query => query.OrderByDescending(b => (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                    case "Author":
+                        //return query => query.OrderByDescending(b => (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
+                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.FirstName);
                     case "Genre":
-                        return query => query.OrderByDescending(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                        //return query => query.OrderByDescending(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
+                        return query => query.OrderBy(b => b.BookGenres.FirstOrDefault() == null).ThenByDescending(b => b.BookGenres.FirstOrDefault().Genre.Name);
                     case "Publisher":
                         return query => query.OrderByDescending(b => b.Publisher.Name);
                     case "Rating":
                         return query => query.OrderByDescending(b => b.RatingBooks.Average(rb => rb.ValueRating));
                     case "Date":
-                        return query => query.OrderByDescending(b => b.AdditionDate);
+                        return query => query.OrderBy(b => b.AdditionDate == null).ThenByDescending(b => b.AdditionDate);
                     default:
                         break;
                 }
             }
-           
+
             //default 
             return query => query.OrderBy(b => b.Title);
-            
+
         }
 
 
@@ -238,9 +243,9 @@ namespace ELib.BL.Services.Concrete
                 filter = SearchService<Book>.filterAnd(filter, searchByYear);
             }
 
-            if (searchDto.CategoryIds!=null)
-            {                
-                Expression<Func<Book, bool>> searchByCategoryId =(x) => searchDto.CategoryIds.Contains(x.CategoryId);
+            if (searchDto.CategoryIds != null)
+            {
+                Expression<Func<Book, bool>> searchByCategoryId = (x) => searchDto.CategoryIds.Contains(x.CategoryId);
                 filter = SearchService<Book>.filterAnd(filter, searchByCategoryId);
             }
             return filter;
