@@ -9,8 +9,19 @@
 
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+
+        vm.ordering = {
+            orderBy: 'Name',
+            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
+            defaultOrder: "Name",
+            defaultDirection: "DESC",
+            orderParameters: ["Name"]
+        }
         
-        var obj = dataServiceFactory.getService('publishers').get({ pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query })
+        var obj = dataServiceFactory.getService('publishers').get({
+            pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query,
+            orderBy: vm.ordering.orderBy, orderDirection: vm.ordering.orderDirection
+        })
                                     .$promise.then(function (data) {
             vm.publishers = data.publishers;
             vm.totalCount = data.totalCount;
@@ -21,17 +32,18 @@
         vm.pageChanged = pageChanged;
 
         vm.OrderingChanged = function () {
-            //server post should be here after updating parameters object
+            var obj = dataServiceFactory.getService('publishers').get({
+                pageCount: vm.pageCount, pageNumb: vm.currPage, query: $routeParams.query,
+                orderBy: vm.ordering.orderBy, orderDirection: vm.ordering.orderDirection
+            }).$promise.then(function (data) {
+                vm.publishers = data.publishers;
+                vm.totalCount = data.totalCount;
+                vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+                vm.pages = new Array(vm.totalPages);
+            });
         }
 
 
-        vm.ordering = {
-            orderBy: 'Name',
-            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
-            defaultOrder: "Name",
-            defaultDirection: "DESC",
-            orderParameters: ["Name"]
-        }
 
         function pageChanged() {
             $location.search("pageNumb", vm.currPage);

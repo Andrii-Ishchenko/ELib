@@ -26,11 +26,15 @@ namespace ELib.Web.ApiControllers
         }
         
         [HttpGet]
-        public HttpResponseMessage GetPublishers([FromUri]string query = null, [FromUri]int pageCount = 3, [FromUri]int pageNumb = 1)
+        public HttpResponseMessage GetPublishers([FromUri]string query = null,
+                                                 [FromUri]int pageCount = 3,
+                                                 [FromUri]int pageNumb = 1,
+                                                 [FromUri]string orderBy = "Name",
+                                                 [FromUri]string orderDirection = "ASC")
         {
              try
              {
-                IEnumerable<PublisherDto> publishers = _pubisherService.GetAll(query, pageCount, pageNumb);
+                IEnumerable<PublisherDto> publishers = _pubisherService.GetAll(query, pageCount, pageNumb, orderBy,orderDirection);
                 int totalCount = _pubisherService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { publishers, totalCount });
             }
