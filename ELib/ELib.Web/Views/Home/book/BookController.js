@@ -8,9 +8,19 @@
         var vm = this;
         vm.isEditMode = false;
         vm.IsPostEnabled = true;
+        vm.IsPostRefresh = true;
         vm.CanPost = function () {
             if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < 400)
                 return true;
+            else
+                return false;
+        };
+
+        vm.CanLoad = function () {
+            if (vm.temp.length < 5 ) {
+                vm.IsPostRefresh = false;
+                return true;
+            }
             else
                 return false;
         };
@@ -48,6 +58,26 @@
             vm.newComment.Text = "";
         };
 
+        vm.fetchComments = function () {
+            currentFetchedPageOfComments = currentFetchedPageOfComments + 1;
+            console.log(vm.comments.length);
+
+
+            CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
+                 function (value) {
+                     vm.temp = value;
+                     var iterator = vm.temp.length;
+                     for (var i = 0; i < iterator; i++) {
+                         vm.comments.push(vm.temp[i]);
+                     }
+                 }
+                );
+            console.log(vm.temp);
+            console.log(vm.comments);
+            console.log(vm.temp.length);
+            console.log(vm.CanLoad());
+        };
+
         var createRating = function () {
             vm.submitState = true;
             var rating = {
@@ -73,8 +103,12 @@
                  //success
                  function (value) {
                      vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+                     vm.temp = vm.comments;
+                     currentFetchedPageOfComments = 1;
+                     countOfFetchComments = 5;
                      vm.newComment.Text = "";
                      vm.IsPostEnabled = true;
+                     vm.CanLoad();
                  },
                  //error
                  function (error) {

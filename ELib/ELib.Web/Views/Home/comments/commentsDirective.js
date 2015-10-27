@@ -35,7 +35,8 @@
                 cleanComment: "=",
                 createComment: "=",
                 canPost:"=",
-                profile: "=",
+                profile:"=",
+                canLoad:"="
 
             },
             controller: function () { },

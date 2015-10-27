@@ -139,7 +139,7 @@
                                 <select class="form-control" ng-model="book.genreId" ng-change="book.addGenre()">
                                     <option ng-repeat="genre in book.genres" value="{{genre.Id}}">{{genre.Name}}</option>
                                 </select>
-                                <div class="input-group col-xs-8" style="float:left; outline-offset:inherit" ng-repeat="">
+                                <div class="input-group col-xs-8" style="float:left; outline-offset:inherit">
                                     <input type="text" class="form-group-lg" readonly placeholder={{}}>
                                     <span class="input-group-btn">
                                         <button class="btn btn-group-justified" type="button" ng-click="book.deleteGenre(genre)">X</button>
@@ -194,7 +194,7 @@
                         </div>
                     </form>
                 </div>
-                <comments-directive comments="book.comments" fetch="book.fetchComments" can-post="book.CanPost" new-comment="book.newComment" clean-comment="book.cleanComment" create-comment="book.createComment" profile="book.profile"></comments-directive>
+                <comments-directive comments="book.comments" fetch="book.fetchComments" can-post="book.CanPost" new-comment="book.newComment" clean-comment="book.cleanComment" create-comment="book.createComment" profile="book.profile" can-load="book.CanLoad"></comments-directive>
                
             </div>
             <div class="col-lg-2 col-sm-12 container">
