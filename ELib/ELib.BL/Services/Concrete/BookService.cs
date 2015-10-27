@@ -146,7 +146,8 @@ namespace ELib.BL.Services.Concrete
                     case "Publisher":
                         return query => query.OrderBy(b => b.Publisher.Name);
                     case "Rating":
-                        return query => query.OrderBy(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                        //return query => query.OrderBy(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                        return query => query.OrderBy(b => b.SumRatingValue);
                     case "Date":
                         return query => query.OrderBy(b => b.AdditionDate == null).ThenBy(b => b.AdditionDate);
                     default:
@@ -170,7 +171,8 @@ namespace ELib.BL.Services.Concrete
                     case "Publisher":
                         return query => query.OrderByDescending(b => b.Publisher.Name);
                     case "Rating":
-                        return query => query.OrderByDescending(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                        //return query => query.OrderByDescending(b => b.RatingBooks.Average(rb => rb.ValueRating));
+                        return query => query.OrderByDescending(b => b.SumRatingValue);
                     case "Date":
                         return query => query.OrderBy(b => b.AdditionDate == null).ThenByDescending(b => b.AdditionDate);
                     default:
