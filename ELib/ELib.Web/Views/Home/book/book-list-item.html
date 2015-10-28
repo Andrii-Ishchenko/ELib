@@ -27,12 +27,15 @@
             <br>
             <span ng-if="book.Genre">{{book.Genre}} -</span><span ng-if="book.Subgenre">{{book.Subgenre}} - </span><span ng-if="book.PublisherName">{{book.PublisherName}} - </span><span ng-if="book.PublishYear">{{book.PublishYear}}</span>
             <br>          
-            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <!--<span class="glyphicon glyphicon-thumbs-up"></span>
             <span style="color:forestgreen">666</span>
             <span class="glyphicon glyphicon-thumbs-down"></span>
-            <span style="color:darkred">123</span>
+            <span style="color:darkred">123</span>-->
             <span >Rating: </span>
             <span class="label label-default label-pill">{{book.Rating}}</span>
+            <br>
+            <span>Date added:</span>
+            <span>{{book.AdditionDate | date:'short'}}</span>
         </div>
     </div>
   
