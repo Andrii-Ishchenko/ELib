@@ -6,9 +6,9 @@
 
     function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory) {
         var vm = this;
-
+        vm.isEditMode = false;
         vm.IsPostEnabled = true;
-
+        vm.IsPostRefresh = true;
         vm.CanPost = function () {
             if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < 400)
                 return true;
@@ -16,13 +16,20 @@
                 return false;
         };
 
-        
-
+        vm.CanLoad = function () {
+            if (vm.temp.length < 5 ) {
+                vm.IsPostRefresh = false;
+                return true;
+            }
+            else
+                return false;
+        };
 
         vm.savedSuccessfully = false;
         vm.message = "";
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+        
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
 
@@ -35,6 +42,7 @@
 
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
         vm.temp = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
+
 
         vm.newComment = {
             Text: "",
@@ -59,32 +67,31 @@
                  function (value) {
                      vm.temp = value;
                      var iterator = vm.temp.length;
-                     for (var i = 0; i < iterator; i++)
-                     {
+                     for (var i = 0; i < iterator; i++) {
                          vm.comments.push(vm.temp[i]);
                      }
                  }
                 );
             console.log(vm.temp);
             console.log(vm.comments);
+            console.log(vm.temp.length);
+            console.log(vm.CanLoad());
         };
 
         var createRating = function () {
-                vm.submitState = true;
-                var rating = {
-                        ValueRating: vm.instance.Rating,
-                        UserId: vm.profile.Id,
-                        BookId: parseInt($routeParams.id)
-                }
-                dataServiceFactory.getService('Ratings').save(rating).$promise.then(
-                  //success
-                  function (value) {
-                      vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-                }
-
-             );
+            vm.submitState = true;
+            var rating = {
+                ValueRating: vm.instance.Rating,
+                UserId: vm.profile.Id,
+                BookId: parseInt($routeParams.id)
+            }
+            dataServiceFactory.getService('Ratings').save(rating).$promise.then(
+              //success
+              function (value) {
+                  vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+              }
+         );
         };
-
 
         vm.createComment = function () {
             vm.IsPostEnabled = false;
@@ -96,8 +103,12 @@
                  //success
                  function (value) {
                      vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+                     vm.temp = vm.comments;
+                     currentFetchedPageOfComments = 1;
+                     countOfFetchComments = 5;
                      vm.newComment.Text = "";
                      vm.IsPostEnabled = true;
+                     vm.CanLoad();
                  },
                  //error
                  function (error) {
@@ -107,42 +118,120 @@
             );
         };
 
+        vm.uploadBookImage = function (file) {
+            var fd = new FormData();
+            fd.append("file", file[0]);
 
-
-            vm.uploadBookImage = function (file) {
-                var fd = new FormData();
-                fd.append("file", file[0]);
-
-                fileFactory.uploadBookImage(fd, vm.instance.Id).then(
-                    function (response) {
-                        // $scope.fetchData();
-                        // alert("uploaded");
-                        vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-            });
+            fileFactory.uploadBookImage(fd, vm.instance.Id).then(
+                function (response) {
+                    // $scope.fetchData();
+                    // alert("uploaded");
+                    vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+                });
         }
 
+        vm.uploadBookFile = function (file) {
+            var fd = new FormData();
+            fd.append("file", file[0]);
 
-
-
-            vm.uploadBookFile = function (file) {
-                var fd = new FormData();
-                fd.append("file", file[0]);
-
-                fileFactory.uploadBookFile(fd, $routeParams.id).then(
-                    function (response) {
-                        vm.savedSuccessfully = true;
-                        vm.message = "Book file has been uploaded successfully";
-                        // need refactoring (get only book instances)
-                        var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
-                            .$promise
-                            .then(
-                                function (response) {
-                                    vm.instance.BookInstances = response.BookInstances;
-                    });
+            fileFactory.uploadBookFile(fd, $routeParams.id).then(
+                function (response) {
+                    vm.savedSuccessfully = true;
+                    vm.message = "Book file has been uploaded successfully";
+                    // need refactoring (get only book instances)
+                    var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
+                        .$promise
+                        .then(
+                            function (response) {
+                                vm.instance.BookInstances = response.BookInstances;
+                            });
                 },
-                    function (error) {
-                        vm.message = "Book file uploading is failed";
-            });
-            };
+                function (error) {
+                    vm.message = "Book file uploading is failed";
+                });
+        };
+
+        vm.ToggleEditMode = function () {
+            vm.isEditMode = !vm.isEditMode;
         }
+
+        vm.edit = function () {
+            vm.backup = angular.copy(vm.instance);
+
+            dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
+                vm.allAuthors = data.authors;
+                for (var a = 0; a < vm.instance.Authors.length; a++) {
+                    for (var i = 0; i < vm.allAuthors.length; i++) {
+                        if (vm.instance.Authors[a].Id == vm.allAuthors[i].Id) {
+                            vm.allAuthors.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            })
+            dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
+                vm.publishers = data.publishers;
+            })
+            vm.categories = dataServiceFactory.getService('category').query({ isNested: false });
+            vm.genres = dataServiceFactory.getService('genres').query();
+            vm.subgenres = dataServiceFactory.getService('subgenres').query();
+            vm.languages = dataServiceFactory.getService('languages').query();
+        }
+
+        vm.cancel = function () {
+            vm.instance = vm.backup;
+        }
+
+        vm.save = function () {
+            var book = {
+                Id: vm.instance.Id,
+                Title: vm.instance.Title,
+                CategoryId: vm.instance.CategoryId,
+                Authors: vm.instance.Authors,
+                // Genres: vm.instance.genresNames,
+                SubgenreId: vm.instance.SubgenreId,
+                PublisherId: vm.instance.PublisherId,
+                PublishYear: vm.instance.PublishYear,
+                OriginalLangId: vm.instance.OriginalLangId,
+                PublishLangId: vm.instance.PublishLangId,
+                TotalPages: vm.instance.TotalPages
+            }
+            dataServiceFactory.getService("Books").update(book);
+        }
+
+        vm.addAuthor = function () {
+            var selectedAuthor;
+            if (vm.authorId != undefined) {
+                for (var i = 0; i < vm.allAuthors.length; i++) {
+                    if (vm.allAuthors[i].Id == vm.authorId) {
+                        selectedAuthor = vm.allAuthors[i];
+                        vm.instance.Authors.push(selectedAuthor);
+                        vm.allAuthors.splice(i, 1);
+                    }
+                }
+            }
+        }
+
+        vm.deleteAuthor = function (author) {
+            var selectedAuthor;
+            if (author.Id != undefined) {
+                for (var i = 0; i < vm.instance.Authors.length; i++) {
+                    if (vm.instance.Authors[i].Id == author.Id) {
+                        selectedAuthor = vm.instance.Authors[i];
+                        vm.instance.Authors.splice(i, 1);
+                        vm.allAuthors.push(selectedAuthor);
+                        return;
+                    }
+                }
+            }
+        }
+
+        vm.addGenre = function () {
+
+        }
+
+        vm.deleteGenre = function (genre) {
+
+        }
+    }
 })();

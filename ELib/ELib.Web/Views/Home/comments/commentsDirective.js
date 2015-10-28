@@ -1,17 +1,56 @@
-﻿(function () {
+﻿//(function () {
+//    'use strict';
+
+//    angular
+//        .module('elib')
+//        .directive('commentsDirective', commentsDirective);
+
+//    function commentsDirective($compile) {
+//        return {
+//            restrict: 'E',
+//            scope: {
+//                comments: '='
+//            },
+//            templateUrl: '/Views/Home/comments/Comments.html'
+//        }
+//    }
+
+//})();
+
+
+(function () {
     'use strict';
 
     angular
         .module('elib')
         .directive('commentsDirective', commentsDirective);
 
-    function commentsDirective($compile) {
+    function commentsDirective($timeout) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             scope: {
-                comments: '='
+                comments: "=",
+                fetch: "=",
+                newComment: "=",
+                cleanComment: "=",
+                createComment: "=",
+                canPost:"=",
+                profile:"=",
+                canLoad:"="
+
             },
-            templateUrl: '/Views/Home/comments/Comment.html'
+            controller: function () { },
+            link: function (scope, element, attrs) {
+                //var raw = element[0];
+
+                //element.bind('scroll', function () {
+                //    if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                //        scope.$apply(attr.whenScrolled);
+                //    }
+                //});
+            },
+
+            templateUrl: '/views/home/comments/Comments.html'
         }
     }
 

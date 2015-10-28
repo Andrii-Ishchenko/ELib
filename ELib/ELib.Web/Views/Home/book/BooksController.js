@@ -27,11 +27,11 @@
        
         function fetchOrderingWithDefaultParams() {
             return {
-                defaultOrder: "AuthorName",
+                defaultOrder: "Author",
                 defaultDirection: "ASC",
-                orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "AuthorName",
+                orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "Author",
                 orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "ASC",
-                orderParameters: ["Title", "Year", "AuthorName", "Genre", "Publisher", "Rating", "Date"]
+                orderParameters: ["Title", "Year", "Author", "Genre", "Publisher", "Rating", "Date"]
             }
         }
 

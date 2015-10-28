@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.Domain.Entities;
@@ -15,7 +16,7 @@ namespace ELib.BL.Services.Concrete
             : base(factory, mapper)
         { }
 
-        public IEnumerable<AuthorDto> GetAll(string query, string authorName, int year, int pageNumb, int pageCount)
+        public IEnumerable<AuthorDto> GetAll(string query, string authorName, string orderby, string orderDirection, int year, int pageNumb, int pageCount)
         {
             Expression<Func<Author, bool>> filter;
             var byParameter = buildFilterExpression(query, authorName, year);
@@ -30,11 +31,13 @@ namespace ELib.BL.Services.Concrete
                 filter = byParameter;
             }
 
+            var orderExpression = buildOrderExpression(orderby,orderDirection);
+
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<AuthorDto>();
                 var repository = uow.Repository<Author>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy: orderExpression, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -43,6 +46,45 @@ namespace ELib.BL.Services.Concrete
                 }
                 return entitiesDto;
             }
+        }
+        private Func<IQueryable<Author>, IOrderedQueryable<Author>> buildOrderExpression(string orderby, string orderDirection)
+        {
+           bool isOrderASC = orderDirection == "ASC";
+
+            if (isOrderASC)
+            {
+                switch (orderby)
+                {
+                    case "FirstName":
+                        return q => q.OrderBy(b => b.FirstName==null).ThenBy(b => b.FirstName);
+                    case "LastName":
+                        return q => q.OrderBy(b => b.LastName==null).ThenBy(b=>b.LastName);
+                    case "DateOfBirth":
+                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenBy(b=>b.DateOfBirth);
+                    
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (orderby)
+                {
+                    case "FirstName":
+                        return q => q.OrderBy(b => b.FirstName==null).ThenByDescending(b=>b.FirstName);
+                    case "LastName":
+                        return q => q.OrderBy(b => b.LastName==null).ThenByDescending(b=>b.LastName);
+                    case "DateOfBirth":
+                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenByDescending(b=>b.DateOfBirth);
+
+                    default:
+                        break;
+                }
+            }
+
+            //default 
+            return q => q.OrderBy(b => b.LastName);
+
         }
 
         private Expression<Func<Author, bool>> buildFilterExpression(string query, string authorName, int year)

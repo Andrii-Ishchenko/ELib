@@ -33,7 +33,7 @@ namespace ELib.BL.Services.Concrete
                 if (pageCount * pageNumb > TotalCount)
                 {
 
-                    if (TotalCount % pageCount > 0)
+                    if (TotalCount % pageCount >= 0)
                     {
                         if (TotalCount / pageCount +1 >= pageNumb)
                             pageCount = TotalCount % pageCount;
@@ -47,24 +47,28 @@ namespace ELib.BL.Services.Concrete
                     skip = TotalCount - pageCount * pageNumb;
                 }
 
-                var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().ToList().OrderByDescending(x => x.CommentDate);
-
-                foreach (var item in Comments)
+                if (pageCount == 0 && skip == 0)
+                    return null;
+                else
                 {
-                    if(item.ImageHash == null || item.UserName == null)
+                    var Comments = uow.Repository<Comment>().Get(x => x.BookId == Book.Id, skipCount: skip, topCount: pageCount).Reverse().ToList().OrderByDescending(x => x.CommentDate);
+
+                    foreach (var item in Comments)
                     {
-                        var Person = uow.Repository<Person>().Get(i => i.Id == item.UserId).First();
-                        var User = uow.Repository<ApplicationUser>().Get(k => k.Id == Person.ApplicationUserId).First();
-                        item.ImageHash = Person.ImageHash;
-                        item.UserName = User.UserName;
-                        uow.Repository<Comment>().Update(item);
+                        if (item.ImageHash == null || item.UserName == null)
+                        {
+                            var Person = uow.Repository<Person>().Get(i => i.Id == item.UserId).First();
+                            var User = uow.Repository<ApplicationUser>().Get(k => k.Id == Person.ApplicationUserId).First();
+                            item.ImageHash = Person.ImageHash;
+                            item.UserName = User.UserName;
+                            uow.Repository<Comment>().Update(item);
+                        }
+
+                        var entityDto = _mapper.Map(item);
+                        commentList.Add(entityDto);
                     }
-
-                    var entityDto = _mapper.Map(item);
-                    commentList.Add(entityDto);
+                    uow.Save();
                 }
-                uow.Save();
-
                 return commentList;
             }
         }

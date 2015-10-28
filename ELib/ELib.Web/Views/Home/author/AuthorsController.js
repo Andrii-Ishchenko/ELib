@@ -10,18 +10,31 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
 
         vm.OrderingChanged = function () {
-            //server post should be here after updating parameters object
+            var params = getParameters();
+            var obj = dataServiceFactory.getService('authors').get(params)
+                            .$promise.then(function (data) {
+                              vm.authors = data.authors;
+                              vm.totalCount = data.totalCount;
+                              vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+                              vm.maxSize = 5;
+                              vm.pages = new Array(vm.totalPages);
+                          })
         }
 
-        vm.ordering = {
-            orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : 'FirstName',
-            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
-            defaultOrder: "FirstName",
-            defaultDirection: "DESC",
-            orderParameters: ["FirstName", "LastName", "Date of birth"]
-        };
+        vm.ordering = fetchOrderingWithDefaultParams();
 
+        function fetchOrderingWithDefaultParams() {
+                        return {
+                            defaultOrder: "LastName",
+                            defaultDirection: "ASC",
+                           orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "LastName",
+                            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "ASC",
+                            orderParameters: ["FirstName", "LastName", "DateOfBirth"]
+                        }
+                }
         var parameters = getParameters();
+
+
         vm.pageChanged = pageChanged;
 
         var obj = dataServiceFactory.getService('authors').get(parameters).$promise.then(function (data) {
@@ -37,7 +50,9 @@
                 pageNumb: vm.currPage,
                 query: $routeParams.query,
                 authorName: $routeParams.authorName,
-                year: $routeParams.year
+                year: $routeParams.year,
+                orderBy: vm.ordering.orderBy,
+                orderDirection: vm.ordering.orderDirection
             };
         }
 

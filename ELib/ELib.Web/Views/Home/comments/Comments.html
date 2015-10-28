@@ -1,37 +1,48 @@
-<html>
-	<head>
-	<title>Comments</title>
-	<link href="bootstrap-theme.css" rel="stylesheet">
-	<link href="bootstrap-theme.css.map" rel="stylesheet">
-	<link href="bootstrap.css" rel="stylesheet">
-	<link href="bootstrap.css.map" rel="stylesheet">
-	<script src="modernizr-2.6.2.js"></script>
-	</head>
-	<body>
-	<div class="container">		
-		<div class="row">
-            <div class="col-md-12">
-                <div class="well">
-                    
-                    <form class="form-horizontal" role="search">
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                Comments:
-                            </div>
-
-							<div class="col-md-8">
-								<textarea class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
-                            </div>
-
-                            <div class="col-md-1">
-                                <button type="write" class="btn btn-default">Write</button>
-                            </div>	
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="glyphicon glyphicon-comment"></i>
+        Comments
+    </div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"> {{profile.UserName}}, leave your comment:</div>
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <textarea class="col-md-12 form-control" ng-model="newComment.Text" />
                         </div>
-						<br/>
-                    </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <div class="pull-right">
+                                <input type="button" class="btn btn-default" value="Clear" ng-click="cleanComment()" />
+                                <input type="button" class="btn btn-primary" value="Send" ng-click="createComment()" ng-disabled="!canPost()" />
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default" ng-repeat="comm in comments">
+            <div class="panel-heading">
+                <i class="glyphicon glyphicon-user"></i> {{comm.UserName}} wroted {{comm.CommentDate | date:'dd-MM-yyyy HH:mm:ss'}}
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-2">
+                    <img class="img-circle" width="70" height="70" ng-src="/api/file/profile-image?w=70&h=70&hash={{comm.ImageHash}}" />
+                </div>
+                <div class="col-sm-10">
+                    {{comm.Text}}
                 </div>
             </div>
-        </div>	
+        </div>
+
+
+        <button class="btn btn-info btn-lg btn-block" ng-click="fetch()" ng-disabled="canLoad()">Load More...</button>
     </div>
-	</body>
-</html>
+</div>
+
+
+
