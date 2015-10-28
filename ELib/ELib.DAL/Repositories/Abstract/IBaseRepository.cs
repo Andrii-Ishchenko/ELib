@@ -11,7 +11,7 @@ namespace ELib.DAL.Repositories.Abstract
 
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "", int skipCount = 0, int topCount = 0);
+            string includeProperties = "", int skipCount = 0, int topCount = 100);
 
         TEntity GetById(object id);
 
