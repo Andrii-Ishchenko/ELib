@@ -31,7 +31,7 @@
                 defaultDirection: "ASC",
                 orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "Author",
                 orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "ASC",
-                orderParameters: ["Title", "Year", "Author", "Genre", "Publisher", "Rating", "Date"]
+                orderParameters: ["Title", "Year", "Author", "Publisher", "Rating", "Date"]
             }
         }
 
