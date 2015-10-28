@@ -24,7 +24,7 @@ namespace ELib.BL.Services.Concrete
             {
                 var entitiesDto = new List<PublisherDto>();
                 var repository = uow.Repository<Publisher>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy: orderExp, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -42,6 +42,7 @@ namespace ELib.BL.Services.Concrete
             {
                 switch (orderBy)
                 {
+                    // publisher.Name is not null
                     case "Name": return q => q.OrderBy(p => p.Name);
                     default: break;
                 }
@@ -50,6 +51,7 @@ namespace ELib.BL.Services.Concrete
             {
                 switch (orderBy)
                 {
+                    // publisher.Name is not null
                     case "Name": return q => q.OrderByDescending(p => p.Name);
                     default: break;
                 }
