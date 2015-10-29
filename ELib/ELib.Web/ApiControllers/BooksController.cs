@@ -16,13 +16,15 @@ namespace ELib.Web.ApiControllers
     public class BooksController : ApiController
     {
         private readonly IBookService _bookService;
+        private readonly IBookInListService _bookInListService;
         private readonly ICategoryService _categoryService;
         private ELogger _logger;
 
-        public BooksController(IBookService bookService,ICategoryService categoryService)
+        public BooksController(IBookService bookService, IBookInListService bookInListService, ICategoryService categoryService)
         {
             _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _bookService = bookService;
+            _bookInListService = bookInListService;
             _categoryService = categoryService;
         }
 
@@ -52,8 +54,8 @@ namespace ELib.Web.ApiControllers
                     categoryIds.Add(categoryId);
                 }
                 SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, genreId, subgenreId, year,categoryIds,orderBy,orderDirection);
-                IEnumerable<BookDto> books = _bookService.GetAll(searchDto, pageCount, pageNumb);
-                int totalCount = _bookService.TotalCount;
+                IEnumerable<BookInListDto> books = _bookInListService.GetAll(searchDto, pageCount, pageNumb);
+                int totalCount = _bookInListService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount});
             }
             catch (Exception e)
@@ -69,13 +71,13 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                IEnumerable<BookDto> books = null;
+                IEnumerable<BookInListDto> books = null;
                 if (blockId == 0)
-                { books = _bookService.GetBooksWithHighestRating(pageCount, pageNumb); }
+                { books = _bookInListService.GetBooksWithHighestRating(pageCount, pageNumb); }
                 else if (blockId == 1)
-                { books = _bookService.GetNewBooks(pageCount, pageNumb); }
+                { books = _bookInListService.GetNewBooks(pageCount, pageNumb); }
 
-                int totalCount = _bookService.TotalCount;
+                int totalCount = _bookInListService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
             }
             catch (Exception e)

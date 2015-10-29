@@ -14,14 +14,14 @@ namespace ELib.Web.ApiControllers
     public class AuthorsController : ApiController
     {
         private readonly IAuthorService _authorService;
-        private readonly IBookService _bookService;
+        private readonly IBookInListService _bookInListService;
         private ELogger _logger;
 
-        public AuthorsController(IAuthorService authorService, IBookService bookService)
+        public AuthorsController(IAuthorService authorService, IBookInListService bookInListService)
         {
             _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _authorService = authorService;
-            _bookService = bookService;
+            _bookInListService = bookInListService;
         }
 
 
@@ -36,7 +36,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, authorName, orderBy,orderDirection, year, pageNumb, pageCount);
+                IEnumerable<AuthorDto> authors = _authorService.GetAll(query, authorName, orderBy, orderDirection, year, pageNumb, pageCount);
                 int totalCount = _authorService.TotalCount;
                 return Request.CreateResponse(HttpStatusCode.OK, new { authors, totalCount });
             }
@@ -125,7 +125,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                IEnumerable<BookDto> books = _bookService.GetForAuthor(id);
+                IEnumerable<BookInListDto> books = _bookInListService.GetForAuthor(id);
                 return Request.CreateResponse(HttpStatusCode.OK, books);
             }
             catch (Exception e)
