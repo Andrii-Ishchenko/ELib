@@ -6,6 +6,7 @@ using ELib.BL.DtoEntities;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Mapper.Abstract;
+using System.Linq;
 
 namespace ELib.BL.Services.Concrete
 {
@@ -15,14 +16,15 @@ namespace ELib.BL.Services.Concrete
             : base(factory, mapper)
         { }
 
-        public IEnumerable<PublisherDto> GetAll(string query, int pageCount, int pageNumb)
+        public IEnumerable<PublisherDto> GetAll(string query, int pageCount, int pageNumb, string orderBy, string orderingDirection)
         {
             Expression<Func<Publisher, bool>> filter = (string.IsNullOrEmpty(query)) ? SearchService<Publisher>.True : buildFullExpression(query);
+            Func<IQueryable<Publisher>, IOrderedQueryable<Publisher>> orderExp = buildOrderExpression(orderBy, orderingDirection);
             using (var uow = _factory.Create())
             {
                 var entitiesDto = new List<PublisherDto>();
                 var repository = uow.Repository<Publisher>();
-                var entities = repository.Get(filter: filter, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
+                var entities = repository.Get(filter: filter, orderBy: orderExp, skipCount: pageCount * (pageNumb - 1), topCount: pageCount);
                 TotalCount = repository.TotalCount;
                 foreach (var item in entities)
                 {
@@ -31,6 +33,32 @@ namespace ELib.BL.Services.Concrete
                 }
                 return entitiesDto;
             }
+        }
+
+        private Func<IQueryable<Publisher>, IOrderedQueryable<Publisher>> buildOrderExpression(string orderBy, string orderingDirection)
+        {
+            bool isOrderASC = orderingDirection == "ASC";
+            if (isOrderASC)
+            {
+                switch (orderBy)
+                {
+                    // publisher.Name is not null
+                    case "Name": return q => q.OrderBy(p => p.Name);
+                    default: break;
+                }
+            }
+            else
+            {
+                switch (orderBy)
+                {
+                    // publisher.Name is not null
+                    case "Name": return q => q.OrderByDescending(p => p.Name);
+                    default: break;
+                }
+            }
+            //default 
+            return query => query.OrderBy(b => b.Name);
+
         }
 
         private static Expression<Func<Publisher, bool>> buildFullExpression(string query)
