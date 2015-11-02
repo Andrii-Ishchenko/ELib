@@ -26,8 +26,8 @@ namespace ELib.Web.ApiControllers
         }
         
         [HttpGet]
-        public HttpResponseMessage GetPublishers([FromUri]string query = null,
-                                                 [FromUri]int pageCount = 3,
+        public HttpResponseMessage GetPublishers([FromUri]int pageCount = 100,
+                                                 [FromUri]string query = null,
                                                  [FromUri]int pageNumb = 1,
                                                  [FromUri]string orderBy = "Name",
                                                  [FromUri]string orderDirection = "ASC")

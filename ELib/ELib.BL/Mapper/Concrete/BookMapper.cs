@@ -40,14 +40,15 @@ namespace ELib.BL.Mapper.Concrete
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount
             };
-            if (input.Authors != null)
-                foreach (var author in input.Authors)
-                    result.BookAuthors.Add(new BookAuthor()
-                    {
-                        AuthorId = author.Id,
-                        BookId = input.Id
-                        //Author=new Author() {Id = author.Id, FirstName = author.FirstName, LastName = author.LastName } });
-                    });
+            result.BookAuthors = (input.Authors == null) ? null : input.Authors.Select(a => new BookAuthor {AuthorId = a.Id, BookId = input.Id }).ToList();
+            //if (input.Authors != null)
+            //    foreach (var author in input.Authors)
+            //        result.BookAuthors.Add(new BookAuthor()
+            //        {
+            //            AuthorId = author.Id,
+            //            BookId = input.Id
+            //            //Author=new Author() {Id = author.Id, FirstName = author.FirstName, LastName = author.LastName } });
+            //        });
 
             return result;
         }

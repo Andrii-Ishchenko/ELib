@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Diagnostics;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
@@ -13,7 +14,8 @@ namespace ELib.DAL.Infrastructure.Concrete
         public ELibDbContext()
            : base("ELibDb")
         {
-          //  Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
+            //  Database.SetInitializer<ELibDbContext>(new ELibDbInitializer());
+            Database.Log = m => Debug.Write(m);
         }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<AuthorGenre> AuthorGenres { get; set; }
