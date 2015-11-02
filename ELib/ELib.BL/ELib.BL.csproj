@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoEntities\AuthorDto.cs" />
+    <Compile Include="DtoEntities\AuthorForBookDto.cs" />
     <Compile Include="DtoEntities\AuthorListDto.cs" />
     <Compile Include="DtoEntities\AuthorsInBookDto.cs" />
     <Compile Include="DtoEntities\BookDto.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="DtoEntities\CommentDto.cs" />
     <Compile Include="DtoEntities\CurrentPersonDto.cs" />
     <Compile Include="DtoEntities\GenreDto.cs" />
+    <Compile Include="DtoEntities\GenreForBookDto.cs" />
     <Compile Include="DtoEntities\LanguageDto.cs" />
     <Compile Include="DtoEntities\PersonDto.cs" />
     <Compile Include="DtoEntities\PublisherDto.cs" />
