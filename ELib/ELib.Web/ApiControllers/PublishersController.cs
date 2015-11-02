@@ -15,14 +15,14 @@ namespace ELib.Web.ApiControllers
     public class PublishersController: ApiController
     {
         private readonly IPublisherService _pubisherService;
-        private readonly IBookService _bookService;
+        private readonly IBookInListService _bookInListService;
         private ELogger _logger;
 
-        public PublishersController(IPublisherService service, IBookService bookService)
+        public PublishersController(IPublisherService service, IBookInListService bookInListService)
         {
             _logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
             _pubisherService = service;
-            _bookService = bookService;
+            _bookInListService = bookInListService;
         }
         
         [HttpGet]
@@ -126,7 +126,7 @@ namespace ELib.Web.ApiControllers
         {
             try
             {
-                IEnumerable<BookDto> books = _bookService.GetBooksForPublisher(id);
+                IEnumerable<BookInListDto> books = _bookInListService.GetBooksForPublisher(id);
                 return Request.CreateResponse(HttpStatusCode.OK, books);
             }
             catch (Exception e)
