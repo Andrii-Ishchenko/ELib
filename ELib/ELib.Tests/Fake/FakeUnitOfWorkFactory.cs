@@ -1,16 +1,16 @@
 ﻿using ELib.DAL.Infrastructure.Abstract;
+using System;
 
 namespace ELib.Tests.Fake
 {
     public class FakeUnitOfWorkFactory : IUnitOfWorkFactory
     {
-        private readonly FakeUnitOfWork _unitOfWork;
+        private readonly FakeUnitOfWork _unitOfWork = new FakeUnitOfWork();
 
-        public FakeUnitOfWorkFactory(FakeContext context)
+        public FakeUnitOfWorkFactory(Action<FakeUnitOfWork> constructUnitOfWork)
         {
-            _unitOfWork = new FakeUnitOfWork(context);
+            constructUnitOfWork(_unitOfWork);
         }
-
         public IUnitOfWork Create()
         {
             return _unitOfWork;

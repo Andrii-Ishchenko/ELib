@@ -11,13 +11,12 @@ namespace ELib.Tests.Fake
     public class FakeRepository<T> : IBaseRepository<T> where T : class
     {
         private int _totalCount;
-        private readonly FakeContext _context;
-        internal DbSet<T> dbSet;
 
-        public FakeRepository(FakeContext context)
+        public readonly List<T> Data;
+
+        public FakeRepository(params T[] data)
         {
-            _context = context;
-            dbSet = _context.Set<T>();
+            Data = new List<T>(data);
         }
 
         public int TotalCount
@@ -30,6 +29,7 @@ namespace ELib.Tests.Fake
 
         public void Delete(T entity)
         {
+            // Data.Remove(entity);
             throw new NotImplementedException();
         }
 
@@ -38,9 +38,11 @@ namespace ELib.Tests.Fake
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
+        public virtual IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>,
+         IOrderedQueryable<T>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 100)
         {
-            IQueryable<T> query = dbSet;
+
+            IQueryable<T> query = Data.AsQueryable();
             if (filter != null)
             {
                 query = query.AsExpandable().Where(filter);
@@ -53,14 +55,19 @@ namespace ELib.Tests.Fake
 
             _totalCount = query.Count<T>();
 
-            query = (orderBy != null) ? orderBy(query) : query;
             if (skipCount >= 0 && topCount > 0)
             {
-                return (query.AsEnumerable()).Skip(skipCount).Take(topCount);
+                if (orderBy != null)
+                {
+                    return orderBy(query).Skip(skipCount).Take(topCount);
+                }
+                else return query.AsEnumerable().Skip(skipCount).Take(topCount);
             }
-            return query.AsEnumerable();
+            else
+            { throw new ArgumentException("skipCount or topCount is negative"); }
+
         }
-        
+
         public T GetById(object id)
         {
             throw new NotImplementedException();
@@ -68,6 +75,7 @@ namespace ELib.Tests.Fake
 
         public T Insert(T entity)
         {
+            //Data.Add(entity);
             throw new NotImplementedException();
         }
 
