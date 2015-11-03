@@ -40,14 +40,16 @@ namespace ELib.BL.Mapper.Concrete
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount
             };
-            if (input.Authors != null)
-                foreach (var author in input.Authors)
-                    result.BookAuthors.Add(new BookAuthor()
-                    {
-                        AuthorId = author.Id,
-                        BookId = input.Id
-                        //Author=new Author() {Id = author.Id, FirstName = author.FirstName, LastName = author.LastName } });
-                    });
+            result.BookAuthors = (input.Authors == null) ? null : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id }).ToList();
+            result.BookGenres = (input.Genres == null) ? null : input.Genres.Select(g => new BookGenre {Id = g.BookGenreId, GenreId = g.GenreId, BookId = input.Id }).ToList();
+            //if (input.Authors != null)
+            //    foreach (var author in input.Authors)
+            //        result.BookAuthors.Add(new BookAuthor()
+            //        {
+            //            AuthorId = author.Id,
+            //            BookId = input.Id
+            //            //Author=new Author() {Id = author.Id, FirstName = author.FirstName, LastName = author.LastName } });
+            //        });
 
             return result;
         }
@@ -78,27 +80,27 @@ namespace ELib.BL.Mapper.Concrete
                 PublisherName = (input.Publisher == null) ? null : input.Publisher.Name,
                 SubgenreName = (input.Subgenre == null) ? null : input.Subgenre.Name
             };
-
-            result.GenresNames = input.BookGenres.Select(g => g.Genre.Name).ToList();
-            result.GenresIds = input.BookGenres.Select(g => g.GenreId).ToList();
+            result.Genres = input.BookGenres.Select(g => new GenreForBookDto { GenreId = g.GenreId, BookGenreId = g.Id, GenreName = (g.Genre == null) ? null : g.Genre.Name }).ToList();
             result.BookInstances = input.BookInstances.Select(bi => _bookInstanceMapper.Map(bi)).ToList();
             // result.Authors = input.BookAuthors.Select(ba => _authorMapper.Map(ba.Author)).ToList();
-            List<AuthorDto> authors = new List<AuthorDto>();
+            List<AuthorForBookDto> authors = new List<AuthorForBookDto>();
             if (input.BookAuthors != null)
                 foreach (var author in input.BookAuthors)
                     if (author.Author != null)
                     {
-                        authors.Add(new AuthorDto()
+                        authors.Add(new AuthorForBookDto()
                         {
                             Id = author.AuthorId,
+                            BookAuthorsId = author.Id,
                             FirstName = author.Author.FirstName,
                             LastName = author.Author.LastName
                         });
                     }
                     else
                     {
-                        authors.Add(new AuthorDto()
+                        authors.Add(new AuthorForBookDto()
                         {
+                            BookAuthorsId = author.Id,
                             Id = author.AuthorId
                         });
                     }

@@ -26,10 +26,10 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]string query = null,
+        public HttpResponseMessage Get([FromUri]int pageCount = 100,
+                                       [FromUri]string query = null,
                                        [FromUri]string authorName = null,
                                        [FromUri]int year = 0,
-                                       [FromUri]int pageCount = 5,
                                        [FromUri]int pageNumb = 1,
                                        [FromUri]string orderBy = "LastName",
                                        [FromUri]string orderDirection = "ASC")

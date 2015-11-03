@@ -29,7 +29,8 @@ namespace ELib.Web.ApiControllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get([FromUri]string query = null,
+        public HttpResponseMessage Get([FromUri]int pageCount = 100,
+                                       [FromUri]string query = null,
                                        [FromUri]string authorName = null,
                                        [FromUri]string title = null,
                                        [FromUri]string publisher = null,
@@ -38,7 +39,6 @@ namespace ELib.Web.ApiControllers
                                        [FromUri]int subgenreId = -1,
                                        [FromUri]string subgenre = null,
                                        [FromUri]int year = 0,
-                                       [FromUri]int pageCount = 3,
                                        [FromUri]int pageNumb = 1,
                                        [FromUri]int categoryId=-1,
                                        [FromUri]string orderBy="AuthorName",
@@ -118,8 +118,8 @@ namespace ELib.Web.ApiControllers
                 BookDto book = _bookService.GetById(id);
                 if (book == null)
                     throw new NullReferenceException();
-                //book.TotalViewCount += 1;
-                //_bookService.Update(book);
+               book.TotalViewCount += 1;
+               _bookService.Update(book);
                 return Request.CreateResponse(HttpStatusCode.OK, book);
             }
             catch (NullReferenceException e)

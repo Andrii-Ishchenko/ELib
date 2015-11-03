@@ -89,8 +89,6 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                  .ForMember(d => d.GenresNames, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.Genre.Name)))
-                  .ForMember(d => d.GenresIds, o => o.MapFrom(s => s.BookGenres == null ? null : s.BookGenres.Select(x => x.GenreId)))
                   .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue))
                   .ForMember(d => d.LanguageName, o => o.MapFrom(s => s.Language.Name))
                   .ForMember(d => d.Language1Name, o => o.MapFrom(s => s.Language1.Name))

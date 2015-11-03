@@ -50,11 +50,9 @@ namespace ELib.BL.DtoEntities
 
         public string CategoryName { get; set; }
 
-        public ICollection<AuthorDto> Authors { get; set; }
+        public ICollection<AuthorForBookDto> Authors { get; set; }
 
-        public ICollection<string> GenresNames { get; set; }
-
-        public ICollection<int> GenresIds { get; set; }
+        public ICollection<GenreForBookDto> Genres { get; set; }
 
         public ICollection<BookInstanceDto> BookInstances { get; set; }
 
