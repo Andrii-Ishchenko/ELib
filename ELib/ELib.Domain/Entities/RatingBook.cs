@@ -1,9 +1,11 @@
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("RatingBook")]
-    public partial class RatingBook
+    public partial class RatingBook : IEntityState
     {
         private int _rating;
 
@@ -28,5 +30,8 @@ namespace ELib.Domain.Entities
         public virtual Book Book { get; set; }
 
         public virtual Person Person { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

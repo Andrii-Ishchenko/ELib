@@ -198,6 +198,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ELib.Common\ELib.Common.csproj">
+      <Project>{3df22b2b-64df-4cc5-8956-addb4195a021}</Project>
+      <Name>ELib.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ELib.Domain\ELib.Domain.csproj">
       <Project>{6556e528-064a-4bd9-a613-c60b182e130c}</Project>
       <Name>ELib.Domain</Name>

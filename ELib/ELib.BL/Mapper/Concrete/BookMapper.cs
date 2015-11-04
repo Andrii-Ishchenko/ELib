@@ -10,13 +10,25 @@ namespace ELib.BL.Mapper.Concrete
     {
         IMapper<BookInstance, BookInstanceDto> _bookInstanceMapper;
         IMapper<Author, AuthorDto> _authorMapper;
+        IMapper<Publisher, PublisherDto> _publisherMapper;
+        IMapper<Language, LanguageDto> _languageMapper;
+        IMapper<Subgenre, SubgenreDto> _subgenreMapper;
+        IMapper<Category, CategoryDto> _categoryMapper;
 
 
-        public BookMapper(IMapper<BookInstance, BookInstanceDto> bookInstanceMapper, IMapper<Author, AuthorDto> authorMapper)
+        public BookMapper(IMapper<BookInstance, BookInstanceDto> bookInstanceMapper,
+                          IMapper<Author, AuthorDto> authorMapper,
+                          IMapper<Publisher, PublisherDto> publisherMapper,
+                          IMapper<Language, LanguageDto> languageMapper,
+                          IMapper<Subgenre, SubgenreDto> subgenreMapper,
+                          IMapper<Category, CategoryDto> categoryMapper)
         {
             _bookInstanceMapper = bookInstanceMapper;
             _authorMapper = authorMapper;
-
+            _publisherMapper = publisherMapper;
+            _languageMapper = languageMapper;
+            _subgenreMapper = subgenreMapper;
+            _categoryMapper = categoryMapper;
         }
 
         public Book Map(BookDto input)
@@ -38,10 +50,16 @@ namespace ELib.BL.Mapper.Concrete
                 OriginalLangId = input.OriginalLangId,
                 TotalDownloadCount = input.TotalDownloadCount,
                 SubgenreId = input.SubgenreId,
-                TotalViewCount = input.TotalViewCount
+                TotalViewCount = input.TotalViewCount,
+                State = input.State
             };
-            result.BookAuthors = (input.Authors == null) ? null : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id }).ToList();
-            result.BookGenres = (input.Genres == null) ? null : input.Genres.Select(g => new BookGenre {Id = g.BookGenreId, GenreId = g.GenreId, BookId = input.Id }).ToList();
+            result.Category = _categoryMapper.Map(input.Category);
+            result.Language = _languageMapper.Map(input.Language);
+            result.Language1 = _languageMapper.Map(input.Language1);
+            result.Publisher = _publisherMapper.Map(input.Publisher);
+            result.Subgenre = _subgenreMapper.Map(input.Subgenre);
+            result.BookAuthors = (input.Authors == null) ? null : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id, State = a.State }).ToList();
+            result.BookGenres = (input.Genres == null) ? null : input.Genres.Select(g => new BookGenre {Id = g.BookGenreId, GenreId = g.GenreId, BookId = input.Id, State = g.State}).ToList();
             //if (input.Authors != null)
             //    foreach (var author in input.Authors)
             //        result.BookAuthors.Add(new BookAuthor()
@@ -74,13 +92,14 @@ namespace ELib.BL.Mapper.Concrete
                 TotalDownloadCount = input.TotalDownloadCount,
                 SubgenreId = input.SubgenreId,
                 TotalViewCount = input.TotalViewCount,
-                CategoryName = (input.Category == null) ? null : input.Category.Name,
-                Language1Name = (input.Language1 == null) ? null : input.Language1.Name,
-                LanguageName = (input.Language == null) ? null : input.Language.Name,
-                PublisherName = (input.Publisher == null) ? null : input.Publisher.Name,
-                SubgenreName = (input.Subgenre == null) ? null : input.Subgenre.Name
+                State = input.State,
+                Category = _categoryMapper.Map(input.Category),
+                Language1 = _languageMapper.Map(input.Language1),
+                Language = _languageMapper.Map(input.Language),
+                Publisher = _publisherMapper.Map(input.Publisher),
+                Subgenre = _subgenreMapper.Map(input.Subgenre)
             };
-            result.Genres = input.BookGenres.Select(g => new GenreForBookDto { GenreId = g.GenreId, BookGenreId = g.Id, GenreName = (g.Genre == null) ? null : g.Genre.Name }).ToList();
+            result.Genres = input.BookGenres.Select(g => new GenreForBookDto { GenreId = g.GenreId, BookGenreId = g.Id, GenreName = (g.Genre == null) ? null : g.Genre.Name, State = g.State }).ToList();
             result.BookInstances = input.BookInstances.Select(bi => _bookInstanceMapper.Map(bi)).ToList();
             // result.Authors = input.BookAuthors.Select(ba => _authorMapper.Map(ba.Author)).ToList();
             List<AuthorForBookDto> authors = new List<AuthorForBookDto>();
@@ -93,7 +112,10 @@ namespace ELib.BL.Mapper.Concrete
                             Id = author.AuthorId,
                             BookAuthorsId = author.Id,
                             FirstName = author.Author.FirstName,
-                            LastName = author.Author.LastName
+                            LastName = author.Author.LastName,
+
+                            //AuthorForBook State now equals to BookAuthor Pair State
+                            State = author.State
                         });
                     }
                     else
@@ -101,7 +123,10 @@ namespace ELib.BL.Mapper.Concrete
                         authors.Add(new AuthorForBookDto()
                         {
                             BookAuthorsId = author.Id,
-                            Id = author.AuthorId
+                            Id = author.AuthorId,
+
+                            //AuthorForBook State now equals to BookAuthor Pair State
+                            State = author.State
                         });
                     }
             result.Authors = authors;

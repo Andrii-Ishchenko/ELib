@@ -11,7 +11,8 @@ namespace ELib.BL.Mapper.Concrete
             return new Language()
             {
                 Id = input.Id,
-                Name = input.Name
+                Name = input.Name,
+                State = input.State
             };
         }
 
@@ -20,7 +21,8 @@ namespace ELib.BL.Mapper.Concrete
             return new LanguageDto()
             {
                 Id = input.Id,
-                Name = input.Name
+                Name = input.Name,
+                State = input.State
             };
         }
     }

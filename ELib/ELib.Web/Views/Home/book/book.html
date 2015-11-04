@@ -79,7 +79,7 @@
                             <dd>{{book.instance.Title}}</dd>
 
                             <dt>Category</dt>
-                            <dd>{{book.instance.CategoryName}}</dd>
+                            <dd>{{book.instance.Category.Name}}</dd>
 
                             <dt>Authors</dt>
                             <dd><span ng-repeat="author in book.instance.Authors"><a ng-href="{{'/authors/' + author.Id}}">{{author.FirstName}} {{author.LastName}}, </a></span></dd>
@@ -88,10 +88,10 @@
                             <dd><span ng-repeat="genre in book.instance.Genres"><a ng-href="{{'/genres/' + genre.GenreId}}">{{genre.GenreName + " "}}</a></span></dd>
 
                             <dt>Subgenre</dt>
-                            <dd>{{book.instance.SubgenreName}}</dd>
+                            <dd>{{book.instance.Subgenre.Name}}</dd>
 
                             <dt>Publisher</dt>
-                            <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.PublisherName}}</a></dd>
+                            <dd><a ng-href="{{'/publishers/' + book.instance.PublisherId}}">{{book.instance.Publisher.Name}}</a></dd>
 
                             <dt>Year of publishing</dt>
                             <dd>{{book.instance.PublishYear}}</dd>

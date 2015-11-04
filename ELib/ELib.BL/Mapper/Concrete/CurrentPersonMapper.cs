@@ -19,7 +19,8 @@ namespace ELib.BL.Mapper.Concrete
                 FirstName = input.FirstName,
                 LastName = input.LastName,
                 ImageHash = input.ImageHash,
-                ApplicationUserId = input.ApplicationUserId
+                ApplicationUserId = input.ApplicationUserId,
+                State = input.State
             };
             return result;
         }
@@ -33,7 +34,8 @@ namespace ELib.BL.Mapper.Concrete
                 UserName = input.ApplicationUser.UserName,
                 Email = input.ApplicationUser.Email,
                 ImageHash = input.ImageHash,
-                ApplicationUserId = input.ApplicationUserId
+                ApplicationUserId = input.ApplicationUserId,
+                State = input.State
             };
             return result;
         }

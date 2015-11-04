@@ -9,12 +9,24 @@ namespace ELib.BL.Mapper.Concrete
     {
         public PersonDto Map(Person input)
         {
-            return new PersonDto() { Id = input.Id, FirstName = input.FirstName, LastName = input.LastName, ImageHash = input.ImageHash, ApplicationUserId =input.ApplicationUserId};
+            return new PersonDto() { Id = input.Id,
+                                     FirstName = input.FirstName,
+                                     LastName = input.LastName,
+                                     ImageHash = input.ImageHash,
+                                     ApplicationUserId =input.ApplicationUserId,
+                                     State = input.State
+            };
         }
 
         public Person Map(PersonDto input)
         {
-            return new Person() { Id = input.Id, FirstName = input.FirstName, LastName = input.LastName, ImageHash = input.ImageHash, ApplicationUserId = input.ApplicationUserId };
+            return new Person() { Id = input.Id,
+                                  FirstName = input.FirstName,
+                                  LastName = input.LastName,
+                                  ImageHash = input.ImageHash,
+                                  ApplicationUserId = input.ApplicationUserId,
+                                  State = input.State
+            };
         }
     }
 }

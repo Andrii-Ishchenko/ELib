@@ -16,7 +16,8 @@ namespace ELib.BL.Mapper.Concrete
                 DateOfBirth = input.DateOfBirth,
                 DeathDate = input.DeathDate,
                 Description = input.Description,
-                ImageHash = input.ImageHash
+                ImageHash = input.ImageHash,
+                State = input.State
             };
         }
 
@@ -30,7 +31,8 @@ namespace ELib.BL.Mapper.Concrete
                 DateOfBirth = input.DateOfBirth,
                 DeathDate = input.DeathDate,
                 Description = input.Description,
-                ImageHash = input.ImageHash
+                ImageHash = input.ImageHash,
+                State = input.State
             };
         }
     }

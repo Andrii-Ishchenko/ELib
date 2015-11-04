@@ -18,7 +18,8 @@ namespace ELib.BL.Mapper.Concrete
                 SumDisLike = input.SumDisLike,
                 SumLike = input.SumLike,
                 ImageHash = input.ImageHash,
-                UserName = input.UserName
+                UserName = input.UserName,
+                State = input.State
 
             };
         }
@@ -35,7 +36,8 @@ namespace ELib.BL.Mapper.Concrete
                 SumDisLike = input.SumDisLike,
                 SumLike = input.SumLike,
                 ImageHash = input.ImageHash,
-                UserName = input.UserName
+                UserName = input.UserName,
+                State = input.State
             };
         }
     }

@@ -12,7 +12,8 @@ namespace ELib.BL.Mapper.Concrete
             return new Subgenre()
             {
                 Id = input.Id,
-                Name = input.Name
+                Name = input.Name,
+                State = input.State
             };
         }
 
@@ -21,7 +22,8 @@ namespace ELib.BL.Mapper.Concrete
             return new SubgenreDto()
             {
                 Id = input.Id,
-                Name = input.Name
+                Name = input.Name,
+                State = input.State
             };
         }
     }

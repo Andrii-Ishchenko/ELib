@@ -15,7 +15,8 @@ namespace ELib.BL.Mapper.Concrete
                 Name = input.Name,
                 ParentId = input.ParentId,
                 Level = input.Level,
-                BookCount = input.BookCount
+                BookCount = input.BookCount,
+                State = input.State
             };
         }
 
@@ -27,7 +28,8 @@ namespace ELib.BL.Mapper.Concrete
                 Name = input.Name,
                 ParentId = input.ParentId,
                 Level = input.Level,
-                BookCount = input.BookCount
+                BookCount = input.BookCount,
+                State = input.State
             };
         }
     }

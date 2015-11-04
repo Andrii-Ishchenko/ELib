@@ -1,13 +1,15 @@
 ﻿
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
 
     [Table("Favorite")]
-    public partial class Favorite
+    public partial class Favorite : IEntityState
     {
         public Favorite() { }
 
@@ -23,5 +25,8 @@ namespace ELib.Domain.Entities
         public virtual Book Book {get; set;}
 
         public virtual Person User { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

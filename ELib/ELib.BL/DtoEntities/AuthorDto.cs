@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ELib.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ELib.BL.DtoEntities.Abstract;
 
 namespace ELib.BL.DtoEntities
 {
-    public class AuthorDto
+    public class AuthorDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -23,5 +25,8 @@ namespace ELib.BL.DtoEntities
         public string Description { get; set; }
 
         public string ImageHash { get; set; }
+
+        [Required]
+        public LibEntityState State { get; set; }
     }
 }

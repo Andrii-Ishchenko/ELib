@@ -19,7 +19,8 @@ namespace ELib.BL.Mapper.Concrete
                 BookId = input.BookId,
                 FileHash = input.FileHash,
                 FileName = input.FileName,
-                DownloadCount = input.DownloadCount
+                DownloadCount = input.DownloadCount,
+                State = input.State
             };
         }
 
@@ -31,7 +32,8 @@ namespace ELib.BL.Mapper.Concrete
                 BookId = input.BookId,
                 FileHash = input.FileHash,
                 FileName = input.FileName,
-                DownloadCount = input.DownloadCount
+                DownloadCount = input.DownloadCount,
+                State = input.State
             };
         }
     }
