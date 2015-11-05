@@ -43,7 +43,7 @@ namespace ELib.BL.Services.Concrete
                 switch (orderBy)
                 {
                     // publisher.Name is not null
-                    case "Name": return q => q.OrderBy(p => p.Name);
+                    case "Name": return q => q.OrderBy(p => p.Name).ThenBy(p=>p.Id);
                     default: break;
                 }
             }
@@ -52,7 +52,7 @@ namespace ELib.BL.Services.Concrete
                 switch (orderBy)
                 {
                     // publisher.Name is not null
-                    case "Name": return q => q.OrderByDescending(p => p.Name);
+                    case "Name": return q => q.OrderByDescending(p => p.Name).ThenByDescending(p=>p.Id);
                     default: break;
                 }
             }
