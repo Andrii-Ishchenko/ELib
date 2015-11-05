@@ -1,22 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
-using Moq;
-using ELib.DAL.Repositories.Abstract;
-using ELib.DAL.Repositories.Concrete;
 using ELib.Domain.Entities;
-using System.Collections.Generic;
-using ELib.BL.Services.Abstract;
 using ELib.BL.Services.Concrete;
 using ELib.Tests.Fake;
 using ELib.BL.Mapper.Abstract;
 using ELib.BL.Mapper.Concrete;
 using ELib.BL.DtoEntities;
-using ELib.DAL.Infrastructure.Concrete;
-using System.Data.Entity;
-
 using System.Linq;
-using System.Linq.Expressions;
-using FakeItEasy;
 
 namespace ELib.Tests.Services
 {
@@ -26,7 +16,6 @@ namespace ELib.Tests.Services
         private readonly FakeUnitOfWorkFactory _fakeUnitOfWorkFactory;
         private readonly FakeRepository<Author> _fakeAuthorRepository;
         protected readonly IMapper<Author, AuthorDto> _mapper;
-
 
         public AuthorServiceTests()
         {
@@ -39,7 +28,6 @@ namespace ELib.Tests.Services
                     uow.SetRepository(_fakeAuthorRepository);
                 });
         }
-
 
         [SetUp]
         public void TestSetup()
@@ -56,7 +44,6 @@ namespace ELib.Tests.Services
             var author10 = new Author { Id = 110, FirstName = "Alina", LastName = "Franko", DateOfBirth = new DateTime(1200, 9, 22), DeathDate = new DateTime(2008, 6, 1) };
 
             _fakeAuthorRepository.Data.AddRange(new[] { author1, author2, author3, author4, author5, author6, author7, author8, author9, author10 });
-
         }
 
         // This method runs after each test.
@@ -65,7 +52,6 @@ namespace ELib.Tests.Services
         {
             // Clean up data in our fake dependencies.
             _fakeAuthorRepository.Data.Clear();
-
         }
 
         [Test]
@@ -114,7 +100,6 @@ namespace ELib.Tests.Services
             Assert.AreEqual(10, authors6.Count());
         }
 
-
         [Test]
         public void GetAll_When_sorting_by_FirstName_ASC_Then_get_sorted_list()
         {
@@ -125,7 +110,6 @@ namespace ELib.Tests.Services
             var authors1 = service.GetAll(null, null, "FirstName", "ASC", 0, pageNumb: 1, pageCount: 10);
             var authors2 = service.GetAll(null, null, "FirstName", "ASC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "FirstName", "ASC", 0, pageNumb: 3, pageCount: 2);
-
 
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(2));
@@ -138,7 +122,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(5));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(6));
-         
         }
 
         [Test]
@@ -152,7 +135,6 @@ namespace ELib.Tests.Services
             var authors2 = service.GetAll(null, null, "FirstName", "DESC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "FirstName", "DESC", 0, pageNumb: 3, pageCount: 2);
 
-
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(8));
             Assert.That(authors1.ToList()[9].Id, Is.EqualTo(2));
@@ -164,7 +146,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(6));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(5));
-
         }
 
         [Test]
@@ -178,7 +159,6 @@ namespace ELib.Tests.Services
             var authors2 = service.GetAll(null, null, "LastName", "ASC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "LastName", "ASC", 0, pageNumb: 3, pageCount: 2);
 
-
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(3));
             Assert.That(authors1.ToList()[9].Id, Is.EqualTo(7));
@@ -190,7 +170,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(5));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(6));
-
         }
 
         [Test]
@@ -204,7 +183,6 @@ namespace ELib.Tests.Services
             var authors2 = service.GetAll(null, null, "LastName", "DESC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "LastName", "DESC", 0, pageNumb: 3, pageCount: 2);
 
-
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(7));
             Assert.That(authors1.ToList()[9].Id, Is.EqualTo(3));
@@ -216,7 +194,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(6));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(5));
-
         }
 
         [Test]
@@ -230,7 +207,6 @@ namespace ELib.Tests.Services
             var authors2 = service.GetAll(null, null, "DateOfBirth", "ASC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "DateOfBirth", "ASC", 0, pageNumb: 3, pageCount: 2);
 
-
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(110));
             Assert.That(authors1.ToList()[9].Id, Is.EqualTo(4));
@@ -242,7 +218,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(5));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(9));
-
         }
 
         [Test]
@@ -256,7 +231,6 @@ namespace ELib.Tests.Services
             var authors2 = service.GetAll(null, null, "DateOfBirth", "DESC", 0, pageNumb: 2, pageCount: 5);
             var authors3 = service.GetAll(null, null, "DateOfBirth", "DESC", 0, pageNumb: 3, pageCount: 2);
 
-
             // Assert
             Assert.That(authors1.ToList()[0].Id, Is.EqualTo(4));
             Assert.That(authors1.ToList()[9].Id, Is.EqualTo(110));
@@ -268,8 +242,6 @@ namespace ELib.Tests.Services
 
             Assert.That(authors3.ToList()[0].Id, Is.EqualTo(9));
             Assert.That(authors3.ToList()[1].Id, Is.EqualTo(5));
-
         }
-
     }
 }
