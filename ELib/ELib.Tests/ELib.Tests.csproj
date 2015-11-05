@@ -94,6 +94,7 @@
     <Compile Include="Fake\FakeUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorServiceTests.cs" />
+    <Compile Include="Services\PublisherServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
