@@ -39,6 +39,6 @@
                     </li>
                 </ul>-->
                 <pagination ng-if="publishers.totalCount" total-items="publishers.totalCount" ng-model="publishers.currPage" items-per-page="publishers.pageCount"
-                            boundary-links="true" maxSize="5" class="pagination-sm" ng-change="publishers.pageChanged()"></pagination>
+                            boundary-links="true" max-size="publishers.maxSize" class="pagination-sm" ng-change="publishers.pageChanged()"></pagination>
             </div>
         </div>

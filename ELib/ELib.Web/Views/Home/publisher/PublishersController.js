@@ -25,6 +25,7 @@
                 vm.publishers = data.publishers;
                 vm.totalCount = data.totalCount;
                 vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+                vm.maxSize = 5;
                 vm.pages = new Array(vm.totalPages);
             });
         }
@@ -37,6 +38,7 @@
             vm.publishers = data.publishers;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+            vm.maxSize = 5;
             vm.pages = new Array(vm.totalPages);
         });
 
