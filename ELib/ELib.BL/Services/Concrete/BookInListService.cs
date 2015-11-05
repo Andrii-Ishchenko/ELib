@@ -10,7 +10,7 @@ using ELib.BL.Mapper.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
-    public class BookInListService : BaseService<Book, BookInListDto>,IBookInListService
+    public class BookInListService : BaseService<Book, BookInListDto>, IBookInListService
     {
         public BookInListService(IUnitOfWorkFactory factory, IMapper<Book, BookInListDto> mapper)
             : base(factory, mapper)
@@ -134,26 +134,24 @@ namespace ELib.BL.Services.Concrete
                 switch (orderby)
                 {
                     case "Title":
-                        return query => query.OrderBy(b => b.Title);
+                        return query => query.OrderBy(b => b.Title).ThenBy(b => b.Id);
                     case "Year":
-                        return query => query.OrderBy(b => b.PublishYear);
+                        return query => query.OrderBy(b => b.PublishYear).ThenBy(b => b.Id);
                     case "Author":
                         //return query => query.OrderBy(b => (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a=>a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderBy(a => a.Author.LastName).ThenBy(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
-                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.FirstName);
-
+                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenBy(b => b.BookAuthors.FirstOrDefault().Author.FirstName).ThenBy(b => b.Id);
 
                     //case "Genre":
                     //    //return query => query.OrderBy(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
                     //    return query => query.OrderBy(b=>b.BookGenres.FirstOrDefault()==null).ThenBy(b => b.BookGenres.FirstOrDefault().Genre.Name);
 
-
                     case "Publisher":
-                        return query => query.OrderBy(b => b.Publisher.Name);
+                        return query => query.OrderBy(b => b.Publisher.Name).ThenBy(b => b.Id);
                     case "Rating":
                         //return query => query.OrderBy(b => b.RatingBooks.Average(rb => rb.ValueRating));
-                        return query => query.OrderBy(b => b.SumRatingValue);
+                        return query => query.OrderBy(b => b.SumRatingValue).ThenBy(b => b.Id);
                     case "Date":
-                        return query => query.OrderBy(b => b.AdditionDate == null).ThenBy(b => b.AdditionDate);
+                        return query => query.OrderBy(b => b.AdditionDate == null).ThenBy(b => b.AdditionDate).ThenBy(b => b.Id);
                     default:
                         break;
                 }
@@ -163,26 +161,24 @@ namespace ELib.BL.Services.Concrete
                 switch (orderby)
                 {
                     case "Title":
-                        return query => query.OrderByDescending(b => b.Title);
+                        return query => query.OrderByDescending(b => b.Title).ThenByDescending(b => b.Id);
                     case "Year":
-                        return query => query.OrderByDescending(b => b.PublishYear);
+                        return query => query.OrderByDescending(b => b.PublishYear).ThenByDescending(b => b.Id);
                     case "Author":
                         //return query => query.OrderByDescending(b => (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.LastName) + (b.BookAuthors.OrderByDescending(a => a.Author.LastName).ThenByDescending(a => a.Author.FirstName).FirstOrDefault().Author.FirstName));
-                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.FirstName);
-
+                        return query => query.OrderBy(b => b.BookAuthors.FirstOrDefault() == null).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.LastName).ThenByDescending(b => b.BookAuthors.FirstOrDefault().Author.FirstName).ThenByDescending(b => b.Id);
 
                     //case "Genre":
                     //    //return query => query.OrderByDescending(b => b.BookGenres.OrderBy(bg => bg.Genre.Name).FirstOrDefault().Genre.Name);
                     //    return query => query.OrderBy(b => b.BookGenres.FirstOrDefault() == null).ThenByDescending(b => b.BookGenres.FirstOrDefault().Genre.Name);
 
-
                     case "Publisher":
-                        return query => query.OrderByDescending(b => b.Publisher.Name);
+                        return query => query.OrderByDescending(b => b.Publisher.Name).ThenByDescending(b => b.Id);
                     case "Rating":
                         //return query => query.OrderByDescending(b => b.RatingBooks.Average(rb => rb.ValueRating));
-                        return query => query.OrderByDescending(b => b.SumRatingValue);
+                        return query => query.OrderByDescending(b => b.SumRatingValue).ThenByDescending(b => b.Id);
                     case "Date":
-                        return query => query.OrderBy(b => b.AdditionDate == null).ThenByDescending(b => b.AdditionDate);
+                        return query => query.OrderBy(b => b.AdditionDate == null).ThenByDescending(b => b.AdditionDate).ThenByDescending(b => b.Id);
                     default:
                         break;
                 }
