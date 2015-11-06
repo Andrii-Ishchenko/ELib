@@ -1,11 +1,13 @@
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("BookInstance")]
-    public partial class BookInstance
+    public partial class BookInstance : IEntityState
     {
         public int Id { get; set; }
 
@@ -22,5 +24,8 @@ namespace ELib.Domain.Entities
         public DateTime InsertDate { get; set; }
 
         public virtual Book Book { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

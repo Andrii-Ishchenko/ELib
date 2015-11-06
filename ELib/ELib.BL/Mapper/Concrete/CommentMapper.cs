@@ -8,6 +8,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Comment Map(CommentDto input)
         {
+            if (input == null)
+                return null;
             return new Comment()
             {
                 Id = input.Id,
@@ -18,13 +20,16 @@ namespace ELib.BL.Mapper.Concrete
                 SumDisLike = input.SumDisLike,
                 SumLike = input.SumLike,
                 ImageHash = input.ImageHash,
-                UserName = input.UserName
+                UserName = input.UserName,
+                State = input.State
 
             };
         }
 
         public CommentDto Map(Comment input)
         {
+            if (input == null)
+                return null;
             return new CommentDto()
             {
                 Id = input.Id,
@@ -35,7 +40,8 @@ namespace ELib.BL.Mapper.Concrete
                 SumDisLike = input.SumDisLike,
                 SumLike = input.SumLike,
                 ImageHash = input.ImageHash,
-                UserName = input.UserName
+                UserName = input.UserName,
+                State = input.State
             };
         }
     }

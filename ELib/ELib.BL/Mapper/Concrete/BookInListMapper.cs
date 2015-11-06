@@ -18,6 +18,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public Book Map(BookInListDto input)
         {
+            if (input == null)
+                return null;
             Book result = new Book()
             {
                 Id = input.Id,
@@ -26,12 +28,15 @@ namespace ELib.BL.Mapper.Concrete
                 PublishYear = input.PublishYear,
                 SumRatingValue= input.Rating,
                 ImageHash = input.ImageHash,
+                State = input.State
             };
             return result;
         }
 
         public BookInListDto Map(Book input)
         {
+            if (input == null)
+                return null;
             BookInListDto result = new BookInListDto()
             {
                 Id = input.Id,
@@ -40,6 +45,7 @@ namespace ELib.BL.Mapper.Concrete
                 PublishYear = input.PublishYear,
                 Rating = input.SumRatingValue,
                 ImageHash = input.ImageHash,
+                State = input.State,
                 PublisherName = (input.Publisher == null) ? null : input.Publisher.Name
             };
 

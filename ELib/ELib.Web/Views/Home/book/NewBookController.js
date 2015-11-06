@@ -39,6 +39,7 @@
                 for (var i = 0; i < vm.authors.length; i++) {
                     if (vm.authors[i].Id == vm.authorId) {
                         selectedAuthor = vm.authors[i];
+                        selectedAuthor.State = 0;
                         index = i;
                     }
                 }
@@ -54,6 +55,7 @@
                 for (var i = 0; i < vm.authorsMas.length; i++) {
                     if (vm.authorsMas[i].Id == author.Id) {
                         selectedAuthor = vm.authorsMas[i];
+                        selectedAuthor.State = 2;
                         index = i;
                     }
                 }
@@ -83,7 +85,8 @@
                 SubgenreId: vm.subgenre,
                 CategoryId: vm.category,
                 PublishYear: vm.yearOfPublishing,
-                Authors: vm.authorsMas
+                Authors: vm.authorsMas,
+                State : 0
             }
 
             dataServiceFactory.getService('books').save(book).$promise.then(

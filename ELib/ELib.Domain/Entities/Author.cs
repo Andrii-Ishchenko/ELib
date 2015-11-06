@@ -1,12 +1,14 @@
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Author")]
-    public partial class Author
+    public partial class Author : IEntityState
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Author()
@@ -37,5 +39,8 @@ namespace ELib.Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

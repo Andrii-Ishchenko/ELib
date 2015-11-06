@@ -13,25 +13,31 @@ namespace ELib.BL.Mapper.Concrete
     {
         public BookInstance Map(BookInstanceDto input)
         {
+            if (input == null)
+                return null;
             return new BookInstance()
             {
                 Id = input.Id,
                 BookId = input.BookId,
                 FileHash = input.FileHash,
                 FileName = input.FileName,
-                DownloadCount = input.DownloadCount
+                DownloadCount = input.DownloadCount,
+                State = input.State
             };
         }
 
         public BookInstanceDto Map(BookInstance input)
         {
+            if (input == null)
+                return null;
             return new BookInstanceDto()
             {
                 Id = input.Id,
                 BookId = input.BookId,
                 FileHash = input.FileHash,
                 FileName = input.FileName,
-                DownloadCount = input.DownloadCount
+                DownloadCount = input.DownloadCount,
+                State = input.State
             };
         }
     }

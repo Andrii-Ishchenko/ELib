@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using ELib.Domain.Entities.Abstract;
 
 namespace ELib.DAL.Repositories.Abstract
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<TEntity> where TEntity : class, IEntityState
     {
         int TotalCount { get; }
 
@@ -22,5 +23,7 @@ namespace ELib.DAL.Repositories.Abstract
         void DeleteById(object id);
 
         void Update(TEntity entity);
+
+        void AddOrUpdate(TEntity entity);
     }
 }

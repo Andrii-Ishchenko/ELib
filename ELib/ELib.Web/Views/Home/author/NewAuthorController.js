@@ -25,7 +25,8 @@
                 LastName: vm.lastName,
                 Description: vm.description,
                 DateOfBirth: vm.dateOfBirth,
-                DeathDate: vm.deathDate
+                DeathDate: vm.deathDate,
+                State : 0
             }                       
 
             dataServiceFactory.getService('authors').save(author).$promise.then(

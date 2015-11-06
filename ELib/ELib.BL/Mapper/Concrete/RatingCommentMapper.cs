@@ -8,12 +8,16 @@ namespace ELib.BL.Mapper.Concrete
     {
         public RatingCommentDto Map(RatingComment input)
         {
-            return new RatingCommentDto() {Id = input.Id, CommentId = input.CommentId, UserId = input.UserId, IsLike = input.IsLike };
+            if (input == null)
+                return null;
+            return new RatingCommentDto() {Id = input.Id, CommentId = input.CommentId, UserId = input.UserId, IsLike = input.IsLike, State = input.State };
         }
 
         public RatingComment Map(RatingCommentDto input)
         {
-            return new RatingComment() { Id = input.Id, CommentId = input.CommentId, UserId = input.UserId, IsLike = input.IsLike};
+            if (input == null)
+                return null;
+            return new RatingComment() { Id = input.Id, CommentId = input.CommentId, UserId = input.UserId, IsLike = input.IsLike, State = input.State };
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using ELib.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using ELib.BL.DtoEntities.Abstract;
+using ELib.Common;
 
 namespace ELib.BL.DtoEntities
 {
-    public partial class BookInstanceDto
+    public partial class BookInstanceDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -21,5 +23,8 @@ namespace ELib.BL.DtoEntities
         {
             get { return Path.GetExtension(FileName).Replace(".", string.Empty).ToUpperInvariant(); }
         }
+
+        [Required]
+        public LibEntityState State { get; set; }
     }
 }

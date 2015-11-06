@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ELib.BL.DtoEntities.Abstract;
+using ELib.Common;
 
 namespace ELib.BL.DtoEntities
 {
-    public class BookDto
+    public class BookDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -36,19 +38,15 @@ namespace ELib.BL.DtoEntities
 
         public string Description { get; set; }
 
-        [StringLength(20)]
-        public string LanguageName { get; set; }
+        public LanguageDto Language { get; set; }
 
-        [StringLength(20)]
-        public string Language1Name { get; set; }
+        public LanguageDto Language1 { get; set; }
 
-        [StringLength(40)]
-        public string PublisherName { get; set; }
+        public PublisherDto Publisher{ get; set; }
 
-        [StringLength(40)]
-        public string SubgenreName { get; set; }
+        public SubgenreDto Subgenre { get; set; }
 
-        public string CategoryName { get; set; }
+        public CategoryDto Category { get; set; }
 
         public ICollection<AuthorForBookDto> Authors { get; set; }
 
@@ -62,6 +60,8 @@ namespace ELib.BL.DtoEntities
 
         public int TotalViewCount { get; set; }
 
-        //Status????
+        [Required]
+        [EnumDataType (typeof(LibEntityState))]
+        public LibEntityState State { get; set; }
     }
 }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using ELib.Common;
+using ELib.Domain.Entities.Abstract;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ELib.Domain.Entities
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser, IEntityState
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -19,5 +17,8 @@ namespace ELib.Domain.Entities
             // Add custom user claims here
             return userIdentity;
         }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }
