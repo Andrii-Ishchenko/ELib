@@ -56,8 +56,8 @@ namespace ELib.BL.Mapper.Concrete
                 State = input.State
             };
             result.Category = _categoryMapper.Map(input.Category);
-            result.Language = _languageMapper.Map(input.Language);
-            result.Language1 = (result.PublishLangId == result.OriginalLangId) ? result.Language : _languageMapper.Map(input.Language1);
+            result.PublishLanguage = _languageMapper.Map(input.PublishLanguage);
+            result.OriginalLanguage = (result.PublishLangId == result.OriginalLangId) ? result.PublishLanguage : _languageMapper.Map(input.OriginalLanguage);
             result.Publisher = _publisherMapper.Map(input.Publisher);
             result.Subgenre = _subgenreMapper.Map(input.Subgenre);
             result.BookAuthors = (input.Authors == null) ? result.BookAuthors : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id, State = a.State }).ToList();
@@ -98,8 +98,8 @@ namespace ELib.BL.Mapper.Concrete
                 TotalViewCount = input.TotalViewCount,
                 State = input.State,
                 Category = _categoryMapper.Map(input.Category),
-                Language1 = _languageMapper.Map(input.Language1),
-                Language = _languageMapper.Map(input.Language),
+                OriginalLanguage = _languageMapper.Map(input.OriginalLanguage),
+                PublishLanguage = _languageMapper.Map(input.PublishLanguage),
                 Publisher = _publisherMapper.Map(input.Publisher),
                 Subgenre = _subgenreMapper.Map(input.Subgenre)
             };

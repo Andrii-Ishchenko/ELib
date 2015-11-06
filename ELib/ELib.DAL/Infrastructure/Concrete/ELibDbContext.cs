@@ -110,13 +110,13 @@ namespace ELib.DAL.Infrastructure.Concrete
 
             modelBuilder.Entity<Language>()
                 .HasMany(e => e.Books)
-                .WithRequired(e => e.Language)
+                .WithRequired(e => e.PublishLanguage)
                 .HasForeignKey(e => e.PublishLangId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Language>()
                 .HasMany(e => e.Books1)
-                .WithOptional(e => e.Language1)
+                .WithOptional(e => e.OriginalLanguage)
                 .HasForeignKey(e => e.OriginalLangId);
 
             modelBuilder.Entity<Person>()

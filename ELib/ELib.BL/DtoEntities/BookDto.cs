@@ -38,9 +38,9 @@ namespace ELib.BL.DtoEntities
 
         public string Description { get; set; }
 
-        public LanguageDto Language { get; set; }
+        public LanguageDto PublishLanguage { get; set; }
 
-        public LanguageDto Language1 { get; set; }
+        public LanguageDto OriginalLanguage { get; set; }
 
         public PublisherDto Publisher{ get; set; }
 

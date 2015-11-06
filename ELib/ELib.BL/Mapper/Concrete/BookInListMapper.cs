@@ -28,6 +28,7 @@ namespace ELib.BL.Mapper.Concrete
                 PublishYear = input.PublishYear,
                 SumRatingValue= input.Rating,
                 ImageHash = input.ImageHash,
+                AdditionDate = input.AdditionDate,
                 State = input.State
             };
             return result;
@@ -45,6 +46,7 @@ namespace ELib.BL.Mapper.Concrete
                 PublishYear = input.PublishYear,
                 Rating = input.SumRatingValue,
                 ImageHash = input.ImageHash,
+                AdditionDate = input.AdditionDate,
                 State = input.State,
                 PublisherName = (input.Publisher == null) ? null : input.Publisher.Name
             };

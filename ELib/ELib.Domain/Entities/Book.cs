@@ -53,9 +53,9 @@ namespace ELib.Domain.Entities
 
         public virtual Subgenre Subgenre { get; set; }
 
-        public virtual Language Language { get; set; }
+        public virtual Language PublishLanguage { get; set; }
 
-        public virtual Language Language1 { get; set; }
+        public virtual Language OriginalLanguage { get; set; }
 
         public virtual Publisher Publisher { get; set; }
 
