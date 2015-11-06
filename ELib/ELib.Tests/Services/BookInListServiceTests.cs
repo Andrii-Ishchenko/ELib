@@ -16,19 +16,26 @@ namespace ELib.Tests.Services
         private readonly FakeUnitOfWorkFactory _fakeUnitOfWorkFactory;
         private readonly FakeRepository<Book> _fakeBookRepository;
         private readonly FakeRepository<Author> _fakeAuthorRepository;
+        private readonly FakeRepository<Publisher> _fakePublisherRepository;
         protected readonly IMapper<Author, AuthorDto> _mapperAuthor;
         protected readonly IMapper<Book, BookInListDto> _mapperBook;
+        protected readonly IMapper<Publisher, PublisherDto> _mapperPublisher;
 
         public BookInListServiceTests()
         {
             _mapperAuthor = new AuthorMapper();
+            _mapperPublisher = new PublisherMapper();
             _mapperBook = new BookInListMapper(_mapperAuthor);
 
+            _fakePublisherRepository = new FakeRepository<Publisher>();
+            _fakeAuthorRepository = new FakeRepository<Author>();
             _fakeBookRepository = new FakeRepository<Book>();
 
             _fakeUnitOfWorkFactory = new FakeUnitOfWorkFactory(
                 uow =>
                 {
+                    uow.SetRepository(_fakePublisherRepository);
+                    uow.SetRepository(_fakeAuthorRepository);
                     uow.SetRepository(_fakeBookRepository);
                 });
         }
@@ -36,6 +43,18 @@ namespace ELib.Tests.Services
         [SetUp]
         public void TestSetup()
         {
+            #region publishers
+            var publisher1 = new Publisher { Id = 1, Name = "Аверс" };
+            var publisher2 = new Publisher { Id = 2, Name = "Oma-Book" };
+            var publisher3 = new Publisher { Id = 3, Name = "Фактор" };
+            var publisher4 = new Publisher { Id = 4, Name = "Просвита" };
+            var publisher5 = new Publisher { Id = 5, Name = "FriedensBote" };
+            var publisher6 = new Publisher { Id = 6, Name = "АФІША" };
+            var publisher7 = new Publisher { Id = 7, Name = "Диалектика" };
+            var publisher8 = new Publisher { Id = 8, Name = "41Аверс" };
+            #endregion
+
+            #region authors
             //var author1 = new Author { Id = 1, FirstName = "Джефри", LastName = "Иванов", DateOfBirth = new DateTime(1990, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
             //var author2 = new Author { Id = 2, FirstName = "3456", LastName = "Аметов", DateOfBirth = new DateTime(1990, 7, 1), DeathDate = new DateTime(2008, 6, 1) };
             //var author3 = new Author { Id = 3, FirstName = "Nick", LastName = "12345", DateOfBirth = new DateTime(1990, 5, 29), DeathDate = new DateTime(2011, 6, 1) };
@@ -46,9 +65,9 @@ namespace ELib.Tests.Services
             //var author8 = new Author { Id = 8, FirstName = "Иван", LastName = "6Рихтер", DateOfBirth = new DateTime(1450, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
             //var author9 = new Author { Id = 9, FirstName = "7Дмитрий", LastName = "Rihter", DateOfBirth = new DateTime(1911, 12, 31), DeathDate = new DateTime(2008, 6, 1) };
             //var author10 = new Author { Id = 10, FirstName = "Alina", LastName = "Franko", DateOfBirth = new DateTime(1200, 9, 22), DeathDate = new DateTime(2008, 6, 1) };
+            #endregion
 
-            //_fakeAuthorRepository.Data.AddRange(new[] { author1, author2, author3, author4, author5, author6, author7, author8, author9, author10 });
-
+            #region books
             var books = new Book[]
             {
                 new Book()
@@ -64,6 +83,7 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     PublisherId = 3,
+                    Publisher=publisher3,
                     SubgenreId = 1,
                     Isbn = "978-5-496-00433-6",
                     PublishYear = 2013,
@@ -83,6 +103,7 @@ namespace ELib.Tests.Services
                     SubgenreId = 1,
                     TotalPages = 870,
                     PublisherId = 4,
+                    Publisher=publisher4,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2012, 1, 1),
                     SumRatingValue=2
@@ -99,6 +120,7 @@ namespace ELib.Tests.Services
                     PublishLangId = 1,
                     SubgenreId = 1,
                     PublisherId = 1,
+                    Publisher=publisher1,
                     Isbn = "978-5-17-077763-1",
                     PublishYear = 2015,
                     TotalPages = 1248,
@@ -117,6 +139,7 @@ namespace ELib.Tests.Services
                     PublishLangId = 1,
                     SubgenreId = 1,
                     PublisherId = 2,
+                    Publisher=publisher2,
                     Isbn = "978-5-17-078099-0",
                     PublishYear = 1999,
                     TotalPages = 320,
@@ -138,7 +161,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 3,
+                    PublisherId = 5,
+                    Publisher=publisher5,
                     Isbn = "5-272-00355-1",
                     PublishYear = 2001,
                     TotalPages = 352,
@@ -154,7 +178,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 1,
+                    PublisherId = 8,
+                    Publisher=publisher8,
                     Isbn = "978-5-17-0134564-1",
                     PublishYear = 1999,
                     TotalPages = 1348,
@@ -170,7 +195,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 1,
+                    PublisherId = 6,
+                    Publisher=publisher6,
                     Isbn = "988-5-17-077763-1",
                     PublishYear = 2013,
                     TotalPages = 1248,
@@ -186,7 +212,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 1,
+                    PublisherId = 7,
+                    Publisher=publisher7,
                     Isbn = "958-5-17-077763-1",
                     PublishYear = 2010,
                     TotalPages = 1248,
@@ -202,7 +229,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 1,
+                    PublisherId = 2,
+                    Publisher=publisher2,
                     Isbn = "978-5-17-077763-5",
                     PublishYear = 2015,
                     TotalPages = 1248,
@@ -218,7 +246,8 @@ namespace ELib.Tests.Services
                     OriginalLangId = 3,
                     PublishLangId = 1,
                     SubgenreId = 1,
-                    PublisherId = 1,
+                    PublisherId = 4,
+                    Publisher=publisher4,
                     Isbn = "978-5-17-077763-1",
                     PublishYear = 2013,
                     TotalPages = 148,
@@ -227,6 +256,9 @@ namespace ELib.Tests.Services
                     SumRatingValue=79
                 },
             };
+            #endregion
+            //_fakeAuthorRepository.Data.AddRange(new[] { author1, author2, author3, author4, author5, author6, author7, author8, author9, author10 });
+            _fakePublisherRepository.Data.AddRange(new[] { publisher1, publisher2, publisher3, publisher4, publisher5, publisher6, publisher7, publisher8 });
             _fakeBookRepository.Data.AddRange(books);
         }
 
@@ -236,6 +268,7 @@ namespace ELib.Tests.Services
         {
             // Clean up data in our fake dependencies.
             _fakeBookRepository.Data.Clear();
+            _fakePublisherRepository.Data.Clear();
         }
 
         [Test]
@@ -447,6 +480,59 @@ namespace ELib.Tests.Services
 
             Assert.That(books3.ToList()[0].Id, Is.EqualTo(4));
             Assert.That(books3.ToList()[1].Id, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetAll_When_sorting_by_Publisher_ASC_Then_get_sorted_list()
+        {
+            // Arrange
+            var service = new BookInListService(_fakeUnitOfWorkFactory, _mapperBook);
+
+            // Act
+            SearchDto serch = new SearchDto(query: null, authorName: null, title: null, publisher: null, genre: null, subgenre: null, genreId: -1, subgenreId: -1, year: -1, categoryIds: null, orderby: "Publisher", orderDirection: "ASC");
+
+            var books1 = service.GetAll(searchDto: serch, pageNumb: 1, pageCount: 10);
+            var books2 = service.GetAll(searchDto: serch, pageNumb: 2, pageCount: 5);
+            var books3 = service.GetAll(searchDto: serch, pageNumb: 3, pageCount: 2);
+
+            // Assert
+            Assert.That(books1.ToList()[0].Id, Is.EqualTo(6));
+            Assert.That(books1.ToList()[9].Id, Is.EqualTo(1));
+            Assert.That(books1.ToList()[2].Id, Is.EqualTo(4));
+            Assert.That(books1.ToList()[6].Id, Is.EqualTo(8));
+
+            Assert.That(books2.ToList()[0].Id, Is.EqualTo(7));
+            Assert.That(books2.ToList()[4].Id, Is.EqualTo(1));
+            Assert.That(books2.ToList()[2].Id, Is.EqualTo(2));
+
+            Assert.That(books3.ToList()[0].Id, Is.EqualTo(3));
+            Assert.That(books3.ToList()[1].Id, Is.EqualTo(7));
+        }
+
+        [Test]
+        public void GetAll_When_sorting_by_Publisher_DESC_Then_get_sorted_list()
+        {
+            // Arrange
+            var service = new BookInListService(_fakeUnitOfWorkFactory, _mapperBook);
+
+            // Act
+            SearchDto serch = new SearchDto(query: null, authorName: null, title: null, publisher: null, genre: null, subgenre: null, genreId: -1, subgenreId: -1, year: -1, categoryIds: null, orderby: "Publisher", orderDirection: "DESC");
+
+            var books1 = service.GetAll(searchDto: serch, pageNumb: 1, pageCount: 10);
+            var books2 = service.GetAll(searchDto: serch, pageNumb: 2, pageCount: 5);
+            var books3 = service.GetAll(searchDto: serch, pageNumb: 3, pageCount: 2);
+
+            // Assert
+            Assert.That(books1.ToList()[0].Id, Is.EqualTo(1));
+            Assert.That(books1.ToList()[9].Id, Is.EqualTo(6));
+            Assert.That(books1.ToList()[4].Id, Is.EqualTo(7));
+
+            Assert.That(books2.ToList()[0].Id, Is.EqualTo(3));
+            Assert.That(books2.ToList()[4].Id, Is.EqualTo(6));
+            Assert.That(books2.ToList()[2].Id, Is.EqualTo(4));
+
+            Assert.That(books3.ToList()[0].Id, Is.EqualTo(7));
+            Assert.That(books3.ToList()[1].Id, Is.EqualTo(3));
         }
     }
 }
