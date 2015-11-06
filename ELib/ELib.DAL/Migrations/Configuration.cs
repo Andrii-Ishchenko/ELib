@@ -16,7 +16,9 @@
 
         protected override void Seed(ELib.DAL.Infrastructure.Concrete.ELibDbContext context)
         {
-            //Comments added by Snizhana Bilovytska because this method is calling every time after bilding project and data in database are refreshing   
+            /**************************************************************************************************************************************************/
+            //Comments added by Snizhana Bilovytska because this method is calling every time after bilding project and data in database are refreshing  
+            /**************************************************************************************************************************************************/
             /*
             //users
             var applicationUsers = new List<ApplicationUser>()
