@@ -49,38 +49,8 @@ namespace ELib.DAL.Repositories.Concrete
         /*Comments added by Dmytro Skrypchenko because this method is old method, the method was left for comparable time performance new and old methods */
         /**************************************************************************************************************************************************/
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-            IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
-        {
-
-            IQueryable<TEntity> query = dbSet;
-            if (filter != null)
-            {
-                query = query.AsExpandable().Where(filter);
-            }
-
-            foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(item);
-            }
-
-            _totalCount = query.Count<TEntity>();
-
-            query = (orderBy != null) ? orderBy(query) : query;
-            if (skipCount >= 0 && topCount > 0)
-            {
-                return (query.AsEnumerable()).Skip(skipCount).Take(topCount);
-            }
-            return query.AsEnumerable();
-
-        }
-
-        /**************************************************************************************************************************************************/
-        /*Comments added by Snizhana Bilovytska only for one day for testers. We need this method. Method before should be commented
-        /**************************************************************************************************************************************************/
-
         //public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-        //   IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 100)
+        //    IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 0)
         //{
 
         //    IQueryable<TEntity> query = dbSet;
@@ -96,18 +66,44 @@ namespace ELib.DAL.Repositories.Concrete
 
         //    _totalCount = query.Count<TEntity>();
 
+        //    query = (orderBy != null) ? orderBy(query) : query;
         //    if (skipCount >= 0 && topCount > 0)
         //    {
-        //        if (orderBy != null)
-        //        {
-        //            return orderBy(query).Skip(skipCount).Take(topCount);
-        //        }
-        //        else return query.AsEnumerable().Skip(skipCount).Take(topCount);
+        //        return (query.AsEnumerable()).Skip(skipCount).Take(topCount);
         //    }
-        //    else
-        //    { throw new ArgumentException("skipCount or topCount is negative"); }
+        //    return query.AsEnumerable();
 
         //}
+
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
+           IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", int skipCount = 0, int topCount = 100)
+        {
+
+            IQueryable<TEntity> query = dbSet;
+            if (filter != null)
+            {
+                query = query.AsExpandable().Where(filter);
+            }
+
+            foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(item);
+            }
+
+            _totalCount = query.Count<TEntity>();
+
+            if (skipCount >= 0 && topCount > 0)
+            {
+                if (orderBy != null)
+                {
+                    return orderBy(query).Skip(skipCount).Take(topCount);
+                }
+                else return query.AsEnumerable().Skip(skipCount).Take(topCount);
+            }
+            else
+            { throw new ArgumentException("skipCount or topCount is negative"); }
+
+        }
 
         public virtual TEntity GetById(object id)
         {
