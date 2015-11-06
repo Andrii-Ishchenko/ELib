@@ -56,11 +56,11 @@ namespace ELib.BL.Services.Concrete
                 switch (orderby)
                 {
                     case "FirstName":
-                        return q => q.OrderBy(b => b.FirstName==null).ThenBy(b => b.FirstName);
+                        return q => q.OrderBy(b => b.FirstName==null).ThenBy(b => b.FirstName).ThenBy(b=>b.Id);
                     case "LastName":
-                        return q => q.OrderBy(b => b.LastName==null).ThenBy(b=>b.LastName);
+                        return q => q.OrderBy(b => b.LastName==null).ThenBy(b=>b.LastName).ThenBy(b=>b.Id);
                     case "DateOfBirth":
-                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenBy(b=>b.DateOfBirth);
+                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenBy(b=>b.DateOfBirth).ThenBy(b=>b.Id);
                     
                     default:
                         break;
@@ -71,11 +71,11 @@ namespace ELib.BL.Services.Concrete
                 switch (orderby)
                 {
                     case "FirstName":
-                        return q => q.OrderBy(b => b.FirstName==null).ThenByDescending(b=>b.FirstName);
+                        return q => q.OrderBy(b => b.FirstName==null).ThenByDescending(b=>b.FirstName).ThenByDescending(b=>b.Id);
                     case "LastName":
-                        return q => q.OrderBy(b => b.LastName==null).ThenByDescending(b=>b.LastName);
+                        return q => q.OrderBy(b => b.LastName==null).ThenByDescending(b=>b.LastName).ThenByDescending(b=>b.Id);
                     case "DateOfBirth":
-                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenByDescending(b=>b.DateOfBirth);
+                        return q => q.OrderBy(b => b.DateOfBirth==null).ThenByDescending(b=>b.DateOfBirth).ThenByDescending(b=>b.Id);
 
                     default:
                         break;
