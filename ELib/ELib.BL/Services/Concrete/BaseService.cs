@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.BL.Mapper.Abstract;
+using ELib.Domain.Entities.Abstract;
+using ELib.BL.DtoEntities.Abstract;
 
 namespace ELib.BL.Services.Concrete
 {
     public class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, TEntityDto>
-        where TEntityDto : class
-        where TEntity : class
+        where TEntityDto : class, IDtoEntityState
+        where TEntity : class, IEntityState
     {
         protected readonly IUnitOfWorkFactory _factory;
         protected readonly IMapper<TEntity, TEntityDto> _mapper;
@@ -72,7 +74,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entityToInsert = _mapper.Map(entity);
-                uow.Repository<TEntity>().Insert(entityToInsert);
+                uow.Repository<TEntity>().AddOrUpdate(entityToInsert);
                 uow.Save();
                 return entity = _mapper.Map(entityToInsert);
             }
@@ -83,7 +85,7 @@ namespace ELib.BL.Services.Concrete
             using (var uow = _factory.Create())
             {
                 var entityToUpdate = _mapper.Map(entity);
-                uow.Repository<TEntity>().Update(entityToUpdate);
+                uow.Repository<TEntity>().AddOrUpdate(entityToUpdate);
                 uow.Save();
             }
         }

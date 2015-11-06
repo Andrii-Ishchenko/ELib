@@ -9,6 +9,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Subgenre Map(SubgenreDto input)
         {
+            if (input == null)
+                return null;
             return new Subgenre()
             {
                 Id = input.Id,
@@ -19,6 +21,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public SubgenreDto Map(Subgenre input)
         {
+            if (input == null)
+                return null;
             return new SubgenreDto()
             {
                 Id = input.Id,

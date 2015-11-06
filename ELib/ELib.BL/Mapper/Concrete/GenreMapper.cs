@@ -8,6 +8,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Genre Map(GenreDto input)
         {
+            if (input == null)
+                return null;
             return new Genre()
             {
                 Id = input.Id,
@@ -18,6 +20,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public GenreDto Map(Genre input)
         {
+            if (input == null)
+                return null;
             return new GenreDto()
             {
                 Id = input.Id,

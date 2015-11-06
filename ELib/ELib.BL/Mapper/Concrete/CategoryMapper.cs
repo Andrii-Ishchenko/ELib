@@ -9,6 +9,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Category Map(CategoryDto input)
         {
+            if (input == null)
+                return null;
             return new Category()
             {
                 Id = input.Id,
@@ -22,6 +24,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public CategoryDto Map(Category input)
         {
+            if (input == null)
+                return null;
             return new CategoryDto()
             {
                 Id = input.Id,

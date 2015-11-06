@@ -21,7 +21,8 @@
             vm.submitState = true;
 
             var publisher = {
-                Name: vm.name
+                Name: vm.name,
+                State : 0
             }
 
             dataServiceFactory.getService('publishers').save(publisher).$promise.then(

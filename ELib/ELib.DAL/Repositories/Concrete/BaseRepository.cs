@@ -7,10 +7,12 @@ using System.Data.Entity;
 using ELib.DAL.Repositories.Abstract;
 using ELib.Domain.Entities;
 using LinqKit;
+using ELib.Domain.Entities.Abstract;
+using ELib.Common;
 
 namespace ELib.DAL.Repositories.Concrete
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntityState
     {
         private int _totalCount;
         internal ELibDbContext context;
@@ -118,6 +120,36 @@ namespace ELib.DAL.Repositories.Concrete
         {
             dbSet.Attach(entity);
             context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public virtual void AddOrUpdate(TEntity entity)
+        {
+                context.Set<TEntity>().Add(entity);
+
+                foreach (var entry in context.ChangeTracker
+                  .Entries<IEntityState>())
+                {
+                    IEntityState stateInfo = entry.Entity;
+                    entry.State = ConvertState(stateInfo.State);
+                }
+         }
+
+        private static EntityState ConvertState(LibEntityState state)
+        {
+            switch (state)
+            {
+                case LibEntityState.Added:
+                    return EntityState.Added;
+
+                case LibEntityState.Modified:
+                    return EntityState.Modified;
+
+                case LibEntityState.Deleted:
+                    return EntityState.Deleted;
+
+                default:
+                    return EntityState.Unchanged;
+            }
         }
     }
 }

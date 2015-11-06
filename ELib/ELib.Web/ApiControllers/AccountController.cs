@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
+
 namespace ELib.Web.ApiControllers
 {
     [Authorize]
@@ -74,7 +75,7 @@ namespace ELib.Web.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
-                var person = new PersonDto() { ApplicationUserId = user.Id};
+                var person = new PersonDto() { ApplicationUserId = user.Id, State = LibEntityState.Added};
                 _profileService.Insert(person);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Ok");

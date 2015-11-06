@@ -8,6 +8,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public CategoryDto Map(CategoryNestedDto input)
         {
+            if (input == null)
+                return null;
             return new CategoryDto()
             {
                 Id = input.Id,
@@ -21,6 +23,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public CategoryNestedDto Map(CategoryDto input)
         {
+            if (input == null)
+                return null;
             return new CategoryNestedDto()
             {
                 Id = input.Id,

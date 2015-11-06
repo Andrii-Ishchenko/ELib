@@ -13,6 +13,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Person Map(CurrentPersonDto input)
         {
+            if (input == null)
+                return null;
             Person result = new Person()
             {
                 Id = input.Id,
@@ -27,6 +29,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public CurrentPersonDto Map(Person input)
         {
+            if (input == null)
+                return null;
             CurrentPersonDto result = new CurrentPersonDto() {
                 Id = input.Id,
                 FirstName = input.FirstName,

@@ -9,6 +9,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public PersonDto Map(Person input)
         {
+            if (input == null)
+                return null;
             return new PersonDto() { Id = input.Id,
                                      FirstName = input.FirstName,
                                      LastName = input.LastName,
@@ -20,6 +22,9 @@ namespace ELib.BL.Mapper.Concrete
 
         public Person Map(PersonDto input)
         {
+
+            if (input == null)
+                return null;
             return new Person() { Id = input.Id,
                                   FirstName = input.FirstName,
                                   LastName = input.LastName,

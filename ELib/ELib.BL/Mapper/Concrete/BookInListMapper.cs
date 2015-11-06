@@ -18,6 +18,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public Book Map(BookInListDto input)
         {
+            if (input == null)
+                return null;
             Book result = new Book()
             {
                 Id = input.Id,
@@ -33,6 +35,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public BookInListDto Map(Book input)
         {
+            if (input == null)
+                return null;
             BookInListDto result = new BookInListDto()
             {
                 Id = input.Id,

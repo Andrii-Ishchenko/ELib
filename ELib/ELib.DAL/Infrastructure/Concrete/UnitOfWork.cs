@@ -2,6 +2,7 @@
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.DAL.Repositories.Abstract;
 using ELib.DAL.Repositories.Concrete;
+using ELib.Domain.Entities.Abstract;
 
 namespace ELib.DAL.Infrastructure.Concrete
 {
@@ -35,7 +36,7 @@ namespace ELib.DAL.Infrastructure.Concrete
             GC.SuppressFinalize(this);
         }
 
-        public IBaseRepository<T> Repository<T>() where T : class
+        public IBaseRepository<T> Repository<T>() where T : class, IEntityState
         {
             return new BaseRepository<T>(_context);
         }

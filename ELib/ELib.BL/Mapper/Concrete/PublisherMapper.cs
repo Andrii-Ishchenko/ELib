@@ -8,11 +8,15 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Publisher Map(PublisherDto input)
         {
+            if (input == null)
+                return null;
             return new Publisher() { Id = input.Id, Name = input.Name, State = input.State };
         }
 
         public PublisherDto Map(Publisher input)
         {
+            if (input == null)
+                return null;
             return new PublisherDto() { Id = input.Id, Name = input.Name, State = input.State };
         }
     }

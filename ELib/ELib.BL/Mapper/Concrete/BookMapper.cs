@@ -33,6 +33,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public Book Map(BookDto input)
         {
+            if (input == null)
+                return null;
             Book result = new Book()
             {
                 Id = input.Id,
@@ -55,11 +57,11 @@ namespace ELib.BL.Mapper.Concrete
             };
             result.Category = _categoryMapper.Map(input.Category);
             result.Language = _languageMapper.Map(input.Language);
-            result.Language1 = _languageMapper.Map(input.Language1);
+            result.Language1 = (result.PublishLangId == result.OriginalLangId) ? result.Language : _languageMapper.Map(input.Language1);
             result.Publisher = _publisherMapper.Map(input.Publisher);
             result.Subgenre = _subgenreMapper.Map(input.Subgenre);
-            result.BookAuthors = (input.Authors == null) ? null : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id, State = a.State }).ToList();
-            result.BookGenres = (input.Genres == null) ? null : input.Genres.Select(g => new BookGenre {Id = g.BookGenreId, GenreId = g.GenreId, BookId = input.Id, State = g.State}).ToList();
+            result.BookAuthors = (input.Authors == null) ? result.BookAuthors : input.Authors.Select(a => new BookAuthor {Id = a.BookAuthorsId, AuthorId = a.Id, BookId = input.Id, State = a.State }).ToList();
+            result.BookGenres = (input.Genres == null) ? result.BookGenres : input.Genres.Select(g => new BookGenre {Id = g.BookGenreId, GenreId = g.GenreId, BookId = input.Id, State = g.State}).ToList();
             //if (input.Authors != null)
             //    foreach (var author in input.Authors)
             //        result.BookAuthors.Add(new BookAuthor()
@@ -74,6 +76,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public BookDto Map(Book input)
         {
+            if (input == null)
+                return null;
             BookDto result = new BookDto()
             {
                 Id = input.Id,

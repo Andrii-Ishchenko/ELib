@@ -8,6 +8,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Comment Map(CommentDto input)
         {
+            if (input == null)
+                return null;
             return new Comment()
             {
                 Id = input.Id,
@@ -26,6 +28,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public CommentDto Map(Comment input)
         {
+            if (input == null)
+                return null;
             return new CommentDto()
             {
                 Id = input.Id,

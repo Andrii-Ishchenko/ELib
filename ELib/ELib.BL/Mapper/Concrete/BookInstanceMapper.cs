@@ -13,6 +13,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public BookInstance Map(BookInstanceDto input)
         {
+            if (input == null)
+                return null;
             return new BookInstance()
             {
                 Id = input.Id,
@@ -26,6 +28,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public BookInstanceDto Map(BookInstance input)
         {
+            if (input == null)
+                return null;
             return new BookInstanceDto()
             {
                 Id = input.Id,

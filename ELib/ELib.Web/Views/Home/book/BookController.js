@@ -194,7 +194,8 @@
                 PublishYear: vm.instance.PublishYear,
                 OriginalLangId: vm.instance.OriginalLangId,
                 PublishLangId: vm.instance.PublishLangId,
-                TotalPages: vm.instance.TotalPages
+                TotalPages: vm.instance.TotalPages,
+                State : 1
             }
             dataServiceFactory.getService("Books").update(book);
         }
@@ -205,6 +206,7 @@
                 for (var i = 0; i < vm.allAuthors.length; i++) {
                     if (vm.allAuthors[i].Id == vm.authorId) {
                         selectedAuthor = vm.allAuthors[i];
+                        selectedAuthor.State = 0;
                         vm.instance.Authors.push(selectedAuthor);
                         vm.allAuthors.splice(i, 1);
                     }
@@ -218,6 +220,7 @@
                 for (var i = 0; i < vm.instance.Authors.length; i++) {
                     if (vm.instance.Authors[i].Id == author.Id) {
                         selectedAuthor = vm.instance.Authors[i];
+                        selectedAuthor.State = 3;
                         vm.instance.Authors.splice(i, 1);
                         vm.allAuthors.push(selectedAuthor);
                         return;

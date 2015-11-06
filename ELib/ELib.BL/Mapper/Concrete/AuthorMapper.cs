@@ -8,6 +8,8 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Author Map(AuthorDto input)
         {
+            if (input == null)
+                return null;
             return new Author()
             {
                 Id = input.Id,
@@ -23,6 +25,8 @@ namespace ELib.BL.Mapper.Concrete
 
         public AuthorDto Map(Author input)
         {
+            if (input == null)
+                return null;
             return new AuthorDto()
             {
                 Id = input.Id,

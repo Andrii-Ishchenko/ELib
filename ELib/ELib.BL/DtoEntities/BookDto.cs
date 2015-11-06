@@ -61,6 +61,7 @@ namespace ELib.BL.DtoEntities
         public int TotalViewCount { get; set; }
 
         [Required]
+        [EnumDataType (typeof(LibEntityState))]
         public LibEntityState State { get; set; }
     }
 }
