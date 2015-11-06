@@ -11,9 +11,9 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
         vm.ordering =  {
                 orderBy: 'Name',
-                orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'ASC',
+                orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : 'DESC',
                 defaultOrder: "Name",
-                defaultDirection: "ASC",
+                defaultDirection: "DESC",
                 orderParameters: ["Name"]
             }
 

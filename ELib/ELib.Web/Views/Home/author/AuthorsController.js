@@ -13,25 +13,25 @@
             var params = getParameters();
             var obj = dataServiceFactory.getService('authors').get(params)
                             .$promise.then(function (data) {
-                              vm.authors = data.authors;
-                              vm.totalCount = data.totalCount;
-                              vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-                              vm.maxSize = 5;
-                              vm.pages = new Array(vm.totalPages);
-                          })
+                                vm.authors = data.authors;
+                                vm.totalCount = data.totalCount;
+                                vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+                                vm.maxSize = 5;
+                                vm.pages = new Array(vm.totalPages);
+                            })
         }
 
         vm.ordering = fetchOrderingWithDefaultParams();
 
         function fetchOrderingWithDefaultParams() {
-                        return {
-                            defaultOrder: "LastName",
-                            defaultDirection: "ASC",
-                           orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "LastName",
-                            orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "ASC",
-                            orderParameters: ["FirstName", "LastName", "DateOfBirth"]
-                        }
-                }
+            return {
+                defaultOrder: "LastName",
+                defaultDirection: "DESC",
+                orderBy: ($routeParams.orderBy) ? $routeParams.orderBy : "LastName",
+                orderDirection: ($routeParams.orderDirection) ? $routeParams.orderDirection : "DESC",
+                orderParameters: ["FirstName", "LastName", "DateOfBirth"]
+            }
+        }
         var parameters = getParameters();
 
 
@@ -43,7 +43,7 @@
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
             vm.maxSize = 5;
         })
-         
+
         function getParameters() {
             return {
                 pageCount: vm.pageCount,
