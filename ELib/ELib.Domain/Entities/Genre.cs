@@ -1,11 +1,13 @@
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Genre")]
-    public partial class Genre
+    public partial class Genre : IEntityState
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Genre()
@@ -25,5 +27,8 @@ namespace ELib.Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookGenre> BookGenres { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

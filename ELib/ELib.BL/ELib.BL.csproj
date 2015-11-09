@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DtoEntities\Abstract\IDtoEntityState.cs" />
     <Compile Include="DtoEntities\AuthorDto.cs" />
     <Compile Include="DtoEntities\AuthorForBookDto.cs" />
     <Compile Include="DtoEntities\AuthorListDto.cs" />

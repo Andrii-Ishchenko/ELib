@@ -13,19 +13,24 @@ namespace ELib.BL.Mapper.Concrete
     {
         public Person Map(CurrentPersonDto input)
         {
+            if (input == null)
+                return null;
             Person result = new Person()
             {
                 Id = input.Id,
                 FirstName = input.FirstName,
                 LastName = input.LastName,
                 ImageHash = input.ImageHash,
-                ApplicationUserId = input.ApplicationUserId
+                ApplicationUserId = input.ApplicationUserId,
+                State = input.State
             };
             return result;
         }
 
         public CurrentPersonDto Map(Person input)
         {
+            if (input == null)
+                return null;
             CurrentPersonDto result = new CurrentPersonDto() {
                 Id = input.Id,
                 FirstName = input.FirstName,
@@ -33,7 +38,8 @@ namespace ELib.BL.Mapper.Concrete
                 UserName = input.ApplicationUser.UserName,
                 Email = input.ApplicationUser.Email,
                 ImageHash = input.ImageHash,
-                ApplicationUserId = input.ApplicationUserId
+                ApplicationUserId = input.ApplicationUserId,
+                State = input.State
             };
             return result;
         }

@@ -5,10 +5,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using LinqKit;
+using ELib.Domain.Entities.Abstract;
 
 namespace ELib.Tests.Fake
 {
-    public class FakeRepository<T> : IBaseRepository<T> where T : class
+    public class FakeRepository<T> : IBaseRepository<T> where T : class, IEntityState
     {
         private int _totalCount;
 
@@ -80,6 +81,11 @@ namespace ELib.Tests.Fake
         }
 
         public void Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddOrUpdate(T entity)
         {
             throw new NotImplementedException();
         }

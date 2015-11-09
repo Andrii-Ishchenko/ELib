@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ELib.Common;
+using ELib.BL.DtoEntities.Abstract;
+using System.ComponentModel.DataAnnotations;
 
 namespace ELib.BL.DtoEntities
 {
-    public class RatingCommentDto
+    public class RatingCommentDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -15,5 +13,8 @@ namespace ELib.BL.DtoEntities
         public int UserId { get; set; }
 
         public bool IsLike { get; set; }
+
+        [Required]
+        public LibEntityState State { get; set; }
     }
 }

@@ -89,12 +89,7 @@ namespace ELib.BL.Mapper
         {
             AutoMapper.Mapper.CreateMap<Book, BookDto>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                  .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue))
-                  .ForMember(d => d.LanguageName, o => o.MapFrom(s => s.Language.Name))
-                  .ForMember(d => d.Language1Name, o => o.MapFrom(s => s.Language1.Name))
-                  .ForMember(d => d.PublisherName, o => o.MapFrom(s => s.Publisher.Name))
-                  .ForMember(d => d.SubgenreName, o => o.MapFrom(s => s.Subgenre.Name))
-                  .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name));
+                  .ForMember(d => d.Rating, o => o.MapFrom(s => s.SumRatingValue));
             AutoMapper.Mapper.CreateMap<BookDto, Book>();
         }
 

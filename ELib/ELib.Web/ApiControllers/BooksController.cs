@@ -150,7 +150,7 @@ namespace ELib.Web.ApiControllers
             catch(Exception e)
             {
                 _logger.Error("Error Books/add", e);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.ToString());
             }
         }
 

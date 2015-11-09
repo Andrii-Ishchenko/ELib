@@ -1,15 +1,10 @@
-﻿using ELib.Domain.Entities;
-using System;
-using System.Collections.Generic;
+﻿using ELib.Common;
+using ELib.BL.DtoEntities.Abstract;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ELib.BL.DtoEntities
 {
-    public class CurrentPersonDto
+    public class CurrentPersonDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -27,6 +22,9 @@ namespace ELib.BL.DtoEntities
         public string ImageHash { get; set; }
 
         public string ApplicationUserId { get; set; }
+
+        [Required]
+        public LibEntityState State { get; set; }
 
     }
 }

@@ -8,25 +8,31 @@ namespace ELib.BL.Mapper.Concrete
     {
         public CategoryDto Map(CategoryNestedDto input)
         {
+            if (input == null)
+                return null;
             return new CategoryDto()
             {
                 Id = input.Id,
                 Name = input.Name,
                 BookCount = input.BookCount,
                 Level = input.Level,
-                ParentId = input.ParentId
+                ParentId = input.ParentId,
+                State = input.State
             };
         }
 
         public CategoryNestedDto Map(CategoryDto input)
         {
+            if (input == null)
+                return null;
             return new CategoryNestedDto()
             {
                 Id = input.Id,
                 Name = input.Name,
                 BookCount = input.BookCount,
                 Level = input.Level,
-                ParentId = input.ParentId
+                ParentId = input.ParentId,
+                State = input.State
             };
         }
     }

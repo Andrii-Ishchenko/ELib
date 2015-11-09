@@ -1,12 +1,14 @@
 namespace ELib.Domain.Entities
 {
+    using Abstract;
+    using ELib.Common;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Language")]
-    public partial class Language
-    {
+    public partial class Language : IEntityState
+    { 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Language()
         {
@@ -25,5 +27,8 @@ namespace ELib.Domain.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books1 { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

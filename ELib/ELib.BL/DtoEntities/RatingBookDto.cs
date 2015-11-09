@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ELib.Common;
+using ELib.BL.DtoEntities.Abstract;
 using System.ComponentModel.DataAnnotations;
 
 namespace ELib.BL.DtoEntities
 {
-    public class RatingBookDto
+    public class RatingBookDto : IDtoEntityState
     {
         public int Id { get; set; }
 
@@ -15,6 +13,9 @@ namespace ELib.BL.DtoEntities
         public int UserId { get; set; }
 
         public int ValueRating { get; set; }
+
+        [Required]
+        public LibEntityState State { get; set; }
 
         //public ICollection<int> BookIds { get; set; }
 

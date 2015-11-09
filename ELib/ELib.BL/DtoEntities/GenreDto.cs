@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ELib.Common;
+using ELib.BL.DtoEntities.Abstract;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ELib.BL.DtoEntities
 {
-    public class GenreDto
+    public class GenreDto : IDtoEntityState
     {
         public int Id { get; set; }
 
         [Required]
         [StringLength(40)]
         public string Name { get; set; }
+
+        [Required]
+        public LibEntityState State { get; set; }
     }
 }

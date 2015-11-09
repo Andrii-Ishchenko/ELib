@@ -49,6 +49,7 @@
     <Compile Include="ELoggerFactory.cs" />
     <Compile Include="ELogger.cs" />
     <Compile Include="ImageResizer.cs" />
+    <Compile Include="LibEntityState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

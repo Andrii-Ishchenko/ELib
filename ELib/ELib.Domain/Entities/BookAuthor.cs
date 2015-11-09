@@ -1,12 +1,11 @@
 namespace ELib.Domain.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using Abstract;
+    using ELib.Common;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("BookAuthor")]
-    public partial class BookAuthor
+    public partial class BookAuthor : IEntityState
     {
         public int Id { get; set; }
 
@@ -17,5 +16,8 @@ namespace ELib.Domain.Entities
         public virtual Author Author { get; set; }
 
         public virtual Book Book { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }

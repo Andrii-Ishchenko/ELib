@@ -1,12 +1,13 @@
 namespace ELib.Domain.Entities
 {
-    using System;
+    using Abstract;
+    using ELib.Common;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Person")]
-    public partial class Person
+    public partial class Person  : IEntityState
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
@@ -41,5 +42,8 @@ namespace ELib.Domain.Entities
         public virtual ICollection<UserBookStatus> UserBookStatus { get; set; }
 
         public virtual ICollection<Favorite> Favorites { get; set; }
+
+        [NotMapped]
+        public LibEntityState State { get; set; }
     }
 }
