@@ -99,6 +99,7 @@
             var userIdCmnt = vm.profile.Id;
             vm.newComment.UserId = userIdCmnt;
             vm.newComment.UserName = vm.profile.UserName;
+            vm.newComment.State = 0;
             dataServiceFactory.getService('Comments').save(vm.newComment).$promise.then(
                  //success
                  function (value) {
