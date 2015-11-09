@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using ELib.Domain.Entities;
 using ELib.BL.Services.Concrete;
@@ -17,19 +18,19 @@ namespace ELib.Tests.Services
         private readonly FakeRepository<Book> _fakeBookRepository;
         private readonly FakeRepository<Author> _fakeAuthorRepository;
         private readonly FakeRepository<Publisher> _fakePublisherRepository;
-        protected readonly IMapper<Author, AuthorDto> _mapperAuthor;
-        protected readonly IMapper<Book, BookInListDto> _mapperBook;
-        protected readonly IMapper<Publisher, PublisherDto> _mapperPublisher;
+        private readonly FakeRepository<BookAuthor> _fakeBookAuthorRepository;
+        private readonly IMapper<Author, AuthorDto> _mapperAuthor;
+        private readonly IMapper<Book, BookInListDto> _mapperBook;
 
         public BookInListServiceTests()
         {
             _mapperAuthor = new AuthorMapper();
-            _mapperPublisher = new PublisherMapper();
             _mapperBook = new BookInListMapper(_mapperAuthor);
 
             _fakePublisherRepository = new FakeRepository<Publisher>();
             _fakeAuthorRepository = new FakeRepository<Author>();
             _fakeBookRepository = new FakeRepository<Book>();
+            _fakeBookAuthorRepository = new FakeRepository<BookAuthor>();
 
             _fakeUnitOfWorkFactory = new FakeUnitOfWorkFactory(
                 uow =>
@@ -37,6 +38,7 @@ namespace ELib.Tests.Services
                     uow.SetRepository(_fakePublisherRepository);
                     uow.SetRepository(_fakeAuthorRepository);
                     uow.SetRepository(_fakeBookRepository);
+                    uow.SetRepository(_fakeBookAuthorRepository);
                 });
         }
 
@@ -55,16 +57,32 @@ namespace ELib.Tests.Services
             #endregion
 
             #region authors
-            //var author1 = new Author { Id = 1, FirstName = "Джефри", LastName = "Иванов", DateOfBirth = new DateTime(1990, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
-            //var author2 = new Author { Id = 2, FirstName = "3456", LastName = "Аметов", DateOfBirth = new DateTime(1990, 7, 1), DeathDate = new DateTime(2008, 6, 1) };
-            //var author3 = new Author { Id = 3, FirstName = "Nick", LastName = "12345", DateOfBirth = new DateTime(1990, 5, 29), DeathDate = new DateTime(2011, 6, 1) };
-            //var author4 = new Author { Id = 4, FirstName = "Дмитрий", LastName = "3Степаненко", DateOfBirth = new DateTime(1991, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
-            //var author5 = new Author { Id = 5, FirstName = "Daniel", LastName = "Petrov", DateOfBirth = new DateTime(1790, 4, 1), DeathDate = new DateTime(2015, 6, 1) };
-            //var author6 = new Author { Id = 6, FirstName = "Daniel1", LastName = "Petrov2", DateOfBirth = new DateTime(1690, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
-            //var author7 = new Author { Id = 7, FirstName = "5Николай", LastName = "Петренко", DateOfBirth = new DateTime(1537, 11, 5), DeathDate = new DateTime(2008, 6, 1) };
-            //var author8 = new Author { Id = 8, FirstName = "Иван", LastName = "6Рихтер", DateOfBirth = new DateTime(1450, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
-            //var author9 = new Author { Id = 9, FirstName = "7Дмитрий", LastName = "Rihter", DateOfBirth = new DateTime(1911, 12, 31), DeathDate = new DateTime(2008, 6, 1) };
-            //var author10 = new Author { Id = 10, FirstName = "Alina", LastName = "Franko", DateOfBirth = new DateTime(1200, 9, 22), DeathDate = new DateTime(2008, 6, 1) };
+            var author1 = new Author { Id = 1, FirstName = "Джефри", LastName = "Иванов", DateOfBirth = new DateTime(1990, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
+            var author2 = new Author { Id = 2, FirstName = "3456", LastName = "Аметов", DateOfBirth = new DateTime(1990, 7, 1), DeathDate = new DateTime(2008, 6, 1) };
+            var author3 = new Author { Id = 3, FirstName = "Nick", LastName = "12345", DateOfBirth = new DateTime(1990, 5, 29), DeathDate = new DateTime(2011, 6, 1) };
+            var author4 = new Author { Id = 4, FirstName = "Дмитрий", LastName = "3Степаненко", DateOfBirth = new DateTime(1991, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
+            var author5 = new Author { Id = 5, FirstName = "Daniel", LastName = "Petrov", DateOfBirth = new DateTime(1790, 4, 1), DeathDate = new DateTime(2015, 6, 1) };
+            var author6 = new Author { Id = 6, FirstName = "Daniel1", LastName = "Petrov2", DateOfBirth = new DateTime(1690, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
+            var author7 = new Author { Id = 7, FirstName = "5Николай", LastName = "Петренко", DateOfBirth = new DateTime(1537, 11, 5), DeathDate = new DateTime(2008, 6, 1) };
+            var author8 = new Author { Id = 8, FirstName = "Иван", LastName = "6Рихтер", DateOfBirth = new DateTime(1450, 6, 1), DeathDate = new DateTime(2008, 6, 1) };
+            #endregion
+
+            #region bookAuthor
+            var bookAuthor1 = new BookAuthor { Id = 1, BookId = 1, AuthorId = 2, Author = author2 };
+            var bookAuthor2 = new BookAuthor { Id = 2, BookId = 2, AuthorId = 4, Author = author4 };
+            var bookAuthor3 = new BookAuthor { Id = 3, BookId = 2, AuthorId = 5, Author = author5 };
+            var bookAuthor4 = new BookAuthor { Id = 4, BookId = 3, AuthorId = 3, Author = author3 };
+            var bookAuthor5 = new BookAuthor { Id = 5, BookId = 4, AuthorId = 1, Author = author1 };
+            var bookAuthor6 = new BookAuthor { Id = 6, BookId = 5, AuthorId = 8, Author = author8 };
+            var bookAuthor7 = new BookAuthor { Id = 7, BookId = 6, AuthorId = 1, Author = author1 };
+            var bookAuthor8 = new BookAuthor { Id = 8, BookId = 6, AuthorId = 2, Author = author2 };
+            var bookAuthor9 = new BookAuthor { Id = 9, BookId = 7, AuthorId = 2, Author = author2 };
+            var bookAuthor10 = new BookAuthor { Id = 10, BookId = 8, AuthorId = 6, Author = author6 };
+            var bookAuthor11 = new BookAuthor { Id = 11, BookId = 8, AuthorId = 7, Author = author7 };
+            var bookAuthor12 = new BookAuthor { Id = 12, BookId = 8, AuthorId = 8, Author = author8 };
+            var bookAuthor13 = new BookAuthor { Id = 13, BookId = 9, AuthorId = 4, Author = author4 };
+            var bookAuthor14 = new BookAuthor { Id = 14, BookId = 10, AuthorId = 3, Author = author3 };
+            var bookAuthor15 = new BookAuthor { Id = 15, BookId = 10, AuthorId = 8, Author = author8 };
             #endregion
 
             #region books
@@ -90,7 +108,8 @@ namespace ELib.Tests.Services
                     TotalPages = 896,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2013, 1, 1),
-                    SumRatingValue=88
+                    SumRatingValue=88,
+                    BookAuthors=new List<BookAuthor> { bookAuthor1 }
                 },
                 new Book()
                 {
@@ -106,7 +125,8 @@ namespace ELib.Tests.Services
                     Publisher=publisher4,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2012, 1, 1),
-                    SumRatingValue=2
+                    SumRatingValue=2,
+                    BookAuthors=new List<BookAuthor> { bookAuthor2,bookAuthor3 }
                 },
                 new Book()
                 {
@@ -126,7 +146,8 @@ namespace ELib.Tests.Services
                     TotalPages = 1248,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2015, 8, 3),
-                    SumRatingValue=100
+                    SumRatingValue=100,
+                    BookAuthors=new List<BookAuthor> { bookAuthor4 }
                 },
                 new Book()
                 {
@@ -145,7 +166,8 @@ namespace ELib.Tests.Services
                     TotalPages = 320,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2013, 1, 1),
-                    SumRatingValue=34
+                    SumRatingValue=34,
+                    BookAuthors=new List<BookAuthor> { bookAuthor5 }
                 },
                 new Book()
                 {
@@ -168,7 +190,8 @@ namespace ELib.Tests.Services
                     TotalPages = 352,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2012, 1, 1),
-                    SumRatingValue=99
+                    SumRatingValue=99,
+                    BookAuthors=new List<BookAuthor> { bookAuthor6 }
                 },
                  new Book()
                 {
@@ -185,7 +208,8 @@ namespace ELib.Tests.Services
                     TotalPages = 1348,
                     CategoryId = 3,
                     AdditionDate = new DateTime(2015, 6, 30),
-                    SumRatingValue=79
+                    SumRatingValue=79,
+                    BookAuthors=new List<BookAuthor> { bookAuthor7,bookAuthor8 }
                 },
                   new Book()
                 {
@@ -202,7 +226,9 @@ namespace ELib.Tests.Services
                     TotalPages = 1248,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2012, 1, 11),
-                    SumRatingValue=12
+                    SumRatingValue=12,
+                    BookAuthors= new List<BookAuthor> {bookAuthor9},
+
                 },
                    new Book()
                 {
@@ -219,7 +245,8 @@ namespace ELib.Tests.Services
                     TotalPages = 1248,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2010, 12, 31),
-                    SumRatingValue=34
+                    SumRatingValue=34,
+                    BookAuthors=new List<BookAuthor> { bookAuthor10,bookAuthor11,bookAuthor12 }
                 },
                     new Book()
                 {
@@ -236,7 +263,8 @@ namespace ELib.Tests.Services
                     TotalPages = 1248,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2015, 5, 3),
-                    SumRatingValue=88
+                    SumRatingValue=88,
+                    BookAuthors=new List<BookAuthor> { bookAuthor13 }
                 },
                      new Book()
                 {
@@ -253,13 +281,16 @@ namespace ELib.Tests.Services
                     TotalPages = 148,
                     CategoryId = 1,
                     AdditionDate = new DateTime(2015, 8, 29),
-                    SumRatingValue=79
+                    SumRatingValue=79,
+                    BookAuthors=new List<BookAuthor> { bookAuthor14,bookAuthor15 }
                 },
             };
             #endregion
-            //_fakeAuthorRepository.Data.AddRange(new[] { author1, author2, author3, author4, author5, author6, author7, author8, author9, author10 });
+            
+            _fakeAuthorRepository.Data.AddRange(new[] { author1, author2, author3, author4, author5, author6, author7, author8 });
             _fakePublisherRepository.Data.AddRange(new[] { publisher1, publisher2, publisher3, publisher4, publisher5, publisher6, publisher7, publisher8 });
             _fakeBookRepository.Data.AddRange(books);
+            _fakeBookAuthorRepository.Data.AddRange(new[] { bookAuthor1, bookAuthor2, bookAuthor3, bookAuthor4, bookAuthor5, bookAuthor6, bookAuthor7, bookAuthor8, bookAuthor9,  bookAuthor10, bookAuthor11, bookAuthor12, bookAuthor13, bookAuthor14, bookAuthor15});
         }
 
         // This method runs after each test.
@@ -267,8 +298,10 @@ namespace ELib.Tests.Services
         public void TestDown()
         {
             // Clean up data in our fake dependencies.
+            _fakeBookAuthorRepository.Data.Clear();
             _fakeBookRepository.Data.Clear();
             _fakePublisherRepository.Data.Clear();
+            _fakeAuthorRepository.Data.Clear();
         }
 
         [Test]
@@ -533,6 +566,59 @@ namespace ELib.Tests.Services
 
             Assert.That(books3.ToList()[0].Id, Is.EqualTo(7));
             Assert.That(books3.ToList()[1].Id, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void GetAll_When_sorting_by_Author_ASC_Then_get_sorted_list()
+        {
+            // Arrange
+            var service = new BookInListService(_fakeUnitOfWorkFactory, _mapperBook);
+
+            // Act
+            SearchDto serch = new SearchDto(query: null, authorName: null, title: null, publisher: null, genre: null, subgenre: null, genreId: -1, subgenreId: -1, year: -1, categoryIds: null, orderby: "Author", orderDirection: "ASC");
+
+            var books1 = service.GetAll(searchDto: serch, pageNumb: 1, pageCount: 10);
+            var books2 = service.GetAll(searchDto: serch, pageNumb: 2, pageCount: 5);
+            var books3 = service.GetAll(searchDto: serch, pageNumb: 3, pageCount: 2);
+
+            // Assert
+            Assert.That(books1.ToList()[0].Id, Is.EqualTo(3));
+            Assert.That(books1.ToList()[9].Id, Is.EqualTo(6));
+            Assert.That(books1.ToList()[2].Id, Is.EqualTo(2));
+            Assert.That(books1.ToList()[6].Id, Is.EqualTo(1));
+
+            Assert.That(books2.ToList()[0].Id, Is.EqualTo(8));
+            Assert.That(books2.ToList()[4].Id, Is.EqualTo(6));
+            Assert.That(books2.ToList()[2].Id, Is.EqualTo(7));
+
+            Assert.That(books3.ToList()[0].Id, Is.EqualTo(5));
+            Assert.That(books3.ToList()[1].Id, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void GetAll_When_sorting_by_Author_DESC_Then_get_sorted_list()
+        {
+            // Arrange
+            var service = new BookInListService(_fakeUnitOfWorkFactory, _mapperBook);
+
+            // Act
+            SearchDto serch = new SearchDto(query: null, authorName: null, title: null, publisher: null, genre: null, subgenre: null, genreId: -1, subgenreId: -1, year: -1, categoryIds: null, orderby: "Author", orderDirection: "DESC");
+
+            var books1 = service.GetAll(searchDto: serch, pageNumb: 1, pageCount: 10);
+            var books2 = service.GetAll(searchDto: serch, pageNumb: 2, pageCount: 5);
+            var books3 = service.GetAll(searchDto: serch, pageNumb: 3, pageCount: 2);
+
+            // Assert
+            Assert.That(books1.ToList()[0].Id, Is.EqualTo(6));
+            Assert.That(books1.ToList()[9].Id, Is.EqualTo(3));
+            Assert.That(books1.ToList()[4].Id, Is.EqualTo(8));
+
+            Assert.That(books2.ToList()[0].Id, Is.EqualTo(5));
+            Assert.That(books2.ToList()[4].Id, Is.EqualTo(3));
+            Assert.That(books2.ToList()[2].Id, Is.EqualTo(2));
+
+            Assert.That(books3.ToList()[0].Id, Is.EqualTo(8));
+            Assert.That(books3.ToList()[1].Id, Is.EqualTo(5));
         }
     }
 }
