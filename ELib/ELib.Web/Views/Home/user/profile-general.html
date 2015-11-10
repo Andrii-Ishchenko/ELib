@@ -55,6 +55,10 @@
                             <span class="info-label">Email</span>
                             <input type="email" name="email" class="info-editable" ng-model="currentProfileCtrl.profile.Email" contenteditable="true">
                         </div>
+                        <div class="info-item form-group">
+                            <span class="info-label">Role</span>
+                            <span class="info-value" ng-repeat="role in currentProfileCtrl.profile.Roles">{{role}}</span>
+                        </div>
                     </form>
                 </div>
             </div>
