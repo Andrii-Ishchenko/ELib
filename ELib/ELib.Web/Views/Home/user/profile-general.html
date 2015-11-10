@@ -31,7 +31,7 @@
                         </div>
                         <div class="info-item form-group">
                             <span class="info-label">Role</span>
-                            <span class="info">{{currentProfileCtrl.profile.Roles}}</span>
+                            <span class="info" ng-repeat="role in currentProfileCtrl.profile.Roles">{{role}}</span>
                         </div>
                     </form>
                 </div>
