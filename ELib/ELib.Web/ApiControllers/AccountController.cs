@@ -69,12 +69,25 @@ namespace ELib.Web.ApiControllers
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
-                if (!result.Succeeded)
+                if(result.Succeeded)
+                {
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    var roleResult = UserManager.AddToRole(currentUser.Id, "User");
+                }
+                else
                 {
                     logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
+
+
+               /* if (!result.Succeeded)
+                {
+                    logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                */
                 var person = new PersonDto() { ApplicationUserId = user.Id, State = LibEntityState.Added};
                 _profileService.Insert(person);
 

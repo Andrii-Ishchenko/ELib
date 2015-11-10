@@ -1,6 +1,7 @@
 ﻿using ELib.Common;
 using ELib.BL.DtoEntities.Abstract;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace ELib.BL.DtoEntities
 {
@@ -25,6 +26,8 @@ namespace ELib.BL.DtoEntities
 
         [Required]
         public LibEntityState State { get; set; }
+
+        public List<string> Roles { get; set; }
 
     }
 }

@@ -51,7 +51,8 @@
             CommentDate: null,
             SumLike: 0,
             SumDisLike: 0,
-            UserName: ""
+            UserName: "",
+            State:"Added"
         };
 
         vm.cleanComment = function () {

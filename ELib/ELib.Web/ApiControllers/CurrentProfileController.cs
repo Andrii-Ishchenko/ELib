@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 namespace ELib.Web.ApiControllers
 {
     public class CurrentProfileController : ApiController
@@ -29,8 +31,11 @@ namespace ELib.Web.ApiControllers
             {
                 //ABSOLUTELY WRONG!! use IDENTITY FOR getting applicationuser and getting currentuser
                 string id = User.Identity.GetUserId();
+                var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
                 CurrentPersonDto person = _profileService.GetByApplicationUserId(id);
+                person.Roles = manager.GetRoles(id).ToList();
+
                 if (person == null)
                     throw new NullReferenceException();
                 return Request.CreateResponse(HttpStatusCode.OK, person);
@@ -54,7 +59,7 @@ namespace ELib.Web.ApiControllers
                 {
 
                     string id = User.Identity.GetUserId();
-
+                    
                     CurrentPersonDto thisPerson = _profileService.GetByApplicationUserId(id);
                     if (thisPerson == null)
                         return Request.CreateResponse(HttpStatusCode.InternalServerError);
