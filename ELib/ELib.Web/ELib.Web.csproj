@@ -374,6 +374,7 @@
     <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\bookRepository.js" />
     <Content Include="Views\Home\book\books.html" />
+    <Content Include="Views\Home\book\BooksConstants.js" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\book\FilterController.js" />
     <Content Include="Views\Home\book\RatingController.js" />

@@ -2,12 +2,12 @@
     angular.module("elib")
            .controller("AuthorsController", AuthorsController);
 
-    AuthorsController.$inject = ["dataServiceFactory", '$routeParams', "$location", 'STATE'];
+    AuthorsController.$inject = ["dataServiceFactory", '$routeParams', "$location", 'AUTHOR_CONST'];
 
-    function AuthorsController(dataServiceFactory, $routeParams, $location, STATE) {
+    function AuthorsController(dataServiceFactory, $routeParams, $location, AUTHOR_CONST) {
         var vm = this;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : STATE.PAGE_COUNT;
-        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : STATE.FIRST_PAGE;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : AUTHOR_CONST.PAGE_COUNT;
+        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : AUTHOR_CONST.FIRST_PAGE;
 
         vm.OrderingChanged = function () {
             var params = getParameters();
@@ -16,7 +16,7 @@
                                 vm.authors = data.authors;
                                 vm.totalCount = data.totalCount;
                                 vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-                                vm.maxSize = STATE.MAX_SIZE;
+                                vm.maxSize = AUTHOR_CONST.MAX_SIZE;
                                 vm.pages = new Array(vm.totalPages);
                             })
         }
@@ -40,7 +40,7 @@
             vm.authors = data.authors;
             vm.totalItems = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-            vm.maxSize = STATE.MAX_SIZE;
+            vm.maxSize = AUTHOR_CONST.MAX_SIZE;
         })
 
         function getParameters() {

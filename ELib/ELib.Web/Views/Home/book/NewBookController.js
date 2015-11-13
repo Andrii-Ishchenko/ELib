@@ -2,15 +2,15 @@
     angular.module("elib")
            .controller("NewBookController", NewBookController);
 
-    NewBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout"];
+    NewBookController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout", 'BOOK_CONST'];
 
-    function NewBookController(authServiceFactory, dataServiceFactory, $location, $timeout) {
+    function NewBookController(authServiceFactory, dataServiceFactory, $location, $timeout, BOOK_CONST) {
         var vm = this;
 
        authServiceFactory.fillAuthData();
         
         if (!authServiceFactory.authentication.isAuth) {
-            $location.path('/login');
+            $location.path(BOOK_CONST.LOGIN);
         }
 
         vm.message = '';
@@ -93,13 +93,13 @@
                  //success
                  function (value) {
                      vm.createdSuccessfully = true;
-                     vm.message = "Book has been created successfully, you will be redicted to book page in 2 seconds.";
+                     vm.message = BOOK_CONST.CREATION_SUCCESFUL;
                      startTimer(value.Id);
                  },
                  //error
                  function (error) {
                      vm.submitState = false;
-                     vm.message = "Book creation is failed";
+                     vm.message = BOOK_CONST.CREATION_FAILED;
                  }
             );
         };
@@ -107,8 +107,8 @@
         var startTimer = function (bookId) {
             var timer = $timeout(function () {
                 $timeout.cancel(timer);
-                $location.path('/books/' + bookId);
-            }, 2000);
+                $location.path(BOOK_CONST.BOOKS + bookId);
+            }, BOOK_CONST.TIMEOUT);
         };
     }
 })();

@@ -2,15 +2,15 @@
     angular.module("elib")
            .controller("NewAuthorController", NewAuthorController);
 
-    NewAuthorController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout", 'STATE'];
+    NewAuthorController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout", 'AUTHOR_CONST'];
 
-    function NewAuthorController(authServiceFactory, dataServiceFactory, $location, $timeout, STATE) {
+    function NewAuthorController(authServiceFactory, dataServiceFactory, $location, $timeout, AUTHOR_CONST) {
         var vm = this;
 
         authServiceFactory.fillAuthData();
         
         if (!authServiceFactory.authentication.isAuth) {
-            $location.path(STATE.LOGIN);
+            $location.path(AUTHOR_CONST.LOGIN);
         }
 
         vm.message = '';
@@ -33,14 +33,14 @@
                  //success
                  function (value) {
                      vm.createdSuccessfully = true;
-                     vm.message = STATE.CREATION_SUCCESFUL;
+                     vm.message = AUTHOR_CONST.CREATION_SUCCESFUL;
                      startTimer(value.Id);
                  },
                  //error
                  function (error) {
                      console.log(error);
                      vm.submitState = false;
-                     vm.message = STATE.CREATION_FAILED;
+                     vm.message = AUTHOR_CONST.CREATION_FAILED;
                  }
             );
         };
@@ -48,7 +48,7 @@
         var startTimer = function (Id) {
             var timer = $timeout(function () {
                 $timeout.cancel(timer);
-                $location.path(STATE.AUTHORS + Id);
+                $location.path(AUTHOR_CONST.AUTHORS +Id);
             }, 2000);
         };
     }

@@ -2,15 +2,15 @@
     angular.module("elib")
            .controller("AuthorController", AuthorController);
 
-    AuthorController.$inject = ["bookRepository", '$routeParams', "fileFactory", "$resource", 'STATE'];
+    AuthorController.$inject = ["bookRepository", '$routeParams', "fileFactory", "$resource", 'AUTHOR_CONST'];
 
-    function AuthorController(bookRepository, $routeParams,fileFactory, $resource, STATE) {
+    function AuthorController(bookRepository, $routeParams, fileFactory, $resource, AUTHOR_CONST) {
         var vm = this;
         vm.instance = getService().get({ id: $routeParams.id });
         vm.books = bookRepository.getBooksForAuthor().query({ id: $routeParams.id });
 
         function getService() {
-            var url = STATE.AUTHOR;
+            var url = AUTHOR_CONST.AUTHOR;
             return $resource(url, { id: '@id' }, {
                 update: {
                     method: 'PUT',

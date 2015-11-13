@@ -2,22 +2,22 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory"];
+    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory", 'BOOK_CONST'];
 
-    function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory) {
+    function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory, BOOK_CONST) {
         var vm = this;
         vm.isEditMode = false;
         vm.IsPostEnabled = true;
         vm.IsPostRefresh = true;
         vm.CanPost = function () {
-            if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < 400)
+            if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < BOOK_CONST.MAX_TEXT)
                 return true;
             else
                 return false;
         };
 
         vm.CanLoad = function () {
-            if (vm.temp.length < 5 ) {
+            if (vm.temp.length < BOOK_CONST.LENGTH) {
                 vm.IsPostRefresh = false;
                 return true;
             }
@@ -37,8 +37,8 @@
             createRating();
         };
 
-        var currentFetchedPageOfComments = 1;
-        var countOfFetchComments = 5;
+        var currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
+        var countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
 
         vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
         vm.temp = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
@@ -106,8 +106,8 @@
                  function (value) {
                      vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
                      vm.temp = vm.comments;
-                     currentFetchedPageOfComments = 1;
-                     countOfFetchComments = 5;
+                     currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
+                     countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
                      vm.newComment.Text = "";
                      vm.IsPostEnabled = true;
                      vm.CanLoad();
@@ -139,7 +139,7 @@
             fileFactory.uploadBookFile(fd, $routeParams.id).then(
                 function (response) {
                     vm.savedSuccessfully = true;
-                    vm.message = "Book file has been uploaded successfully";
+                    vm.message = BOOK_CONST.UPLOADING_SUCCESFUL;
                     // need refactoring (get only book instances)
                     var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
                         .$promise
@@ -149,7 +149,7 @@
                             });
                 },
                 function (error) {
-                    vm.message = "Book file uploading is failed";
+                    vm.message = BOOK_CONST.UPLOADING_FAILED;
                 });
         };
 
