@@ -2,10 +2,9 @@
     angular.module("elib")
            .factory("CommentsRepository", CommentsRepository);
 
-    CommentsRepository.$inject = ['$resource'];
+    CommentsRepository.$inject = ['$resource', 'COMMENT_CONST'];
 
-    function CommentsRepository($resource) {
-        var baseUrl = "/api/Comments/";
+    function CommentsRepository($resource, COMMENT_CONST) {
         var DataService = {
             getCommentsByBookId: getCommentsByBookId,
             postComment: postComment
@@ -14,7 +13,7 @@
         return DataService;
 
         function getCommentsByBookId() {
-            var url = baseUrl + ":id/comments-for-book";
+            var url = COMMENT_CONST.COMMENT_URL;
             return $resource(url, { id: '@id' }, {
                 get: {
                     query: 'Get',
@@ -24,7 +23,7 @@
         }
 
         function postComment(text) {
-            var url = baseUrl + ":id/comments-for-book";
+            var url = COMMENT_CONST.COMMENT_URL;
             return $resource(url, { id: '@id' }, {
                 get: {
                     query: 'Get',
@@ -33,5 +32,4 @@
             });
         }
     }
-
 })();

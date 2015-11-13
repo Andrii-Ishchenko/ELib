@@ -2,14 +2,16 @@
     angular.module("elib")
             .directive("libPageCountChanger", libPageCountChanger);
 
-    function libPageCountChanger() {
+    libPageCountChanger.$inject = ['COMMON_CONST'];
+
+    function libPageCountChanger(COMMON_CONST) {
         var directiveObj = {
             restrict: 'E',
             replace: true,
             scope : {
                 entityName: '@'
             },
-            templateUrl: "/views/home/common/lib-page-changer.html",
+            templateUrl: COMMON_CONST.TEMPLATE_URL,
             controller: LibPageChangerController,
             controllerAs: 'pageChangeCtrl'
         };

@@ -2,9 +2,9 @@
     angular.module("elib")
            .factory("authServiceFactory", authServiceFactory);
 
-    authServiceFactory.$inject = ['$http', '$q', 'localStorageService'];
+    authServiceFactory.$inject = ['$http', '$q', 'localStorageService', 'COMMON_CONST'];
 
-    function authServiceFactory($http, $q, localStorageService) {
+    function authServiceFactory($http, $q, localStorageService, COMMON_CONST) {
     
         var authentication = {
             isAuth: false,
@@ -25,7 +25,7 @@
 
             logOut();
 
-            return $http.post('api/account/register', registration).then(function (response) {
+            return $http.post(COMMON_CONST.REGISTRATION_URL, registration).then(function (response) {
                 return response;
             })
         };
@@ -51,15 +51,12 @@
             });
 
             return deferred.promise;
-
         };
 
         function logOut() {
             localStorageService.remove('authorizationData');
-
             authentication.isAuth = false;
             authentication.userName = "";
-
         };
 
         function fillAuthData() {
