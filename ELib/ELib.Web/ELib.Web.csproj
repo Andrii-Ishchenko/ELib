@@ -362,6 +362,7 @@
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors-menu.html" />
     <Content Include="Views\Home\author\authors.html" />
+    <Content Include="Views\Home\author\AuthorsConstants.js" />
     <Content Include="Views\Home\author\AuthorsController.js" />
     <Content Include="Views\Home\author\new-author.html" />
     <Content Include="Views\Home\author\NewAuthorController.js" />
