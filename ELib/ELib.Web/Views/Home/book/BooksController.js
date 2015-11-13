@@ -39,14 +39,23 @@
 
         vm.pageChanged = pageChanged;
 
-        var obj = dataServiceFactory.getService('books').get(parameters)
-            .$promise.then(function (data) {
-            vm.books = data.books;
-            vm.totalCount = data.totalCount;
-            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-            vm.maxSize = 5;
-            vm.pages = new Array(vm.totalPages);
-        })
+        vm.books = dataServiceFactory.getService('books')
+                                     .getWithTotalCount(parameters, onSuccess = function (response) {
+                                                                         vm.totalCount = response.totalCount;
+                                                                         vm.books = response.items;
+                                                                                },
+                                                                    onError = function (response) {
+                                                                                            console.log(response.message);
+                                                                              });
+        vm.maxSize = 5;
+        //.get(parameters)
+        //    .$promise.then(function (data) {
+        //    vm.books = data.books;
+        //    vm.totalCount = data.totalCount;
+        //    vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+        //    vm.maxSize = 5;
+        //    vm.pages = new Array(vm.totalPages);
+        //})
       
         function getParameters() {
             return {
