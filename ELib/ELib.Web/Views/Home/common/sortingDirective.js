@@ -5,7 +5,9 @@
         .module('elib')
         .directive('sortingDirective', sortingDirective);
 
-    function sortingDirective($timeout) {
+    sortingDirective.$inject = ['COMMON_CONST'];
+
+    function sortingDirective(COMMON_CONST) {
         return {
             restrict: 'E',
             scope: {
@@ -45,7 +47,7 @@
 
             },
            
-            templateUrl: '/views/home/common/sorting-directive.html'
+            templateUrl: COMMON_CONST.SORTING
         }
     }
 

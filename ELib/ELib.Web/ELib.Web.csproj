@@ -386,6 +386,7 @@
     <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
+    <Content Include="Views\Home\common\CommonConstants.js" />
     <Content Include="Views\Home\common\lib-page-changer.html" />
     <Content Include="Views\Home\common\libPageCountChangerDirective.js" />
     <Content Include="Views\Home\common\sorting-directive.html" />
@@ -394,6 +395,7 @@
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Home\files\FileConsts.js" />
     <Content Include="Views\Home\filter\libFilterDirective.js" />
     <Content Include="Views\Home\filter\select-filter.html" />
     <Content Include="Views\Home\filter\text-filter.html" />

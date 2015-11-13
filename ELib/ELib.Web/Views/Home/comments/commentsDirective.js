@@ -3,11 +3,11 @@
 
     angular
         .module('elib')
-        .directive('CommentsDirective', commentsDirective);
+        .directive('commentsDirective', commentsDirective);
 
-    CommentsDirective.$inject = ['COMMENT_CONST'];
+    commentsDirective.$inject = ['COMMENT_CONST'];
 
-    function CommentsDirective($timeout, COMMENT_CONST) {
+    function commentsDirective($timeout, COMMENT_CONST) {
         return {
             restrict: 'E',
             scope: {
