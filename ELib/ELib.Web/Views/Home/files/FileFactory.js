@@ -2,16 +2,15 @@
     angular.module("elib")
            .factory("fileFactory", fileFactory);
 
-    fileFactory.$inject = ['$http'];
+    fileFactory.$inject = ['$http', 'FILE_CONST'];
 
-    function fileFactory($http) {
-        var baseUrl = "/api/";
+    function fileFactory($http, FILE_CONST) {
 
         var FileService =
             {
                 uploadBookImage: uploadBookImage,
                 uploadProfileImage: uploadProfileImage,
-                uploadAuthorImage:uploadAuthorImage,
+                uploadAuthorImage: uploadAuthorImage,
                 downloadFile: downloadFile,
                 uploadBookFile: uploadBookFile
             };
@@ -19,7 +18,7 @@
         return FileService;
 
         function uploadProfileImage(formData) {
-             var url = baseUrl + "file/profile-image";
+            var url = FILE_CONST.PROFILE_IMAGE_URL;
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -29,11 +28,11 @@
                 },
                 transformRequest: angular.identity
             });
-            
+
         }
 
         function uploadBookFile(formData, bookId) {
-            var url = baseUrl + "file/book-instance/" + bookId;
+            var url = FILE_CONST.BOOK_INSTANCE_URL + bookId;
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -45,9 +44,8 @@
             });
         }
 
-
         function uploadBookImage(formData, bookId) {
-            var url = baseUrl + "file/book-image/"+bookId;
+            var url = FILE_CONST.BOOK_IMG_URL + bookId;
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -59,7 +57,7 @@
         }
 
         function uploadAuthorImage(formData, authorId) {
-            var url = baseUrl + "file/author-image/" + authorId;
+            var url = FILE_CONST.AUTHOR_IMG_URL + authorId;
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -73,8 +71,5 @@
         function downloadFile() {
             console.log("download file function called.")
         }
-
-
     }
-
 })();

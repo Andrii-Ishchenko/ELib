@@ -362,6 +362,7 @@
     <Content Include="Views\Home\author\AuthorController.js" />
     <Content Include="Views\Home\author\authors-menu.html" />
     <Content Include="Views\Home\author\authors.html" />
+    <Content Include="Views\Home\author\AuthorsConstants.js" />
     <Content Include="Views\Home\author\AuthorsController.js" />
     <Content Include="Views\Home\author\new-author.html" />
     <Content Include="Views\Home\author\NewAuthorController.js" />
@@ -373,16 +374,19 @@
     <Content Include="Views\Home\book\book-list-item.html" />
     <Content Include="Views\Home\book\bookRepository.js" />
     <Content Include="Views\Home\book\books.html" />
+    <Content Include="Views\Home\book\BooksConstants.js" />
     <Content Include="Views\Home\book\BooksController.js" />
     <Content Include="Views\Home\book\FilterController.js" />
     <Content Include="Views\Home\book\RatingController.js" />
     <Content Include="Views\Home\book\whenScrolled.js" />
     <Content Include="Views\Home\comments\Comment.html" />
-    <Content Include="Views\Home\comments\commentsDirective.js" />
+    <Content Include="Views\Home\comments\CommentsConstants.js" />
+    <Content Include="Views\Home\comments\CommentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />
     <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
+    <Content Include="Views\Home\common\CommonConstants.js" />
     <Content Include="Views\Home\common\lib-page-changer.html" />
     <Content Include="Views\Home\common\libPageCountChangerDirective.js" />
     <Content Include="Views\Home\common\sorting-directive.html" />
@@ -391,6 +395,7 @@
     <Content Include="Views\Home\common\dataServiceFactory.js" />
     <Content Include="Views\Home\elib.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Home\files\FileConsts.js" />
     <Content Include="Views\Home\filter\libFilterDirective.js" />
     <Content Include="Views\Home\filter\select-filter.html" />
     <Content Include="Views\Home\filter\text-filter.html" />

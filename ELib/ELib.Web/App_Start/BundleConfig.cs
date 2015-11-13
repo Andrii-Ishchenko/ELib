@@ -29,10 +29,10 @@ namespace ELib.Web
                 .Include("~/Content/bootstrap*",
                            "~/Content/custom.css",
                            "~/Content/main.css",
-                            "~/Content/profile.css",
-                             "~/Content/ng-rating.css",
-                             "~/Content/font-awesome.min.css",
-                             "~/Content/bold-text.css"));
+                           "~/Content/profile.css",
+                           "~/Content/ng-rating.css",
+                           "~/Content/font-awesome.min.css",
+                           "~/Content/bold-text.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
@@ -40,6 +40,7 @@ namespace ELib.Web
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/dataServiceFactory.js",
                                     "~/Views/Home/common/libPageCountChangerDirective.js",
+                                    "~/Views/Home/common/CommonConstants.js",
                                     "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/config.js",
@@ -53,6 +54,7 @@ namespace ELib.Web
                                     "~/Views/Home/user/ProfileController.js",
                                     "~/Views/Home/files/fileFactory.js",
                                     "~/Views/Home/files/FileController.js",
+                                    "~/Views/Home/files/FileConsts.js",
                                     "~/Views/Home/book/bookListDirective.js",
 
                                     "~/Views/Home/author/AuthorController.js",
@@ -70,13 +72,14 @@ namespace ELib.Web
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
                                     "~/Views/Home/publisher/NewPublisherController.js",
-                                  
+
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
                                     "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/comments/CommentsRepository.js",
                                     "~/Views/Home/comments/commentsDirective.js",
+                                    "~/Views/Home/comments/CommentsConstants.js",
                                     "~/Views/Home/common/sortingDirective.js"
 
                         )

@@ -1,31 +1,13 @@
-﻿//(function () {
-//    'use strict';
-
-//    angular
-//        .module('elib')
-//        .directive('commentsDirective', commentsDirective);
-
-//    function commentsDirective($compile) {
-//        return {
-//            restrict: 'E',
-//            scope: {
-//                comments: '='
-//            },
-//            templateUrl: '/Views/Home/comments/Comments.html'
-//        }
-//    }
-
-//})();
-
-
-(function () {
+﻿(function () {
     'use strict';
 
     angular
         .module('elib')
         .directive('commentsDirective', commentsDirective);
 
-    function commentsDirective($timeout) {
+    commentsDirective.$inject = ['COMMENT_CONST'];
+
+    function commentsDirective($timeout, COMMENT_CONST) {
         return {
             restrict: 'E',
             scope: {
@@ -34,24 +16,15 @@
                 newComment: "=",
                 cleanComment: "=",
                 createComment: "=",
-                canPost:"=",
-                profile:"=",
-                canLoad:"="
+                canPost: "=",
+                profile: "=",
+                canLoad: "="
 
             },
             controller: function () { },
-            link: function (scope, element, attrs) {
-                //var raw = element[0];
+            link: function (scope, element, attrs) { },
 
-                //element.bind('scroll', function () {
-                //    if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-                //        scope.$apply(attr.whenScrolled);
-                //    }
-                //});
-            },
-
-            templateUrl: '/views/home/comments/Comments.html'
+            templateUrl: COMMENT_CONST.COMMENTS_URL
         }
     }
-
 })();

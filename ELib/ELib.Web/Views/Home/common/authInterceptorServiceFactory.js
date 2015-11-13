@@ -2,9 +2,9 @@
     angular.module("elib")
            .factory("authInterceptorServiceFactory", authInterceptorServiceFactory);
 
-    authInterceptorServiceFactory.$inject = ['$q', '$location', 'localStorageService'];
+    authInterceptorServiceFactory.$inject = ['$q', '$location', 'localStorageService', 'COMMON_CONST'];
 
-    function authInterceptorServiceFactory($q, $location, localStorageService) {
+    function authInterceptorServiceFactory($q, $location, localStorageService, COMMON_CONST) {
 
         var authInterceptorFactory = {
             request: request,
@@ -26,8 +26,8 @@
         }
  
         function responseError (rejection) {
-            if (rejection.status === 401) {
-                $location.path('/login');
+            if (rejection.status === COMMON_CONST.UNAUTHORIZED_USER) {
+                $location.path(COMMON_CONST.LOGIN);
             }
             return $q.reject(rejection);
         }
