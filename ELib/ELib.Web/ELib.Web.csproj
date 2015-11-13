@@ -380,7 +380,8 @@
     <Content Include="Views\Home\book\RatingController.js" />
     <Content Include="Views\Home\book\whenScrolled.js" />
     <Content Include="Views\Home\comments\Comment.html" />
-    <Content Include="Views\Home\comments\commentsDirective.js" />
+    <Content Include="Views\Home\comments\CommentsConstants.js" />
+    <Content Include="Views\Home\comments\CommentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />
     <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />

@@ -13,7 +13,7 @@
             scope: {
                 books: '='
             },
-            templateUrl: LIST_URL
+            templateUrl: BOOK_CONST.LIST_URL
         }
     }
 })();

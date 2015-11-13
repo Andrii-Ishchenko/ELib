@@ -29,10 +29,10 @@ namespace ELib.Web
                 .Include("~/Content/bootstrap*",
                            "~/Content/custom.css",
                            "~/Content/main.css",
-                            "~/Content/profile.css",
-                             "~/Content/ng-rating.css",
-                             "~/Content/font-awesome.min.css",
-                             "~/Content/bold-text.css"));
+                           "~/Content/profile.css",
+                           "~/Content/ng-rating.css",
+                           "~/Content/font-awesome.min.css",
+                           "~/Content/bold-text.css"));
 
             bundles.Add(new ScriptBundle("~/Views/Home/Angular")
                         .Include("~/Views/Home/Elib.js",
@@ -70,13 +70,14 @@ namespace ELib.Web
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
                                     "~/Views/Home/publisher/NewPublisherController.js",
-                                  
+
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
                                     "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/comments/CommentsRepository.js",
-                                    "~/Views/Home/comments/commentsDirective.js",
+                                    "~/Views/Home/comments/CommentsDirective.js",
+                                    "~/Views/Home/comments/CommentsConstants.js",
                                     "~/Views/Home/common/sortingDirective.js"
 
                         )
