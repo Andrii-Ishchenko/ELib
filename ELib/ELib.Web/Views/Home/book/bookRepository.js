@@ -2,10 +2,10 @@
     angular.module("elib")
            .factory("bookRepository", bookRepository);
 
-    bookRepository.$inject = ['$resource'];
+    bookRepository.$inject = ['$resource', 'BOOK_CONST'];
 
-    function bookRepository($resource) {
-        var baseUrl = "/api/books/";
+    function bookRepository($resource, BOOK_CONST) {
+        var baseUrl = BOOK_CONST.API_BOOKS;
         var DataService = {
             getBooksForAuthor: getBooksForAuthor,
             getBooksForPublisher: getBooksForPublisher,
@@ -16,7 +16,7 @@
 
 
         function getBooksForAuthor() {
-            var url = "/api/authors/id/books";
+            var url = BOOK_CONST.AUTHOR_BOOK;
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
@@ -26,7 +26,7 @@
         }
 
         function getBooksForPublisher() {
-            var url = "/api/publishers/id/books";
+            var url = BOOK_CONST.PUBLISHER_BOOK;
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
@@ -36,7 +36,7 @@
         }
           
         function getBookById() {
-            var url = baseUrl + "book/:id";
+            var url = baseUrl + BOOK_CONST.BOOK;
             return $resource(url, { id: '@id' }, {
                 update: {
                     query: 'Get',
@@ -44,6 +44,5 @@
                 }
             });
         }
-
     }
 })();

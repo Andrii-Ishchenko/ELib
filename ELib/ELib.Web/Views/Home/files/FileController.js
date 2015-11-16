@@ -12,8 +12,6 @@
             fd.append("file", file[0]);
 
             FileFactory.uploadProfileImage(fd);
-
         }
     }
-
 })();

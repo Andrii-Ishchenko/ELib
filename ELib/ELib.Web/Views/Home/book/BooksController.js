@@ -2,12 +2,12 @@
     angular.module("elib")
            .controller("BooksController", BooksController);
 
-    BooksController.$inject = ["dataServiceFactory", '$routeParams', "$location"];
+    BooksController.$inject = ["dataServiceFactory", '$routeParams', "$location", 'BOOK_CONST'];
 
-    function BooksController(dataServiceFactory, $routeParams, $location) {
+    function BooksController(dataServiceFactory, $routeParams, $location, BOOK_CONST) {
         var vm = this;
-        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : "5";
-        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : 1;
+        vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : BOOK_CONST.PAGE_COUNT;
+        vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : BOOK_CONST.CURRENT_PAGE;
 
         vm.OrderingChanged = function () {
 
@@ -17,7 +17,7 @@
               vm.books = data.books;
               vm.totalCount = data.totalCount;
               vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-              vm.maxSize = 5;
+              vm.maxSize = BOOK_CONST.MAX_SIZE;
               vm.pages = new Array(vm.totalPages);
           })
         }
@@ -44,7 +44,7 @@
             vm.books = data.books;
             vm.totalCount = data.totalCount;
             vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-            vm.maxSize = 5;
+            vm.maxSize = BOOK_CONST.MAX_SIZE;
             vm.pages = new Array(vm.totalPages);
         })
       
