@@ -105,6 +105,7 @@ namespace ELib.Web
             container.RegisterType<ILanguageService, LanguageService>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubgenreService, SubgenreService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICategoryService, CategoryService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISendEmailService, SendEmailService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }

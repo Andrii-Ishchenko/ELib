@@ -22,10 +22,12 @@ namespace ELib.Web.ApiControllers
         private  ApplicationUserManager _userManager;
         private readonly ELogger logger;
         private readonly IProfileService _profileService;
+        private readonly ISendEmailService _emailService;
 
-        public AccountController(IProfileService profileService)
+        public AccountController(IProfileService profileService,ISendEmailService emailService)
         {
             _profileService = profileService;
+            _emailService = emailService;
             logger = ELoggerFactory.GetInstance().GetLogger(GetType().FullName);
         }
 
@@ -73,6 +75,7 @@ namespace ELib.Web.ApiControllers
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
                     var roleResult = UserManager.AddToRole(currentUser.Id, "User");
+                    _emailService.SendEmail(model.Email, model.UserName);
                 }
                 else
                 {
