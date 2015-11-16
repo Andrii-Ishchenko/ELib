@@ -19,8 +19,8 @@
             link: onFilter
         };
 
-        FilterController.$inject = ["$scope", "$element", "$attrs", "$location", "$routeParams", "dataServiceFactory", "FILTER_CONST"];
-        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory, FILTER_CONST) {
+        FilterController.$inject = ["$scope", "$element", "$attrs", "$location", "$routeParams", "dataServiceFactory"];
+        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory){
             var vm = this;
             vm.entity = $scope.entity;
             vm.type = $scope.type;
@@ -110,8 +110,8 @@
             }
         }
 
-        getTemplate.$inject = ["$element", "$attrs", FILTER_CONST];
-        function getTemplate($element, $attrs, FILTER_CONST) {
+        getTemplate.$inject = ["$element", "$attrs"];
+        function getTemplate($element, $attrs) {
             var templateUrls = {
                 "text": "/views/home/filter/text-filter.html",
                 "year": "/views/home/filter/year-filter.html",
