@@ -2,10 +2,9 @@
     angular.module("elib")
            .factory("profileFactory", profileFactory);
 
-    profileFactory.$inject = ['$resource'];
+    profileFactory.$inject = ['$resource', 'USER_CONST'];
 
-    function profileFactory($resource) {
-        var baseUrl = "/api/";
+    function profileFactory($resource, USER_CONST) {
         var ProfileService = {
             getCurrentUser: getCurrentUser,
         };
@@ -13,8 +12,7 @@
         return ProfileService;
 
         function getCurrentUser() {
-            var url = baseUrl + "Profile/GetCurrentUser";
-
+            var url = USER_CONST.USER;
             return $resource(url, {}, {
                 query: {
                     method: 'GET',
@@ -23,8 +21,5 @@
                 }
             });
         }
-
-
     }
-
 })();

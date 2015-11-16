@@ -2,16 +2,16 @@
     angular.module("elib")
            .controller("IndexController", IndexController);
 
-    IndexController.$inject = ["authServiceFactory", "dataServiceFactory", '$location'];
+    IndexController.$inject = ["authServiceFactory", "dataServiceFactory", '$location', 'INDEX_CONST'];
 
-    function IndexController(authServiceFactory, dataServiceFactory, $location) {
+    function IndexController(authServiceFactory, dataServiceFactory, $location, INDEX_CONST) {
         var vm = this;
 
         authServiceFactory.fillAuthData();
 
         vm.logOut = function () {
             authServiceFactory.logOut();
-            $location.path('/books');
+            $location.path(INDEX_CONST.BOOKS);
         }
         vm.authentication = authServiceFactory.authentication;
 

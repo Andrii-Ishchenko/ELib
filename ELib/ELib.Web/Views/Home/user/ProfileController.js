@@ -2,13 +2,13 @@
     angular.module("elib")
            .controller("ProfileController", ProfileController);
 
-    ProfileController.$inject = ["profileFactory"];
+    ProfileController.$inject = ["profileFactory", 'USER_CONST'];
 
-    function ProfileController(profileFactory) {
+    function ProfileController(profileFactory, USER_CONST) {
         var vm = this;
 
         vm.links = {
-            "GeneralInfo": "/views/home/user/profile-general.html"           
+            "GeneralInfo": USER_CONST            
         }
 
         vm.currUrl = vm.links["GeneralInfo"];
@@ -19,13 +19,10 @@
 
         vm.isActive = function (viewName) {
             var item = vm.links[viewName];
-            //console.log("name = "+viewName+"\t"+"item = "+item);
             var result = (vm.currUrl == item);
             return result;
         }
 
         vm.profile = profileFactory.getCurrentUser().query();
-        //console.log("profile: "+vm.profile);
     }
-
 })();
