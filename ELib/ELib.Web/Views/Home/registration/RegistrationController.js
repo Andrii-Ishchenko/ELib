@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("RegistrationController", RegistrationController);
 
-    RegistrationController.$inject = ["authServiceFactory", '$location', '$timeout'];
+    RegistrationController.$inject = ["authServiceFactory", '$location', '$timeout', 'REGISTR_CONST'];
 
-    function RegistrationController(authServiceFactory, $location, $timeout) {
+    function RegistrationController(authServiceFactory, $location, $timeout, REGISTR_CONST) {
         var vm = this;
 
         authServiceFactory.fillAuthData()
@@ -21,7 +21,7 @@
             authServiceFactory.saveRegistration(vm.registration).then(function (response) {
 
                 vm.savedSuccessfully = true;
-                vm.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+                vm.message = REGISTR_CONST.SAVE_SUCCESSFULLY;
                 startTimer();
 
             },
@@ -33,21 +33,19 @@
                      }
                  }
                  if (errors.length > 0) {
-                     vm.message = "Failed to register user due to:" + errors.join(' ');
+                     vm.message = REGISTR_CONST.ERROR + errors.join(' ');
                  }
                  else {
-                     vm.message = "Registration is failed";
-                 }
-                 
+                     vm.message = REGISTR_CONST.SAVE_FAILED;
+                 }                 
              });
         };
 
         var startTimer = function () {
             var timer = $timeout(function () {
                 $timeout.cancel(timer);
-                $location.path('/login');
+                $location.path(REGISTR_CONST.LOGIN);
             }, 2000);
         }
-
     }
 })();

@@ -7,7 +7,7 @@
 
    // bookListDirective.$inject = ['BOOK_CONST'];
 
-    function bookListDirective($compile, BOOK_CONST) {
+    function bookListDirective($compile) {
         return {
             restrict: 'A',
             scope: {

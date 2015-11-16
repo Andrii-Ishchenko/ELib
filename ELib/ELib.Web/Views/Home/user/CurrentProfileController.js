@@ -2,22 +2,21 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["currentProfileFactory","dataServiceFactory","fileFactory", "$location"];
+    CurrentProfileController.$inject = ["currentProfileFactory", "dataServiceFactory", "fileFactory", "$location", 'USER_CONST'];
 
-    function CurrentProfileController(currentProfileFactory,dataServiceFactory,fileFactory, $location) {
+    function CurrentProfileController(currentProfileFactory, dataServiceFactory, fileFactory, $location, USER_CONST) {
         var vm = this;
         vm.links = {
-            "GeneralInfo": "/profile",
-            "Ratings": "/profile/ratings",
-            "Comments": '/profile/comments',
-            "Favourites": "/profile/favs",
-            "BooksToRead": "/profile/books/wishlist",
-            "AlreadyReadBooks": "/profile/books/donelist",
-            "SocialNetworks": "/profile/social-networks"
+            "GeneralInfo": USER_CONST.PROFILE ,
+            "Ratings": USER_CONST.RATINGS ,
+            "Comments": USER_CONST.COMMENTS ,
+            "Favourites": USER_CONST.FAVORITES ,
+            "BooksToRead": USER_CONST.WISHLIST ,
+            "AlreadyReadBooks": USER_CONST.DONELIST ,
+            "SocialNetworks": USER_CONST.SOTIAL_NETWORKS
         };
 
-        vm.files = "";
-       
+        vm.files = "";       
         
         vm.isActive = function (viewName) {
             var item = vm.links[viewName];
@@ -70,8 +69,6 @@
             vm.profile = currentProfileFactory.getCurrentUser().query();         
         }
 
-        vm.fetchData();
-        
+        vm.fetchData();        
     }
-
 })();

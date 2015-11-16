@@ -2,10 +2,9 @@
     angular.module("elib")
            .factory("currentProfileFactory", currentProfileFactory);
 
-    currentProfileFactory.$inject = ['$resource'];
+    currentProfileFactory.$inject = ['$resource', 'USER_CONST'];
 
-    function currentProfileFactory($resource) {
-        var baseUrl = "/api/";
+    function currentProfileFactory($resource, USER_CONST) {
         var CurrentProfileService = {
             getCurrentUser: getCurrentUser,
             saveCurrentUser: saveCurrentUser
@@ -14,8 +13,7 @@
         return CurrentProfileService;
 
         function getCurrentUser() {
-            var url = baseUrl + "CurrentProfile";
-
+            var url = USER_CONST.CURR_PROFILE;
             return $resource(url, {}, {
                 query: {
                     method: 'GET',
@@ -26,8 +24,7 @@
         }
 
         function saveCurrentUser(user) {
-            var url = baseUrl + "CurrentProfile";
-
+            var url = USER_CONST.CURR_PROFILE;
             return $resource(url, {}, {
                 send: {
                     method: 'PUT',
@@ -35,7 +32,5 @@
                 }
             });
         }
-
     }
-
 })();

@@ -5,9 +5,9 @@
         .module('elib')
         .directive('sortingDirective', sortingDirective);
 
-    sortingDirective.$inject = ['COMMON_CONST'];
+  //  sortingDirective.$inject = ['COMMON_CONST'];
 
-    function sortingDirective(COMMON_CONST) {
+    function sortingDirective(){//COMMON_CONST) {
         return {
             restrict: 'E',
             scope: {
@@ -46,8 +46,8 @@
                 }
 
             },
-           
-            templateUrl: COMMON_CONST.SORTING
+            templateUrl: "/views/home/common/lib-page-changer.html"
+            //templateUrl: COMMON_CONST.SORTING
         }
     }
 

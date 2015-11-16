@@ -44,8 +44,6 @@
 
         vm.pageChanged = pageChanged;
 
-
-
         function pageChanged() {
             $location.search("pageNumb", vm.currPage);
             $location.search("pageCount", vm.pageCount);

@@ -11,19 +11,7 @@
         </div>
         <div class="row" style="margin-bottom:10px">
             <div class="col-md-12">
-                <small>Ordering :</small>
-
-                <!--<ul class="list-inline" style="display:inline;margin-left:5px">
-                    <li><a href>Title</a></li>
-                    <li><a href>Year</a></li>
-                    <li><a href>Author Name</a></li>
-                    <li><a href>Genre</a></li>
-                    <li><a href>Publisher</a></li>
-                    <li><a href>Rating</a></li>
-                    <li><a href>Date</a></li>
-                </ul>-->
-                
-                <!--<sorting-directive order-parameters="books.ordering.orderParameters" order-by="books.ordering.orderBy" order-direction="books.ordering.orderDirection" default-order="LastName" default-direction="ASC" callback="books.alrt"></sorting-directive>-->
+                <small>Ordering :</small>               
                 <sorting-directive ordering="books.ordering"  callback="books.OrderingChanged"></sorting-directive>
                 <lib-page-count-changer entity-name="Books"></lib-page-count-changer>
              

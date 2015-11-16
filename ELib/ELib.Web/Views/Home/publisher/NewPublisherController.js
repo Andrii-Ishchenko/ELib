@@ -2,16 +2,16 @@
     angular.module("elib")
            .controller("NewPublisherController", NewPublisherController);
 
-    NewPublisherController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout"];
+    NewPublisherController.$inject = ["authServiceFactory", "dataServiceFactory", "$location", "$timeout", 'PUBLISH_CONST'];
 
-    function NewPublisherController(authServiceFactory, dataServiceFactory, $location, $timeout) {
+    function NewPublisherController(authServiceFactory, dataServiceFactory, $location, $timeout, PUBLISH_CONST) {
         var vm = this;
 
-        //authServiceFactory.fillAuthData();
+        authServiceFactory.fillAuthData();
         
-       // if (!authServiceFactory.authentication.isAuth) {
-       //     $location.path('/login');
-       // }
+        if (!authServiceFactory.authentication.isAuth) {
+            $location.path(PUBLISH_CONST.LOGIN);
+        }
 
         vm.message = '';
         vm.submitState = false;
@@ -29,13 +29,13 @@
                //success
                function (value) {
                    vm.createdSuccessfully = true;
-                   vm.message = "Publisher has been created successfully, you will be redicted to publisher page in 2 seconds.";
+                   vm.message = PUBLISH_CONST.SUCCES;
                    startTimer(value.Id);
                },
                //error
                function (error) {
                    vm.submitState = false;
-                   vm.message = "Publisher creation is failed";
+                   vm.message = PUBLISH_CONST.ERROR;
                }
           );
         };
@@ -43,7 +43,7 @@
         var startTimer = function (publisherId) {
             var timer = $timeout(function () {
                 $timeout.cancel(timer);
-                $location.path('/publishers/' + publisherId);
+                $location.path(PUBLISH_CONST.PUBLISHERS + publisherId);
             }, 2000);
         };
     }
