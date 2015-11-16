@@ -5,9 +5,9 @@
         .module('elib')
         .directive('commentsDirective', commentsDirective);
 
-    commentsDirective.$inject = ['COMMENT_CONST'];
+    //commentsDirective.$inject = ['COMMENT_CONST'];
 
-    function commentsDirective($timeout, COMMENT_CONST) {
+    function commentsDirective($timeout){//, COMMENT_CONST) {
         return {
             restrict: 'E',
             scope: {
@@ -23,8 +23,8 @@
             },
             controller: function () { },
             link: function (scope, element, attrs) { },
-
-            templateUrl: COMMENT_CONST.COMMENTS_URL
+            templateUrl: "/views/home/comments/Comments.html"
+           // templateUrl: COMMENT_CONST.COMMENTS_URL
         }
     }
 })();
