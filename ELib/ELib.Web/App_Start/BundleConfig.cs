@@ -92,9 +92,10 @@ namespace ELib.Web
                                     "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/login/LoginConstants.js",
 
-                                    "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/filter/libFilterDirective.js",
                                     "~/Views/Home/filter/FilterConsts.js",
+
+                                    "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/config.js"
                         )
                     );
