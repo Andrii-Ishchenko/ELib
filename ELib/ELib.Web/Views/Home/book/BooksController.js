@@ -80,7 +80,6 @@
 
         vm.NodeButtonState = function (node) {
 
-        }
-      
+        }      
     }
 })();

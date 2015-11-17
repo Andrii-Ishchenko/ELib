@@ -9,7 +9,7 @@
                    'AUTHOR_SEARCH':     '/authors/search',
                    'PUBLISHER_SEARCH':  '/publishers/search',
                    'BOOKS_LIST':        "views/home/book/book-list-menu.html",
-                   'AUTHORS':           "views/home/author/authors-menu.html",
+                   'AUTH':           "views/home/author/authors-menu.html",
                    'PUBLISHERS':        "views/home/publisher/publishers-menu.html",
                    'PROFILE':           "views/home/user/profile-menu-current.html",
                    'BOOKS':             "/books",
