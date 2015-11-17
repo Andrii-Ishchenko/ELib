@@ -44,11 +44,9 @@
                 {
                     scope.ordering.orderDirection = scope.ordering.defaultDirection;                 
                 }
-
             },
             templateUrl: "/views/home/common/lib-page-changer.html"
             //templateUrl: COMMON_CONST.SORTING
         }
     }
-
 })();

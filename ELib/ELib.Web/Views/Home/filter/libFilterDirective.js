@@ -19,8 +19,8 @@
             link: onFilter
         };
 
-        FilterController.$inject = ["$scope", "$element", "$attrs", "$location", "$routeParams", "dataServiceFactory", "FILTER_CONST"];
-        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory, FILTER_CONST) {
+        FilterController.$inject = ["$scope", "$element", "$attrs", "$location", "$routeParams", "dataServiceFactory"];
+        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory) {
             var vm = this;
             vm.entity = $scope.entity;
             vm.type = $scope.type;
@@ -61,8 +61,8 @@
 
             function getFilterPathParameters() {
                 var searchPath = {
-                    "book": FILTER_CONST.BOOK_SEARCH,
-                    "author": FILTER_CONST.AUTHOR_SEARCH
+                    "book": "/books/search",
+                    "author": "/authors/search"
                 };
                 var parameters = {
                     "book": {
@@ -110,12 +110,12 @@
             }
         }
 
-        getTemplate.$inject = ["$element", "$attrs", FILTER_CONST];
-        function getTemplate($element, $attrs, FILTER_CONST) {
+        getTemplate.$inject = ["$element", "$attrs"];
+        function getTemplate($element, $attrs) {
             var templateUrls = {
-                "text": FILTER_CONST.TEXT_FILTER ,
-                "year": FILTER_CONST.YEAR_FILTER,
-                "select": FILTER_CONST.SELECT_FILTER
+                "text": "/views/home/filter/text-filter.html",
+                "year": "/views/home/filter/year-filter.html",
+                "select": "/views/home/filter/select-filter.html"
             };
             var type = $attrs["type"];
             return templateUrls[type];
