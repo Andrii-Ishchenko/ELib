@@ -10,21 +10,19 @@
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : BOOK_CONST.CURRENT_PAGE;
 
         vm.OrderingChanged = function () {
-
             var params = getParameters();
             var obj = dataServiceFactory.getService('books').get(params)
                 .$promise.then(function (data) {
-              vm.books = data.books;
-              vm.totalCount = data.totalCount;
-              vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-              vm.maxSize = BOOK_CONST.MAX_SIZE;
-              vm.pages = new Array(vm.totalPages);
-          })
+                    vm.books = data.books;
+                    vm.totalCount = data.totalCount;
+                    vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
+                    vm.maxSize = BOOK_CONST.MAX_SIZE;
+                    vm.pages = new Array(vm.totalPages);
+                })
         }
 
-
         vm.ordering = fetchOrderingWithDefaultParams();
-       
+
         function fetchOrderingWithDefaultParams() {
             return {
                 defaultOrder: "Author",
@@ -35,18 +33,18 @@
             }
         }
 
-         var parameters = getParameters()
+        var parameters = getParameters()
 
         vm.pageChanged = pageChanged;
 
         dataServiceFactory.getService('books')
                                      .getWithTotalCount(parameters, onSuccess = function (response) {
-                                                                         vm.totalCount = response.totalCount;
-                                                                         vm.books = response.items;
-                                                                                },
+                                         vm.totalCount = response.totalCount;
+                                         vm.books = response.books;
+                                     }, 
                                                                     onError = function (response) {
-                                                                                            console.log(response.message);
-                                                                              });
+                                                                        console.log(response.message);
+                                                                    });
         vm.maxSize = BOOK_CONST.MAX_SIZE;
         //.get(parameters)
         //    .$promise.then(function (data) {
@@ -56,7 +54,7 @@
         //    vm.maxSize = 5;
         //    vm.pages = new Array(vm.totalPages);
         //})
-      
+
         function getParameters() {
             return {
                 pageCount: vm.pageCount,
@@ -68,7 +66,7 @@
                 genreId: $routeParams.genreId,
                 subgenre: $routeParams.subgenre,
                 subgenreId: $routeParams.subgenreId,
-                categoryId : $routeParams.categoryId,
+                categoryId: $routeParams.categoryId,
                 year: $routeParams.year,
                 orderBy: vm.ordering.orderBy,
                 orderDirection: vm.ordering.orderDirection
@@ -80,6 +78,6 @@
 
         vm.NodeButtonState = function (node) {
 
-        }      
+        }
     }
 })();

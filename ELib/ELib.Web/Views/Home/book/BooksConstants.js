@@ -2,16 +2,16 @@
     angular.module("elib")
            .constant('BOOK_CONST',(function() {               
                return {
-                   'STARS_COUNT':         "5",
+                   'STARS_COUNT':         5,
                    'BASED_ON':            100,
                    'TIMEOUT':             2000,
                    'PAGE_COUNT':          5,
-                   'CURRENT_PAGE':        "1",
+                   'CURRENT_PAGE':        1,
                    'MAX_TEXT':            400,
                    'LENGTH':              5,
                    'COUNT_COMMENTS':      5,
                    'CURRENT_COMMENTS':    1,
-                   'MAX_SIZE':            "5",
+                   'MAX_SIZE':            5,
                    'BOOKS':               '/books/',
                    'LOGIN':               '/login',
                    'BOOK':                "book/:id",
