@@ -20,7 +20,7 @@
         };
 
         FilterController.$inject = ["$scope", "$element", "$attrs", "$location", "$routeParams", "dataServiceFactory"];
-        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory){
+        function FilterController($scope, $element, $attrs, $location, $routeParams, dataServiceFactory) {
             var vm = this;
             vm.entity = $scope.entity;
             vm.type = $scope.type;

@@ -6,8 +6,8 @@
 
     function MenuController($location, $route, $scope, dataServiceFactory, INDEX_CONST) {
         var urls = {
-            books: INDEX_CONST.BOOKS_LIST,
-            authors: INDEX_CONST.AUTHORS,
+            books: "views/home/book/book-list-menu.html",
+            authors: INDEX_CONST.AUTH,
             publishers: INDEX_CONST.PUBLISHERS,
             profile: INDEX_CONST.PROFILE
         };
@@ -43,21 +43,21 @@
         $scope.$on("$locationChangeStart", changeMenu);
         function changeMenu() {
             switch ($location.path()) {
-                case INDEX_CONST.BOOKS:;
-                case INDEX_CONST.BOOK_SEARCH: vm.Url = urls["books"];
+                case "/books":;
+                case '/books/search': vm.Url = urls["books"];
                     break;
-                case INDEX_CONST.AUTHORS:;
-                case INDEX_CONST.AUTHOR_SEARCH: vm.Url = urls["authors"];
+                case "/authors":;
+                case '/authors/search': vm.Url = urls["authors"];
                     break;
-                case INDEX_CONST.PUBLISHERS: vm.Url = urls["publishers"];
+                case "views/home/publisher/publishers-menu.html": vm.Url = urls["publishers"];
                     break;
-                case INDEX_CONST.PROF:;
-                case INDEX_CONST.PROF_RATINGS :;
-                case INDEX_CONST.PROF_COMMENTS:;
-                case INDEX_CONST.PROF_FAVS:;
-                case INDEX_CONST.WISHLIST:;
-                case INDEX_CONST.DONELIST:;
-                case INDEX_CONST.SOTIAL_NETWORK: vm.Url = urls["profile"];
+                case "/profile":;
+                case "/profile/ratings":;
+                case "/profile/comments":;
+                case "/profile/favs":;
+                case "/profile/books/wishlist":;
+                case "/profile/books/donelist":;
+                case "/profile/social-networks": vm.Url = urls["profile"];
                     break;
                 default: vm.Url = "";
                     break;
