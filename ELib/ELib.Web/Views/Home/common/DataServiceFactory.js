@@ -2,9 +2,9 @@
     angular.module("elib")
            .factory("dataServiceFactory", dataServiceFactory);
 
-    dataServiceFactory.$inject = ['$resource'];
+    dataServiceFactory.$inject = ['$resource', 'COMMON_CONST'];
 
-    function dataServiceFactory($resource) {
+    function dataServiceFactory($resource, COMMON_CONST) {
         var DataService = {
             getService : getService
         };
@@ -12,7 +12,7 @@
         return DataService;
 
         function getService(entity) {
-            var url = "/api/" + entity + "/:id/";
+            var url = COMMON_CONST.BASE_URL + entity + COMMON_CONST.URL_ID;
             return $resource(url, {id: '@id'}, {
                 update: {
                     method: 'PUT',

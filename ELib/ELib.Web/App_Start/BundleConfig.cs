@@ -40,17 +40,17 @@ namespace ELib.Web
                                     "~/Views/Home/common/authInterceptorServiceFactory.js",
                                     "~/Views/Home/common/dataServiceFactory.js",
                                     "~/Views/Home/common/libPageCountChangerDirective.js",
-                                    "~/Views/Home/common/CommonConstants.js",
+                                    "~/Views/Home/common/CommonConstantService.js",
                                     "~/Views/Home/common/sortingDirective.js",
 
                                     "~/Views/Home/index/IndexController.js",
                                     "~/Views/Home/index/SearchController.js",
                                     "~/Views/Home/index/MenuController.js",
-                                    "~/Views/Home/index/IndexConstants.js",
+                                    "~/Views/Home/index/IndexConstantantService.js",
 
                                     "~/Views/Home/files/fileFactory.js",
                                     "~/Views/Home/files/FileController.js",
-                                    "~/Views/Home/files/FileConsts.js",
+                                    "~/Views/Home/files/FileConstantService.js",
 
                                     "~/Views/Home/book/bookListDirective.js",
                                     "~/Views/Home/book/bookRepository.js",
@@ -59,24 +59,24 @@ namespace ELib.Web
                                     "~/Views/Home/book/RatingController.js",
                                     "~/Views/Home/book/BookController.js",
                                     "~/Views/Home/book/BooksController.js",
-                                    "~/Views/Home/book/BooksConstants.js",
+                                    "~/Views/Home/book/BooksConstantService.js",
 
                                     "~/Views/Home/author/AuthorController.js",
                                     "~/Views/Home/author/AuthorsController.js",
                                     "~/Views/Home/author/authorListDirective.js",
                                     "~/Views/Home/author/NewAuthorController.js",
-                                    "~/Views/Home/author/AuthorsConstants.js",
+                                    "~/Views/Home/author/AuthorConstantService.js",
 
                                     "~/Views/Home/user/CurrentProfileController.js",
                                     "~/Views/Home/user/currentProfileFactory.js",
                                     "~/Views/Home/user/profileFactory.js",
                                     "~/Views/Home/user/ProfileController.js",
-                                    "~/Views/Home/user/UserConstants.js",
+                                    "~/Views/Home/user/UserConstantService.js",
 
                                     "~/Views/Home/publisher/PublisherController.js",
                                     "~/Views/Home/publisher/PublishersController.js",
                                     "~/Views/Home/publisher/NewPublisherController.js",
-                                    "~/Views/Home/publisher/PublisherConstants.js",
+                                    "~/Views/Home/publisher/PublisherConstantService.js",
 
                                     "~/Views/Home/mainpage/MainController.js",
                                     "~/Views/Home/mainpage/ModalController.js",
@@ -84,18 +84,17 @@ namespace ELib.Web
 
                                     "~/Views/Home/comments/CommentsRepository.js",
                                     "~/Views/Home/comments/commentsDirective.js",
-                                    "~/Views/Home/comments/CommentsConstants.js",
+                                    "~/Views/Home/comments/CommentConstantService.js",
 
                                     "~/Views/Home/registration/RegistrationController.js",
-                                    "~/Views/Home/registration/RegistrationConstants.js",
+                                    "~/Views/Home/registration/RegistrationConstantService.js",
 
                                     "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/login/LoginConstants.js",
 
-                                    "~/Views/Home/filter/libFilterDirective.js",
-                                    "~/Views/Home/filter/FilterConsts.js",
-
                                     "~/Views/Home/help/HelpController.js",
+                                    "~/Views/Home/filter/libFilterDirective.js",
+                                    "~/Views/Home/filter/FilterConstantService.js",
                                     "~/Views/Home/config.js"
                         )
                     );
