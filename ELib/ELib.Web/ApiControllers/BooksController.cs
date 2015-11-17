@@ -56,7 +56,7 @@ namespace ELib.Web.ApiControllers
                 SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, genreId, subgenreId, year,categoryIds,orderBy,orderDirection);
                 IEnumerable<BookInListDto> books = _bookInListService.GetAll(searchDto, pageCount, pageNumb);
                 int totalCount = _bookInListService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { items = books, totalCount});
+                return Request.CreateResponse(HttpStatusCode.OK, new {books, totalCount});
             }
             catch (Exception e)
             {
