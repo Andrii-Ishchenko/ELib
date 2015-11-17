@@ -7,7 +7,7 @@
 
   //  sortingDirective.$inject = ['COMMON_CONST'];
 
-    function sortingDirective(){//COMMON_CONST) {
+    function sortingDirective($timeout) {//COMMON_CONST) {
         return {
             restrict: 'E',
             scope: {
@@ -45,7 +45,7 @@
                     scope.ordering.orderDirection = scope.ordering.defaultDirection;                 
                 }
             },
-            templateUrl: "/views/home/common/lib-page-changer.html"
+            templateUrl: '/views/home/common/sorting-directive.html'
             //templateUrl: COMMON_CONST.SORTING
         }
     }

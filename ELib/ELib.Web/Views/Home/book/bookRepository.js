@@ -5,7 +5,7 @@
     bookRepository.$inject = ['$resource', 'BOOK_CONST'];
 
     function bookRepository($resource, BOOK_CONST) {
-        var baseUrl = BOOK_CONST.API_BOOKS;
+        var baseUrl = "/api/books/";
         var DataService = {
             getBooksForAuthor: getBooksForAuthor,
             getBooksForPublisher: getBooksForPublisher,
