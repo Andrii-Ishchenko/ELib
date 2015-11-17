@@ -1,46 +1,39 @@
 ﻿(function () {
     angular.module('elib').controller('MainController', MainController)
 
-    MainController.$inject = ["dataServiceFactory"];
+    MainController.$inject = ["dataServiceFactory", "$attrs"];
 
-    function MainController(dataServiceFactory) {
+    function MainController(dataServiceFactory, $attrs) {
 
         var vm = this;
         vm.itemsPerPage = 6;
-
         vm.currentPage = 1;
-        vm.currentPageNew = 1;
 
-        var obj = dataServiceFactory.getService('books').get({ blockId: 0, pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
+        //blockId = 0 for most rated books
+        //blockId = 1 for the latest books
+        vm.blockId = $attrs.blockId;
 
-        obj.$promise.then(function (data) {
-            vm.books = data.books;
-            vm.totalItems = data.totalCount;
-        })
+        //get first amount of books for block
+        getBooksForBlock(vm.currentPage);
 
+
+        //envoked when previous/next button is clicked
         vm.pageChanged = function () {
-            obj = dataServiceFactory.getService('books').get({ blockId: 0, pageCount: vm.itemsPerPage, pageNumb: vm.currentPage });
-
-            obj.$promise.then(function (data) {
-                vm.books = data.books;
-            })
+            getBooksForBlock(vm.currentPage);
         };
 
-
-        var obj2 = dataServiceFactory.getService('books').get({ blockId: 1, pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
-
-        obj2.$promise.then(function (data) {
-            vm.booksNew = data.books;
-            vm.totalItemsNew = data.totalCount;
-        })
-
-        vm.pageChangedNew = function () {
-            obj2 = dataServiceFactory.getService('books').get({ blockId: 1, pageCount: vm.itemsPerPage, pageNumb: vm.currentPageNew });
-
-            obj2.$promise.then(function (data) {
-                vm.booksNew = data.books;
-            })
-        };
+        //gets books of current page for current block 
+        function getBooksForBlock(blockId, pageNumb) {
+            dataServiceFactory.getService('books')
+                             .getWithTotalCount({ blockId: vm.blockId, pageCount: vm.itemsPerPage, pageNumb: pageNumb },
+                                                onSuccess = function (response) {
+                                                    vm.books = response.books;
+                                                    vm.totalItems = response.totalCount;
+                                                 },
+                                                onError = function (response) {
+                                                                console.log(response.status);
+                                                            });
+        }
     }
 })();
 

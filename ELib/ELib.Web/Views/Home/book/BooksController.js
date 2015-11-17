@@ -12,14 +12,14 @@
         vm.OrderingChanged = function () {
 
             var params = getParameters();
-            var obj = dataServiceFactory.getService('books').get(params)
-                .$promise.then(function (data) {
-              vm.books = data.books;
-              vm.totalCount = data.totalCount;
-              vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-              vm.maxSize = BOOK_CONST.MAX_SIZE;
-              vm.pages = new Array(vm.totalPages);
-          })
+            dataServiceFactory.getService('books')
+                             .getWithTotalCount(parameters, onSuccess = function (response) {
+                                                              vm.totalCount = response.totalCount;
+                                                              vm.books = response.books;
+                                                            },
+                                                            onError = function (response) {
+                                                                console.log(response.message);
+                                                            });
         }
 
 
@@ -35,14 +35,14 @@
             }
         }
 
-         var parameters = getParameters()
+        var parameters = getParameters()
 
         vm.pageChanged = pageChanged;
 
         dataServiceFactory.getService('books')
                                      .getWithTotalCount(parameters, onSuccess = function (response) {
                                                                          vm.totalCount = response.totalCount;
-                                                                         vm.books = response.items;
+                                                                         vm.books = response.books;
                                                                                 },
                                                                     onError = function (response) {
                                                                                             console.log(response.message);

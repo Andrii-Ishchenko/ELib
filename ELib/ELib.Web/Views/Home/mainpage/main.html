@@ -1,12 +1,13 @@
 ﻿
 <div class="container-fluid">
-    <div ng-controller="MainController">
+    <!--most rated books-->
+    <div ng-controller="MainController as BookBlockCtrl0" block-id=0>
         <h1>Books with the highest rating</h1>
         <hr />
 
         <div class="row" ng-controller="ModalController as modalctrl">
 
-            <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in mainpage.books">
+            <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in BookBlockCtrl0.books">
 
                 <figure class="thumbnail" style="margin-bottom : 15px;">
 
@@ -49,64 +50,67 @@
 
         </div>
 
-        <pager total-items="mainpage.totalItems" items-per-page="mainpage.itemsPerPage" ng-model="mainpage.currentPage" ng-change="mainpage.pageChanged()"></pager>
+        <pager total-items="BookBlockCtrl0.totalItems" items-per-page="BookBlockCtrl0.itemsPerPage" ng-model="BookBlockCtrl0.currentPage" ng-change="BookBlockCtrl0.pageChanged()"></pager>
     </div>
 
-    <h1>New books</h1>
-    <hr />
+    <!--the latest books-->
+    <div ng-controller="MainController as BookBlockCtrl1" block-id = 1>
+        <h1>New books</h1>
+        <hr />
 
-    <div class="row" ng-controller="ModalController as modalctrl">
+        <div class="row" ng-controller="ModalController as modalctrl">
 
-        <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in mainpage.booksNew">
+            <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="book in BookBlockCtrl1.books">
 
-            <figure class="thumbnail" style="margin-bottom : 15px;">
+                <figure class="thumbnail" style="margin-bottom : 15px;">
 
-                <script type="text/ng-template" id="myModalContent.html">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalinst.ok()">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
-                    </div>
-                    <div class="modal-body">
-                        <img ng-src="/api/file/book-images?hash={{modalinst.book.ImageHash}}&w=328" class="panel-body center-block" />
+                    <script type="text/ng-template" id="myModalContent.html">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalinst.ok()">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><a ng-href="{{'/books/' + modalinst.book.Id}}">{{modalinst.book.Title}}</a></h4>
+                        </div>
+                        <div class="modal-body">
+                            <img ng-src="/api/file/book-images?hash={{modalinst.book.ImageHash}}&w=328" class="panel-body center-block" />
 
-                    </div>
-                    <div class="modal-footer" style="text-align:justify">
-                        {{modalinst.book.Description}}
-                    </div>
+                        </div>
+                        <div class="modal-footer" style="text-align:justify">
+                            {{modalinst.book.Description}}
+                        </div>
 
-                </script>
-                <figure class="thumbnail myimg">
-                    <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                    </script>
+                    <figure class="thumbnail myimg">
+                        <img class="img-rounded" ng-src="/api/file/book-images?hash={{book.ImageHash}}&h=192" id="menu" ng-click="modalctrl.open(book.Id)" />
+                    </figure>
+
+                    <figcaption class="panel-footer">
+                        <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
+                            {{book.Title}}
+                            <span class="paragraph-end"></span>
+                        </a>
+
+                        <a class="subtitle" href="{{'/authors/'+book.Authors[0].Id}}" title="{{book.Authors[0].Title}}">
+                            {{book.Authors[0].FirstName}} {{book.Authors[0].LastName}}
+                            <span class="paragraph-end">
+                            </span>
+                        </a>
+                        <div class="subtitle" title="addition date: {{book.AdditionDate| date:'short'}}" aria-hidden="true" tabindex="-1">
+                            {{book.AdditionDate | date:'short'}}
+                            <span class="paragraph-end"></span>
+                        </div>
+
+                        <div class="center-block text-center text-success" id="productRate">
+                            <div style="width: {{book.Rating}}%"></div>
+                        </div>
+
+                    </figcaption>
                 </figure>
-                
-                <figcaption class="panel-footer">
-                    <a class="title" href="{{'/books/' + book.Id}}" title="{{book.Title}}" aria-hidden="true" tabindex="-1">
-                        {{book.Title}}
-                        <span class="paragraph-end"></span>
-                    </a>
+            </div>
 
-                    <a class="subtitle" href="{{'/authors/'+book.Authors[0].Id}}" title="{{book.Authors[0].Title}}">
-                        {{book.Authors[0].FirstName}} {{book.Authors[0].LastName}}
-                        <span class="paragraph-end">
-                        </span>
-                    </a>
-                    <div class="subtitle" title="addition date: {{book.AdditionDate| date:'short'}}" aria-hidden="true" tabindex="-1">
-                        {{book.AdditionDate | date:'short'}}
-                        <span class="paragraph-end"></span>
-                    </div>
-
-                    <div class="center-block text-center text-success" id="productRate">
-                        <div style="width: {{book.Rating}}%"></div>
-                    </div>
-
-                </figcaption>
-            </figure>
         </div>
 
+        <pager total-items="BookBlockCtrl1.totalItems" items-per-page="BookBlockCtrl1.itemsPerPage" ng-model="BookBlockCtrl1.currentPage" ng-change="BookBlockCtrl1.pageChanged()"></pager>
+
     </div>
-
-    <pager total-items="mainpage.totalItemsNew" items-per-page="mainpage.itemsPerPage" ng-model="mainpage.currentPageNew" ng-change="mainpage.pageChangedNew()"></pager>
-
 </div>
 
 
