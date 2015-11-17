@@ -8,7 +8,7 @@
         var vm = this;
 
         vm.links = {
-            "GeneralInfo": USER_CONST            
+            "GeneralInfo": USER_CONST.GENERAL_INFO        
         }
 
         vm.currUrl = vm.links["GeneralInfo"];

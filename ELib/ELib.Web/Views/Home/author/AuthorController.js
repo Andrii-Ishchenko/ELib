@@ -24,8 +24,7 @@
             fd.append("file", file[0]);
 
             FileFactory.uploadAuthorImage(fd, vm.instance.Id).then(
-                function (response) {                   
-                   // alert("uploaded");
+                function (response) {    
                     vm.instance = getService().get({ id: $routeParams.id });
                 });
         }
