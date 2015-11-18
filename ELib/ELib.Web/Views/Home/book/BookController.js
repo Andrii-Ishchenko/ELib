@@ -84,7 +84,8 @@
             var rating = {
                 ValueRating: vm.instance.Rating,
                 UserId: vm.profile.Id,
-                BookId: parseInt($routeParams.id)
+                BookId: parseInt($routeParams.id),
+                State: "Added"
             }
             dataServiceFactory.getService('Ratings').save(rating).$promise.then(
               //success
