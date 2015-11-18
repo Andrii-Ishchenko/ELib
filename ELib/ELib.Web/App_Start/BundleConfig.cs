@@ -90,7 +90,7 @@ namespace ELib.Web
                                     "~/Views/Home/registration/RegistrationConstantService.js",
 
                                     "~/Views/Home/login/LoginController.js",
-                                    "~/Views/Home/login/LoginConstants.js",
+                                    "~/Views/Home/login/LoginConstantService.js",
 
                                     "~/Views/Home/help/HelpController.js",
                                     "~/Views/Home/filter/libFilterDirective.js",
