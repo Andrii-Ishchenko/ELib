@@ -127,8 +127,6 @@
 
             fileFactory.uploadBookImage(fd, vm.instance.Id).then(
                 function (response) {
-                    // $scope.fetchData();
-                    // alert("uploaded");
                     vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
                 });
         }
