@@ -18,7 +18,9 @@
                 createComment: "=",
                 canPost: "=",
                 profile: "=",
-                canLoad: "="
+                canLoad: "=",
+                like: "=",
+                disLike:"="
 
             },
             controller: function () { },

@@ -29,7 +29,7 @@
         vm.message = "";
 
         vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
-        
+
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
 
@@ -52,11 +52,18 @@
             SumLike: 0,
             SumDisLike: 0,
             UserName: "",
-            State:"Added"
+            State: "Added"
         };
 
         vm.cleanComment = function () {
             vm.newComment.Text = "";
+        };
+
+        vm.like = function (commentId) {
+            createLikeOrDisLike(1,commentId);
+        };
+        vm.disLike = function (commentId) {
+            createLikeOrDisLike(0,commentId);
         };
 
         vm.fetchComments = function () {
@@ -85,7 +92,6 @@
                 ValueRating: vm.instance.Rating,
                 UserId: vm.profile.Id,
                 BookId: parseInt($routeParams.id),
-                State: "Added"
             }
             dataServiceFactory.getService('Ratings').save(rating).$promise.then(
               //success
@@ -93,6 +99,27 @@
                   vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
               }
          );
+        };
+
+        var createLikeOrDisLike = function (isLike,commentId) {
+            var ratingComment = {
+                CommentId: commentId,
+                UserId: vm.profile.Id,
+                IsLike: isLike,
+                State:"Added"
+            }
+            dataServiceFactory.getService('RatingsComment').save(ratingComment).$promise.then(
+             //success
+             function (value) {
+                 vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+                 vm.temp = vm.comments;
+                 currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
+                 countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
+                 vm.newComment.Text = "";
+                 vm.IsPostEnabled = true;
+                 vm.CanLoad();
+             }
+        );
         };
 
         vm.createComment = function () {
@@ -196,7 +223,7 @@
                 OriginalLangId: vm.instance.OriginalLangId,
                 PublishLangId: vm.instance.PublishLangId,
                 TotalPages: vm.instance.TotalPages,
-                State : 1
+                State: 1
             }
             dataServiceFactory.getService("Books").update(book);
         }
