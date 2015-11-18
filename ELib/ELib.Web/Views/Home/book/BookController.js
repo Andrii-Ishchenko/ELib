@@ -84,7 +84,8 @@
             var rating = {
                 ValueRating: vm.instance.Rating,
                 UserId: vm.profile.Id,
-                BookId: parseInt($routeParams.id)
+                BookId: parseInt($routeParams.id),
+                State: "Added"
             }
             dataServiceFactory.getService('Ratings').save(rating).$promise.then(
               //success
@@ -126,8 +127,6 @@
 
             fileFactory.uploadBookImage(fd, vm.instance.Id).then(
                 function (response) {
-                    // $scope.fetchData();
-                    // alert("uploaded");
                     vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
                 });
         }

@@ -1,9 +1,7 @@
 ﻿(function () {
     angular.module("elib")
             .directive("libPageCountChanger", libPageCountChanger);
-
-  //  libPageCountChanger.$inject = ['COMMON_CONST'];
-
+    
     function libPageCountChanger() {
         var directiveObj = {
             restrict: 'E',

@@ -21,13 +21,13 @@ namespace ELib.BL.Services.Concrete
         {
             SmtpClient smtp = new SmtpClient("smtp.gmail.com");
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("ElectronicLibraryORG@gmail.com", "QazLibrary2015");
+            smtp.Credentials = new NetworkCredential("electroniclibraryorg@gmail.com", "QazLibrary2015");
             smtp.EnableSsl = true;
             MailMessage message = new MailMessage();
-            message.From = new MailAddress("ElectronicLibraryORG@gmail.com");
+            message.From = new MailAddress("electroniclibraryorg@gmail.com");
             message.To.Add(new MailAddress(email));
             message.Subject = "Successful registration on ELib";
-            message.Body = string.Format("Welcome Dear {0}. \n\n Kind regards, Team", login);
+            message.Body = String.Format("Welcome Dear {0}. \n\n Kind regards, Team", login);
             try
             {
                 smtp.Send(message);

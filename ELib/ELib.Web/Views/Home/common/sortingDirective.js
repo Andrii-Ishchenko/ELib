@@ -5,9 +5,7 @@
         .module('elib')
         .directive('sortingDirective', sortingDirective);
 
-  //  sortingDirective.$inject = ['COMMON_CONST'];
-
-    function sortingDirective(){//COMMON_CONST) {
+    function sortingDirective($timeout) {
         return {
             restrict: 'E',
             scope: {
@@ -45,8 +43,7 @@
                     scope.ordering.orderDirection = scope.ordering.defaultDirection;                 
                 }
             },
-            templateUrl: "/views/home/common/lib-page-changer.html"
-            //templateUrl: COMMON_CONST.SORTING
+            templateUrl: '/views/home/common/sorting-directive.html'
         }
     }
 })();
