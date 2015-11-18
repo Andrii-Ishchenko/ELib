@@ -25,6 +25,11 @@
                 return false;
         };
 
+        if (authServiceFactory.authentication.isAuth) {
+            vm.canLike = true;
+        }
+        else { vm.canLike = false; }
+
         vm.savedSuccessfully = false;
         vm.message = "";
 

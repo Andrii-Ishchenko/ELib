@@ -20,7 +20,8 @@
                 profile: "=",
                 canLoad: "=",
                 like: "=",
-                disLike:"="
+                disLike: "=",
+                canLike:"="
 
             },
             controller: function () { },
