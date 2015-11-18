@@ -17,11 +17,6 @@
                 update: {
                     method: 'PUT',
                     isArray: false
-                },
-
-                getWithTotalCount: {
-                    method: 'GET',
-                    isArray: false,
                 }
             });
         }

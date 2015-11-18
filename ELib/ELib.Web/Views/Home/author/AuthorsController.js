@@ -8,20 +8,20 @@
         var vm = this;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : AUTHOR_CONST.PAGE_COUNT;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : AUTHOR_CONST.FIRST_PAGE;
+        vm.maxSize = AUTHOR_CONST.MAX_SIZE;
+        vm.ordering = fetchOrderingWithDefaultParams();
 
+        vm.pageChanged = pageChanged;
         vm.OrderingChanged = function () {
             var params = getParameters();
-            var obj = dataServiceFactory.getService('authors').get(params)
-                            .$promise.then(function (data) {
-                                vm.authors = data.authors;
-                                vm.totalCount = data.totalCount;
-                                vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-                                vm.maxSize = AUTHOR_CONST.MAX_SIZE;
-                                vm.pages = new Array(vm.totalPages);
-                            })
+            vm.authors = dataServiceFactory.getService('authors').query(params, onSuccess = function (response, headers) {
+                                                                                    vm.totalItems = headers("totalCount");
+                                                                                   },
+                                                                                onError = function (response) {
+                                                                                    console.log(response.status);
+                                                                                });
+                            
         }
-
-        vm.ordering = fetchOrderingWithDefaultParams();
 
         function fetchOrderingWithDefaultParams() {
             return {
@@ -32,16 +32,14 @@
                 orderParameters: ["FirstName", "LastName", "DateOfBirth"]
             }
         }
+
         var parameters = getParameters();
-
-        vm.pageChanged = pageChanged;
-
-        var obj = dataServiceFactory.getService('authors').get(parameters).$promise.then(function (data) {
-            vm.authors = data.authors;
-            vm.totalItems = data.totalCount;
-            vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-            vm.maxSize = AUTHOR_CONST.MAX_SIZE;
-        })
+        vm.authors = dataServiceFactory.getService('authors').query(parameters, onSuccess = function (response, headers) {
+                                                                                     vm.totalItems = headers("totalCount");
+                                                                                 },
+                                                                                onError = function (response) {
+                                                                                    console.log(response.status);
+                                                                                });
 
         function getParameters() {
             return {

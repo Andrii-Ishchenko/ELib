@@ -28,7 +28,7 @@
         vm.savedSuccessfully = false;
         vm.message = "";
 
-        vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+        vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id, property : "book" });
         
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;

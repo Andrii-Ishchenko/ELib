@@ -24,11 +24,10 @@
 
         //gets books of current page for current block 
         function getBooksForBlock(blockId, pageNumb) {
-            dataServiceFactory.getService('books')
-                             .getWithTotalCount({ blockId: vm.blockId, pageCount: vm.itemsPerPage, pageNumb: pageNumb },
-                                                onSuccess = function (response) {
-                                                    vm.books = response.books;
-                                                    vm.totalItems = response.totalCount;
+            vm.books =  dataServiceFactory.getService('books')
+                             .query({ blockId: vm.blockId, pageCount: vm.itemsPerPage, pageNumb: pageNumb },
+                                                onSuccess = function (response, headers) {
+                                                    vm.totalItems = headers("totalCount");
                                                  },
                                                 onError = function (response) {
                                                                 console.log(response.status);

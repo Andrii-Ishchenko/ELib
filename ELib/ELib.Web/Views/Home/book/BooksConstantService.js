@@ -5,7 +5,7 @@
                    'STARS_COUNT':         5,
                    'BASED_ON':            100,
                    'TIMEOUT':             2000,
-                   'PAGE_COUNT':          5,
+                   'PAGE_COUNT':          "5",
                    'CURRENT_PAGE':        1,
                    'MAX_TEXT':            400,
                    'LENGTH':              5,
