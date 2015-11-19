@@ -62,13 +62,9 @@ namespace ELib.Web.ApiControllers
         [ActionName("register")]
         public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
-            string userName = "[A-z0-9-_.]";
-            string email = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]";
-            string password = "[A - z] +[0 - 9] + ";
             try
             {
-                if (model == null || !ModelState.IsValid || !Regex.IsMatch(model.UserName, userName) ||
-                       !Regex.IsMatch(model.Email, email, RegexOptions.IgnoreCase) || !Regex.IsMatch(model.Password, password))
+                if (model == null || !ModelState.IsValid )
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
