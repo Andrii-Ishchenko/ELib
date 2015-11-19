@@ -21,9 +21,7 @@ namespace ELib.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             loger.Info("WebApiConfig Registered");
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
             loger.Info("Filters Registered");
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             loger.Info("Routes Registered");
             BundleConfig.RegisterBundles(BundleTable.Bundles);

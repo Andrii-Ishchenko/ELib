@@ -13,6 +13,7 @@ using System.Linq;
 
 namespace ELib.Web.ApiControllers
 {
+    [RoutePrefix("api/books")]
     public class BooksController : ApiController
     {
         private readonly IBookService _bookService;
@@ -113,7 +114,7 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        [ActionName("book")]
+        [Route("{id}")]
         public HttpResponseMessage Get(int id)
         {
             try

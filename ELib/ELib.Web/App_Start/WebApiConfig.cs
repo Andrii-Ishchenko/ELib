@@ -18,7 +18,7 @@ namespace ELib.Web
     {
         public static void Register(HttpConfiguration config)
         {
-            // config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();
         //    config.SuppressDefaultHostAuthentication();
         //    config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

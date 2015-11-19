@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ["bookRepository", "CommentsRepository", '$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory", 'BOOK_CONST'];
+    BookController.$inject = ['$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory", 'BOOK_CONST'];
 
-    function BookController(bookRepository, CommentsRepository, $routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory, BOOK_CONST) {
+    function BookController($routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory, BOOK_CONST) {
         var vm = this;
         vm.isEditMode = false;
         vm.IsPostEnabled = true;
@@ -28,7 +28,7 @@
         vm.savedSuccessfully = false;
         vm.message = "";
 
-        vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id, property : "book" });
+        vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
         
         vm.profile = currentProfileFactory.getCurrentUser().query();
         var userCurrId = vm.profile.Id;
@@ -40,9 +40,8 @@
         var currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
         var countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
 
-        vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
-        vm.temp = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
-
+        vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
+        vm.temp = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
 
         vm.newComment = {
             Text: "",
@@ -64,7 +63,7 @@
             console.log(vm.comments.length);
 
 
-            CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id, pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
+            dataServiceFactory.getService("books").query({ id: $routeParams.id, property : "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
                  function (value) {
                      vm.temp = value;
                      var iterator = vm.temp.length;
@@ -90,7 +89,7 @@
             dataServiceFactory.getService('Ratings').save(rating).$promise.then(
               //success
               function (value) {
-                  vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+                  vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
               }
          );
         };
@@ -105,7 +104,8 @@
             dataServiceFactory.getService('Comments').save(vm.newComment).$promise.then(
                  //success
                  function (value) {
-                     vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
+                     //all???
+                     vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments" });
                      vm.temp = vm.comments;
                      currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
                      countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
@@ -127,7 +127,7 @@
 
             fileFactory.uploadBookImage(fd, vm.instance.Id).then(
                 function (response) {
-                    vm.instance = bookRepository.getBookById().get({ id: $routeParams.id });
+                    vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
                 });
         }
 
@@ -140,7 +140,7 @@
                     vm.savedSuccessfully = true;
                     vm.message = BOOK_CONST.UPLOADING_SUCCESFUL;
                     // need refactoring (get only book instances)
-                    var bookInstance = bookRepository.getBookById().get({ id: $routeParams.id })
+                    var bookInstance = dataServiceFactory.getService("books").get({ id: $routeParams.id})
                         .$promise
                         .then(
                             function (response) {
@@ -159,7 +159,7 @@
         vm.edit = function () {
             vm.backup = angular.copy(vm.instance);
 
-            dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
+            dataServiceFactory.getService('authors').query().$promise.then(function (data) {
                 vm.allAuthors = data.authors;
                 for (var a = 0; a < vm.instance.Authors.length; a++) {
                     for (var i = 0; i < vm.allAuthors.length; i++) {
@@ -170,9 +170,7 @@
                     }
                 }
             })
-            dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
-                vm.publishers = data.publishers;
-            })
+            vm.publishers = dataServiceFactory.getService('publishers').query();
             vm.categories = dataServiceFactory.getService('category').query({ isNested: false });
             vm.genres = dataServiceFactory.getService('genres').query();
             vm.subgenres = dataServiceFactory.getService('subgenres').query();
