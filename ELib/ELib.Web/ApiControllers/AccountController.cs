@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -18,13 +19,13 @@ namespace ELib.Web.ApiControllers
 {
     [Authorize]
     public class AccountController : ApiController
-    {  
-        private  ApplicationUserManager _userManager;
+    {
+        private ApplicationUserManager _userManager;
         private readonly ELogger logger;
         private readonly IProfileService _profileService;
         private readonly ISendEmailService _emailService;
 
-        public AccountController(IProfileService profileService,ISendEmailService emailService)
+        public AccountController(IProfileService profileService, ISendEmailService emailService)
         {
             _profileService = profileService;
             _emailService = emailService;
@@ -61,17 +62,21 @@ namespace ELib.Web.ApiControllers
         [ActionName("register")]
         public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
         {
+            string userName = "[A-z0-9-_.]";
+            string email = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]";
+            string password = "[A - z] +[0 - 9] + ";
             try
             {
-                if (model == null || !ModelState.IsValid)
+                if (model == null || !ModelState.IsValid || !Regex.IsMatch(model.UserName, userName) ||
+                       !Regex.IsMatch(model.Email, email, RegexOptions.IgnoreCase) || !Regex.IsMatch(model.Password, password))
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Model State Is Not Valid");
                 }
 
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email};
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
                     var roleResult = UserManager.AddToRole(currentUser.Id, "User");
@@ -83,15 +88,13 @@ namespace ELib.Web.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
-
-
-               /* if (!result.Succeeded)
-                {
-                    logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
-                */
-                var person = new PersonDto() { ApplicationUserId = user.Id, State = LibEntityState.Added};
+                /* if (!result.Succeeded)
+                 {
+                     logger.Error(String.Format("Error In Author/Add, Erros: {0}", result.Errors.ToString()));
+                     return Request.CreateResponse(HttpStatusCode.BadRequest);
+                 }
+                 */
+                var person = new PersonDto() { ApplicationUserId = user.Id, State = LibEntityState.Added };
                 _profileService.Insert(person);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Ok");
@@ -102,7 +105,7 @@ namespace ELib.Web.ApiControllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-  
+
         private IAuthenticationManager Authentication
         {
             get { return HttpContext.Current.GetOwinContext().Authentication; }
