@@ -67,9 +67,6 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorConstantService.js",
 
                                     "~/Views/Home/user/CurrentProfileController.js",
-                                    "~/Views/Home/user/currentProfileFactory.js",
-                                    "~/Views/Home/user/profileFactory.js",
-                                    "~/Views/Home/user/ProfileController.js",
                                     "~/Views/Home/user/UserConstantService.js",
 
                                     "~/Views/Home/publisher/PublisherController.js",

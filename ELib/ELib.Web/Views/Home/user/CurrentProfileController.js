@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("CurrentProfileController", CurrentProfileController);
 
-    CurrentProfileController.$inject = ["currentProfileFactory", "dataServiceFactory", "fileFactory", "$location", 'USER_CONST'];
+    CurrentProfileController.$inject = ["dataServiceFactory", "fileFactory", "$location", 'USER_CONST'];
 
-    function CurrentProfileController(currentProfileFactory, dataServiceFactory, fileFactory, $location, USER_CONST) {
+    function CurrentProfileController(dataServiceFactory, fileFactory, $location, USER_CONST) {
         var vm = this;
         vm.links = {
             "GeneralInfo": USER_CONST.PROFILE ,
@@ -61,12 +61,11 @@
                 State : 1
             }
 
-            dataServiceFactory.getService("CurrentProfile").update(person);
-            //  CurrentProfileFactory.saveCurrentUser(vm.profile).send();          
+            dataServiceFactory.getService("CurrentProfile").update(person);         
         }
 
         vm.fetchData = function() {          
-            vm.profile = currentProfileFactory.getCurrentUser().query();         
+            vm.profile = dataServiceFactory.getService("CurrentProfile").get();
         }
 
         vm.fetchData();        

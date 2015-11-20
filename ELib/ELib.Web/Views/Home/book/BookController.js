@@ -2,9 +2,9 @@
     angular.module("elib")
            .controller("BookController", BookController);
 
-    BookController.$inject = ['$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", "currentProfileFactory", 'BOOK_CONST'];
+    BookController.$inject = ['$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", 'BOOK_CONST'];
 
-    function BookController($routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, currentProfileFactory, BOOK_CONST) {
+    function BookController($routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, BOOK_CONST) {
         var vm = this;
         vm.isEditMode = false;
         vm.IsPostEnabled = true;
@@ -35,7 +35,7 @@
 
         vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
 
-        vm.profile = currentProfileFactory.getCurrentUser().query();
+        vm.profile = dataServiceFactory.getService("CurrentProfile").get();
         var userCurrId = vm.profile.Id;
 
         vm.changeRating = function () {
