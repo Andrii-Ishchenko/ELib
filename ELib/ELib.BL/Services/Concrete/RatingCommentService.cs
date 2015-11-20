@@ -3,6 +3,7 @@ using ELib.BL.Mapper.Abstract;
 using ELib.BL.Services.Abstract;
 using ELib.DAL.Infrastructure.Abstract;
 using ELib.Domain.Entities;
+using ELib.Common;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,12 +30,14 @@ namespace ELib.BL.Services.Concrete
                     var entityToUpdate = _mapper.Map(rating);
                     if (rating.IsLike == ratingComment.IsLike)
                     {
+                        rating.State = LibEntityState.Deleted;
                         base.Delete(rating);
                         comment.SumLike += rating.IsLike ? -1 : 0;
                         comment.SumDisLike += rating.IsLike ? 0 : -1;
                     }
                     else
                     {
+                        rating.State = LibEntityState.Modified;
                         base.Update(rating);
                         comment.SumLike += rating.IsLike ? 1 : -1;
                         comment.SumDisLike += rating.IsLike ? -1 : 1;
@@ -51,7 +54,6 @@ namespace ELib.BL.Services.Concrete
                     else
                         comment.SumDisLike++;
                 }
-
                 uow.Save();
             }
         }
