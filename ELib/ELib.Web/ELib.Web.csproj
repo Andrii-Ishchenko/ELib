@@ -430,6 +430,7 @@
     <Content Include="Views\Home\files\fileFactory.js" />
     <Content Include="Views\Home\book\new-book.html" />
     <Content Include="Views\Home\book\NewBookController.js" />
+    <Content Include="Views\Home\registration\validationMatchDirective.js" />
     <Content Include="Views\Home\user\CurrentProfileController.js" />
     <Content Include="Views\Home\user\currentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />

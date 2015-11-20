@@ -14,7 +14,8 @@
         vm.registration = {
             userName: "",
             email: "",
-            password: ""
+            password: "",
+            confirmPassword: ""
         };
 
         vm.register = function () {
