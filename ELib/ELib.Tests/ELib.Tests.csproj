@@ -81,6 +81,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,12 +93,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fake\FakeSendEmailService.cs" />
+    <Compile Include="Fake\FakeProfileService.cs" />
     <Compile Include="Fake\FakeRepository.cs" />
     <Compile Include="Fake\FakeUnitOfWork.cs" />
     <Compile Include="Fake\FakeUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorServiceTests.cs" />
     <Compile Include="Services\BookInListServiceTests.cs" />
+    <Compile Include="Services\NewUserValidationTests.cs" />
     <Compile Include="Services\PublisherServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +120,10 @@
     <ProjectReference Include="..\ELib.Domain\ELib.Domain.csproj">
       <Project>{6556e528-064a-4bd9-a613-c60b182e130c}</Project>
       <Name>ELib.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ELib.Web\ELib.Web.csproj">
+      <Project>{b9d987df-1551-44ea-8120-baeb59fbcd5d}</Project>
+      <Name>ELib.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

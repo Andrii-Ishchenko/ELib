@@ -19,7 +19,7 @@ namespace ELib.Web
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ELibDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+           /* manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -32,7 +32,7 @@ namespace ELib.Web
                 RequireDigit = false,
                 RequireLowercase = false,
                 RequireUppercase = false,
-            };
+            };*/
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
