@@ -1,9 +1,9 @@
 ﻿(function () {
     angular.module('elib').controller('ModalController', ModalController)
 
-    ModalController.$inject = ["bookRepository", "$modal"];
+    ModalController.$inject = ["dataServiceFactory", "$modal"];
 
-    function ModalController(bookRepository, $modal) {
+    function ModalController(dataServiceFactory, $modal) {
 
         var vm = this;
         vm.animationsEnabled = true;
@@ -15,7 +15,7 @@
                 templateUrl: 'myModalContent.html',
                 controller: 'ModalInstanceController as modalinst',
                 resolve: {
-                    book: bookRepository.getBookById().get({ id: id })
+                    book: dataServiceFactory.getService("books").get({ id: id })
                 }
             });
         };

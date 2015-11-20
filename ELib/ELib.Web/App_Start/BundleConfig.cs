@@ -54,7 +54,6 @@ namespace ELib.Web
                                     "~/Views/Home/files/FileConstantService.js",
 
                                     "~/Views/Home/book/bookListDirective.js",
-                                    "~/Views/Home/book/bookRepository.js",
                                     "~/Views/Home/book/FilterController.js",
                                     "~/Views/Home/book/NewBookController.js",
                                     "~/Views/Home/book/RatingController.js",
@@ -69,9 +68,6 @@ namespace ELib.Web
                                     "~/Views/Home/author/AuthorConstantService.js",
 
                                     "~/Views/Home/user/CurrentProfileController.js",
-                                    "~/Views/Home/user/currentProfileFactory.js",
-                                    "~/Views/Home/user/profileFactory.js",
-                                    "~/Views/Home/user/ProfileController.js",
                                     "~/Views/Home/user/UserConstantService.js",
 
                                     "~/Views/Home/publisher/PublisherController.js",
@@ -83,7 +79,6 @@ namespace ELib.Web
                                     "~/Views/Home/mainpage/ModalController.js",
                                     "~/Views/Home/mainpage/ModalInstanceController.js",
 
-                                    "~/Views/Home/comments/CommentsRepository.js",
                                     "~/Views/Home/comments/commentsDirective.js",
                                     "~/Views/Home/comments/CommentConstantService.js",
 

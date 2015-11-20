@@ -12,16 +12,11 @@
         return DataService;
 
         function getService(entity) {
-            var url = COMMON_CONST.BASE_URL + entity + COMMON_CONST.URL_ID;
-            return $resource(url, {id: '@id'}, {
+            var url = COMMON_CONST.BASE_URL + entity + "/:id/:property";
+            return $resource(url, {id: '@id', property : '@property'}, {
                 update: {
                     method: 'PUT',
                     isArray: false
-                },
-
-                getWithTotalCount: {
-                    method: 'GET',
-                    isArray: false,
                 }
             });
         }

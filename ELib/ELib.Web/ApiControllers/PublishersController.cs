@@ -36,7 +36,9 @@ namespace ELib.Web.ApiControllers
              {
                 IEnumerable<PublisherDto> publishers = _pubisherService.GetAll(query, pageCount, pageNumb, orderBy,orderDirection);
                 int totalCount = _pubisherService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { publishers, totalCount });
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, publishers);
+                response.Headers.Add("totalCount", totalCount.ToString());
+                return response;
             }
              catch (Exception ex)
              {

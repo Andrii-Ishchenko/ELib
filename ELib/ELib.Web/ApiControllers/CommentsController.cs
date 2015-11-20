@@ -20,7 +20,7 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        [ActionName("comments-for-book")]
+        [Route("api/books/{id}/comments")]
         public HttpResponseMessage GetCommentsByBookId([FromUri] int id, [FromUri] int pageCount = 5, [FromUri] int pageNumb = 1)
         {
             try

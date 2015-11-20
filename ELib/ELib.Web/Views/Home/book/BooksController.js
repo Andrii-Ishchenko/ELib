@@ -8,20 +8,29 @@
         var vm = this;
         vm.pageCount = ($routeParams.pageCount) ? $routeParams.pageCount : BOOK_CONST.PAGE_COUNT;
         vm.currPage = ($routeParams.pageNumb) ? $routeParams.pageNumb : BOOK_CONST.CURRENT_PAGE;
+        vm.maxSize = BOOK_CONST.MAX_SIZE;
+        vm.ordering = fetchOrderingWithDefaultParams();
+        vm.pageChanged = pageChanged;
+
+        var parameters = getParameters();
+        vm.books = dataServiceFactory.getService('books')
+                                     .query(parameters, onSuccess = function (response, headers) {
+                                         vm.totalCount = headers("totalCount");
+                                     },
+                                                        onError = function (response) {
+                                                            console.log(response.status);
+                                                        });
 
         vm.OrderingChanged = function () {
             var params = getParameters();
-            var obj = dataServiceFactory.getService('books').get(params)
-                .$promise.then(function (data) {
-                    vm.books = data.books;
-                    vm.totalCount = data.totalCount;
-                    vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-                    vm.maxSize = BOOK_CONST.MAX_SIZE;
-                    vm.pages = new Array(vm.totalPages);
-                })
-        }
-
-        vm.ordering = fetchOrderingWithDefaultParams();
+            vm.books = dataServiceFactory.getService('books')
+                             .query(params, onSuccess = function (response, headers) {
+                                 vm.totalCount = headers("totalCount");
+                             },
+                                                onError = function (response) {
+                                                    console.log(response.status);
+                                                });
+        };
 
         function fetchOrderingWithDefaultParams() {
             return {
@@ -32,29 +41,7 @@
                 orderParameters: ["Title", "Year", "Author", "Publisher", "Rating", "Date"]
             }
         }
-
-        var parameters = getParameters()
-
-        vm.pageChanged = pageChanged;
-
-        dataServiceFactory.getService('books')
-                                     .getWithTotalCount(parameters, onSuccess = function (response) {
-                                         vm.totalCount = response.totalCount;
-                                         vm.books = response.books;
-                                     }, 
-                                                                    onError = function (response) {
-                                                                        console.log(response.message);
-                                                                    });
-        vm.maxSize = BOOK_CONST.MAX_SIZE;
-        //.get(parameters)
-        //    .$promise.then(function (data) {
-        //    vm.books = data.books;
-        //    vm.totalCount = data.totalCount;
-        //    vm.totalPages = Math.ceil(vm.totalCount / vm.pageCount);
-        //    vm.maxSize = 5;
-        //    vm.pages = new Array(vm.totalPages);
-        //})
-
+    
         function getParameters() {
             return {
                 pageCount: vm.pageCount,
@@ -72,12 +59,13 @@
                 orderDirection: vm.ordering.orderDirection
             };
         }
+
         function pageChanged() {
             $location.search(getParameters());
         }
 
         vm.NodeButtonState = function (node) {
 
-        }
+        };
     }
 })();

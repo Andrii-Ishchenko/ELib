@@ -373,7 +373,6 @@
     <Content Include="Views\Home\book\BookController.js" />
     <Content Include="Views\Home\book\bookListDirective.js" />
     <Content Include="Views\Home\book\book-list-item.html" />
-    <Content Include="Views\Home\book\bookRepository.js" />
     <Content Include="Views\Home\book\books.html" />
     <Content Include="Views\Home\book\BooksConstantService.js" />
     <Content Include="Views\Home\book\BooksController.js" />
@@ -384,7 +383,6 @@
     <Content Include="Views\Home\comments\CommentConstantService.js" />
     <Content Include="Views\Home\comments\CommentsDirective.js" />
     <Content Include="Views\Home\comments\Comments.html" />
-    <Content Include="Views\Home\comments\CommentsRepository.js" />
     <Content Include="Views\Home\common\authInterceptorServiceFactory.js" />
     <Content Include="Views\Home\common\authServiceFactory.js" />
     <Content Include="Views\Home\common\CommonConstantService.js" />
@@ -431,7 +429,6 @@
     <Content Include="Views\Home\book\new-book.html" />
     <Content Include="Views\Home\book\NewBookController.js" />
     <Content Include="Views\Home\user\CurrentProfileController.js" />
-    <Content Include="Views\Home\user\currentProfileFactory.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />
     <Content Include="Views\Home\user\profile-books-to-read.html" />
     <Content Include="Views\Home\user\profile-comments.html" />

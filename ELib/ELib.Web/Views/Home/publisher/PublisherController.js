@@ -2,21 +2,15 @@
     angular.module("elib")
            .controller("PublisherController", PublisherController);
 
-    PublisherController.$inject = ["bookRepository", '$routeParams', "$resource", 'PUBLISH_CONST'];
+    PublisherController.$inject = ["dataServiceFactory", '$routeParams', "$resource", 'PUBLISH_CONST'];
 
-    function PublisherController(bookRepository, $routeParams, $resource, PUBLISH_CONST) {
+    function PublisherController(dataServiceFactory, $routeParams, $resource, PUBLISH_CONST) {
         var vm = this;
-        vm.instance = getService().get({ id: $routeParams.id });
-        vm.book = bookRepository.getBooksForPublisher().query({ id: $routeParams.id });
 
-        function getService() {
-            var url = PUBLISH_CONST.PUBLISHER;
-            return $resource(url, { id: '@id' }, {
-                update: {
-                    method: 'PUT',
-                    isArray: false
-                }
-            });
-        }
+        //gets publisher object
+        vm.instance = dataServiceFactory.getService("publishers").get({ id: $routeParams.id, property: "publisher" });
+
+        //gets list of books which were published by given publisher
+        vm.book = dataServiceFactory.getService("publishers").query({ id: $routeParams.id, property : "books" });
     }    
 })();

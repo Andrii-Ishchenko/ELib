@@ -13,6 +13,7 @@ using System.Linq;
 
 namespace ELib.Web.ApiControllers
 {
+    [RoutePrefix("api/books")]
     public class BooksController : ApiController
     {
         private readonly IBookService _bookService;
@@ -56,7 +57,9 @@ namespace ELib.Web.ApiControllers
                 SearchDto searchDto = new SearchDto(query, authorName, title, publisher, genre, subgenre, genreId, subgenreId, year,categoryIds,orderBy,orderDirection);
                 IEnumerable<BookInListDto> books = _bookInListService.GetAll(searchDto, pageCount, pageNumb);
                 int totalCount = _bookInListService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new {books, totalCount});
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, books);
+                response.Headers.Add("totalCount", totalCount.ToString());
+                return response;
             }
             catch (Exception e)
             {
@@ -78,7 +81,9 @@ namespace ELib.Web.ApiControllers
                 { books = _bookInListService.GetNewBooks(pageCount, pageNumb); }
 
                 int totalCount = _bookInListService.TotalCount;
-                return Request.CreateResponse(HttpStatusCode.OK, new { books, totalCount });
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, books);
+                response.Headers.Add("totalCount", totalCount.ToString());
+                return response;
             }
             catch (Exception e)
             {
@@ -109,7 +114,7 @@ namespace ELib.Web.ApiControllers
 
 
         [HttpGet]
-        [ActionName("book")]
+        [Route("{id}")]
         public HttpResponseMessage Get(int id)
         {
             try

@@ -5,9 +5,7 @@
     function config($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/views/home/mainpage/main.html',
-                controller: 'MainController',
-                controllerAs: 'mainpage'
+                templateUrl: '/views/home/mainpage/main.html'
             })
             .when('/books', {
                 templateUrl: '/views/home/book/books.html',

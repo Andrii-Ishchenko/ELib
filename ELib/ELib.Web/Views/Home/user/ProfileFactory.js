@@ -1,4 +1,5 @@
-﻿(function () {
+﻿//not in use now
+(function () {
     angular.module("elib")
            .factory("profileFactory", profileFactory);
 
