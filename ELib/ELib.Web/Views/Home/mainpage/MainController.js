@@ -23,7 +23,7 @@
         };
 
         //gets books of current page for current block 
-        function getBooksForBlock(blockId, pageNumb) {
+        function getBooksForBlock(pageNumb) {
             vm.books =  dataServiceFactory.getService('books')
                              .query({ blockId: vm.blockId, pageCount: vm.itemsPerPage, pageNumb: pageNumb },
                                                 onSuccess = function (response, headers) {
