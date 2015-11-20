@@ -23,13 +23,11 @@ namespace ELib.Tests.Services
             // Arrange
             var accountController = new ELib.Web.ApiControllers.AccountController(_fakeProfileService, _fakeSendEmailService);
             var model = new RegisterBindingModel() { UserName = "r r r", Email = "rrr@rrr.com", Password = "eee444%%%" };
-            var msgRequest = "Model State Is Not Valid";
-
+            
             // Act
             var msg = accountController.Register(model);
 
             // Assert
-            Assert.AreEqual(msg.Result.RequestMessage, msgRequest);
             Assert.AreEqual(msg.Result.StatusCode, HttpStatusCode.BadRequest);
         }
     }

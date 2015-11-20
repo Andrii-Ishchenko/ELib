@@ -7,7 +7,6 @@ namespace ELib.Tests.Fake
     {
         public void SendEmail(string email, string login)
         {
-            throw new NotImplementedException();
         }
     }
 }
