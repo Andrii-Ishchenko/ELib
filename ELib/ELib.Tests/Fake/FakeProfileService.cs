@@ -17,12 +17,12 @@ namespace ELib.Tests.Fake
 
         public void Delete(PersonDto entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void DeleteById(object id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<PersonDto> GetAll()
@@ -42,12 +42,11 @@ namespace ELib.Tests.Fake
 
         public PersonDto Insert(PersonDto entity)
         {
-            throw new NotImplementedException();
+            return entity;
         }
 
         public void Update(PersonDto entity)
         {
-            throw new NotImplementedException();
         }
     }
 }
