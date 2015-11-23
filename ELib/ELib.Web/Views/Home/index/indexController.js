@@ -15,9 +15,6 @@
         }
         vm.authentication = authServiceFactory.authentication;
 
-        var obj = dataServiceFactory.getService('genres').query();
-        obj.$promise.then(function (data) {
-            vm.genres = data;
-        })
+        vm.genres = dataServiceFactory.getService('genres').query();
     }
 })();

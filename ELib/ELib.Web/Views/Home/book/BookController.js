@@ -5,89 +5,20 @@
     BookController.$inject = ['$routeParams', "fileFactory", "$scope", "authServiceFactory", "dataServiceFactory", 'BOOK_CONST'];
 
     function BookController($routeParams, fileFactory, $scope, authServiceFactory, dataServiceFactory, BOOK_CONST) {
-        var vm = this;
+        
+        vm = this;
         vm.isEditMode = false;
-        vm.IsPostEnabled = true;
-        vm.IsPostRefresh = true;
-        vm.CanPost = function () {
-            if (vm.IsPostEnabled && vm.newComment.Text.length > 0 && vm.newComment.Text.length < BOOK_CONST.MAX_TEXT)
-                return true;
-            else
-                return false;
-        };
-
-        vm.CanLoad = function () {
-            if (vm.temp.length < BOOK_CONST.LENGTH) {
-                vm.IsPostRefresh = false;
-                return true;
-            }
-            else
-                return false;
-        };
-
-        if (authServiceFactory.authentication.isAuth) {
-            vm.canLike = true;
-        }
-        else { vm.canLike = false; }
-
         vm.savedSuccessfully = false;
         vm.message = "";
 
-        vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
-
+        //GET api/CurrentProfile
         vm.profile = dataServiceFactory.getService("CurrentProfile").get();
-        var userCurrId = vm.profile.Id;
 
+        //GET api/books/id
+        vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id });
+ 
         vm.changeRating = function () {
             createRating();
-        };
-
-        var currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
-        var countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
-
-        vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
-        vm.temp = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments });
-
-        vm.newComment = {
-            Text: "",
-            BookId: $routeParams.id,
-            UserId: null,
-            CommentDate: null,
-            SumLike: 0,
-            SumDisLike: 0,
-            UserName: "",
-            State: "Added"
-        };
-
-        vm.cleanComment = function () {
-            vm.newComment.Text = "";
-        };
-
-        vm.like = function (commentId) {
-            createLikeOrDisLike(1,commentId);
-        };
-        vm.disLike = function (commentId) {
-            createLikeOrDisLike(0,commentId);
-        };
-
-        vm.fetchComments = function () {
-            currentFetchedPageOfComments = currentFetchedPageOfComments + 1;
-            console.log(vm.comments.length);
-
-
-            dataServiceFactory.getService("books").query({ id: $routeParams.id, property : "comments", pageCount: countOfFetchComments, pageNumb: currentFetchedPageOfComments }).$promise.then(
-                 function (value) {
-                     vm.temp = value;
-                     var iterator = vm.temp.length;
-                     for (var i = 0; i < iterator; i++) {
-                         vm.comments.push(vm.temp[i]);
-                     }
-                 }
-                );
-            console.log(vm.temp);
-            console.log(vm.comments);
-            console.log(vm.temp.length);
-            console.log(vm.CanLoad());
         };
 
         var createRating = function () {
@@ -96,62 +27,18 @@
                 ValueRating: vm.instance.Rating,
                 UserId: vm.profile.Id,
                 BookId: parseInt($routeParams.id),
+                State : 1
             }
             dataServiceFactory.getService('Ratings').save(rating).$promise.then(
               //success
               function (value) {
+                  //GET api/books/id
                   vm.instance = dataServiceFactory.getService("books").get({ id: $routeParams.id});
               }
          );
         };
 
-        var createLikeOrDisLike = function (isLike,commentId) {
-            var ratingComment = {
-                CommentId: commentId,
-                UserId: vm.profile.Id,
-                IsLike: isLike,
-                State:"Added"
-            }
-            dataServiceFactory.getService('RatingsComment').save(ratingComment).$promise.then(
-             //success
-             function (value) {
-                 vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
-                 vm.temp = vm.comments;
-                 currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
-                 countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
-                 vm.newComment.Text = "";
-                 vm.IsPostEnabled = true;
-                 vm.CanLoad();
-             }
-        );
-        };
-
-        vm.createComment = function () {
-            vm.IsPostEnabled = false;
-            vm.newComment.CommentDate = new Date();
-            var userIdCmnt = vm.profile.Id;
-            vm.newComment.UserId = userIdCmnt;
-            vm.newComment.UserName = vm.profile.UserName;
-            vm.newComment.State = 0;
-            dataServiceFactory.getService('Comments').save(vm.newComment).$promise.then(
-                 //success
-                 function (value) {
-                     //all???
-                     vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments" });
-                     vm.temp = vm.comments;
-                     currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
-                     countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
-                     vm.newComment.Text = "";
-                     vm.IsPostEnabled = true;
-                     vm.CanLoad();
-                 },
-                 //error
-                 function (error) {
-                     vm.newComment.Text = "";
-                     vm.IsPostEnabled = true;
-                 }
-            );
-        };
+        
 
         vm.uploadBookImage = function (file) {
             var fd = new FormData();
@@ -192,7 +79,7 @@
             vm.backup = angular.copy(vm.instance);
 
             dataServiceFactory.getService('authors').query().$promise.then(function (data) {
-                vm.allAuthors = data.authors;
+                vm.allAuthors = data;
                 for (var a = 0; a < vm.instance.Authors.length; a++) {
                     for (var i = 0; i < vm.allAuthors.length; i++) {
                         if (vm.instance.Authors[a].Id == vm.allAuthors[i].Id) {

@@ -25,12 +25,8 @@
         vm.publishLanguages = languages;
 
         // need improvement
-        var obj = dataServiceFactory.getService('publishers').get(null).$promise.then(function (data) {
-            vm.publishers = data.publishers;
-        });
-        vm.authors = dataServiceFactory.getService('authors').get(null).$promise.then(function (data) {
-            vm.authors = data.authors;
-        });
+        vm.publishers = dataServiceFactory.getService('publishers').query();
+        vm.authors = dataServiceFactory.getService('authors').query();
 
         vm.authorSelected = function () {
             var selectedAuthor;
