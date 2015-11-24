@@ -422,12 +422,15 @@
     <Content Include="Views\Home\publisher\publishers-menu.html" />
     <Content Include="Views\Home\publisher\publishers.html" />
     <Content Include="Views\Home\publisher\PublishersController.js" />
+    <Content Include="Views\Home\registration\checkEmailAvailableDirective.js" />
+    <Content Include="Views\Home\registration\checkUserNameAvailableDirective.js" />
     <Content Include="Views\Home\registration\RegistrationConstantService.js" />
     <Content Include="Views\Home\registration\RegistrationController.js" />
     <Content Include="Views\Home\files\FileController.js" />
     <Content Include="Views\Home\files\fileFactory.js" />
     <Content Include="Views\Home\book\new-book.html" />
     <Content Include="Views\Home\book\NewBookController.js" />
+    <Content Include="Views\Home\registration\regServiceFactory.js" />
     <Content Include="Views\Home\registration\validationMatchDirective.js" />
     <Content Include="Views\Home\user\CurrentProfileController.js" />
     <Content Include="Views\Home\user\profile-already-read-books.html" />

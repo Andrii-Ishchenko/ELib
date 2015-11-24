@@ -17,7 +17,7 @@ using System.Web.Http;
 
 namespace ELib.Web.ApiControllers
 {
-    [Authorize]
+   // [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationUserManager _userManager;
@@ -105,6 +105,20 @@ namespace ELib.Web.ApiControllers
         private IAuthenticationManager Authentication
         {
             get { return HttpContext.Current.GetOwinContext().Authentication; }
+        }
+
+        [HttpGet]
+        public bool IsUserNameAvailable(string userName)
+        {
+            var user = UserManager.FindByName(userName);
+            return user == null;
+        }
+
+        [HttpGet]
+        public bool IsEmailAvailable(string email)
+        {
+            var user = UserManager.FindByEmail(email);
+            return user == null;
         }
     }
 }
