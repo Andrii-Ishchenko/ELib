@@ -101,7 +101,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorServiceTests.cs" />
     <Compile Include="Services\BookInListServiceTests.cs" />
-    <Compile Include="Services\NewUserValidationTests.cs" />
     <Compile Include="Services\PublisherServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
