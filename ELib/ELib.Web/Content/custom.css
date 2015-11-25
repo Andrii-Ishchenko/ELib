@@ -1,3 +1,8 @@
 ﻿.pagination .btn {
     border-radius : 0;
 }
+
+.btn-info.disabled,
+.btn-info[disabled] {
+	background-color: ##DCDCDC !important;
+}
