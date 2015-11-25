@@ -9,7 +9,7 @@
                     <form role="form" name="registrationForm" novalidate>
                         <div class="form-group">
                             <div>
-                                <input type="text" class="form-control input-md" data-ng-model="registrationCtrl.registration.userName" name="userName" placeholder="Username" pattern="[A-Za-z\d\-\_\.]{3,15}" required useravail />
+                                <input type="text" class="form-control input-md" data-ng-model="registrationCtrl.registration.userName" name="userName" placeholder="Username" pattern="^[\w\-\.]{3,15}$" required useravail />
                             </div>
                             <div class="has-error" ng-show="registrationForm.userName.$dirty && registrationForm.userName.$invalid">
                                 <label class="control-label" ng-show="registrationForm.userName.$error.unique">This user alredy exist</label>
@@ -21,7 +21,7 @@
                             <div>
                                 <input type="email" class="form-control input-md" name="email" ng-minlength="6" ng-maxlength="50"
                                        data-ng-model="registrationCtrl.registration.email" placeholder="Email" 
-                                       pattern="^[A-Za-z\d\~\!\#\$\%\^\&\*\-\_\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]+@[A-Za-z\d_-]+\.[A-Za-z]{2,6}$" required emailavail />
+                                       pattern="^[\w\~\!\#\$\%\^\&\*\-\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]+@[\w\-]+\.[A-Za-z]{2,6}$" required emailavail />
                             </div>
                             <div class="has-error" ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
                                 <label class="control-label" ng-show="registrationForm.email.$error.unique">This e-mail is already exist</label>
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <div>
                                 <input type="password" class="form-control input-md" name="password"
-                                       data-ng-model="registrationCtrl.registration.password" placeholder="Password" pattern= "(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d\~\!\#\$\%\^\&\*\-\_\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]{5,30}" required>
+                                       data-ng-model="registrationCtrl.registration.password" placeholder="Password" pattern= "(?=.*\d)(?=.*[A-Za-z])[\w\~\!\#\$\%\^\&\*\-\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]{5,30}" required>
                             </div>
                             <div class="has-error" ng-show="registrationForm.password.$dirty && registrationForm.password.$invalid">
                                 <label class="control-label" ng-show="registrationForm.password.$error.required">Password is required</label>
