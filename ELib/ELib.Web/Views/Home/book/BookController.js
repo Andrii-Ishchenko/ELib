@@ -114,14 +114,15 @@
             }
             dataServiceFactory.getService('RatingsComment').save(ratingComment).$promise.then(
              //success
-             function (value) {
-                 vm.comments = CommentsRepository.getCommentsByBookId().get({ id: $routeParams.id });
-                 vm.temp = vm.comments;
-                 currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
-                 countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
-                 vm.newComment.Text = "";
-                 vm.IsPostEnabled = true;
-                 vm.CanLoad();
+            function (value) {
+                //all???
+                vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments" });
+                vm.temp = vm.comments;
+                currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
+                countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
+                vm.newComment.Text = "";
+                vm.IsPostEnabled = true;
+                vm.CanLoad();
              }
         );
         };
