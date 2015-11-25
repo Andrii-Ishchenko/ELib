@@ -30,8 +30,8 @@
                         </div>
                         <div class="form-group">
                             <div>
-                                <input type="password" class="form-control input-md" name="password" min="6" max="30"
-                                       data-ng-model="registrationCtrl.registration.password" placeholder="Password" pattern= "^(?=.*[a-zA-Z]{1,})(?=.*\d{1,})(?=.*[\w\~\!\#\$\%\^\&\*\-\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]{5,})" required>
+                                <input type="password" class="form-control input-md" name="password" min="5" max="30"
+                                       data-ng-model="registrationCtrl.registration.password" placeholder="Password" pattern= "^(?=.*[a-z]{1,})(?=.*\d{1,})(?=.*[\w\~\!\#\$\%\^\&\*\-\+\=\`\|\(\)\{\}\:\;\<\>\''\,\/\?\.]{5,})" required>
                             </div>
                             <div class="has-error" ng-show="registrationForm.password.$dirty && registrationForm.password.$invalid">
                                 <label class="control-label" ng-show="registrationForm.password.$error.required">Password is required</label>
