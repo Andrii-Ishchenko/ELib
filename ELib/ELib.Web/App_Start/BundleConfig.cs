@@ -85,6 +85,9 @@ namespace ELib.Web
                                     "~/Views/Home/registration/RegistrationController.js",
                                     "~/Views/Home/registration/RegistrationConstantService.js",
                                     "~/Views/Home/registration/validationMatchDirective.js",
+                                    "~/Views/Home/registration/checkEmailAvailableDirective.js",
+                                    "~/Views/Home/registration/checkUserNameAvailableDirective.js",
+                                    "~/Views/Home/registration/regServiceFactory.js",
 
                                     "~/Views/Home/login/LoginController.js",
                                     "~/Views/Home/login/LoginConstantService.js",

@@ -38,7 +38,27 @@
          );
         };
 
-        
+        var createLikeOrDisLike = function (isLike,commentId) {
+            var ratingComment = {
+                CommentId: commentId,
+                UserId: vm.profile.Id,
+                IsLike: isLike,
+                State:"Added"
+            }
+            dataServiceFactory.getService('RatingsComment').save(ratingComment).$promise.then(
+             //success
+            function (value) {
+                //all???
+                vm.comments = dataServiceFactory.getService("books").query({ id: $routeParams.id, property: "comments" });
+                vm.temp = vm.comments;
+                currentFetchedPageOfComments = BOOK_CONST.CURRENT_COMMENTS;
+                countOfFetchComments = BOOK_CONST.COUNT_COMMENTS;
+                vm.newComment.Text = "";
+                vm.IsPostEnabled = true;
+                vm.CanLoad();
+             }
+        );
+        };
 
         vm.uploadBookImage = function (file) {
             var fd = new FormData();
