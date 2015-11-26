@@ -4,10 +4,10 @@
    }
 
 .glyphicon-thumbs-up {
-	color: #337ab7;
+	color: #337ab7 !important;
 }
 
 .glyphicon-thumbs-down {
-	color: #a94442;
+	color: #a94442 !important;
 }
 
