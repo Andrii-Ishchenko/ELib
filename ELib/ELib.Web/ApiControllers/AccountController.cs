@@ -17,7 +17,7 @@ using System.Web.Http;
 
 namespace ELib.Web.ApiControllers
 {
-   // [Authorize]
+    [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationUserManager _userManager;
@@ -107,6 +107,7 @@ namespace ELib.Web.ApiControllers
             get { return HttpContext.Current.GetOwinContext().Authentication; }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public bool IsUserNameAvailable(string userName)
         {
@@ -114,6 +115,7 @@ namespace ELib.Web.ApiControllers
             return user == null;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public bool IsEmailAvailable(string email)
         {
